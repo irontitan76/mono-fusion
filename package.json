@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "fusion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Ross Sheppard",
+  "license": "ISC",
+  "workspaces": [
+    "client",
+    "design",
+    "server"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "@fusion/design",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "files": [
+    "./"
+  ],
+  "author": "Ross Sheppard",
+  "license": "ISC",
+  "dependencies": {
+    "@material-ui/core": "^4.0.0-alpha.3",
+    "@material-ui/icons": "^4.0.0-alpha.1",
+    "@material-ui/styles": "^4.0.0-alpha.3",
+    "react": "^16.8.6"
+  }
+}
