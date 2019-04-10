@@ -8,6 +8,7 @@
   "author": "Ross Sheppard",
   "license": "ISC",
   "workspaces": [
+    "api",
     "client",
     "design",
     "server"

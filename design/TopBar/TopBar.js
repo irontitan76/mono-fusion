@@ -38,11 +38,11 @@ const useStyles = makeStyles(({ palette }) => {
 
 export default function TopBar(props) {
   const classes = useStyles(props);
-  const { color } = props;
+  const { color, variant } = props;
 
   return (
     <AppBar className={classes.appBar} color={color} component='nav'>
-      <Toolbar className={classes.toolbar}>
+      <Toolbar className={classes.toolbar} variant={variant}>
         <Grid container justify='space-between'>
           <Grid  className={classes.leading} item xs={4}>
             {props.leading}
@@ -61,4 +61,5 @@ export default function TopBar(props) {
 
 TopBar.defaultProps = {
   color: 'default',
+  variant: 'dense',
 };

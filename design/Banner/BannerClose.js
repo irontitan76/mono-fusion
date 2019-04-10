@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 
-const useStyles = makeStyles(({ palette }) => {
+const useStyles = makeStyles(() => {
   return {
     close: {
       color: 'inherit',

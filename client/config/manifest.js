@@ -17,7 +17,14 @@ export const manifest = {
   },
   "navigation": {
     "items": [
-      { "name": "Learn", "path": "/learn" }
+      { "label": 'Our solutions', "path": '/solutions' },
+      { "label": 'Our insights', "path": '/insights' },
+      { "label": 'Our showcase', "path": '/showcase' },
     ]
   }
 };
+
+// Navigation sub-object
+// Home sub-object
+// About sub-object
+// Team sub-object

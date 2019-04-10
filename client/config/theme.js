@@ -38,5 +38,18 @@ export const theme = createMuiTheme({
         boxShadow: baseTheme.shadows[0],
       },
     },
+    MuiButton: {
+      root: {
+        borderRadius: 0,
+      },
+    },
+    MuiCard: {
+
+    },
+    MuiPaper: {
+      rounded: {
+        borderRadius: 0,
+      }
+    },
   },
 });

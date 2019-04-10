@@ -1,13 +1,15 @@
 import React from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
-import { ThemeProvider } from '@material-ui/styles';
+import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import JssProvider from 'react-jss/lib/JssProvider';
 
+import Layout from '@fusion/design/Layout';
+import ManifestProvider from '@fusion/design/Provider/Manifest';
 import PageContext from '@fusion/design/Provider/PageContext';
 import { manifest } from '@fusion/client/config/manifest';
 import { theme } from '@fusion/client/config/theme';
+import '@fusion/client/app/main/icon.config.js';
 
 class MyApp extends App {
   constructor() {
@@ -25,29 +27,50 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps } = this.props;
+    const { 
+      generateClassName, 
+      sheetsManager, 
+      sheetsRegistry, 
+      theme 
+    } = this.pageContext;
+
+    const Page = () => (
+      <Layout 
+        bannerMessage='This site is under maintenance. Please bear with us as we optimize your experience.'
+        items={manifest.navigation.items}
+      >
+        <Component pageContext={this.pageContext} {...pageProps} />
+      </Layout>
+    );
+
+    const Providers = ({ children }) => (
+      <StylesProvider
+        generateClassName={generateClassName}
+        sheetsManager={sheetsManager}
+        sheetsRegistry={sheetsRegistry}
+      >
+        {/* ThemeProvider enables its children to use the theme. */}
+        <ThemeProvider theme={theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          {/* Pass pageContext to the _document though the renderPage enhancer
+              to render collected styles on server-side. */}
+          <ManifestProvider manifest={manifest}>
+            {children}
+          </ManifestProvider>
+        </ThemeProvider>
+      </StylesProvider>
+    );
+
     return (
       <Container>
         <Head>
           <title>{manifest.company.name}</title>
         </Head>
-        {/* Wrap every page in Jss and Theme providers */}
-        <JssProvider
-          registry={this.pageContext.sheetsRegistry}
-          generateClassName={this.pageContext.generateClassName}
-        >
-          {/* MuiThemeProvider makes the theme available down the React
-              tree thanks to React context. */}
-          <ThemeProvider
-            theme={this.pageContext.theme}
-            // sheetsManager={this.pageContext.sheetsManager}
-          >
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-            <CssBaseline />
-            {/* Pass pageContext to the _document though the renderPage enhancer
-                to render collected styles on server-side. */}
-            <Component pageContext={this.pageContext} {...pageProps} />
-          </ThemeProvider>
-        </JssProvider>
+        {/* Wrap every page in relevant providers */}
+        <Providers>
+          <Page />
+        </Providers>
       </Container>
     );
   }

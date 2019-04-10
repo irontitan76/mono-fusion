@@ -16,13 +16,18 @@ const useStyles = makeStyles(() => {
   };
 });
 
-export default function Banner() {
+export default function BannerMessage(props) {
   const classes = useStyles();
+  const { message } = props;
 
   return (
     <Typography className={classes.text} component='div'>
-      This is an announcement
+      {message}
     </Typography>
   );
+};
+
+BannerMessage.defaultProps = {
+  message: '',
 };
 

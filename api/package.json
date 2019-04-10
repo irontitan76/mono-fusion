@@ -1,0 +1,11 @@
+{
+  "name": "@fusion/api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ross Sheppard",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}

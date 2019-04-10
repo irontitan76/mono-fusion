@@ -68,13 +68,13 @@ const useStyles = makeStyles(({ palette }) => {
 
 export default function Banner(props) {
   const classes = useStyles(props);
-  const { persistent } = props;
+  const { message, persistent } = props;
 
   const banner = persistent ? <BannerClose /> : null;
   
   return (
     <div className={classes.banner}>
-      <BannerMessage />
+      <BannerMessage message={message} />
       {banner}
     </div>
   );
@@ -82,7 +82,8 @@ export default function Banner(props) {
 
 Banner.defaultProps = {
   border: 'default',
-  color: 'primary',
+  color: 'default',
   persistent: true,
+  overrides: {},
 };
 
