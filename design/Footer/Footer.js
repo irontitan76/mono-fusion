@@ -14,6 +14,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       backgroundColor: bgColor,
       borderTop: `1px solid ${borderColor}`,
       color: palette.getContrastText(palette.grey[200]),
+      marginTop: spacing(4),
       padding: `${spacing(5)}px ${spacing(10)}px`,
     },
     item: {
@@ -56,7 +57,7 @@ export default function Footer() {
   const ColumnMenu = ({ items }) => {
     return items.map((item) => {
       return (
-        <Typography className={classes.item}>{item.name}</Typography>
+        <Typography className={classes.item} key={item.name}>{item.name}</Typography>
       )
     })
   };
@@ -64,7 +65,7 @@ export default function Footer() {
   const Columns = () => {
     return columns.map((column) => {
       return (
-        <Grid item xs={12} md={3}>
+        <Grid item key={column.title} xs={12} md={3}>
           <ColumnTitle title={column.title} />
           <ColumnMenu items={column.items} />
         </Grid>

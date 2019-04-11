@@ -1,18 +1,23 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 
-import { resolvers, typeDefs } from './services/example';
+import { resolvers, typeDefs } from './services/insights';
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const PORT = process.env.PORT || 8080;
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Welcome to Fusion Server');
+const server = new ApolloServer({ 
+  introspection: true,
+  typeDefs, 
+  resolvers,
 });
 
 server.applyMiddleware({ app });
 
-const PORT = process.env.PORT || 8080;
+app.get('/', (req, res) => {
+  res.redirect('/graphql');
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Server's ready on PORT ${PORT}`);
 });

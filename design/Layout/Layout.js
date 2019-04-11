@@ -13,6 +13,7 @@ const useStyles = makeStyles(({ palette }) => {
     header: {
       position: 'sticky',
       top: 0,
+      zIndex: 2,
     },
     main: {
       background: palette.background.default,

@@ -61,5 +61,6 @@ export default function TopBar(props) {
 
 TopBar.defaultProps = {
   color: 'default',
+  submenu: null,
   variant: 'dense',
 };

@@ -19,7 +19,6 @@ export const manifest = {
     "items": [
       { "label": 'Our solutions', "path": '/solutions' },
       { "label": 'Our insights', "path": '/insights' },
-      { "label": 'Our showcase', "path": '/showcase' },
     ]
   }
 };
