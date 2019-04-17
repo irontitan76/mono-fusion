@@ -1,6 +1,7 @@
 import React from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
+import Link from 'next/link';
 import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -37,6 +38,7 @@ class MyApp extends App {
     const Page = () => (
       <Layout 
         bannerMessage='This site is under maintenance. Please bear with us as we optimize your experience.'
+        component={Link}
         items={manifest.navigation.items}
       >
         <Component pageContext={this.pageContext} {...pageProps} />

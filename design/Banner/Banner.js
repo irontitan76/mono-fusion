@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { makeStyles } from '@material-ui/styles';
 
 import BannerClose from './BannerClose';
 import BannerMessage from './BannerMessage';
+import { getCookie } from '../helpers';
 
 const styledBy = (property, mapping) => props => mapping[props[property]];
 
@@ -68,9 +69,18 @@ const useStyles = makeStyles(({ palette }) => {
 
 export default function Banner(props) {
   const classes = useStyles(props);
-  const { message, persistent } = props;
+  const { message, name, persistent } = props;
+  const [isClient, setIsClient] = useState(false);
+  const [status, setStatus] = useState(getCookie(`user-has-accepted-${name}`) || false);
+  
+  // Unnecessary double render, SSR error workaround
+  useEffect(() => setIsClient(true));
 
-  const banner = persistent ? <BannerClose /> : null;
+  if (!isClient) return null;
+
+  const banner = persistent ? <BannerClose name={name} onClose={setStatus} /> : null;
+
+  if (status) return null;
   
   return (
     <div className={classes.banner}>

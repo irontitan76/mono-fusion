@@ -24,6 +24,6 @@ export default function TopBarLogo() {
   const { application } = useContext(ManifestContext);
 
   return <Typography className={classes.version}>
-    v{application.version}
+    {application.version}
   </Typography>;
 };

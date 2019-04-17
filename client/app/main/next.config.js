@@ -1,3 +1,4 @@
+const path = require('path');
 const withTM = require('next-transpile-modules');
  
 module.exports = withTM({
@@ -15,5 +16,5 @@ module.exports = withTM({
 
     return config;
   },
-  transpileModules: ['@fusion/client', '@fusion/design'],
+  transpileModules: ['@fusion/api', '@fusion/client', '@fusion/design'],
 });

@@ -1,27 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { makeStyles } from '@material-ui/styles';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-import { manifest } from '@fusion/client/config/manifest';
+import { manifest } from '../../../config/manifest';
+import Hero from '@fusion/design/Hero';
 import Intro from '@fusion/design/Intro';
 import NewsSlider from '@fusion/design/NewsSlider';
-import test from '@fusion/api/example';
+
+import insightsApi from '@fusion/api/insights';
 
 const useStyles = makeStyles(({ spacing }) => {
   return {
-    hero: {
-      '&:hover': {
-        filter: 'grayscale(40%)',
-      },
-      backgroundImage: 'url(/static/images/people-2.jpg)',
-      backgroundSize: 'cover',
-      cursor: 'pointer',
-      height: 600,
-      margin: spacing(10),
-    },
     subheading: {
       paddingBottom: spacing(4),
     }
@@ -30,45 +21,51 @@ const useStyles = makeStyles(({ spacing }) => {
 
 export function Home() {
   const classes = useStyles();
+  const [news, setNews] = useState([]);
 
   useEffect(() => {
-    test().then((result) => {
-      console.log(result.data);
-    });
+    if (news.length === 0 ) {
+      insightsApi.getNews().then((result) => {
+        setNews(result.data.data.insights);
+      });
+    }
 
     return () => console.log('unmounted');
   });
 
-  const insights = [
+  const heros = [
     {
-      _publishedAt: 'April 10, 2019',
-      desc: 'Learn more about the significance of our Insights Engine and delve into the latest trends in technology',
-      media: {
-        source: '/static/images/nyc-1.jpg',
-        type: 'image',
-      },
-      path: '/insight?id=1',
-      title: 'INSIGHTS ENGINE',
+      action: 'Learn more',
+      description: 'Integrate our solutions into your existing workflow',
+      // media: {
+      //   source: '/static/images/building-2.jpg',
+      //   type: 'image',
+      // },
+      path: '/insight?id=0002',
+      title: 'OUR SOLUTIONS',
+      variant: 'dark',
     },
     {
-      _publishedAt: 'April 11, 2019',
-      desc: 'Our Sales Team has vision for delivering optimal solutions and can provide you with the best technology and people possible.',
+      action: 'See how we work',
+      description: 'Quicken development with our qualified consultants',
       media: {
-        source: '/static/images/team-1.jpg',
+        source: '/static/images/coder-5.jpg',
         type: 'image',
       },
-      path: '/insight?id=1',
-      title: 'FUSION CONSULTING',
+      path: '/insight?id=0002',
+      title: 'OUR SERVICES',
+      variant: 'dark',
     },
     {
-      _publishedAt: 'April 12, 2019',
-      desc: 'Explore our showcase and see how our robust code library can quickly create web applications',
+      action: 'See our standard',
+      description: 'Proven strategies that effectively grow your business',
       media: {
-        source: '/static/images/path2.jpg',
+        source: '/static/images/process-2.jpg',
         type: 'image',
       },
-      path: '/insight?id=3',
-      title: 'FUSION DESIGN',
+      path: '/insight?id=0001',
+      title: 'OUR PROCESS',
+      variant: 'dark',
     },
   ];
 
@@ -90,22 +87,15 @@ export function Home() {
 
       <NewsSlider
         component={Link}
-        insights={insights}
+        insights={news}
         rounded={true}
+        scroll={true}
         spacing={4}
       />
 
-      <Grid container justify='center'>
-        <Link href='/solutions?id=1'>
-          <Grid className={classes.hero} component='a' item xs={12}>
-            <Grid container justify='center'>
-              <Grid item>
-                Hello
-              </Grid>
-            </Grid>
-          </Grid>
-        </Link>
-      </Grid>
+      {heros.map((hero) => {
+        return <Hero component={Link} hero={hero} key={hero.title} />
+      })}
      </>
   );
 };

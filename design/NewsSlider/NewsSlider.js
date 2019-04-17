@@ -6,10 +6,12 @@ import { makeStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const get = (property) => props => props[property];
+const getPercentage = (property) => props => `${100 / props[property]}%`;
 const styledBy = (property, mapping) => props => mapping[props[property]];
 
 const useStyles = makeStyles(({ palette, spacing }) => {
@@ -39,7 +41,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
     },
     cardMedia: {
       borderRadius: styledBy('rounded', {
-        true: 10,
+        true: 7,
         false: 0,
       }),
       height: get('mediaHeight'),
@@ -50,11 +52,18 @@ const useStyles = makeStyles(({ palette, spacing }) => {
         textDecoration: 'none',
       },
     },
+    insightScroll: {
+      minWidth: getPercentage('scroll'),
+      maxWidth: getPercentage('scroll'),
+    },
     news: {
       marginLeft: spacing(10),
       marginRight: spacing(10),
       overflowX: 'hidden',
       overflowY: 'hidden',
+    },
+    scroll: {
+      overflowX: 'scroll',
     },
   };
 });
@@ -67,11 +76,13 @@ const defaultSize = {
 
 export default function NewsSlider(props) {
   const classes = useStyles(props);
-  const { component, insights, size, spacing } = props;
+  const { component, insights, scroll, showDate, size, spacing } = props;
 
-  if (props.insights.length === 0) return null;
+  if (props.insights.length === 0) return <div style={{ height: 200 }} />;
 
   let Component = component || 'a';
+  let actualScroll = scroll;
+  if (insights.length > actualScroll) actualScroll = false;
 
   const InsightMedia = ({ insight }) => {
     if (!insight.media) return null;
@@ -79,15 +90,26 @@ export default function NewsSlider(props) {
       <CardMedia
         className={classes.cardMedia}
         style={{ height: insight.media.height }}
-        image={insight.media.source}
+        image={insight.media.source}  
       />
     );
-  }
+  };
+
+  const InsightDate = ({ date }) => {
+    if (!showDate) return null;
+    console.log(Date(date));
+    return (
+      <Typography variant='caption'>
+        {moment.unix(date).format('MMM DD, YYYY')}
+      </Typography>
+    )
+  };
 
   const Insight = ({ insight }) => {
+    
     return (
       <Grid 
-        className={classes.insight}
+        className={`${classes.insight} ${actualScroll ? classes.insightScroll : ''}`}
         item
         key={insight.title} 
         {...defaultSize} 
@@ -95,20 +117,18 @@ export default function NewsSlider(props) {
         {...insight.meta ? insight.meta.size : {}}
       >
         <Component 
-          href={insight.slug ? `/insight?id=${insight.slug}` : insight.path}
+          href={insight.id ? `/insight?id=${insight.id}` : insight.path}
         >
           <Card className={classes.card} elevation={0}>
             <InsightMedia insight={insight}/>
             <CardContent className={classes.cardContent}>
               <Typography variant='h6'>
-                {insight.title}
+                {insight.title.toUpperCase()}
               </Typography>
               <Typography>
                 {insight.desc}
               </Typography>
-              <Typography variant='caption'>
-                {moment(insight._publishedAt._seconds).format('MMMM DD, YYYY')}
-              </Typography>
+              <InsightDate date={insight._publishedAt._seconds} />
             </CardContent>
           </Card>
         </Component>
@@ -129,20 +149,30 @@ export default function NewsSlider(props) {
   }
 
   return (
-    <div className={classes.news}>
-      <Grid container justify='center' spacing={spacing}>
-        <Insights />    
-      </Grid>
-    </div>
+    <Fade in timeout={500}>
+      <div className={classes.news}>
+        <Grid
+          className={actualScroll ? classes.scroll : ''}
+          container 
+          justify={actualScroll ? 'flex-start' : 'center'}
+          spacing={spacing}
+          wrap={actualScroll ? 'nowrap' : 'wrap'}
+        >
+          <Insights />    
+        </Grid>
+      </div>
+    </Fade>
   ); 
 };
 
 NewsSlider.defaultProps = {
   component: 'a',
   mediaHeight: 150,
+  showDate: true,
   rounded: false,
+  scroll: false,
   size: defaultSize,
-  spacing: 8,
+  spacing: 6,
 };
 
 NewsSlider.propTypes = {

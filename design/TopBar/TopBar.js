@@ -43,7 +43,7 @@ export default function TopBar(props) {
   return (
     <AppBar className={classes.appBar} color={color} component='nav'>
       <Toolbar className={classes.toolbar} variant={variant}>
-        <Grid container justify='space-between'>
+        <Grid alignItems='center' container justify='space-between'>
           <Grid  className={classes.leading} item xs={4}>
             {props.leading}
           </Grid>

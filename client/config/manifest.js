@@ -3,7 +3,7 @@ export const manifest = {
     "displayName": "FUSION",
     "name": "fusion",
     "build": "0001a",
-    "version": "0.0.1"
+    "version": "beta"
   },
   "company": {
     "address": {
@@ -13,7 +13,7 @@ export const manifest = {
     "logo": "/static/images/fusion-logo.svg",
     "name": "Fusion Industries",
     "phone": "",
-    "slogan": "Optimizing business through intelligent design"
+    "slogan": "Optimizing business through intelligent design and professional services"
   },
   "navigation": {
     "items": [

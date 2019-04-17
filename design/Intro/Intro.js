@@ -9,6 +9,7 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   intro: {
     paddingBottom: spacing(9),
     paddingTop: spacing(8),
+    width: '100%',
   },
   content: {
     paddingTop: spacing(4),
