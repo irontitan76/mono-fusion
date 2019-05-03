@@ -5,22 +5,37 @@ import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 
-const useStyles = makeStyles(({ palette }) => {
+const getBorder = (property, palette) => (props) => { 
   const isDark = palette.type === 'dark';
   const borderColor = palette.grey[isDark ? 700 : 'A100'];
+  return props[property] === 'default' ? `1px solid ${borderColor}` : 'none';
+};
 
+const getColor = (palette) => (props) => {
+  const color = props.color;
+  return {
+    color: palette.augmentColor(color === 'default' ? palette.grey : palette[color]),
+  };
+};
+
+const useStyles = makeStyles(({ palette }) => {
   return {
     appBar: {
-      borderBottom: `1px solid ${borderColor}`,
+      borderBottom: getBorder('color', palette),
       position: 'sticky',
       top: 0,
     },
     center: {
+      ...getColor(palette),
       display: 'flex',
       justifyContent: 'center', 
       textAlign: 'center',
     },
     leading: {
+      ...getColor(palette),
+      '& a': {
+        textDecoration: 'none',
+      },
       display: 'flex',
       justifyContent: 'flex-start', 
       textAlign: 'left',
@@ -29,6 +44,7 @@ const useStyles = makeStyles(({ palette }) => {
       boxShadow: 'none',
     },
     trailing: {
+      ...getColor(palette),
       display: 'flex',
       justifyContent: 'flex-end', 
       textAlign: 'right',
@@ -44,10 +60,10 @@ export default function TopBar(props) {
     <AppBar className={classes.appBar} color={color} component='nav'>
       <Toolbar className={classes.toolbar} variant={variant}>
         <Grid alignItems='center' container justify='space-between'>
-          <Grid  className={classes.leading} item xs={4}>
+          <Grid className={classes.leading} item xs={4}>
             {props.leading}
           </Grid>
-          <Grid  className={classes.center} item xs={4}>
+          <Grid className={classes.center} item xs={4}>
             {props.center}
           </Grid>
           <Grid className={classes.trailing} item xs={4}>

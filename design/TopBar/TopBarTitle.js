@@ -20,11 +20,11 @@ const useStyles = makeStyles(() => {
   };
 });
 
-export default function TopBarLeading() {
+export default function TopBarTitle({ LinkComponent }) {
   const classes = useStyles();
 
   return (
-    <TopBarLink>
+    <TopBarLink LinkComponent={LinkComponent}>
       <div className={classes.outerContainer}>
         <TopBarLogo />
         <div className={classes.innerContainer}>

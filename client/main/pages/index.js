@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 
-import { manifest } from '../../../config/manifest';
+import { manifest } from '../../__config__/main.manifest';
 import Hero from '@fusion/design/Hero';
 import Intro from '@fusion/design/Intro';
 import NewsSlider from '@fusion/design/NewsSlider';

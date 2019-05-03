@@ -5,12 +5,13 @@ import Link from 'next/link';
 import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import Layout from '@fusion/design/Layout';
+import Layout from './_layout';
 import ManifestProvider from '@fusion/design/Provider/Manifest';
 import PageContext from '@fusion/design/Provider/PageContext';
-import { manifest } from '@fusion/client/config/manifest';
-import { theme } from '@fusion/client/config/theme';
-import '@fusion/client/app/main/icon.config.js';
+import { manifest } from '@fusion/client/__config__/corp.manifest';
+import { theme } from '@fusion/client/__config__/theme';
+import '@fusion/client/corp/icon.config.js';
+import 'easymde/dist/easymde.min.css';
 
 class MyApp extends App {
   constructor() {

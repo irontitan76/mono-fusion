@@ -51,7 +51,6 @@ function Leadership() {
   useEffect(() => {
     if (execs.length === 0 ) {
       employeesApi.getAll().then((result) => {
-        console.log(result);
         setExecs(result.data.data.employees);
       });
     }
@@ -69,8 +68,6 @@ function Leadership() {
   //     },
   //   },
   // ];
-
-  console.log(execs);
 
   const Profile = ({ person }) => {
     return (

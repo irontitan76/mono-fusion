@@ -97,7 +97,7 @@ export default function NewsSlider(props) {
 
   const InsightDate = ({ date }) => {
     if (!showDate) return null;
-    console.log(Date(date));
+    
     return (
       <Typography variant='caption'>
         {moment.unix(date).format('MMM DD, YYYY')}

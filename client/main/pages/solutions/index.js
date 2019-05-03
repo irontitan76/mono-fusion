@@ -18,22 +18,25 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       paddingTop: spacing(2),
     },
     focusContent: {
-      borderBottom: `2px solid ${palette.grey[300]}`,
-      borderRight: `2px solid ${palette.grey[300]}`,
-      borderTop: `2px solid ${palette.grey[300]}`,
+      borderBottom: `1px solid ${palette.grey[300]}`,
+      borderRight: `1px solid ${palette.grey[300]}`,
+      borderTop: `1px solid ${palette.grey[300]}`,
       boxSizing: 'border-box',
+      color: palette.common.white,
     },
     focusItem: {
       '&:hover': {
-        backgroundColor: palette.primary.main,
+        backgroundColor: palette.primary.dark,
         color: palette.common.white,
       },
       '&:last-child': {
         borderBottom: `1px solid ${palette.grey[300]}`, 
       },
+      backgroundColor: palette.primary.main,
       borderLeft: `2px solid ${palette.grey[300]}`, 
       borderRight: `2px solid ${palette.grey[300]}`,
       borderTop: `2px solid ${palette.grey[300]}`,
+      color: 'white',
       height: '25%',
     },
     hero: {

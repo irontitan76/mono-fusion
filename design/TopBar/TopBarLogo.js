@@ -4,11 +4,12 @@ import { makeStyles } from '@material-ui/styles';
 
 import { ManifestContext } from '@fusion/design/Provider/Manifest';
 
-const useStyles = makeStyles(() => {
+const useStyles = makeStyles(({ spacing }) => {
   return {
     logo: {
-      height: 28,
-      marginRight: 10,
+      height: 30,
+      marginBottom: spacing(1),
+      marginRight: spacing(1.25),
     },
   };
 });

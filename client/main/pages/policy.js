@@ -12,7 +12,6 @@ function Policy({ query }) {
   useEffect(() => {
     if (Object.keys(policy).length === 0) {
       policiesApi.getOne(query).then((result) => {
-        console.log(result);
         setPolicy(result.data.data.policy);
       });
     }

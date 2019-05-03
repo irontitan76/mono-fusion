@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
   "author": "Ross Sheppard",
   "license": "ISC",
   "workspaces": [
@@ -12,5 +11,17 @@
     "client",
     "design",
     "server"
-  ]
+  ],
+  "scripts": {
+    "build:corp": "cd client && yarn run build:corp",
+    "build:main": "cd client && yarn run build:main",
+    "build:me": "cd client && yarn run build:me",
+    "dev:corp": "cd client && yarn run dev:corp",
+    "dev:main": "cd client && yarn run dev:main",
+    "dev:me": "cd client && yarn run dev:me",
+    "start:corp": "cd client && yarn run start:corp",
+    "start:main": "cd client && yarn run start:main",
+    "start:me": "cd client && yarn run start:me",
+    "server": "cd server && yarn run start"
+  }
 }

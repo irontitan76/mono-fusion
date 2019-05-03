@@ -19,6 +19,7 @@ export default gql`
     _modifiedAt: Date!
     _publishedAt: Date!
     authorId: String!
+    category: String!
     content: String!
     desc: String!
     id: ID!

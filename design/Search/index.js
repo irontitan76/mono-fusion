@@ -7,6 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
+  const isDark = palette.type === 'dark';
+  
   return {
     logo: {
       cursor: 'pointer',
@@ -26,8 +28,8 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       fontWeight: 300,
     },
     toolbar: {
-      backgroundColor: '#fff',
-      borderBottom: `1px solid ${palette.grey[300]}`,
+      backgroundColor: palette.background.paper,
+      borderBottom: `1px solid ${palette.grey[isDark ? 700 : 'A100']}`,
       display: 'flex',
       height: 48,
       paddingLeft: spacing(3),

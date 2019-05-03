@@ -7,15 +7,24 @@ const useStyles = makeStyles(() => {
     a: {
       textDecoration: 'none',
     },
+    link: {
+      textDecoration: 'none',
+    },
   };
 });
 
-export default function TopBarLink({ children }) {
+export default function TopBarLink({ children, LinkComponent }) {
   const classes = useStyles();
 
   return (
-    <a className={classes.a} href='/'>
-      {children}
-    </a>
+    <LinkComponent href='/'>
+      <a className={classes.a}>
+        {children}
+      </a>
+    </LinkComponent>
   ); 
+};
+
+TopBarLink.defaultProps = {
+  LinkComponent: 'a',
 };

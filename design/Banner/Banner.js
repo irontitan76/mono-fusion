@@ -76,7 +76,7 @@ export default function Banner(props) {
   // Unnecessary double render, SSR error workaround
   useEffect(() => setIsClient(true));
 
-  if (!isClient) return null;
+  if (!isClient || !message) return null;
 
   const banner = persistent ? <BannerClose name={name} onClose={setStatus} /> : null;
 

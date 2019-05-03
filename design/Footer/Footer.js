@@ -13,7 +13,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
     footer: {
       backgroundColor: bgColor,
       borderTop: `1px solid ${borderColor}`,
-      color: palette.getContrastText(palette.grey[200]),
+      color: palette.getContrastText(isDark ? palette.background.default : palette.grey[200]),
       marginTop: spacing(4),
       padding: `${spacing(5)}px ${spacing(10)}px`,
     },

@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "relay": "relay-compiler --src ./src --schema ./schema.graphql",
     "start": "nodemon --exec babel-node server.js"
   },
   "author": "Ross Sheppard",
@@ -20,7 +21,8 @@
     "graphql-subscriptions": "^1.1.0",
     "graphql-tools": "^4.0.4",
     "lodash.merge": "^4.6.1",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",

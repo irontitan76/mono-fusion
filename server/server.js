@@ -2,6 +2,7 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import * as admin from 'firebase-admin';
 import schema from './schema';
+import IO from 'socket.io';
 
 const serviceAccount = require('./config/service-account.json');
 
@@ -22,6 +23,13 @@ const server = new ApolloServer({
 });
 
 server.applyMiddleware({ app });
+
+const io = IO(server);
+
+io.on('connection', (client) => {
+  // here you can start emitting events to the client 
+});
+
 
 app.get('/', (req, res) => {
   res.redirect('/graphql');

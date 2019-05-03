@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 import { makeStyles } from '@material-ui/styles';
-import IconButton from '@material-ui/core/IconButton';
-import MoreIcon from '@material-ui/icons/MoreVert';
 
 import Banner from '@fusion/design/Banner';
 import Footer from '@fusion/design/Footer';
@@ -36,7 +34,7 @@ const useStyles = makeStyles(({ palette }) => {
   }
 });
 
-export default function Layout({ bannerMessage, children, component, items }) {
+export default function Layout({ bannerMessage, children, component, items, TopBarProps }) {
   const classes = useStyles();
 
   return (
@@ -50,6 +48,7 @@ export default function Layout({ bannerMessage, children, component, items }) {
         <TopBar
           center={<TopBarMenu component={Link} items={items} />}
           leading={<TopBarTitle />}
+          {...TopBarProps}
         />
       </header>
       <main className={classes.main}>
@@ -104,4 +103,5 @@ export default function Layout({ bannerMessage, children, component, items }) {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  TopBarProps: PropTypes.shape({}),
 };

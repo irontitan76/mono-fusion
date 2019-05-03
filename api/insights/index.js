@@ -14,6 +14,7 @@ module.exports = {
               id
               _publishedAt { _seconds _nanoseconds }
               authorId
+              category
               desc
               media { height source type }
               meta { featured size { xs sm md lg xl } }
@@ -35,6 +36,7 @@ module.exports = {
               id
               _publishedAt { _seconds _nanoseconds }
               authorId
+              category
               content
               media { source type }
               title
