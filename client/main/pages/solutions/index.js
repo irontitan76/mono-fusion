@@ -40,7 +40,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       height: '25%',
     },
     hero: {
-      backgroundImage: 'url("/static/images/road-1.jpg")',
+      backgroundImage: 'url("/static/images/path-1.jpg")',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center bottom',
       backgroundSize: '100% 130%',
@@ -72,7 +72,7 @@ function Solutions() {
       _publishedAt: 39084902380948,
       desc: 'Explore our solutions for building your individual brand',
       media: {
-        source: '/static/images/drone.jpg',
+        source: '/static/images/product-1.jpg',
         type: 'image',
       },
       path: '/solutions/individual',
@@ -82,7 +82,7 @@ function Solutions() {
       _publishedAt: 39084902380948,
       desc: 'Find out how we take your idea from conception to reality',
       media: {
-        source: '/static/images/desk-laptop.jpg',
+        source: '/static/images/office-2.jpg',
         type: 'image',
       },
       path: '/solutions/startups',
@@ -93,7 +93,7 @@ function Solutions() {
       _publishedAt: 39084902380948,
       desc: 'Accelerate your growth by employing our proven strategies',
       media: {
-        source: '/static/images/marketing-resized.jpg',
+        source: '/static/images/people-5.jpg',
         type: 'image',
       },
       path: '/solutions/smb',
@@ -103,7 +103,7 @@ function Solutions() {
       _publishedAt: 39084902380948,
       desc: 'Optimize business process and quickly react to industry shifts',
       media: {
-        source: '/static/images/gamer.jpg',
+        source: '/static/images/people-6.jpg',
         type: 'image',
       },
       path: '/solutions/enterprise',
@@ -126,56 +126,64 @@ function Solutions() {
     },
   ];
 
+  const Hero = () => (
+    <div className={classes.hero}>
+      <Grid 
+        alignItems='center'
+        className={classes.heroContent} 
+        container
+        justify='flex-start'
+      >
+        <Grid item xs={4}>
+          <Typography
+            align='left'
+            className={classes.heroTitle}
+            variant='h1'
+          >
+            Accelerate
+          </Typography>
+          <Typography
+            align='left'
+            className={classes.heroSubtitle}
+            style={{ fontWeight: 400 }}
+            variant='h4'
+          >
+            Development
+          </Typography>
+        </Grid>
+      </Grid>
+    </div>
+  );
+
+  const Focuses = () => (
+    <Grid className={classes.focus} container justify='center'>
+      <Grid item xs={12}>
+        <Typography style={{ marginBottom: 20 }} variant='h4'>Our Focus</Typography>
+      </Grid>
+      <Grid item md={4} xs={12} style={{ height: 300 }}>
+        <List style={{ padding: 0, height: '100%' }}>
+          {focuses.map((focus) => {
+            return <ListItem button className={classes.focusItem} key={focus.name}>
+              <Typography>{focus.name}</Typography>
+            </ListItem>
+          })}
+        </List>
+      </Grid>
+      <Grid className={classes.focusContent} item md={8}>
+
+      </Grid>
+    </Grid>
+  );
+
   return (
     <>
-      <div className={classes.hero}>
-        <Grid 
-          alignItems='center'
-          className={classes.heroContent} 
-          container
-          justify='flex-start'
-        >
-          <Grid item xs={4}>
-            <Typography
-              align='left'
-              className={classes.heroTitle}
-              variant='h1'
-            >
-              Accelerate
-            </Typography>
-            <Typography
-              align='left'
-              className={classes.heroSubtitle}
-              style={{ fontWeight: 400 }}
-              variant='h4'
-            >
-              Development
-            </Typography>
-          </Grid>
-        </Grid>
-      </div>
+      <Hero />
       <NewsSlider
         component={Link}
         insights={insights}
         showDate={false}
       />
-      <Grid className={classes.focus} container justify='center'>
-        <Grid item xs={12}>
-          <Typography style={{ marginBottom: 20 }} variant='h4'>Our Focus</Typography>
-        </Grid>
-        <Grid item md={4} xs={12} style={{ height: 300 }}>
-          <List style={{ padding: 0, height: '100%' }}>
-            {focuses.map((focus) => {
-              return <ListItem button className={classes.focusItem} key={focus.name}>
-                <Typography>{focus.name}</Typography>
-              </ListItem>
-            })}
-          </List>
-        </Grid>
-        <Grid className={classes.focusContent} item md={8}>
-
-        </Grid>
-      </Grid>
+      <Focuses />
     </>
   );
 }

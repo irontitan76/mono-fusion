@@ -1,42 +1,47 @@
-const axios = require('axios');
-
-const serviceUrl = 'http://localhost:8080/graphql';
+const gql = require('graphql-tag');
 
 module.exports = {
-  getAll: function policies() {
-    return axios({
-      url: serviceUrl,
-      method: 'post',
-      data: {
-        query: `
-          query { 
-            policies {
-              _modifiedAt { _nanoseconds _seconds}
-              _publishedAt { _nanoseconds _seconds }
-              content
-              title
-            } 
-          }
-        `,
-      },
-    });
-  },
-  getOne: function policy(query) {
-    return axios({
-      url: serviceUrl,
-      method: 'post',
-      data: {
-        query: `
-          query {
-            policy(title: "${query.title}") {
-              _modifiedAt { _nanoseconds _seconds}
-              _publishedAt { _nanoseconds _seconds }
-              content
-              title
-            }
-          }
-        `,
-      },
-    })
-  }
+  getAllIds: gql`
+    query {
+      allPolicies {
+        id
+        title
+      }
+    }
+  `,
+  getAll: gql`
+    query allPolicies($value: String) { 
+      allPolicies(filter: {
+        title_contains: $value 
+      }) {
+        id
+        modifiedAt
+        publishedAt
+        content
+        title
+      }
+      _allPoliciesMeta {
+        count
+      }
+    }
+  `,
+  getOne: gql`
+    query Policy($id: ID!) {
+      Policy(id: $id) {
+        id
+        modifiedAt
+        publishedAt
+        content
+        title
+      }
+    }
+  `,
+  updateOne: gql`
+    mutation updatePolicy($id: ID!, $content: String!) {
+      updatePolicy(id: $id, content: $content) {
+        content
+        id,
+      }
+    }
+  `,
 };

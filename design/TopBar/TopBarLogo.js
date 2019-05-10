@@ -7,9 +7,10 @@ import { ManifestContext } from '@fusion/design/Provider/Manifest';
 const useStyles = makeStyles(({ spacing }) => {
   return {
     logo: {
+      alignItems: 'center',
+      display: 'flex',
       height: 30,
-      marginBottom: spacing(1),
-      marginRight: spacing(1.25),
+      marginRight: spacing(2),
     },
   };
 });

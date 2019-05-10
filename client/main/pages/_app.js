@@ -2,14 +2,19 @@ import React from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
 import Link from 'next/link';
-import { StylesProvider, ThemeProvider } from '@material-ui/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
+import ApolloProvider from 'react-apollo/ApolloProvider';
+
+import CssBaseline from '@material-ui/core/CssBaseline';
+import StylesProvider from '@material-ui/styles/StylesProvider';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
+
+import { manifest } from '@fusion/client/__config__/main.manifest';
+import { theme } from '@fusion/client/__config__/theme';
 import Layout from './_layout';
 import ManifestProvider from '@fusion/design/Provider/Manifest';
 import PageContext from '@fusion/design/Provider/PageContext';
-import { manifest } from '@fusion/client/__config__/main.manifest';
-import { theme } from '@fusion/client/__config__/theme';
+import withApollo from '@fusion/client/__config__/withApollo';
 import '@fusion/client/main/icon.config.js';
 
 class MyApp extends App {
@@ -27,7 +32,7 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, apolloClient } = this.props;
     const { 
       generateClassName, 
       sheetsManager, 
@@ -41,41 +46,44 @@ class MyApp extends App {
         component={Link}
         items={manifest.navigation.items}
       >
-        <Component pageContext={this.pageContext} {...pageProps} />
+        <Component
+          pageContext={this.pageContext}
+          {...pageProps}
+        />
       </Layout>
     );
+    
+    /*
+     * ThemeProvider enables its children to use the theme.
+     * CssBaseline kickstart an elegant, consistent, and simple baseline to build upon.
+     * Pass pageContext to the _document though the renderPage enhancer
+     *  to render collected styles on server-side.
+     */
 
     const Providers = ({ children }) => (
-      <StylesProvider
-        generateClassName={generateClassName}
-        sheetsManager={sheetsManager}
-        sheetsRegistry={sheetsRegistry}
-      >
-        {/* ThemeProvider enables its children to use the theme. */}
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          {/* Pass pageContext to the _document though the renderPage enhancer
-              to render collected styles on server-side. */}
-          <ManifestProvider manifest={manifest}>
-            {children}
-          </ManifestProvider>
-        </ThemeProvider>
-      </StylesProvider>
+      <ApolloProvider client={apolloClient}>
+        <StylesProvider
+          generateClassName={generateClassName}
+          sheetsManager={sheetsManager}
+          sheetsRegistry={sheetsRegistry}
+        >
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <ManifestProvider manifest={manifest}>
+              {children}
+            </ManifestProvider>
+          </ThemeProvider>
+        </StylesProvider>
+      </ApolloProvider>
     );
 
     return (
       <Container>
-        <Head>
-          <title>{manifest.company.name}</title>
-        </Head>
-        {/* Wrap every page in relevant providers */}
-        <Providers>
-          <Page />
-        </Providers>
+        <Head><title>{manifest.company.name}</title></Head>
+        <Providers><Page /></Providers>
       </Container>
     );
   }
 }
 
-export default MyApp;
+export default withApollo(MyApp);

@@ -11,7 +11,7 @@ class MyDocument extends Document {
       <html lang="en" dir="ltr">
         <Head>
           <meta charSet="utf-8" />
-          <link rel="shortcut icon" type="image/png" href="/static/images/fusion-logo@4x.png"/>
+          <link rel="shortcut icon" type="image/png" href="/static/images/logo@4x.png"/>
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
             name="viewport"

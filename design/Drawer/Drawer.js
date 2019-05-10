@@ -3,16 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { makeStyles } from '@material-ui/styles';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import MenuIcon from '@material-ui/icons/Menu';
 
+import DrawerListExpander from './DrawerListExpander';
 import DrawerListItems from './DrawerListItems';
+import DrawerListSubheader from './DrawerListSubheader';
 
 const useStyles = makeStyles(({
     breakpoints,
@@ -22,19 +18,12 @@ const useStyles = makeStyles(({
     transitions
   }) => {
 
-  const isDark = palette.type === 'dark';
   const drawerTransition = transitions.create('width', {
     easing: transitions.easing.sharp,
     duration: transitions.duration.complex,
   });
 
   return {
-    border: {
-      borderLeft: `1px solid ${palette.grey[200]}`,
-    },
-    divider: {
-      color: palette.divider,
-    },
     drawer: {
       border: 'none',
       color: palette.getContrastText(palette.primary.main),
@@ -54,44 +43,9 @@ const useStyles = makeStyles(({
         width: spacing(7) + 1,
       },
     },
-    expandButton: {
-      '&:hover': {
-        backgroundColor: 'white',
-        border: `2px solid ${palette.primary.light}`,
-        '& svg': {
-          color: palette.primary.main,
-        },
-      },
-      backgroundColor: 'white',
-      border: `2px solid ${palette.grey[isDark ? 900 : 'A100']}`,
-      boxSizing: 'border-box',
-      padding: '3px',
-      position: 'relative',
-      left: '-12px',
-      top: '50%',
-      zIndex: 3
-    },
-    expandContainer: {
-      width: 0,
-    },
-    expandIcon: {
-      fontSize: '1rem',
-      transition: 'all .3s',
-    },
-    expandIconOpen: {
-      transform: 'rotate(-180deg)',
-    },
-    expandIconClose: {
-      transform: 'none',
-    },
     list: {
       height: 'calc(100% - 160px)',
       paddingTop: (() => props => props.underToolbar ? 0 : spacing(2))(), 
-    },
-    listItemSubheader: {
-      color: palette.getContrastText(palette.primary.main),
-      fontSize: 24,
-      height: 48,
     },
     nav: {
       display: 'flex',
@@ -147,32 +101,6 @@ function NavigationDrawer(props) {
     setOpen({ ...open, menus: menusOpen });
   };
 
-  const DrawerListSubheader = () => {
-    if (!collapsedTitle && !expandedTitle) return null;
-
-    const button = (
-      <Grid item style={{ marginBottom: 30 }}>
-        <IconButton className={classes.listButton} onClick={onToggle}>
-          <MenuIcon />
-        </IconButton>
-      </Grid>
-    );
-
-    return (
-      <>
-        <ListSubheader className={classes.listItemSubheader}>
-          <Grid container justify='space-between'>
-            <Grid item style={{ flexGrow: 1 }}>
-              {(isHorizontal && !open.drawer) ? collapsedTitle : expandedTitle}
-            </Grid>
-            {!isHorizontal ? button : null}
-          </Grid>
-        </ListSubheader>
-        <Divider className={classes.divider} />
-      </>
-    );
-  };
-
   const openClass = {
     [classes.drawerOpen]: isHorizontal && open.drawer,
     [classes.drawerClose]: isHorizontal && !open.drawer,
@@ -193,33 +121,30 @@ function NavigationDrawer(props) {
           variant='permanent'>
           {spacer}
           <List className={classes.list}>
-            <DrawerListSubheader />
+            <DrawerListSubheader
+              collapsedTitle={collapsedTitle}
+              expandedTitle={expandedTitle}
+              isExpanded={open.drawer}
+              isHorizontal={isHorizontal}
+              onToggle={onToggle}
+            />
             <DrawerListItems
               dense={dense}
               items={items}
               isHorizontal={isHorizontal}
               isListOpen={open.list}
               LinkComponent={LinkComponent}
-              onMenu={onMenu}
-              openMenus={open.menus}
               router={router}
             />
           </List>
         </Drawer>
       </div>
       <div className={classes.border} />
-      <div className={classes.expandContainer} style={{ display: !hover ? 'none' : 'block' }}>
-        <IconButton
-          className={classes.expandButton}
-          onClick={onClick}>
-          <ChevronRightIcon
-            className={classNames(classes.expandIcon, {
-              [classes.expandIconOpen]: open.drawer,
-              [classes.expandIconClose]: !open.drawer,
-            })}
-          />
-        </IconButton>
-      </div>
+      <DrawerListExpander
+        isExpanded={open.drawer}
+        isHovering={hover}
+        onClick={onClick}
+      />
     </nav>
   );
 }

@@ -100,7 +100,7 @@ export default function NewsSlider(props) {
     
     return (
       <Typography variant='caption'>
-        {moment.unix(date).format('MMM DD, YYYY')}
+        {moment(date).format('MMM DD, YYYY')}
       </Typography>
     )
   };
@@ -128,7 +128,7 @@ export default function NewsSlider(props) {
               <Typography>
                 {insight.desc}
               </Typography>
-              <InsightDate date={insight._publishedAt._seconds} />
+              <InsightDate date={insight._publishedAt} />
             </CardContent>
           </Card>
         </Component>

@@ -1,0 +1,32 @@
+type SizeType @model {
+  id: ID! @isUnique
+  xs: Int
+  sm: Int
+  md: Int
+  lg: Int
+  xl: Int
+
+  metaSize: MetaType! @relation(name: "MetaSize")
+}
+
+type MetaType @model {
+  id: ID! @isUnique
+  featured: Boolean
+  size: SizeType @relation(name: "MetaSize")
+
+  insightMeta: Insight @relation(name: "InsightMeta")
+}
+
+type Insight @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  modifiedAt: DateTime
+  publishedAt: DateTime
+  authorId: String!
+  category: String!
+  content: String!
+  desc: String!
+  media: Media @relation(name: "InsightMedia")
+  meta: MetaType @relation(name: "InsightMeta")
+  title: String!
+}

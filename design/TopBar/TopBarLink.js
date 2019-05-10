@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(() => {
   return {
     a: {
+      cursor: 'pointer',
       textDecoration: 'none',
     },
     link: {
@@ -18,9 +19,9 @@ export default function TopBarLink({ children, LinkComponent }) {
 
   return (
     <LinkComponent href='/'>
-      <a className={classes.a}>
+      <div className={classes.a}>
         {children}
-      </a>
+      </div>
     </LinkComponent>
   ); 
 };

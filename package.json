@@ -22,6 +22,7 @@
     "start:corp": "cd client && yarn run start:corp",
     "start:main": "cd client && yarn run start:main",
     "start:me": "cd client && yarn run start:me",
-    "server": "cd server && yarn run start"
-  }
+    "deploy:server": "cd server && graphcool deploy"
+  },
+  "dependencies": {}
 }

@@ -1,23 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Query } from 'react-apollo';
 
-import insightsApi from '@fusion/api/insights';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 import Article from '@fusion/design/Article';
+import InsightsApi from '@fusion/api/insights';
 
 function Insight({ query }) {
-  const [insight, setInsight] = useState({});
-
-  useEffect(() => {
-    if (Object.keys(insight).length === 0) {
-      insightsApi.getOne(query).then((result) => {
-        setInsight(result.data.data.insight);
-      });
-    }
-
-    // return setInsight({});
-  });
-
   return <>
-    <Article article={insight} />
+    <Query query={InsightsApi.getOne} variables={{ id: query.id }}>
+      {({ loading, error, data: { Insight, _insightMeta }, fetchMore }) => {
+        if (loading) return <LinearProgress />;
+        if (error) return null;
+        
+        return <Article article={Insight} />;
+      }}
+    </Query>
   </>;
 };
 

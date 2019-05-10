@@ -6,6 +6,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.0"
+    "graphql-tag": "^2.10.1"
   }
 }

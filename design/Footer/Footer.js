@@ -28,15 +28,13 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       },
       fontSize: 12,
       fontWeight: 300,
-      marginBottom: 7,
+      marginBottom: spacing(1),
     },
-    link: {
-      
-    },
+    link: {},
     title: {
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: 500,
-      marginBottom: 10,
+      marginBottom: spacing(2),
     },
   };
 });

@@ -1,39 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Query } from 'react-apollo';
 
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-import policiesApi from '@fusion/api/policies';
+import PoliciesApi from '@fusion/api/policies';
 import Markdown from '@fusion/design/Markdown';
 
 function Policy({ query }) {
-  const [policy, setPolicy] = useState({});
-
-  useEffect(() => {
-    if (Object.keys(policy).length === 0) {
-      policiesApi.getOne(query).then((result) => {
-        setPolicy(result.data.data.policy);
-      });
-    }
-
-    // return setInsight({});
-  });
-
-  if (!policy.content) {
-    return <LinearProgress variant='query' />;
-  }
-
   return (
-    <Grid container justify='center'>
-      <Grid item md={8} xs={12}>
-        <Markdown content={policy.content} />
-      </Grid>
-    </Grid>
+    <Query query={PoliciesApi.getOne} variables={{ id: query.id }}>
+      {({ loading, error, data: { Policy, _policyMeta }, fetchMore }) => {
+        if (loading) return <LinearProgress />;
+        if (error) return null;
+
+        return (
+          <Grid container justify='center'>
+            <Grid item md={8} xs={12}>
+              <Markdown content={Policy.content} />
+            </Grid>
+          </Grid>
+        );
+      }}
+    </Query>
   );
 };
 
 Policy.getInitialProps = ({ query }) => {
-  return { query }
+  return { query };
 };
 
 export default Policy;

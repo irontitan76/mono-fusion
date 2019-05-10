@@ -7,7 +7,7 @@ import TopBarLogo from './TopBarLogo';
 import TopBarName from './TopBarName';
 import TopBarVersion from './TopBarVersion';
 
-const useStyles = makeStyles(() => {
+const useStyles = makeStyles(({ spacing }) => {
   return {
     innerContainer: {
       alignItems: 'baseline',

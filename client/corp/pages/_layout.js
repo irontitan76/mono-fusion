@@ -41,30 +41,17 @@ const useStyles = makeStyles(({ palette }) => {
   }
 });
 
-export function Layout({ children, router }) {
+export function Layout({ children, component, router }) {
   const classes = useStyles();
 
-  // const Header = () => {
-  //   return (
-  //     <header className={classes.header}>
-  //       <TopBar
-  //         leading={<TopBarTitle />}
-  //         {...TopBarProps}
-  //       />
-  //     </header>
-  //   );
-  // };
+  const title = <TopBarTitle LinkComponent={component} />;
 
   return (
     <>
       <main className={classes.main}>
         <Drawer
-          collapsedTitle={
-            <TopBarLink LinkComponent={Link}>
-              <TopBarLogo />
-            </TopBarLink>
-          }
-          expandedTitle={<TopBarTitle LinkComponent={Link} />}
+          collapsedTitle={title}
+          expandedTitle={title}
           items={[
             {
               icon: <FontAwesomeIcon className={classes.icon} icon={['fal', 'user-tie']} />,
@@ -92,13 +79,19 @@ export function Layout({ children, router }) {
                   name: 'insights',
                   path: '/insights'
                 },
+                {
+                  icon: <FontAwesomeIcon className={classes.icon} icon={['fal', 'file-contract']} />,
+                  label: 'Policies',
+                  name: 'policies',
+                  path: '/policies'
+                },
               ],
               icon: <FontAwesomeIcon className={classes.icon} icon={['fal', 'database']} />,
               label: 'Data',
               name: 'data',
             },
           ]}
-          LinkComponent={Link}
+          LinkComponent={component}
           router={router}
         />
         {children}

@@ -1,11 +1,14 @@
 import React from 'react';
+import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 
 import { makeStyles } from '@material-ui/styles';
+import Grid from '@material-ui/core/Grid';
 
 import Banner from '@fusion/design/Banner';
 import Footer from '@fusion/design/Footer';
+import PoliciesApi from '@fusion/api/policies';
+import Search from '@fusion/design/Search';
 import TopBar, { TopBarMenu, TopBarTitle } from '@fusion/design/TopBar';
 
 const useStyles = makeStyles(({ palette }) => {
@@ -19,84 +22,79 @@ const useStyles = makeStyles(({ palette }) => {
       background: palette.background.default,
       minHeight: '100vh',
     },
-    menu: {
-      '& a': {
-        textDecoration: 'none',
-      },
-      '& p': {
-        cursor: 'pointer',
-        fontWeight: 300,
-        '&:hover': {
-          color: palette.primary.main,
-        },
-      }
-    },
   }
 });
 
-export default function Layout({ bannerMessage, children, component, items, TopBarProps }) {
+export default function Layout({ children, component, items, TopBarProps }) {
   const classes = useStyles();
+
+  const footerColumns = (allPolicies) => [
+    {
+      items: [
+        { name: 'Leadership', path: '/leadership' },
+        { name: 'Career opportunities', path: '/careers' },
+        { name: 'Locations', path: '/locations' },
+        { name: 'Standards', path: '/insight?id=cjv8y928r03su01908ylxhpej' },
+        { name: 'Strategy', path: '/insight?id=cjv8z0oui05ud01871fenxq8b' },
+      ],
+      title: 'Company',
+    },
+    {
+      items: [
+        { name: 'Innovators at heart', path: '/values?name=innovators-at-heart' },
+        { name: 'Bias for righteous action', path: '/values?name=bias-for-righteous-action' },
+        { name: 'Challenge respectfully', path: '/values?name=challenge-respectfully' },
+        { name: 'Be compassionate', path: '/values?name=be-compassionate' },
+        { name: 'Collaborate effectively', path: '/values?name=collaborate-effectively' },
+      ],
+      title: 'Values',
+    },
+    {
+      items: allPolicies.map((policy) => {
+        return { name: policy.title, path: `/policy?id=${policy.id}`, }
+      }),
+      title: 'Policy',
+    },
+    {
+      items: [
+        { name: 'Instagram', path: 'https://instagram.com/fusion' },
+        { name: 'Twitter', path: 'https://twitter.com/fusion' },
+        { name: 'Facebook', path: 'https://facebook.com/fusion' },
+        { name: 'LinkedIn', path: 'https://youtube.com/in/fusion' },
+        { name: 'YouTube', path: 'https://youtube.com/fusion' },
+      ],
+      title: 'Social',
+    },
+  ];
 
   return (
     <>
-      <header className={classes.header}>
+      <header className={classes.header} id='header'>
         <Banner 
           color='primary'
-          message={bannerMessage} 
+          message='This site is under maintenance. Please bear with us as we optimize your experience.' 
           name='maintenance-notification'
         />
         <TopBar
-          center={<TopBarMenu component={Link} items={items} />}
+          center={<TopBarMenu component={component} items={items} />}
           leading={<TopBarTitle />}
           {...TopBarProps}
         />
       </header>
-      <main className={classes.main}>
-        {children}
-      </main>
-      <Footer 
-        component={component}
-        columns={[
-          {
-            items: [
-              { name: 'Leadership', path: '/leadership' },
-              { name: 'Career opportunities', path: '/careers' },
-              { name: 'Locations', path: '/locations' },
-              { name: 'Standards', path: '/insight?id=0001' },
-              { name: 'Strategy', path: '/insight?id=0002' },
-            ],
-            title: 'Company',
-          },
-          {
-            items: [
-              { name: 'Innovators at heart', path: '/values?name=innovators-at-heart' },
-              { name: 'Bias for righteous action', path: '/values?name=bias-for-righteous-action' },
-              { name: 'Challenge respectfully', path: '/values?name=challenge-respectfully' },
-              { name: 'Be compassionate', path: '/values?name=be-compassionate' },
-              { name: 'Collaborate effectively', path: '/values?name=collaborate-effectively' },
-            ],
-            title: 'Values',
-          },
-          {
-            items: [
-              { name: 'Terms of Use', path: '/policy?title=Terms%20of%20Use' },
-              { name: 'Privacy Policy', path: '/policy?title=Privacy%20Policy' },
-              { name: 'Cookies', path: '/policy?title=Cookie%20Policy' },
-            ],
-            title: 'Policy',
-          },
-          {
-            items: [
-              { name: 'Instagram', path: 'https://instagram.com/fusion' },
-              { name: 'Twitter', path: 'https://twitter.com/fusion' },
-              { name: 'Facebook', path: 'https://facebook.com/fusion' },
-              { name: 'LinkedIn', path: 'https://youtube.com/in/fusion' },
-              { name: 'YouTube', path: 'https://youtube.com/fusion' },
-            ],
-            title: 'Social',
-          },
-        ]}
-      />
+      {children}
+      <Query query={PoliciesApi.getAllIds}>
+        {({ loading, error, data: { allPolicies } }) => {
+          if (loading) return null;
+          if (error) return null;
+          
+          return (
+            <Footer 
+              component={component}
+              columns={footerColumns(allPolicies)}
+            />
+          );
+        }}
+      </Query>
     </>
   ); 
 };

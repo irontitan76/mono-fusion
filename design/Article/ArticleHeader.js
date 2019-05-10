@@ -41,7 +41,7 @@ function ArticleHeader(props) {
       </Typography>
       <br />
       <Typography variant='caption'>
-        <b>Published on:</b> {moment.unix(published._seconds).format('MMM DD, YYYY')}
+        <b>Published on:</b> {moment(published).format('MMM DD, YYYY')}
       </Typography>
     </>
   );

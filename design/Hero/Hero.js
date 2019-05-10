@@ -12,7 +12,7 @@ const useStyles = makeStyles(({ spacing }) => {
   return {
     hero: {
       '&:hover': {
-        filter: 'grayscale(40%)',
+        filter: 'none',
       },
       backgroundColor: '#eee',
       backgroundImage: getImage('hero'),
@@ -20,6 +20,7 @@ const useStyles = makeStyles(({ spacing }) => {
       backgroundPosition: 'center center',
       color: getContrast('variant'),
       cursor: 'pointer',
+      filter: 'grayscale(40%)',
       height: 600,
     },
     heroAction: {

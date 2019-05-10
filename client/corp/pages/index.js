@@ -11,7 +11,7 @@ export function Home() {
   const classes = useStyles();
 
   return <div>
-    Hello
+    Everything we do as a company is housed in this portal
   </div>;
 };
 

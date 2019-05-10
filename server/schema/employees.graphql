@@ -1,0 +1,47 @@
+type Name @model {
+  id: ID! @isUnique
+  first: String!
+  middle: String
+  last: String!
+  preferred: String
+
+  employeeName: Employee @relation(name: "EmployeeName")
+}
+
+type Birth @model {
+  id: ID! @isUnique
+  address: String
+  city: String
+  date: DateTime
+  state: String
+
+  employeeBirth: Employee @relation(name: "EmployeeBirth")
+}
+
+type Contact @model {
+  id: ID! @isUnique
+  address: String
+  city: String
+  phone: String
+  state: String
+
+  employeeContact: Employee @relation(name: "EmployeeContact")
+}
+
+type Profile @model {
+  id: ID! @isUnique
+  bio: String!
+  level: Int
+  media: Media @relation(name: "ProfileImage")
+  title: String!
+
+  employeeProfile: Employee @relation(name: "EmployeeProfile")
+}
+
+type Employee @model {
+  id: ID! @isUnique
+  birth: Birth @relation(name: "EmployeeBirth")
+  contact: Contact @relation(name: "EmployeeContact")
+  name: Name @relation(name: "EmployeeName")
+  profile: Profile @relation(name: "EmployeeProfile")
+}

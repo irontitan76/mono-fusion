@@ -52,7 +52,7 @@ export function People() {
   ];
 
   const Items = () => items.map((item) => (
-    <Grid item md={3} xs={12}>
+    <Grid item key={item.title} md={3} xs={12}>
       <Card>
         <CardHeader
           avatar={<FontAwesomeIcon className={classes.icon} icon={item.icon} />}

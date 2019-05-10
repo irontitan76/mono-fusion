@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 const getBorder = (property, palette) => (props) => { 
   const isDark = palette.type === 'dark';
-  const borderColor = palette.grey[isDark ? 700 : 'A100'];
+  const borderColor = palette.grey[isDark ? 700 : 300];
   return props[property] === 'default' ? `1px solid ${borderColor}` : 'none';
 };
 
@@ -36,6 +36,7 @@ const useStyles = makeStyles(({ palette }) => {
       '& a': {
         textDecoration: 'none',
       },
+      alignItems: 'center',
       display: 'flex',
       justifyContent: 'flex-start', 
       textAlign: 'left',
@@ -59,15 +60,19 @@ export default function TopBar(props) {
   return (
     <AppBar className={classes.appBar} color={color} component='nav'>
       <Toolbar className={classes.toolbar} variant={variant}>
-        <Grid alignItems='center' container justify='space-between'>
-          <Grid className={classes.leading} item xs={4}>
-            {props.leading}
-          </Grid>
-          <Grid className={classes.center} item xs={4}>
-            {props.center}
-          </Grid>
-          <Grid className={classes.trailing} item xs={4}>
-            {props.trailing}
+        <Grid alignItems='center' container justify='center'>
+          <Grid item xl={8} xs={12}>
+            <Grid alignItems='center' container justify='space-between'>
+              <Grid className={classes.leading} item xs={4}>
+                {props.leading}
+              </Grid>
+              <Grid className={classes.center} item xs={4}>
+                {props.center}
+              </Grid>
+              <Grid className={classes.trailing} item xs={4}>
+                {props.trailing}
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Toolbar>

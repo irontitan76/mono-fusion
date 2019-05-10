@@ -1,75 +1,66 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { Query } from 'react-apollo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { makeStyles } from '@material-ui/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Typography from '@material-ui/core/Typography';
 
+import InsightsApi from '@fusion/api/insights';
 import NewsSlider from '@fusion/design/NewsSlider';
 import Search from '@fusion/design/Search';
-import insightsApi from '@fusion/api/insights';
-
-const useStyles = makeStyles(() => {
-  return {};
-});
 
 function Insights() {
-  const classes = useStyles();
-  const [filtered, setFiltered] = useState([]);
-  const [insights, setInsights] = useState([]);
   const [search, setSearch] = useState('');
+  const [value, setValue] = useState('');
 
-  useEffect(() => {
-    if (!insights || insights.length === 0 ) {
-      insightsApi.getAll().then((result) => {
-        setInsights(result.data.data.insights);
-        setFiltered(result.data.data.insights);
-      });
-    }
+  const content = <>
+    <Query query={InsightsApi.getAll} variables={{ value: search }}>
+      {({ loading, error, data: { allInsights } }) => {
+        if (loading) return <LinearProgress />;
+        if (error) return null;
 
-    return () => console.log('unmounted');
-  });
+        let content;
 
-  const onChange = (event) => {
-    const val = event.target.value;
-    setSearch(val);
+        if (allInsights.length === 0) {
+          content = (
+            <Typography align='center' style={{ color: 'grey' }}>
+              No insights found
+            </Typography>
+          );
+        } else {
+          content = (
+            <NewsSlider 
+              component={Link}
+              insights={allInsights}
+              mediaHeight={150} 
+              size={{ md: 3 }}
+            />
+          );
+        }
 
-    const filteredInsights = insights.filter((insight) => {
-      const { desc, title } = insight;
-
-      if (val === '') return insights;
-
-      return (desc + title).toLowerCase().includes(val.toLowerCase());
-    });
-
-    setFiltered(filteredInsights);
-  };
-
-  let content;
-  if (!insights || insights.length === 0) {
-    content = <LinearProgress />;
-  } else {
-    content = (
-      <>
-        <div style={{ marginBottom: 50 }} />
-        <NewsSlider 
-          component={Link}
-          insights={filtered}
-          mediaHeight={150} 
-          size={{ md: 3 }}
-        />
-      </>
-    );
-  }
+        return (
+          <>
+            <div style={{ marginBottom: 50 }} />
+            {content}
+          </>
+        );
+      }}
+    </Query>
+  </>;
 
   return (
     <>
       <Search 
         component={Link}
         filterIcon={<FontAwesomeIcon icon={['fal', 'filter']} style={{ marginRight: 8 }} />}
-        onChange={onChange}
-        searchIcon={<FontAwesomeIcon icon={['fal', 'search']} />}
-        searchValue={search}
+        onChange={(event) => setValue(event.target.value)}
+        onKeyDown={(event) => event.key === 'Enter' && setSearch(value)}
+        searchIcon={<FontAwesomeIcon
+          icon={['fal', 'search']}
+          onClick={() => setSearch(value)}
+          style={{ cursor: 'pointer' }}
+        />}
+        searchValue={value}
       />
       {content}
     </>

@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
+import { Query } from 'react-apollo';
 
 import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 
-import { manifest } from '../../__config__/main.manifest';
+import { manifest } from '@fusion/client/__config__/main.manifest';
 import Hero from '@fusion/design/Hero';
+import InsightsApi from '@fusion/api/insights';
 import Intro from '@fusion/design/Intro';
 import NewsSlider from '@fusion/design/NewsSlider';
-
-import insightsApi from '@fusion/api/insights';
 
 const useStyles = makeStyles(({ spacing }) => {
   return {
@@ -18,30 +18,19 @@ const useStyles = makeStyles(({ spacing }) => {
     }
   }
 });
-
+        
 export function Home() {
   const classes = useStyles();
-  const [news, setNews] = useState([]);
-
-  useEffect(() => {
-    if (news.length === 0 ) {
-      insightsApi.getNews().then((result) => {
-        setNews(result.data.data.insights);
-      });
-    }
-
-    return () => console.log('unmounted');
-  });
 
   const heros = [
     {
       action: 'Learn more',
       description: 'Integrate our solutions into your existing workflow',
-      // media: {
-      //   source: '/static/images/building-2.jpg',
-      //   type: 'image',
-      // },
-      path: '/insight?id=0002',
+      media: {
+        source: '/static/images/building-2.jpg',
+        type: 'image',
+      },
+      path: '/solutions',
       title: 'OUR SOLUTIONS',
       variant: 'dark',
     },
@@ -49,10 +38,10 @@ export function Home() {
       action: 'See how we work',
       description: 'Quicken development with our qualified consultants',
       media: {
-        source: '/static/images/coder-5.jpg',
+        source: '/static/images/people-4.jpg',
         type: 'image',
       },
-      path: '/insight?id=0002',
+      path: '/insight?id=cjv8ygn7k04ku0177uvx8chg9',
       title: 'OUR SERVICES',
       variant: 'dark',
     },
@@ -60,10 +49,10 @@ export function Home() {
       action: 'See our standard',
       description: 'Proven strategies that effectively grow your business',
       media: {
-        source: '/static/images/process-2.jpg',
+        source: '/static/images/plant-1.jpg',
         type: 'image',
       },
-      path: '/insight?id=0001',
+      path: '/insight?id=cjv8y928r03su01908ylxhpej',
       title: 'OUR PROCESS',
       variant: 'dark',
     },
@@ -85,13 +74,22 @@ export function Home() {
         Company News
       </Typography>
 
-      <NewsSlider
-        component={Link}
-        insights={news}
-        rounded={true}
-        scroll={true}
-        spacing={4}
-      />
+      <Query query={InsightsApi.getByCategory} variables={{ category: 'corporate news' }}>
+        {({ loading, error, data: { allInsights, _allInsghtsMeta }, fetchMore }) => {
+          if (loading) return null;
+          if (error) return null;
+
+          return (
+            <NewsSlider
+              component={Link}
+              insights={allInsights}
+              rounded={true}
+              scroll={true}
+              spacing={4}
+            />
+          );
+        }}
+      </Query>
 
       {heros.map((hero) => {
         return <Hero component={Link} hero={hero} key={hero.title} />

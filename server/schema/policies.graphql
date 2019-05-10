@@ -1,0 +1,13 @@
+type Policy @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  modifiedAt: DateTime
+  publishedAt: DateTime
+  content: String!
+  title: String! @isUnique
+}
+
+extend type Query {
+  policy(title: String!): Policy
+  policies: [Policy]
+}
