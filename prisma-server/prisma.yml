@@ -1,12 +1,16 @@
 endpoint: https://us1.prisma.sh/ross-sheppard-d8c6f0/server3/dev
 datamodel:
-  - ./models/employees.prisma
-  - ./models/enums.prisma
-  - ./models/example.prisma
-  - ./models/insights.prisma
-  - ./models/policies.prisma
-  - ./models/users.prisma
+  - ./prisma/models/employees.prisma
+  - ./prisma/models/enums.prisma
+  - ./prisma/models/example.prisma
+  - ./prisma/models/insights.prisma
+  - ./prisma/models/policies.prisma
+  - ./prisma/models/users.prisma
 
 generate:
   - generator: javascript-client
     output: ./generated/prisma-client/
+
+hooks:
+  post-deploy:
+    npx nexus-prisma-generate --client ./generated/prisma-client --output ./generated/nexus-prisma --js

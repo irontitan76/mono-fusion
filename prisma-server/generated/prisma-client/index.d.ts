@@ -656,24 +656,21 @@ export type PostOrderByInput =
   | "imageUrl_ASC"
   | "imageUrl_DESC";
 
-export interface ContactCreateOneInput {
-  create?: Maybe<ContactCreateInput>;
-  connect?: Maybe<ContactWhereUniqueInput>;
+export interface ContactCreateInput {
+  id?: Maybe<ID_Input>;
+  address?: Maybe<String>;
+  city?: Maybe<String>;
+  phone?: Maybe<String>;
+  state?: Maybe<String>;
 }
 
 export type BirthWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface InsightCreateWithoutMediaInput {
-  id?: Maybe<ID_Input>;
-  publishedAt?: Maybe<DateTimeInput>;
-  authorId: String;
-  category: String;
-  content: String;
-  desc: String;
-  meta?: Maybe<MetaTypeCreateOneInput>;
-  title: String;
+export interface ProfileCreateOneInput {
+  create?: Maybe<ProfileCreateInput>;
+  connect?: Maybe<ProfileWhereUniqueInput>;
 }
 
 export interface ContactWhereInput {
@@ -752,37 +749,93 @@ export interface ContactWhereInput {
   NOT?: Maybe<ContactWhereInput[] | ContactWhereInput>;
 }
 
-export interface InsightUpdateInput {
-  publishedAt?: Maybe<DateTimeInput>;
-  authorId?: Maybe<String>;
-  category?: Maybe<String>;
-  content?: Maybe<String>;
-  desc?: Maybe<String>;
-  media?: Maybe<MediaUpdateOneWithoutInsightInput>;
-  meta?: Maybe<MetaTypeUpdateOneInput>;
-  title?: Maybe<String>;
-}
-
-export interface NameUpsertNestedInput {
-  update: NameUpdateDataInput;
-  create: NameCreateInput;
-}
-
-export interface MediaCreateWithoutInsightInput {
-  id?: Maybe<ID_Input>;
-  height?: Maybe<Int>;
-  source: String;
-  type: MediaType;
-}
-
-export interface MetaTypeCreateOneInput {
-  create?: Maybe<MetaTypeCreateInput>;
-  connect?: Maybe<MetaTypeWhereUniqueInput>;
-}
-
-export type ProfileWhereUniqueInput = AtLeastOne<{
+export type PostWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
+
+export interface ContactUpdateDataInput {
+  address?: Maybe<String>;
+  city?: Maybe<String>;
+  phone?: Maybe<String>;
+  state?: Maybe<String>;
+}
+
+export interface MetaTypeUpsertNestedInput {
+  update: MetaTypeUpdateDataInput;
+  create: MetaTypeCreateInput;
+}
+
+export interface ProfileCreateInput {
+  id?: Maybe<ID_Input>;
+  bio: String;
+  level?: Maybe<Int>;
+  media?: Maybe<MediaCreateOneInput>;
+  title: String;
+}
+
+export interface PostWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  imageUrl?: Maybe<String>;
+  imageUrl_not?: Maybe<String>;
+  imageUrl_in?: Maybe<String[] | String>;
+  imageUrl_not_in?: Maybe<String[] | String>;
+  imageUrl_lt?: Maybe<String>;
+  imageUrl_lte?: Maybe<String>;
+  imageUrl_gt?: Maybe<String>;
+  imageUrl_gte?: Maybe<String>;
+  imageUrl_contains?: Maybe<String>;
+  imageUrl_not_contains?: Maybe<String>;
+  imageUrl_starts_with?: Maybe<String>;
+  imageUrl_not_starts_with?: Maybe<String>;
+  imageUrl_ends_with?: Maybe<String>;
+  imageUrl_not_ends_with?: Maybe<String>;
+  AND?: Maybe<PostWhereInput[] | PostWhereInput>;
+  OR?: Maybe<PostWhereInput[] | PostWhereInput>;
+  NOT?: Maybe<PostWhereInput[] | PostWhereInput>;
+}
 
 export interface UserSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
@@ -793,6 +846,192 @@ export interface UserSubscriptionWhereInput {
   AND?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
   OR?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
   NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
+}
+
+export interface SizeTypeUpsertNestedInput {
+  update: SizeTypeUpdateDataInput;
+  create: SizeTypeCreateInput;
+}
+
+export interface ProfileSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ProfileWhereInput>;
+  AND?: Maybe<ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput>;
+  OR?: Maybe<ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput>;
+  NOT?: Maybe<ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput>;
+}
+
+export interface SizeTypeUpdateDataInput {
+  xs?: Maybe<Int>;
+  sm?: Maybe<Int>;
+  md?: Maybe<Int>;
+  lg?: Maybe<Int>;
+  xl?: Maybe<Int>;
+}
+
+export interface PolicySubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<PolicyWhereInput>;
+  AND?: Maybe<PolicySubscriptionWhereInput[] | PolicySubscriptionWhereInput>;
+  OR?: Maybe<PolicySubscriptionWhereInput[] | PolicySubscriptionWhereInput>;
+  NOT?: Maybe<PolicySubscriptionWhereInput[] | PolicySubscriptionWhereInput>;
+}
+
+export interface SizeTypeUpdateOneInput {
+  create?: Maybe<SizeTypeCreateInput>;
+  update?: Maybe<SizeTypeUpdateDataInput>;
+  upsert?: Maybe<SizeTypeUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<SizeTypeWhereUniqueInput>;
+}
+
+export interface NameWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  first?: Maybe<String>;
+  first_not?: Maybe<String>;
+  first_in?: Maybe<String[] | String>;
+  first_not_in?: Maybe<String[] | String>;
+  first_lt?: Maybe<String>;
+  first_lte?: Maybe<String>;
+  first_gt?: Maybe<String>;
+  first_gte?: Maybe<String>;
+  first_contains?: Maybe<String>;
+  first_not_contains?: Maybe<String>;
+  first_starts_with?: Maybe<String>;
+  first_not_starts_with?: Maybe<String>;
+  first_ends_with?: Maybe<String>;
+  first_not_ends_with?: Maybe<String>;
+  middle?: Maybe<String>;
+  middle_not?: Maybe<String>;
+  middle_in?: Maybe<String[] | String>;
+  middle_not_in?: Maybe<String[] | String>;
+  middle_lt?: Maybe<String>;
+  middle_lte?: Maybe<String>;
+  middle_gt?: Maybe<String>;
+  middle_gte?: Maybe<String>;
+  middle_contains?: Maybe<String>;
+  middle_not_contains?: Maybe<String>;
+  middle_starts_with?: Maybe<String>;
+  middle_not_starts_with?: Maybe<String>;
+  middle_ends_with?: Maybe<String>;
+  middle_not_ends_with?: Maybe<String>;
+  last?: Maybe<String>;
+  last_not?: Maybe<String>;
+  last_in?: Maybe<String[] | String>;
+  last_not_in?: Maybe<String[] | String>;
+  last_lt?: Maybe<String>;
+  last_lte?: Maybe<String>;
+  last_gt?: Maybe<String>;
+  last_gte?: Maybe<String>;
+  last_contains?: Maybe<String>;
+  last_not_contains?: Maybe<String>;
+  last_starts_with?: Maybe<String>;
+  last_not_starts_with?: Maybe<String>;
+  last_ends_with?: Maybe<String>;
+  last_not_ends_with?: Maybe<String>;
+  preferred?: Maybe<String>;
+  preferred_not?: Maybe<String>;
+  preferred_in?: Maybe<String[] | String>;
+  preferred_not_in?: Maybe<String[] | String>;
+  preferred_lt?: Maybe<String>;
+  preferred_lte?: Maybe<String>;
+  preferred_gt?: Maybe<String>;
+  preferred_gte?: Maybe<String>;
+  preferred_contains?: Maybe<String>;
+  preferred_not_contains?: Maybe<String>;
+  preferred_starts_with?: Maybe<String>;
+  preferred_not_starts_with?: Maybe<String>;
+  preferred_ends_with?: Maybe<String>;
+  preferred_not_ends_with?: Maybe<String>;
+  AND?: Maybe<NameWhereInput[] | NameWhereInput>;
+  OR?: Maybe<NameWhereInput[] | NameWhereInput>;
+  NOT?: Maybe<NameWhereInput[] | NameWhereInput>;
+}
+
+export interface MetaTypeUpdateDataInput {
+  featured?: Maybe<Boolean>;
+  size?: Maybe<SizeTypeUpdateOneInput>;
+}
+
+export interface MediaWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  height?: Maybe<Int>;
+  height_not?: Maybe<Int>;
+  height_in?: Maybe<Int[] | Int>;
+  height_not_in?: Maybe<Int[] | Int>;
+  height_lt?: Maybe<Int>;
+  height_lte?: Maybe<Int>;
+  height_gt?: Maybe<Int>;
+  height_gte?: Maybe<Int>;
+  source?: Maybe<String>;
+  source_not?: Maybe<String>;
+  source_in?: Maybe<String[] | String>;
+  source_not_in?: Maybe<String[] | String>;
+  source_lt?: Maybe<String>;
+  source_lte?: Maybe<String>;
+  source_gt?: Maybe<String>;
+  source_gte?: Maybe<String>;
+  source_contains?: Maybe<String>;
+  source_not_contains?: Maybe<String>;
+  source_starts_with?: Maybe<String>;
+  source_not_starts_with?: Maybe<String>;
+  source_ends_with?: Maybe<String>;
+  source_not_ends_with?: Maybe<String>;
+  type?: Maybe<MediaType>;
+  type_not?: Maybe<MediaType>;
+  type_in?: Maybe<MediaType[] | MediaType>;
+  type_not_in?: Maybe<MediaType[] | MediaType>;
+  AND?: Maybe<MediaWhereInput[] | MediaWhereInput>;
+  OR?: Maybe<MediaWhereInput[] | MediaWhereInput>;
+  NOT?: Maybe<MediaWhereInput[] | MediaWhereInput>;
+}
+
+export type ProfileWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface NameSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<NameWhereInput>;
+  AND?: Maybe<NameSubscriptionWhereInput[] | NameSubscriptionWhereInput>;
+  OR?: Maybe<NameSubscriptionWhereInput[] | NameSubscriptionWhereInput>;
+  NOT?: Maybe<NameSubscriptionWhereInput[] | NameSubscriptionWhereInput>;
 }
 
 export interface BirthWhereInput {
@@ -865,66 +1104,69 @@ export interface BirthWhereInput {
   NOT?: Maybe<BirthWhereInput[] | BirthWhereInput>;
 }
 
-export interface ProfileSubscriptionWhereInput {
+export interface MediaSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ProfileWhereInput>;
-  AND?: Maybe<ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput>;
-  OR?: Maybe<ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput>;
-  NOT?: Maybe<ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput>;
+  node?: Maybe<MediaWhereInput>;
+  AND?: Maybe<MediaSubscriptionWhereInput[] | MediaSubscriptionWhereInput>;
+  OR?: Maybe<MediaSubscriptionWhereInput[] | MediaSubscriptionWhereInput>;
+  NOT?: Maybe<MediaSubscriptionWhereInput[] | MediaSubscriptionWhereInput>;
 }
 
-export interface MediaCreateOneWithoutInsightInput {
-  create?: Maybe<MediaCreateWithoutInsightInput>;
-  connect?: Maybe<MediaWhereUniqueInput>;
+export interface MetaTypeUpdateOneInput {
+  create?: Maybe<MetaTypeCreateInput>;
+  update?: Maybe<MetaTypeUpdateDataInput>;
+  upsert?: Maybe<MetaTypeUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<MetaTypeWhereUniqueInput>;
 }
 
-export interface PolicySubscriptionWhereInput {
+export interface InsightSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<PolicyWhereInput>;
-  AND?: Maybe<PolicySubscriptionWhereInput[] | PolicySubscriptionWhereInput>;
-  OR?: Maybe<PolicySubscriptionWhereInput[] | PolicySubscriptionWhereInput>;
-  NOT?: Maybe<PolicySubscriptionWhereInput[] | PolicySubscriptionWhereInput>;
+  node?: Maybe<InsightWhereInput>;
+  AND?: Maybe<InsightSubscriptionWhereInput[] | InsightSubscriptionWhereInput>;
+  OR?: Maybe<InsightSubscriptionWhereInput[] | InsightSubscriptionWhereInput>;
+  NOT?: Maybe<InsightSubscriptionWhereInput[] | InsightSubscriptionWhereInput>;
 }
 
-export interface InsightCreateInput {
-  id?: Maybe<ID_Input>;
+export interface InsightUpdateInput {
   publishedAt?: Maybe<DateTimeInput>;
-  authorId: String;
-  category: String;
-  content: String;
-  desc: String;
-  media?: Maybe<MediaCreateOneWithoutInsightInput>;
-  meta?: Maybe<MetaTypeCreateOneInput>;
-  title: String;
+  authorId?: Maybe<String>;
+  category?: Maybe<String>;
+  content?: Maybe<String>;
+  desc?: Maybe<String>;
+  media?: Maybe<MediaUpdateOneInput>;
+  meta?: Maybe<MetaTypeUpdateOneInput>;
+  title?: Maybe<String>;
 }
 
-export interface MetaTypeSubscriptionWhereInput {
+export interface ContactSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<MetaTypeWhereInput>;
-  AND?: Maybe<
-    MetaTypeSubscriptionWhereInput[] | MetaTypeSubscriptionWhereInput
-  >;
-  OR?: Maybe<MetaTypeSubscriptionWhereInput[] | MetaTypeSubscriptionWhereInput>;
-  NOT?: Maybe<
-    MetaTypeSubscriptionWhereInput[] | MetaTypeSubscriptionWhereInput
-  >;
+  node?: Maybe<ContactWhereInput>;
+  AND?: Maybe<ContactSubscriptionWhereInput[] | ContactSubscriptionWhereInput>;
+  OR?: Maybe<ContactSubscriptionWhereInput[] | ContactSubscriptionWhereInput>;
+  NOT?: Maybe<ContactSubscriptionWhereInput[] | ContactSubscriptionWhereInput>;
 }
 
-export interface ProfileUpsertNestedInput {
-  update: ProfileUpdateDataInput;
-  create: ProfileCreateInput;
+export interface SizeTypeCreateInput {
+  id?: Maybe<ID_Input>;
+  xs?: Maybe<Int>;
+  sm?: Maybe<Int>;
+  md?: Maybe<Int>;
+  lg?: Maybe<Int>;
+  xl?: Maybe<Int>;
 }
 
-export interface EmployeeWhereInput {
+export interface MetaTypeWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -939,18 +1181,223 @@ export interface EmployeeWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  birth?: Maybe<BirthWhereInput>;
-  contact?: Maybe<ContactWhereInput>;
-  name?: Maybe<NameWhereInput>;
-  profile?: Maybe<ProfileWhereInput>;
-  AND?: Maybe<EmployeeWhereInput[] | EmployeeWhereInput>;
-  OR?: Maybe<EmployeeWhereInput[] | EmployeeWhereInput>;
-  NOT?: Maybe<EmployeeWhereInput[] | EmployeeWhereInput>;
+  featured?: Maybe<Boolean>;
+  featured_not?: Maybe<Boolean>;
+  size?: Maybe<SizeTypeWhereInput>;
+  AND?: Maybe<MetaTypeWhereInput[] | MetaTypeWhereInput>;
+  OR?: Maybe<MetaTypeWhereInput[] | MetaTypeWhereInput>;
+  NOT?: Maybe<MetaTypeWhereInput[] | MetaTypeWhereInput>;
 }
 
 export type SizeTypeWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
+
+export interface BirthSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<BirthWhereInput>;
+  AND?: Maybe<BirthSubscriptionWhereInput[] | BirthSubscriptionWhereInput>;
+  OR?: Maybe<BirthSubscriptionWhereInput[] | BirthSubscriptionWhereInput>;
+  NOT?: Maybe<BirthSubscriptionWhereInput[] | BirthSubscriptionWhereInput>;
+}
+
+export interface SizeTypeCreateOneInput {
+  create?: Maybe<SizeTypeCreateInput>;
+  connect?: Maybe<SizeTypeWhereUniqueInput>;
+}
+
+export interface UserUpdateInput {
+  name?: Maybe<String>;
+}
+
+export interface MetaTypeCreateInput {
+  id?: Maybe<ID_Input>;
+  featured?: Maybe<Boolean>;
+  size?: Maybe<SizeTypeCreateOneInput>;
+}
+
+export type MediaWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface MetaTypeCreateOneInput {
+  create?: Maybe<MetaTypeCreateInput>;
+  connect?: Maybe<MetaTypeWhereUniqueInput>;
+}
+
+export interface SizeTypeUpdateInput {
+  xs?: Maybe<Int>;
+  sm?: Maybe<Int>;
+  md?: Maybe<Int>;
+  lg?: Maybe<Int>;
+  xl?: Maybe<Int>;
+}
+
+export interface InsightCreateInput {
+  id?: Maybe<ID_Input>;
+  publishedAt?: Maybe<DateTimeInput>;
+  authorId: String;
+  category: String;
+  content: String;
+  desc: String;
+  media?: Maybe<MediaCreateOneInput>;
+  meta?: Maybe<MetaTypeCreateOneInput>;
+  title: String;
+}
+
+export interface ProfileUpdateInput {
+  bio?: Maybe<String>;
+  level?: Maybe<Int>;
+  media?: Maybe<MediaUpdateOneInput>;
+  title?: Maybe<String>;
+}
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface PostUpdateManyMutationInput {
+  description?: Maybe<String>;
+  imageUrl?: Maybe<String>;
+}
+
+export interface ProfileUpsertNestedInput {
+  update: ProfileUpdateDataInput;
+  create: ProfileCreateInput;
+}
+
+export interface PostCreateInput {
+  id?: Maybe<ID_Input>;
+  description: String;
+  imageUrl: String;
+}
+
+export interface UserWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
+  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
+  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
+}
+
+export type NameWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface MediaUpsertNestedInput {
+  update: MediaUpdateDataInput;
+  create: MediaCreateInput;
+}
+
+export interface PolicyCreateInput {
+  id?: Maybe<ID_Input>;
+  publishedAt?: Maybe<DateTimeInput>;
+  content: String;
+  title: String;
+}
+
+export interface MediaUpdateDataInput {
+  height?: Maybe<Int>;
+  source?: Maybe<String>;
+  type?: Maybe<MediaType>;
+}
+
+export interface NameUpdateInput {
+  first?: Maybe<String>;
+  middle?: Maybe<String>;
+  last?: Maybe<String>;
+  preferred?: Maybe<String>;
+}
+
+export interface MediaUpdateOneInput {
+  create?: Maybe<MediaCreateInput>;
+  update?: Maybe<MediaUpdateDataInput>;
+  upsert?: Maybe<MediaUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<MediaWhereUniqueInput>;
+}
+
+export interface MetaTypeUpdateManyMutationInput {
+  featured?: Maybe<Boolean>;
+}
+
+export interface ProfileUpdateDataInput {
+  bio?: Maybe<String>;
+  level?: Maybe<Int>;
+  media?: Maybe<MediaUpdateOneInput>;
+  title?: Maybe<String>;
+}
+
+export interface MetaTypeUpdateInput {
+  featured?: Maybe<Boolean>;
+  size?: Maybe<SizeTypeUpdateOneInput>;
+}
+
+export interface MediaUpdateInput {
+  height?: Maybe<Int>;
+  source?: Maybe<String>;
+  type?: Maybe<MediaType>;
+}
+
+export type EmployeeWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface BirthCreateInput {
+  id?: Maybe<ID_Input>;
+  address?: Maybe<String>;
+  city?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  state?: Maybe<String>;
+}
+
+export interface PostSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<PostWhereInput>;
+  AND?: Maybe<PostSubscriptionWhereInput[] | PostSubscriptionWhereInput>;
+  OR?: Maybe<PostSubscriptionWhereInput[] | PostSubscriptionWhereInput>;
+  NOT?: Maybe<PostSubscriptionWhereInput[] | PostSubscriptionWhereInput>;
+}
+
+export interface BirthUpdateInput {
+  address?: Maybe<String>;
+  city?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  state?: Maybe<String>;
+}
 
 export interface ProfileWhereInput {
   id?: Maybe<ID_Input>;
@@ -1009,9 +1456,227 @@ export interface ProfileWhereInput {
   NOT?: Maybe<ProfileWhereInput[] | ProfileWhereInput>;
 }
 
-export interface MediaUpsertNestedInput {
-  update: MediaUpdateDataInput;
-  create: MediaCreateInput;
+export interface BirthUpdateManyMutationInput {
+  address?: Maybe<String>;
+  city?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  state?: Maybe<String>;
+}
+
+export interface MetaTypeSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<MetaTypeWhereInput>;
+  AND?: Maybe<
+    MetaTypeSubscriptionWhereInput[] | MetaTypeSubscriptionWhereInput
+  >;
+  OR?: Maybe<MetaTypeSubscriptionWhereInput[] | MetaTypeSubscriptionWhereInput>;
+  NOT?: Maybe<
+    MetaTypeSubscriptionWhereInput[] | MetaTypeSubscriptionWhereInput
+  >;
+}
+
+export interface ProfileUpdateOneInput {
+  create?: Maybe<ProfileCreateInput>;
+  update?: Maybe<ProfileUpdateDataInput>;
+  upsert?: Maybe<ProfileUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<ProfileWhereUniqueInput>;
+}
+
+export interface EmployeeSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<EmployeeWhereInput>;
+  AND?: Maybe<
+    EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput
+  >;
+  OR?: Maybe<EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput>;
+  NOT?: Maybe<
+    EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput
+  >;
+}
+
+export interface NameUpsertNestedInput {
+  update: NameUpdateDataInput;
+  create: NameCreateInput;
+}
+
+export interface SizeTypeWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  xs?: Maybe<Int>;
+  xs_not?: Maybe<Int>;
+  xs_in?: Maybe<Int[] | Int>;
+  xs_not_in?: Maybe<Int[] | Int>;
+  xs_lt?: Maybe<Int>;
+  xs_lte?: Maybe<Int>;
+  xs_gt?: Maybe<Int>;
+  xs_gte?: Maybe<Int>;
+  sm?: Maybe<Int>;
+  sm_not?: Maybe<Int>;
+  sm_in?: Maybe<Int[] | Int>;
+  sm_not_in?: Maybe<Int[] | Int>;
+  sm_lt?: Maybe<Int>;
+  sm_lte?: Maybe<Int>;
+  sm_gt?: Maybe<Int>;
+  sm_gte?: Maybe<Int>;
+  md?: Maybe<Int>;
+  md_not?: Maybe<Int>;
+  md_in?: Maybe<Int[] | Int>;
+  md_not_in?: Maybe<Int[] | Int>;
+  md_lt?: Maybe<Int>;
+  md_lte?: Maybe<Int>;
+  md_gt?: Maybe<Int>;
+  md_gte?: Maybe<Int>;
+  lg?: Maybe<Int>;
+  lg_not?: Maybe<Int>;
+  lg_in?: Maybe<Int[] | Int>;
+  lg_not_in?: Maybe<Int[] | Int>;
+  lg_lt?: Maybe<Int>;
+  lg_lte?: Maybe<Int>;
+  lg_gt?: Maybe<Int>;
+  lg_gte?: Maybe<Int>;
+  xl?: Maybe<Int>;
+  xl_not?: Maybe<Int>;
+  xl_in?: Maybe<Int[] | Int>;
+  xl_not_in?: Maybe<Int[] | Int>;
+  xl_lt?: Maybe<Int>;
+  xl_lte?: Maybe<Int>;
+  xl_gt?: Maybe<Int>;
+  xl_gte?: Maybe<Int>;
+  AND?: Maybe<SizeTypeWhereInput[] | SizeTypeWhereInput>;
+  OR?: Maybe<SizeTypeWhereInput[] | SizeTypeWhereInput>;
+  NOT?: Maybe<SizeTypeWhereInput[] | SizeTypeWhereInput>;
+}
+
+export interface NameUpdateDataInput {
+  first?: Maybe<String>;
+  middle?: Maybe<String>;
+  last?: Maybe<String>;
+  preferred?: Maybe<String>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+}
+
+export interface ContactUpdateInput {
+  address?: Maybe<String>;
+  city?: Maybe<String>;
+  phone?: Maybe<String>;
+  state?: Maybe<String>;
+}
+
+export interface ProfileUpdateManyMutationInput {
+  bio?: Maybe<String>;
+  level?: Maybe<Int>;
+  title?: Maybe<String>;
+}
+
+export interface ContactUpdateManyMutationInput {
+  address?: Maybe<String>;
+  city?: Maybe<String>;
+  phone?: Maybe<String>;
+  state?: Maybe<String>;
+}
+
+export interface PostUpdateInput {
+  description?: Maybe<String>;
+  imageUrl?: Maybe<String>;
+}
+
+export interface EmployeeCreateInput {
+  id?: Maybe<ID_Input>;
+  birth?: Maybe<BirthCreateOneInput>;
+  contact?: Maybe<ContactCreateOneInput>;
+  name?: Maybe<NameCreateOneInput>;
+  profile?: Maybe<ProfileCreateOneInput>;
+}
+
+export interface PolicyUpdateInput {
+  publishedAt?: Maybe<DateTimeInput>;
+  content?: Maybe<String>;
+  title?: Maybe<String>;
+}
+
+export interface BirthCreateOneInput {
+  create?: Maybe<BirthCreateInput>;
+  connect?: Maybe<BirthWhereUniqueInput>;
+}
+
+export type PolicyWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface ContactCreateOneInput {
+  create?: Maybe<ContactCreateInput>;
+  connect?: Maybe<ContactWhereUniqueInput>;
+}
+
+export interface MediaUpdateManyMutationInput {
+  height?: Maybe<Int>;
+  source?: Maybe<String>;
+  type?: Maybe<MediaType>;
+}
+
+export interface NameCreateOneInput {
+  create?: Maybe<NameCreateInput>;
+  connect?: Maybe<NameWhereUniqueInput>;
+}
+
+export interface SizeTypeSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<SizeTypeWhereInput>;
+  AND?: Maybe<
+    SizeTypeSubscriptionWhereInput[] | SizeTypeSubscriptionWhereInput
+  >;
+  OR?: Maybe<SizeTypeSubscriptionWhereInput[] | SizeTypeSubscriptionWhereInput>;
+  NOT?: Maybe<
+    SizeTypeSubscriptionWhereInput[] | SizeTypeSubscriptionWhereInput
+  >;
+}
+
+export interface NameCreateInput {
+  id?: Maybe<ID_Input>;
+  first: String;
+  middle?: Maybe<String>;
+  last: String;
+  preferred?: Maybe<String>;
+}
+
+export type ContactWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface NameUpdateOneInput {
+  create?: Maybe<NameCreateInput>;
+  update?: Maybe<NameUpdateDataInput>;
+  upsert?: Maybe<NameUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<NameWhereUniqueInput>;
 }
 
 export interface InsightWhereInput {
@@ -1130,580 +1795,9 @@ export interface InsightWhereInput {
   NOT?: Maybe<InsightWhereInput[] | InsightWhereInput>;
 }
 
-export interface InsightUpsertWithoutMediaInput {
-  update: InsightUpdateWithoutMediaDataInput;
-  create: InsightCreateWithoutMediaInput;
-}
-
-export interface SizeTypeWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  xs?: Maybe<Int>;
-  xs_not?: Maybe<Int>;
-  xs_in?: Maybe<Int[] | Int>;
-  xs_not_in?: Maybe<Int[] | Int>;
-  xs_lt?: Maybe<Int>;
-  xs_lte?: Maybe<Int>;
-  xs_gt?: Maybe<Int>;
-  xs_gte?: Maybe<Int>;
-  sm?: Maybe<Int>;
-  sm_not?: Maybe<Int>;
-  sm_in?: Maybe<Int[] | Int>;
-  sm_not_in?: Maybe<Int[] | Int>;
-  sm_lt?: Maybe<Int>;
-  sm_lte?: Maybe<Int>;
-  sm_gt?: Maybe<Int>;
-  sm_gte?: Maybe<Int>;
-  md?: Maybe<Int>;
-  md_not?: Maybe<Int>;
-  md_in?: Maybe<Int[] | Int>;
-  md_not_in?: Maybe<Int[] | Int>;
-  md_lt?: Maybe<Int>;
-  md_lte?: Maybe<Int>;
-  md_gt?: Maybe<Int>;
-  md_gte?: Maybe<Int>;
-  lg?: Maybe<Int>;
-  lg_not?: Maybe<Int>;
-  lg_in?: Maybe<Int[] | Int>;
-  lg_not_in?: Maybe<Int[] | Int>;
-  lg_lt?: Maybe<Int>;
-  lg_lte?: Maybe<Int>;
-  lg_gt?: Maybe<Int>;
-  lg_gte?: Maybe<Int>;
-  xl?: Maybe<Int>;
-  xl_not?: Maybe<Int>;
-  xl_in?: Maybe<Int[] | Int>;
-  xl_not_in?: Maybe<Int[] | Int>;
-  xl_lt?: Maybe<Int>;
-  xl_lte?: Maybe<Int>;
-  xl_gt?: Maybe<Int>;
-  xl_gte?: Maybe<Int>;
-  AND?: Maybe<SizeTypeWhereInput[] | SizeTypeWhereInput>;
-  OR?: Maybe<SizeTypeWhereInput[] | SizeTypeWhereInput>;
-  NOT?: Maybe<SizeTypeWhereInput[] | SizeTypeWhereInput>;
-}
-
-export interface MetaTypeUpsertNestedInput {
-  update: MetaTypeUpdateDataInput;
-  create: MetaTypeCreateInput;
-}
-
-export interface InsightSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<InsightWhereInput>;
-  AND?: Maybe<InsightSubscriptionWhereInput[] | InsightSubscriptionWhereInput>;
-  OR?: Maybe<InsightSubscriptionWhereInput[] | InsightSubscriptionWhereInput>;
-  NOT?: Maybe<InsightSubscriptionWhereInput[] | InsightSubscriptionWhereInput>;
-}
-
-export interface SizeTypeUpsertNestedInput {
-  update: SizeTypeUpdateDataInput;
-  create: SizeTypeCreateInput;
-}
-
-export interface ContactSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ContactWhereInput>;
-  AND?: Maybe<ContactSubscriptionWhereInput[] | ContactSubscriptionWhereInput>;
-  OR?: Maybe<ContactSubscriptionWhereInput[] | ContactSubscriptionWhereInput>;
-  NOT?: Maybe<ContactSubscriptionWhereInput[] | ContactSubscriptionWhereInput>;
-}
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface BirthSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<BirthWhereInput>;
-  AND?: Maybe<BirthSubscriptionWhereInput[] | BirthSubscriptionWhereInput>;
-  OR?: Maybe<BirthSubscriptionWhereInput[] | BirthSubscriptionWhereInput>;
-  NOT?: Maybe<BirthSubscriptionWhereInput[] | BirthSubscriptionWhereInput>;
-}
-
-export interface SizeTypeUpdateDataInput {
-  xs?: Maybe<Int>;
-  sm?: Maybe<Int>;
-  md?: Maybe<Int>;
-  lg?: Maybe<Int>;
-  xl?: Maybe<Int>;
-}
-
-export interface UserUpdateInput {
-  name?: Maybe<String>;
-}
-
-export interface UserWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  AND?: Maybe<UserWhereInput[] | UserWhereInput>;
-  OR?: Maybe<UserWhereInput[] | UserWhereInput>;
-  NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
-}
-
-export type MediaWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface SizeTypeUpdateOneInput {
-  create?: Maybe<SizeTypeCreateInput>;
-  update?: Maybe<SizeTypeUpdateDataInput>;
-  upsert?: Maybe<SizeTypeUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<SizeTypeWhereUniqueInput>;
-}
-
-export interface SizeTypeUpdateInput {
-  xs?: Maybe<Int>;
-  sm?: Maybe<Int>;
-  md?: Maybe<Int>;
-  lg?: Maybe<Int>;
-  xl?: Maybe<Int>;
-}
-
-export interface MetaTypeUpdateDataInput {
-  featured?: Maybe<Boolean>;
-  size?: Maybe<SizeTypeUpdateOneInput>;
-}
-
-export interface ProfileUpdateInput {
-  bio?: Maybe<String>;
-  level?: Maybe<Int>;
-  media?: Maybe<MediaUpdateOneInput>;
-  title?: Maybe<String>;
-}
-
-export interface MetaTypeUpdateOneInput {
-  create?: Maybe<MetaTypeCreateInput>;
-  update?: Maybe<MetaTypeUpdateDataInput>;
-  upsert?: Maybe<MetaTypeUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<MetaTypeWhereUniqueInput>;
-}
-
-export interface PostUpdateManyMutationInput {
-  description?: Maybe<String>;
-  imageUrl?: Maybe<String>;
-}
-
-export interface InsightUpdateWithoutMediaDataInput {
-  publishedAt?: Maybe<DateTimeInput>;
-  authorId?: Maybe<String>;
-  category?: Maybe<String>;
-  content?: Maybe<String>;
-  desc?: Maybe<String>;
-  meta?: Maybe<MetaTypeUpdateOneInput>;
-  title?: Maybe<String>;
-}
-
-export interface PostCreateInput {
-  id?: Maybe<ID_Input>;
-  description: String;
-  imageUrl: String;
-}
-
-export type NameWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface PolicyCreateInput {
-  id?: Maybe<ID_Input>;
-  publishedAt?: Maybe<DateTimeInput>;
-  content: String;
-  title: String;
-}
-
-export interface BirthCreateInput {
-  id?: Maybe<ID_Input>;
-  address?: Maybe<String>;
-  city?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  state?: Maybe<String>;
-}
-
-export interface NameUpdateInput {
-  first?: Maybe<String>;
-  middle?: Maybe<String>;
-  last?: Maybe<String>;
-  preferred?: Maybe<String>;
-}
-
-export interface BirthUpdateInput {
-  address?: Maybe<String>;
-  city?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  state?: Maybe<String>;
-}
-
-export interface MetaTypeUpdateManyMutationInput {
-  featured?: Maybe<Boolean>;
-}
-
-export interface BirthUpdateManyMutationInput {
-  address?: Maybe<String>;
-  city?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  state?: Maybe<String>;
-}
-
-export interface MetaTypeUpdateInput {
-  featured?: Maybe<Boolean>;
-  size?: Maybe<SizeTypeUpdateOneInput>;
-}
-
-export interface InsightUpdateOneWithoutMediaInput {
-  create?: Maybe<InsightCreateWithoutMediaInput>;
-  update?: Maybe<InsightUpdateWithoutMediaDataInput>;
-  upsert?: Maybe<InsightUpsertWithoutMediaInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<InsightWhereUniqueInput>;
-}
-
-export interface MediaUpdateInput {
-  height?: Maybe<Int>;
-  source?: Maybe<String>;
-  type?: Maybe<MediaType>;
-  insight?: Maybe<InsightUpdateOneWithoutMediaInput>;
-}
-
-export interface MediaUpdateDataInput {
-  height?: Maybe<Int>;
-  source?: Maybe<String>;
-  type?: Maybe<MediaType>;
-  insight?: Maybe<InsightUpdateOneWithoutMediaInput>;
-}
-
-export type PostWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface ContactCreateInput {
-  id?: Maybe<ID_Input>;
-  address?: Maybe<String>;
-  city?: Maybe<String>;
-  phone?: Maybe<String>;
-  state?: Maybe<String>;
-}
-
-export interface PostWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  imageUrl?: Maybe<String>;
-  imageUrl_not?: Maybe<String>;
-  imageUrl_in?: Maybe<String[] | String>;
-  imageUrl_not_in?: Maybe<String[] | String>;
-  imageUrl_lt?: Maybe<String>;
-  imageUrl_lte?: Maybe<String>;
-  imageUrl_gt?: Maybe<String>;
-  imageUrl_gte?: Maybe<String>;
-  imageUrl_contains?: Maybe<String>;
-  imageUrl_not_contains?: Maybe<String>;
-  imageUrl_starts_with?: Maybe<String>;
-  imageUrl_not_starts_with?: Maybe<String>;
-  imageUrl_ends_with?: Maybe<String>;
-  imageUrl_not_ends_with?: Maybe<String>;
-  AND?: Maybe<PostWhereInput[] | PostWhereInput>;
-  OR?: Maybe<PostWhereInput[] | PostWhereInput>;
-  NOT?: Maybe<PostWhereInput[] | PostWhereInput>;
-}
-
-export interface ContactUpdateInput {
-  address?: Maybe<String>;
-  city?: Maybe<String>;
-  phone?: Maybe<String>;
-  state?: Maybe<String>;
-}
-
-export interface MediaUpdateOneWithoutInsightInput {
-  create?: Maybe<MediaCreateWithoutInsightInput>;
-  update?: Maybe<MediaUpdateWithoutInsightDataInput>;
-  upsert?: Maybe<MediaUpsertWithoutInsightInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<MediaWhereUniqueInput>;
-}
-
-export interface ContactUpdateManyMutationInput {
-  address?: Maybe<String>;
-  city?: Maybe<String>;
-  phone?: Maybe<String>;
-  state?: Maybe<String>;
-}
-
-export interface SizeTypeSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<SizeTypeWhereInput>;
-  AND?: Maybe<
-    SizeTypeSubscriptionWhereInput[] | SizeTypeSubscriptionWhereInput
-  >;
-  OR?: Maybe<SizeTypeSubscriptionWhereInput[] | SizeTypeSubscriptionWhereInput>;
-  NOT?: Maybe<
-    SizeTypeSubscriptionWhereInput[] | SizeTypeSubscriptionWhereInput
-  >;
-}
-
-export interface EmployeeCreateInput {
-  id?: Maybe<ID_Input>;
-  birth?: Maybe<BirthCreateOneInput>;
-  contact?: Maybe<ContactCreateOneInput>;
-  name?: Maybe<NameCreateOneInput>;
-  profile?: Maybe<ProfileCreateOneInput>;
-}
-
-export interface NameSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<NameWhereInput>;
-  AND?: Maybe<NameSubscriptionWhereInput[] | NameSubscriptionWhereInput>;
-  OR?: Maybe<NameSubscriptionWhereInput[] | NameSubscriptionWhereInput>;
-  NOT?: Maybe<NameSubscriptionWhereInput[] | NameSubscriptionWhereInput>;
-}
-
-export interface BirthCreateOneInput {
-  create?: Maybe<BirthCreateInput>;
-  connect?: Maybe<BirthWhereUniqueInput>;
-}
-
-export interface NameWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  first?: Maybe<String>;
-  first_not?: Maybe<String>;
-  first_in?: Maybe<String[] | String>;
-  first_not_in?: Maybe<String[] | String>;
-  first_lt?: Maybe<String>;
-  first_lte?: Maybe<String>;
-  first_gt?: Maybe<String>;
-  first_gte?: Maybe<String>;
-  first_contains?: Maybe<String>;
-  first_not_contains?: Maybe<String>;
-  first_starts_with?: Maybe<String>;
-  first_not_starts_with?: Maybe<String>;
-  first_ends_with?: Maybe<String>;
-  first_not_ends_with?: Maybe<String>;
-  middle?: Maybe<String>;
-  middle_not?: Maybe<String>;
-  middle_in?: Maybe<String[] | String>;
-  middle_not_in?: Maybe<String[] | String>;
-  middle_lt?: Maybe<String>;
-  middle_lte?: Maybe<String>;
-  middle_gt?: Maybe<String>;
-  middle_gte?: Maybe<String>;
-  middle_contains?: Maybe<String>;
-  middle_not_contains?: Maybe<String>;
-  middle_starts_with?: Maybe<String>;
-  middle_not_starts_with?: Maybe<String>;
-  middle_ends_with?: Maybe<String>;
-  middle_not_ends_with?: Maybe<String>;
-  last?: Maybe<String>;
-  last_not?: Maybe<String>;
-  last_in?: Maybe<String[] | String>;
-  last_not_in?: Maybe<String[] | String>;
-  last_lt?: Maybe<String>;
-  last_lte?: Maybe<String>;
-  last_gt?: Maybe<String>;
-  last_gte?: Maybe<String>;
-  last_contains?: Maybe<String>;
-  last_not_contains?: Maybe<String>;
-  last_starts_with?: Maybe<String>;
-  last_not_starts_with?: Maybe<String>;
-  last_ends_with?: Maybe<String>;
-  last_not_ends_with?: Maybe<String>;
-  preferred?: Maybe<String>;
-  preferred_not?: Maybe<String>;
-  preferred_in?: Maybe<String[] | String>;
-  preferred_not_in?: Maybe<String[] | String>;
-  preferred_lt?: Maybe<String>;
-  preferred_lte?: Maybe<String>;
-  preferred_gt?: Maybe<String>;
-  preferred_gte?: Maybe<String>;
-  preferred_contains?: Maybe<String>;
-  preferred_not_contains?: Maybe<String>;
-  preferred_starts_with?: Maybe<String>;
-  preferred_not_starts_with?: Maybe<String>;
-  preferred_ends_with?: Maybe<String>;
-  preferred_not_ends_with?: Maybe<String>;
-  AND?: Maybe<NameWhereInput[] | NameWhereInput>;
-  OR?: Maybe<NameWhereInput[] | NameWhereInput>;
-  NOT?: Maybe<NameWhereInput[] | NameWhereInput>;
-}
-
-export interface MediaUpdateOneInput {
-  create?: Maybe<MediaCreateInput>;
-  update?: Maybe<MediaUpdateDataInput>;
-  upsert?: Maybe<MediaUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<MediaWhereUniqueInput>;
-}
-
-export interface MetaTypeWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  featured?: Maybe<Boolean>;
-  featured_not?: Maybe<Boolean>;
-  size?: Maybe<SizeTypeWhereInput>;
-  AND?: Maybe<MetaTypeWhereInput[] | MetaTypeWhereInput>;
-  OR?: Maybe<MetaTypeWhereInput[] | MetaTypeWhereInput>;
-  NOT?: Maybe<MetaTypeWhereInput[] | MetaTypeWhereInput>;
-}
-
-export interface NameCreateOneInput {
-  create?: Maybe<NameCreateInput>;
-  connect?: Maybe<NameWhereUniqueInput>;
-}
-
-export interface EmployeeSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<EmployeeWhereInput>;
-  AND?: Maybe<
-    EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput
-  >;
-  OR?: Maybe<EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput>;
-  NOT?: Maybe<
-    EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput
-  >;
-}
-
-export interface NameCreateInput {
-  id?: Maybe<ID_Input>;
-  first: String;
-  middle?: Maybe<String>;
-  last: String;
-  preferred?: Maybe<String>;
-}
-
-export interface UserUpdateManyMutationInput {
-  name?: Maybe<String>;
-}
-
-export interface ProfileCreateOneInput {
-  create?: Maybe<ProfileCreateInput>;
-  connect?: Maybe<ProfileWhereUniqueInput>;
+export interface ContactUpsertNestedInput {
+  update: ContactUpdateDataInput;
+  create: ContactCreateInput;
 }
 
 export interface SizeTypeUpdateManyMutationInput {
@@ -1713,18 +1807,6 @@ export interface SizeTypeUpdateManyMutationInput {
   lg?: Maybe<Int>;
   xl?: Maybe<Int>;
 }
-
-export interface ProfileCreateInput {
-  id?: Maybe<ID_Input>;
-  bio: String;
-  level?: Maybe<Int>;
-  media?: Maybe<MediaCreateOneInput>;
-  title: String;
-}
-
-export type MetaTypeWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
 
 export interface MediaCreateOneInput {
   create?: Maybe<MediaCreateInput>;
@@ -1742,19 +1824,6 @@ export interface MediaCreateInput {
   height?: Maybe<Int>;
   source: String;
   type: MediaType;
-  insight?: Maybe<InsightCreateOneWithoutMediaInput>;
-}
-
-export interface NameUpdateManyMutationInput {
-  first?: Maybe<String>;
-  middle?: Maybe<String>;
-  last?: Maybe<String>;
-  preferred?: Maybe<String>;
-}
-
-export interface InsightCreateOneWithoutMediaInput {
-  create?: Maybe<InsightCreateWithoutMediaInput>;
-  connect?: Maybe<InsightWhereUniqueInput>;
 }
 
 export interface PolicyWhereInput {
@@ -1829,60 +1898,14 @@ export interface PolicyWhereInput {
   NOT?: Maybe<PolicyWhereInput[] | PolicyWhereInput>;
 }
 
-export interface ProfileUpdateDataInput {
-  bio?: Maybe<String>;
-  level?: Maybe<Int>;
-  media?: Maybe<MediaUpdateOneInput>;
-  title?: Maybe<String>;
+export interface EmployeeUpdateInput {
+  birth?: Maybe<BirthUpdateOneInput>;
+  contact?: Maybe<ContactUpdateOneInput>;
+  name?: Maybe<NameUpdateOneInput>;
+  profile?: Maybe<ProfileUpdateOneInput>;
 }
 
-export interface InsightUpdateManyMutationInput {
-  publishedAt?: Maybe<DateTimeInput>;
-  authorId?: Maybe<String>;
-  category?: Maybe<String>;
-  content?: Maybe<String>;
-  desc?: Maybe<String>;
-  title?: Maybe<String>;
-}
-
-export interface ProfileUpdateOneInput {
-  create?: Maybe<ProfileCreateInput>;
-  update?: Maybe<ProfileUpdateDataInput>;
-  upsert?: Maybe<ProfileUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<ProfileWhereUniqueInput>;
-}
-
-export interface MediaUpdateWithoutInsightDataInput {
-  height?: Maybe<Int>;
-  source?: Maybe<String>;
-  type?: Maybe<MediaType>;
-}
-
-export interface MetaTypeCreateInput {
-  id?: Maybe<ID_Input>;
-  featured?: Maybe<Boolean>;
-  size?: Maybe<SizeTypeCreateOneInput>;
-}
-
-export interface PostSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<PostWhereInput>;
-  AND?: Maybe<PostSubscriptionWhereInput[] | PostSubscriptionWhereInput>;
-  OR?: Maybe<PostSubscriptionWhereInput[] | PostSubscriptionWhereInput>;
-  NOT?: Maybe<PostSubscriptionWhereInput[] | PostSubscriptionWhereInput>;
-}
-
-export interface SizeTypeCreateOneInput {
-  create?: Maybe<SizeTypeCreateInput>;
-  connect?: Maybe<SizeTypeWhereUniqueInput>;
-}
-
-export interface MediaWhereInput {
+export interface EmployeeWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -1897,62 +1920,34 @@ export interface MediaWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  height?: Maybe<Int>;
-  height_not?: Maybe<Int>;
-  height_in?: Maybe<Int[] | Int>;
-  height_not_in?: Maybe<Int[] | Int>;
-  height_lt?: Maybe<Int>;
-  height_lte?: Maybe<Int>;
-  height_gt?: Maybe<Int>;
-  height_gte?: Maybe<Int>;
-  source?: Maybe<String>;
-  source_not?: Maybe<String>;
-  source_in?: Maybe<String[] | String>;
-  source_not_in?: Maybe<String[] | String>;
-  source_lt?: Maybe<String>;
-  source_lte?: Maybe<String>;
-  source_gt?: Maybe<String>;
-  source_gte?: Maybe<String>;
-  source_contains?: Maybe<String>;
-  source_not_contains?: Maybe<String>;
-  source_starts_with?: Maybe<String>;
-  source_not_starts_with?: Maybe<String>;
-  source_ends_with?: Maybe<String>;
-  source_not_ends_with?: Maybe<String>;
-  type?: Maybe<MediaType>;
-  type_not?: Maybe<MediaType>;
-  type_in?: Maybe<MediaType[] | MediaType>;
-  type_not_in?: Maybe<MediaType[] | MediaType>;
-  insight?: Maybe<InsightWhereInput>;
-  AND?: Maybe<MediaWhereInput[] | MediaWhereInput>;
-  OR?: Maybe<MediaWhereInput[] | MediaWhereInput>;
-  NOT?: Maybe<MediaWhereInput[] | MediaWhereInput>;
+  birth?: Maybe<BirthWhereInput>;
+  contact?: Maybe<ContactWhereInput>;
+  name?: Maybe<NameWhereInput>;
+  profile?: Maybe<ProfileWhereInput>;
+  AND?: Maybe<EmployeeWhereInput[] | EmployeeWhereInput>;
+  OR?: Maybe<EmployeeWhereInput[] | EmployeeWhereInput>;
+  NOT?: Maybe<EmployeeWhereInput[] | EmployeeWhereInput>;
 }
 
-export interface SizeTypeCreateInput {
-  id?: Maybe<ID_Input>;
-  xs?: Maybe<Int>;
-  sm?: Maybe<Int>;
-  md?: Maybe<Int>;
-  lg?: Maybe<Int>;
-  xl?: Maybe<Int>;
+export interface ContactUpdateOneInput {
+  create?: Maybe<ContactCreateInput>;
+  update?: Maybe<ContactUpdateDataInput>;
+  upsert?: Maybe<ContactUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<ContactWhereUniqueInput>;
 }
 
-export type InsightWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface EmployeeUpdateInput {
-  birth?: Maybe<BirthUpdateOneInput>;
-  contact?: Maybe<ContactUpdateOneInput>;
-  name?: Maybe<NameUpdateOneInput>;
-  profile?: Maybe<ProfileUpdateOneInput>;
+export interface BirthUpsertNestedInput {
+  update: BirthUpdateDataInput;
+  create: BirthCreateInput;
 }
 
-export interface ProfileUpdateManyMutationInput {
-  bio?: Maybe<String>;
-  level?: Maybe<Int>;
-  title?: Maybe<String>;
+export interface BirthUpdateDataInput {
+  address?: Maybe<String>;
+  city?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  state?: Maybe<String>;
 }
 
 export interface BirthUpdateOneInput {
@@ -1964,103 +1959,32 @@ export interface BirthUpdateOneInput {
   connect?: Maybe<BirthWhereUniqueInput>;
 }
 
-export interface PolicyUpdateInput {
+export type InsightWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface InsightUpdateManyMutationInput {
   publishedAt?: Maybe<DateTimeInput>;
+  authorId?: Maybe<String>;
+  category?: Maybe<String>;
   content?: Maybe<String>;
+  desc?: Maybe<String>;
   title?: Maybe<String>;
 }
 
-export interface BirthUpdateDataInput {
-  address?: Maybe<String>;
-  city?: Maybe<String>;
-  date?: Maybe<DateTimeInput>;
-  state?: Maybe<String>;
-}
-
-export interface MediaUpdateManyMutationInput {
-  height?: Maybe<Int>;
-  source?: Maybe<String>;
-  type?: Maybe<MediaType>;
-}
-
-export interface BirthUpsertNestedInput {
-  update: BirthUpdateDataInput;
-  create: BirthCreateInput;
-}
-
-export type EmployeeWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface ContactUpdateOneInput {
-  create?: Maybe<ContactCreateInput>;
-  update?: Maybe<ContactUpdateDataInput>;
-  upsert?: Maybe<ContactUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<ContactWhereUniqueInput>;
-}
-
-export type ContactWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface NameUpdateDataInput {
+export interface NameUpdateManyMutationInput {
   first?: Maybe<String>;
   middle?: Maybe<String>;
   last?: Maybe<String>;
   preferred?: Maybe<String>;
 }
 
-export interface NameUpdateOneInput {
-  create?: Maybe<NameCreateInput>;
-  update?: Maybe<NameUpdateDataInput>;
-  upsert?: Maybe<NameUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<NameWhereUniqueInput>;
-}
-
-export interface ContactUpsertNestedInput {
-  update: ContactUpdateDataInput;
-  create: ContactCreateInput;
-}
-
-export interface ContactUpdateDataInput {
-  address?: Maybe<String>;
-  city?: Maybe<String>;
-  phone?: Maybe<String>;
-  state?: Maybe<String>;
-}
-
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-}
-
-export interface MediaSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<MediaWhereInput>;
-  AND?: Maybe<MediaSubscriptionWhereInput[] | MediaSubscriptionWhereInput>;
-  OR?: Maybe<MediaSubscriptionWhereInput[] | MediaSubscriptionWhereInput>;
-  NOT?: Maybe<MediaSubscriptionWhereInput[] | MediaSubscriptionWhereInput>;
-}
-
-export interface MediaUpsertWithoutInsightInput {
-  update: MediaUpdateWithoutInsightDataInput;
-  create: MediaCreateWithoutInsightInput;
-}
-
-export type PolicyWhereUniqueInput = AtLeastOne<{
+export type MetaTypeWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
-export interface PostUpdateInput {
-  description?: Maybe<String>;
-  imageUrl?: Maybe<String>;
+export interface UserUpdateManyMutationInput {
+  name?: Maybe<String>;
 }
 
 export interface NodeNode {
@@ -2469,20 +2393,44 @@ export interface ProfileEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateEmployee {
-  count: Int;
+export interface SizeType {
+  id: ID_Output;
+  xs?: Int;
+  sm?: Int;
+  md?: Int;
+  lg?: Int;
+  xl?: Int;
 }
 
-export interface AggregateEmployeePromise
-  extends Promise<AggregateEmployee>,
-    Fragmentable {
-  count: () => Promise<Int>;
+export interface SizeTypePromise extends Promise<SizeType>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  xs: () => Promise<Int>;
+  sm: () => Promise<Int>;
+  md: () => Promise<Int>;
+  lg: () => Promise<Int>;
+  xl: () => Promise<Int>;
 }
 
-export interface AggregateEmployeeSubscription
-  extends Promise<AsyncIterator<AggregateEmployee>>,
+export interface SizeTypeSubscription
+  extends Promise<AsyncIterator<SizeType>>,
     Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  xs: () => Promise<AsyncIterator<Int>>;
+  sm: () => Promise<AsyncIterator<Int>>;
+  md: () => Promise<AsyncIterator<Int>>;
+  lg: () => Promise<AsyncIterator<Int>>;
+  xl: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface SizeTypeNullablePromise
+  extends Promise<SizeType | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  xs: () => Promise<Int>;
+  sm: () => Promise<Int>;
+  md: () => Promise<Int>;
+  lg: () => Promise<Int>;
+  xl: () => Promise<Int>;
 }
 
 export interface AggregatePost {
@@ -2611,23 +2559,31 @@ export interface PostNullablePromise
   imageUrl: () => Promise<String>;
 }
 
-export interface EmployeeEdge {
-  node: Employee;
-  cursor: String;
+export interface MetaType {
+  id: ID_Output;
+  featured?: Boolean;
 }
 
-export interface EmployeeEdgePromise
-  extends Promise<EmployeeEdge>,
-    Fragmentable {
-  node: <T = EmployeePromise>() => T;
-  cursor: () => Promise<String>;
+export interface MetaTypePromise extends Promise<MetaType>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  featured: () => Promise<Boolean>;
+  size: <T = SizeTypePromise>() => T;
 }
 
-export interface EmployeeEdgeSubscription
-  extends Promise<AsyncIterator<EmployeeEdge>>,
+export interface MetaTypeSubscription
+  extends Promise<AsyncIterator<MetaType>>,
     Fragmentable {
-  node: <T = EmployeeSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  featured: () => Promise<AsyncIterator<Boolean>>;
+  size: <T = SizeTypeSubscription>() => T;
+}
+
+export interface MetaTypeNullablePromise
+  extends Promise<MetaType | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  featured: () => Promise<Boolean>;
+  size: <T = SizeTypePromise>() => T;
 }
 
 export interface PolicyEdge {
@@ -2725,25 +2681,62 @@ export interface AggregateNameSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface EmployeeConnection {
-  pageInfo: PageInfo;
-  edges: EmployeeEdge[];
+export interface Insight {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  publishedAt?: DateTimeOutput;
+  authorId: String;
+  category: String;
+  content: String;
+  desc: String;
+  title: String;
 }
 
-export interface EmployeeConnectionPromise
-  extends Promise<EmployeeConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<EmployeeEdge>>() => T;
-  aggregate: <T = AggregateEmployeePromise>() => T;
+export interface InsightPromise extends Promise<Insight>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  publishedAt: () => Promise<DateTimeOutput>;
+  authorId: () => Promise<String>;
+  category: () => Promise<String>;
+  content: () => Promise<String>;
+  desc: () => Promise<String>;
+  media: <T = MediaPromise>() => T;
+  meta: <T = MetaTypePromise>() => T;
+  title: () => Promise<String>;
 }
 
-export interface EmployeeConnectionSubscription
-  extends Promise<AsyncIterator<EmployeeConnection>>,
+export interface InsightSubscription
+  extends Promise<AsyncIterator<Insight>>,
     Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<EmployeeEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateEmployeeSubscription>() => T;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  publishedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  authorId: () => Promise<AsyncIterator<String>>;
+  category: () => Promise<AsyncIterator<String>>;
+  content: () => Promise<AsyncIterator<String>>;
+  desc: () => Promise<AsyncIterator<String>>;
+  media: <T = MediaSubscription>() => T;
+  meta: <T = MetaTypeSubscription>() => T;
+  title: () => Promise<AsyncIterator<String>>;
+}
+
+export interface InsightNullablePromise
+  extends Promise<Insight | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  publishedAt: () => Promise<DateTimeOutput>;
+  authorId: () => Promise<String>;
+  category: () => Promise<String>;
+  content: () => Promise<String>;
+  desc: () => Promise<String>;
+  media: <T = MediaPromise>() => T;
+  meta: <T = MetaTypePromise>() => T;
+  title: () => Promise<String>;
 }
 
 export interface NameConnection {
@@ -2869,44 +2862,20 @@ export interface MetaTypeConnectionSubscription
   aggregate: <T = AggregateMetaTypeSubscription>() => T;
 }
 
-export interface SizeType {
-  id: ID_Output;
-  xs?: Int;
-  sm?: Int;
-  md?: Int;
-  lg?: Int;
-  xl?: Int;
+export interface AggregateEmployee {
+  count: Int;
 }
 
-export interface SizeTypePromise extends Promise<SizeType>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  xs: () => Promise<Int>;
-  sm: () => Promise<Int>;
-  md: () => Promise<Int>;
-  lg: () => Promise<Int>;
-  xl: () => Promise<Int>;
-}
-
-export interface SizeTypeSubscription
-  extends Promise<AsyncIterator<SizeType>>,
+export interface AggregateEmployeePromise
+  extends Promise<AggregateEmployee>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  xs: () => Promise<AsyncIterator<Int>>;
-  sm: () => Promise<AsyncIterator<Int>>;
-  md: () => Promise<AsyncIterator<Int>>;
-  lg: () => Promise<AsyncIterator<Int>>;
-  xl: () => Promise<AsyncIterator<Int>>;
+  count: () => Promise<Int>;
 }
 
-export interface SizeTypeNullablePromise
-  extends Promise<SizeType | null>,
+export interface AggregateEmployeeSubscription
+  extends Promise<AsyncIterator<AggregateEmployee>>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  xs: () => Promise<Int>;
-  sm: () => Promise<Int>;
-  md: () => Promise<Int>;
-  lg: () => Promise<Int>;
-  xl: () => Promise<Int>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface AggregateMedia {
@@ -3017,31 +2986,23 @@ export interface ContactConnectionSubscription
   aggregate: <T = AggregateContactSubscription>() => T;
 }
 
-export interface MetaType {
-  id: ID_Output;
-  featured?: Boolean;
+export interface EmployeeEdge {
+  node: Employee;
+  cursor: String;
 }
 
-export interface MetaTypePromise extends Promise<MetaType>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  featured: () => Promise<Boolean>;
-  size: <T = SizeTypePromise>() => T;
-}
-
-export interface MetaTypeSubscription
-  extends Promise<AsyncIterator<MetaType>>,
+export interface EmployeeEdgePromise
+  extends Promise<EmployeeEdge>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  featured: () => Promise<AsyncIterator<Boolean>>;
-  size: <T = SizeTypeSubscription>() => T;
+  node: <T = EmployeePromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface MetaTypeNullablePromise
-  extends Promise<MetaType | null>,
+export interface EmployeeEdgeSubscription
+  extends Promise<AsyncIterator<EmployeeEdge>>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  featured: () => Promise<Boolean>;
-  size: <T = SizeTypePromise>() => T;
+  node: <T = EmployeeSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateSizeType {
@@ -3137,62 +3098,25 @@ export interface PostEdgeSubscription
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface Insight {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-  publishedAt?: DateTimeOutput;
-  authorId: String;
-  category: String;
-  content: String;
-  desc: String;
-  title: String;
+export interface EmployeeConnection {
+  pageInfo: PageInfo;
+  edges: EmployeeEdge[];
 }
 
-export interface InsightPromise extends Promise<Insight>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  publishedAt: () => Promise<DateTimeOutput>;
-  authorId: () => Promise<String>;
-  category: () => Promise<String>;
-  content: () => Promise<String>;
-  desc: () => Promise<String>;
-  media: <T = MediaPromise>() => T;
-  meta: <T = MetaTypePromise>() => T;
-  title: () => Promise<String>;
-}
-
-export interface InsightSubscription
-  extends Promise<AsyncIterator<Insight>>,
+export interface EmployeeConnectionPromise
+  extends Promise<EmployeeConnection>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  publishedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  authorId: () => Promise<AsyncIterator<String>>;
-  category: () => Promise<AsyncIterator<String>>;
-  content: () => Promise<AsyncIterator<String>>;
-  desc: () => Promise<AsyncIterator<String>>;
-  media: <T = MediaSubscription>() => T;
-  meta: <T = MetaTypeSubscription>() => T;
-  title: () => Promise<AsyncIterator<String>>;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<EmployeeEdge>>() => T;
+  aggregate: <T = AggregateEmployeePromise>() => T;
 }
 
-export interface InsightNullablePromise
-  extends Promise<Insight | null>,
+export interface EmployeeConnectionSubscription
+  extends Promise<AsyncIterator<EmployeeConnection>>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-  publishedAt: () => Promise<DateTimeOutput>;
-  authorId: () => Promise<String>;
-  category: () => Promise<String>;
-  content: () => Promise<String>;
-  desc: () => Promise<String>;
-  media: <T = MediaPromise>() => T;
-  meta: <T = MetaTypePromise>() => T;
-  title: () => Promise<String>;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<EmployeeEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateEmployeeSubscription>() => T;
 }
 
 export interface AggregatePolicy {
@@ -3500,7 +3424,6 @@ export interface MediaPromise extends Promise<Media>, Fragmentable {
   height: () => Promise<Int>;
   source: () => Promise<String>;
   type: () => Promise<MediaType>;
-  insight: <T = InsightPromise>() => T;
 }
 
 export interface MediaSubscription
@@ -3510,7 +3433,6 @@ export interface MediaSubscription
   height: () => Promise<AsyncIterator<Int>>;
   source: () => Promise<AsyncIterator<String>>;
   type: () => Promise<AsyncIterator<MediaType>>;
-  insight: <T = InsightSubscription>() => T;
 }
 
 export interface MediaNullablePromise
@@ -3520,7 +3442,6 @@ export interface MediaNullablePromise
   height: () => Promise<Int>;
   source: () => Promise<String>;
   type: () => Promise<MediaType>;
-  insight: <T = InsightPromise>() => T;
 }
 
 export interface Employee {

@@ -11,6 +11,4 @@ type Media @model {
   height: Int
   source: String!
   type: MediaType!
-
-  insight: Insight
 }

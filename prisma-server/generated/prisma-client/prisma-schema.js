@@ -539,23 +539,7 @@ input InsightCreateInput {
   category: String!
   content: String!
   desc: String!
-  media: MediaCreateOneWithoutInsightInput
-  meta: MetaTypeCreateOneInput
-  title: String!
-}
-
-input InsightCreateOneWithoutMediaInput {
-  create: InsightCreateWithoutMediaInput
-  connect: InsightWhereUniqueInput
-}
-
-input InsightCreateWithoutMediaInput {
-  id: ID
-  publishedAt: DateTime
-  authorId: String!
-  category: String!
-  content: String!
-  desc: String!
+  media: MediaCreateOneInput
   meta: MetaTypeCreateOneInput
   title: String!
 }
@@ -622,7 +606,7 @@ input InsightUpdateInput {
   category: String
   content: String
   desc: String
-  media: MediaUpdateOneWithoutInsightInput
+  media: MediaUpdateOneInput
   meta: MetaTypeUpdateOneInput
   title: String
 }
@@ -634,30 +618,6 @@ input InsightUpdateManyMutationInput {
   content: String
   desc: String
   title: String
-}
-
-input InsightUpdateOneWithoutMediaInput {
-  create: InsightCreateWithoutMediaInput
-  update: InsightUpdateWithoutMediaDataInput
-  upsert: InsightUpsertWithoutMediaInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: InsightWhereUniqueInput
-}
-
-input InsightUpdateWithoutMediaDataInput {
-  publishedAt: DateTime
-  authorId: String
-  category: String
-  content: String
-  desc: String
-  meta: MetaTypeUpdateOneInput
-  title: String
-}
-
-input InsightUpsertWithoutMediaInput {
-  update: InsightUpdateWithoutMediaDataInput!
-  create: InsightCreateWithoutMediaInput!
 }
 
 input InsightWhereInput {
@@ -787,7 +747,6 @@ type Media {
   height: Int
   source: String!
   type: MediaType!
-  insight: Insight
 }
 
 type MediaConnection {
@@ -801,24 +760,11 @@ input MediaCreateInput {
   height: Int
   source: String!
   type: MediaType!
-  insight: InsightCreateOneWithoutMediaInput
 }
 
 input MediaCreateOneInput {
   create: MediaCreateInput
   connect: MediaWhereUniqueInput
-}
-
-input MediaCreateOneWithoutInsightInput {
-  create: MediaCreateWithoutInsightInput
-  connect: MediaWhereUniqueInput
-}
-
-input MediaCreateWithoutInsightInput {
-  id: ID
-  height: Int
-  source: String!
-  type: MediaType!
 }
 
 type MediaEdge {
@@ -871,14 +817,12 @@ input MediaUpdateDataInput {
   height: Int
   source: String
   type: MediaType
-  insight: InsightUpdateOneWithoutMediaInput
 }
 
 input MediaUpdateInput {
   height: Int
   source: String
   type: MediaType
-  insight: InsightUpdateOneWithoutMediaInput
 }
 
 input MediaUpdateManyMutationInput {
@@ -896,29 +840,9 @@ input MediaUpdateOneInput {
   connect: MediaWhereUniqueInput
 }
 
-input MediaUpdateOneWithoutInsightInput {
-  create: MediaCreateWithoutInsightInput
-  update: MediaUpdateWithoutInsightDataInput
-  upsert: MediaUpsertWithoutInsightInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: MediaWhereUniqueInput
-}
-
-input MediaUpdateWithoutInsightDataInput {
-  height: Int
-  source: String
-  type: MediaType
-}
-
 input MediaUpsertNestedInput {
   update: MediaUpdateDataInput!
   create: MediaCreateInput!
-}
-
-input MediaUpsertWithoutInsightInput {
-  update: MediaUpdateWithoutInsightDataInput!
-  create: MediaCreateWithoutInsightInput!
 }
 
 input MediaWhereInput {
@@ -962,7 +886,6 @@ input MediaWhereInput {
   type_not: MediaType
   type_in: [MediaType!]
   type_not_in: [MediaType!]
-  insight: InsightWhereInput
   AND: [MediaWhereInput!]
   OR: [MediaWhereInput!]
   NOT: [MediaWhereInput!]
