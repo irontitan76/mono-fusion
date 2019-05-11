@@ -1,0 +1,17 @@
+{
+  "name": "server3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ross Sheppard",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "graphql-import": "^0.7.1",
+    "graphql-tools": "^4.0.4",
+    "graphql-yoga": "^1.17.4",
+    "prisma-client-lib": "^1.30.4"
+  }
+}

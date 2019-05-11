@@ -1,0 +1,10 @@
+# import Policy from './generated/prisma.graphql'
+
+type Policy @model {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime @updatedAt
+  publishedAt: DateTime
+  content: String!
+  title: String! @isUnique
+}

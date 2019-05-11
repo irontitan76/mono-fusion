@@ -1,0 +1,12 @@
+endpoint: https://us1.prisma.sh/ross-sheppard-d8c6f0/server3/dev
+datamodel:
+  - ./models/employees.prisma
+  - ./models/enums.prisma
+  - ./models/example.prisma
+  - ./models/insights.prisma
+  - ./models/policies.prisma
+  - ./models/users.prisma
+
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/

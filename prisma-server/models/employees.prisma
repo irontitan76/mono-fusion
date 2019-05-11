@@ -1,0 +1,45 @@
+# import Name from './generated/prisma.graphql'
+# import Birth from './generated/prisma.graphql'
+# import Contact from './generated/prisma.graphql'
+# import Profile from './generated/prisma.graphql'
+# import Employee from './generated/prisma.graphql'
+
+type Name @model {
+  id: ID! @id
+  first: String!
+  middle: String
+  last: String!
+  preferred: String
+}
+
+type Birth @model {
+  id: ID! @id
+  address: String
+  city: String
+  date: DateTime
+  state: String
+}
+
+type Contact @model {
+  id: ID! @id
+  address: String
+  city: String
+  phone: String
+  state: String
+}
+
+type Profile @model {
+  id: ID! @id
+  bio: String!
+  level: Int
+  media: Media @relation(link: INLINE)
+  title: String!
+}
+
+type Employee @model {
+  id: ID! @id
+  birth: Birth @relation(link: INLINE)
+  contact: Contact @relation(link: INLINE)
+  name: Name @relation(link: INLINE)
+  profile: Profile @relation(link: INLINE)
+}

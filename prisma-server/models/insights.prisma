@@ -1,0 +1,32 @@
+# import SizeType from './generated/prisma.graphql'
+# import MetaType from './generated/prisma.graphql'
+# import Insight from './generated/prisma.graphql'
+
+type SizeType @model {
+  id: ID! @id
+  xs: Int
+  sm: Int
+  md: Int
+  lg: Int
+  xl: Int
+}
+
+type MetaType @model {
+  id: ID! @id
+  featured: Boolean
+  size: SizeType @relation(link: INLINE)
+}
+
+type Insight @model {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  publishedAt: DateTime
+  authorId: String!
+  category: String!
+  content: String!
+  desc: String!
+  media: Media @relation(link: INLINE)
+  meta: MetaType @relation(link: INLINE)
+  title: String!
+}

@@ -1,0 +1,16 @@
+# import MediaType from './generated/prisma.graphql'
+# import Media from './generated/prisma.graphql'
+
+enum MediaType {
+  Image
+  Video
+}
+
+type Media @model {
+  id: ID! @id
+  height: Int
+  source: String!
+  type: MediaType!
+
+  insight: Insight
+}
