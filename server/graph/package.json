@@ -1,0 +1,9 @@
+{
+  "name": "@fusion/graph",
+  "version": "1.0.0",
+  "description": "My Graphcool Service",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "graphcool deploy"
+  }
+}

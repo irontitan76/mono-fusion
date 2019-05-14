@@ -1,0 +1,35 @@
+{
+  "name": "@fusion/system",
+  "version": "0.0.0",
+  "description": "Fusion Tools",
+  "author": "Ross Sheppard <ross_sheppard@outlook.com>",
+  "homepage": "https://github.com/irontitan76/mono-fusion#readme",
+  "files": [
+    "babel.config.js",
+    "eslint.config.js",
+    "jest.config.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irontitan76/mono-fusion.git"
+  },
+  "scripts": {
+    "test": "./task/test"
+  },
+  "bugs": {
+    "url": "https://github.com/irontitan76/mono-fusion/issues"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.4",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
+    "nodemon": "^1.19.0"
+  }
+}

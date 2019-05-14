@@ -1,0 +1,20 @@
+{
+  "name": "@fusion/prisma",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ross Sheppard",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "nodemon --exec babel-node --root-mode upward src/server.js"
+  },
+  "dependencies": {
+    "graphql": "0.13.2",
+    "graphql-import": "^0.7.1",
+    "graphql-tools": "^4.0.4",
+    "graphql-yoga": "^1.17.4",
+    "nexus": "^0.11.7",
+    "nexus-prisma": "^0.3.7",
+    "prisma-client-lib": "^1.30.4"
+  }
+}

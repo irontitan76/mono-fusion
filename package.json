@@ -1,28 +1,18 @@
 {
-  "private": true,
   "name": "fusion",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "author": "Ross Sheppard",
-  "license": "ISC",
+  "description": "Fusion Space",
+  "repository": "https://github.com/irontitan76/mono-fusion.git",
+  "author": "Ross Sheppard <ross_sheppard@outlook.com>",
+  "license": "MIT",
+  "private": true,
   "workspaces": [
-    "api",
-    "client",
-    "design",
-    "server"
+    "packages/*",
+    "scripts",
+    "server/*",
+    "sites/"
   ],
-  "scripts": {
-    "build:corp": "cd client && yarn run build:corp",
-    "build:main": "cd client && yarn run build:main",
-    "build:me": "cd client && yarn run build:me",
-    "dev:corp": "cd client && yarn run dev:corp",
-    "dev:main": "cd client && yarn run dev:main",
-    "dev:me": "cd client && yarn run dev:me",
-    "start:corp": "cd client && yarn run start:corp",
-    "start:main": "cd client && yarn run start:main",
-    "start:me": "cd client && yarn run start:me",
-    "deploy:server": "cd server && graphcool deploy"
-  },
-  "dependencies": {}
+  "bin": {
+    "fusion": "./scripts/cli.js"
+  }
 }

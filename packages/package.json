@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "@fusion/packages",
+  "description": "Fusion Package Hub",
+  "main": "index.js",
+  "author": "Ross Sheppard",
+  "workspaces": [
+    "api",
+    "design",
+    "system"
+  ],
+  "scripts": {
+    "check": "yarn clean && yarn compile && yarn test && yarn lint",
+    "clean": "lerna run clean",
+    "lint": "lerna run lint",
+    "test": "lerna run test"
+  },
+  "devDependencies": {
+    "lerna": "^3.13.3"
+  },
+  "dependencies": {
+    "@fusion/api": "file:api",
+    "@fusion/design": "file:design",
+    "@fusion/system": "file:system"
+  }
+}
