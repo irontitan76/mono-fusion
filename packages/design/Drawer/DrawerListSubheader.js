@@ -25,7 +25,7 @@ export function DrawerListSubheader({
   expandedTitle,
   isExpanded,
   isHorizontal,
-  onToggle 
+  onToggle,
 }) {
   const classes = useStyles();
 
@@ -36,24 +36,19 @@ export function DrawerListSubheader({
 
     return (
       <Grid item style={{ marginBottom: 30 }}>
-        <IconButton
-          className={classes.listButton}
-          onClick={onToggle}
-        >
+        <IconButton className={classes.listButton} onClick={onToggle}>
           <MenuIcon />
         </IconButton>
       </Grid>
     );
   };
 
-  const Title = () => (
-    (isHorizontal && !isExpanded) ? collapsedTitle : expandedTitle
-  );
+  const Title = () => (isHorizontal && !isExpanded ? collapsedTitle : expandedTitle);
 
   return (
     <>
       <ListSubheader className={classes.listItemSubheader}>
-        <Grid container justify='space-between'>
+        <Grid container justify="space-between">
           <Grid item style={{ flexGrow: 1 }}>
             <Title />
           </Grid>
@@ -63,6 +58,6 @@ export function DrawerListSubheader({
       <Divider className={classes.divider} />
     </>
   );
-};
+}
 
 export default DrawerListSubheader;

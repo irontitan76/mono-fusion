@@ -4,6 +4,7 @@
   "description": "Fusion Package Hub",
   "main": "index.js",
   "author": "Ross Sheppard",
+  "license": "MIT",
   "workspaces": [
     "api",
     "design",

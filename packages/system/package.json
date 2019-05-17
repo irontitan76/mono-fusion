@@ -14,7 +14,8 @@
     "url": "git+https://github.com/irontitan76/mono-fusion.git"
   },
   "scripts": {
-    "test": "./task/test"
+    "test": "./task/test",
+    "watch-clean": "onchange '**/*.js' -- prettier --config prettier.config.js --write {{changed}}"
   },
   "bugs": {
     "url": "https://github.com/irontitan76/mono-fusion/issues"
@@ -25,11 +26,27 @@
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.4",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^5.3.0",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
-    "nodemon": "^1.19.0"
+    "husky": "^2.3.0",
+    "lint-staged": "^8.1.7",
+    "nodemon": "^1.19.0",
+    "onchange": "^5.2.0",
+    "prettier": "^1.17.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

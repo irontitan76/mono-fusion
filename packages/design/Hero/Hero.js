@@ -5,8 +5,10 @@ import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-const getImage = property => props => props[property].media ? `url(${props[property].media.source})` : 'none';
-const getContrast = property => props => props.hero[property] && props.hero[property] === 'light' ? 'white' : 'black';
+const getImage = (property) => (props) =>
+  props[property].media ? `url(${props[property].media.source})` : 'none';
+const getContrast = (property) => (props) =>
+  props.hero[property] && props.hero[property] === 'light' ? 'white' : 'black';
 
 const useStyles = makeStyles(({ spacing }) => {
   return {
@@ -57,27 +59,19 @@ function Hero(props) {
 
   return (
     <Fade in timeout={500}>
-      <Grid className={classes.heroContainer} container justify='center'>
+      <Grid className={classes.heroContainer} container justify="center">
         <LinkComponent href={hero.path}>
-          <Grid component='a' item xs={12}>
+          <Grid component="a" item xs={12}>
             <div className={classes.hero}>
-              <Grid alignItems='center' className={classes.heroContent} container>
+              <Grid alignItems="center" className={classes.heroContent} container>
                 <Grid item style={{ width: 250 }}>
-                  <Typography
-                    className={classes.heroTitle}
-                    variant='h6'
-                  >
+                  <Typography className={classes.heroTitle} variant="h6">
                     {hero.title}
                   </Typography>
-                  <Typography
-                    className={classes.heroDescription}
-                    variant='h5'
-                  >
+                  <Typography className={classes.heroDescription} variant="h5">
                     {hero.description}
                   </Typography>
-                  <Typography
-                    className={classes.heroAction}
-                  >
+                  <Typography className={classes.heroAction}>
                     {hero.action}
                   </Typography>
                 </Grid>
@@ -88,7 +82,7 @@ function Hero(props) {
       </Grid>
     </Fade>
   );
-};
+}
 
 Hero.defaultProps = {
   component: 'a',

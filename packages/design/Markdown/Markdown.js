@@ -63,7 +63,7 @@ export const styles = (palette, spacing) => ({
   '& p': {
     '& strong': {
       fontWeight: 500,
-    }
+    },
   },
 });
 
@@ -75,8 +75,8 @@ const useStyles = makeStyles(({ palette, spacing }) => {
 
 function Markdown({ content }) {
   const classes = useStyles();
-  
+
   return <Md className={classes.markdown} source={content || ''} />;
-};
+}
 
 export default Markdown;

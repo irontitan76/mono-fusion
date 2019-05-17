@@ -2,17 +2,26 @@ const gql = require('graphql-tag');
 
 module.exports = {
   getAll: gql`
-    query allInsights($value: String) { 
-      allInsights(filter: {
-        OR: [
-          { title_contains: $value },
-          { desc_contains: $value },
-        ]
-      }) {
+    query allInsights($value: String) {
+      allInsights(
+        filter: { OR: [{ title_contains: $value }, { desc_contains: $value }] }
+      ) {
         id
         desc
-        media { height source }
-        meta { featured size { lg md sm xl xs }}
+        media {
+          height
+          source
+        }
+        meta {
+          featured
+          size {
+            lg
+            md
+            sm
+            xl
+            xs
+          }
+        }
         publishedAt
         title
       }
@@ -27,7 +36,10 @@ module.exports = {
         id
         category
         desc
-        media { height source }
+        media {
+          height
+          source
+        }
         publishedAt
         title
       }
@@ -37,25 +49,28 @@ module.exports = {
     }
   `,
   getOne: gql`
-    query Insight($id: ID!) { 
+    query Insight($id: ID!) {
       Insight(id: $id) {
         id
         authorId
         category
         content
-        media { source type }
+        media {
+          source
+          type
+        }
         publishedAt
         title
-      } 
+      }
     }
   `,
   getOneByName: gql`
-  query Insight($name: String!) { 
-    Insight(name: $name) {
-      id
-    } 
-  }
-`,
+    query Insight($name: String!) {
+      Insight(name: $name) {
+        id
+      }
+    }
+  `,
   updateOne: gql`
     mutation updateInsight($id: ID!, $content: String!) {
       updateInsight(id: $id, content: $content) {
@@ -81,8 +96,8 @@ module.exports = {
           __typename: 'Insight',
           id,
           title,
-        }
-      }
+        },
+      },
     });
   },
 };

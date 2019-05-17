@@ -9,4 +9,4 @@ export default {
       return context.prisma.createUser({ name: args.name });
     },
   },
-}
+};

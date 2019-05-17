@@ -76,43 +76,39 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing, transitions }) =>
   };
 });
 
-export function DrawerListItem({ 
+export function DrawerListItem({
   dense,
   isHorizontal,
   item,
   LinkComponent,
-  router 
+  router,
 }) {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
 
   const CollapseIcon = () => {
-    if ( !item.children || item.children.length === 0) return null;
+    if (!item.children || item.children.length === 0) return null;
 
-    return <ChevronRightIcon className={
-      classNames(
-        classes.collapseButton, {
+    return (
+      <ChevronRightIcon
+        className={classNames(classes.collapseButton, {
           [classes.collapseButtonRotate]: isOpen,
-        }
-      )
-    } />;
+        })}
+      />
+    );
   };
 
   const CollapseMenu = ({ children }) => {
-    if ( !children || children.length === 0) return null;
+    if (!children || children.length === 0) return null;
 
     return (
       <Collapse
         className={classes.collapse}
         in={isOpen}
-        timeout='auto'
+        timeout="auto"
         unmountOnExit
       >
-        <List
-          className={classes.collapseMenu}
-          component='div'
-          disablePadding
-        >
+        <List className={classes.collapseMenu} component="div" disablePadding>
           <DrawerListItems
             dense={dense}
             isHorizontal={isHorizontal}
@@ -126,27 +122,24 @@ export function DrawerListItem({
     );
   };
 
-  const isActive = item.path && (item.path === router.pathname);
+  const isActive = item.path && item.path === router.pathname;
 
   const listItem = (
     <ListItem
       button
-      classes={{ gutters: classes.listItemGutters }} 
+      classes={{ gutters: classes.listItemGutters }}
       className={classNames({
         [classes.listItemActive]: isActive,
         [classes.listIem]: !isActive,
-      })} 
+      })}
       disabled={item.disabled}
       dense={dense}
-      onClick={item.children ? () => setIsOpen(!isOpen) : null
-      }
+      onClick={item.children ? () => setIsOpen(!isOpen) : null}
     >
-      <ListItemIcon className={classes.listItemIcon}>
-        {item.icon}
-      </ListItemIcon>
-      <ListItemText 
+      <ListItemIcon className={classes.listItemIcon}>{item.icon}</ListItemIcon>
+      <ListItemText
         className={classes.listItemText}
-        primary={item.label} 
+        primary={item.label}
         primaryTypographyProps={{ className: classes.text }}
       />
       <CollapseIcon />
@@ -157,7 +150,9 @@ export function DrawerListItem({
     <LinkComponent href={item.path} passHref>
       {listItem}
     </LinkComponent>
-  ) : listItem;
+  ) : (
+    listItem
+  );
 
   return (
     <Fragment key={item.name}>

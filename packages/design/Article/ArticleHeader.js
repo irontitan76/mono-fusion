@@ -28,23 +28,23 @@ function ArticleHeader(props) {
   const { author, published, title } = props;
 
   if (!title) {
-    return <LinearProgress variant='query' />;
+    return <LinearProgress variant="query" />;
   }
 
   return (
     <>
-      <Typography className={classes.title} variant='h1'>
+      <Typography className={classes.title} variant="h1">
         {title}
       </Typography>
-      <Typography variant='caption'>
+      <Typography variant="caption">
         <b>Written by:</b> {author}
       </Typography>
       <br />
-      <Typography variant='caption'>
+      <Typography variant="caption">
         <b>Published on:</b> {moment(published).format('MMM DD, YYYY')}
       </Typography>
     </>
   );
-};
+}
 
 export default ArticleHeader;

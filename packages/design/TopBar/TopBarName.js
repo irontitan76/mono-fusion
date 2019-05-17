@@ -20,7 +20,7 @@ export default function TopBarName() {
   const classes = useStyles();
   const { application } = useContext(ManifestContext);
 
-  return <Typography className={classes.title}>
-    {application.displayName}
-  </Typography>;
-};
+  return (
+    <Typography className={classes.title}>{application.displayName}</Typography>
+  );
+}

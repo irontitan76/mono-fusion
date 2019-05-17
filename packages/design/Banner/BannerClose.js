@@ -14,8 +14,8 @@ const useStyles = makeStyles(() => {
       right: 0,
       '&:hover': {
         backgroundColor: 'transparent',
-      }
-    }
+      },
+    },
   };
 });
 
@@ -24,16 +24,17 @@ export default function BannerClose({ name, onClose }) {
 
   return (
     <IconButton
-      className={classes.close} 
-      disableRipple 
-      id='close-button'
-      onClick={() => onClose(() => {
-        setCookie(`user-has-accepted-${name}`, true);
-        return true;
-      })}
+      className={classes.close}
+      disableRipple
+      id="close-button"
+      onClick={() =>
+        onClose(() => {
+          setCookie(`user-has-accepted-${name}`, true);
+          return true;
+        })
+      }
     >
       <CloseIcon />
     </IconButton>
   );
-};
-
+}

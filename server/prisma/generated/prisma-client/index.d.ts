@@ -2,13 +2,9 @@
 // Please don't change this file manually but run `prisma generate` to update it.
 // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-import { DocumentNode } from "graphql";
-import {
-  makePrismaClientClass,
-  BaseClientOptions,
-  Model
-} from "prisma-client-lib";
-import { typeDefs } from "./prisma-schema";
+import { DocumentNode } from 'graphql';
+import { makePrismaClientClass, BaseClientOptions, Model } from 'prisma-client-lib';
+import { typeDefs } from './prisma-schema';
 
 export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
@@ -50,233 +46,281 @@ export interface Prisma {
    */
 
   birth: (where: BirthWhereUniqueInput) => BirthNullablePromise;
-  births: (args?: {
-    where?: BirthWhereInput;
-    orderBy?: BirthOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Birth>;
-  birthsConnection: (args?: {
-    where?: BirthWhereInput;
-    orderBy?: BirthOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => BirthConnectionPromise;
+  births: (
+    args?: {
+      where?: BirthWhereInput;
+      orderBy?: BirthOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Birth>;
+  birthsConnection: (
+    args?: {
+      where?: BirthWhereInput;
+      orderBy?: BirthOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => BirthConnectionPromise;
   contact: (where: ContactWhereUniqueInput) => ContactNullablePromise;
-  contacts: (args?: {
-    where?: ContactWhereInput;
-    orderBy?: ContactOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Contact>;
-  contactsConnection: (args?: {
-    where?: ContactWhereInput;
-    orderBy?: ContactOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => ContactConnectionPromise;
+  contacts: (
+    args?: {
+      where?: ContactWhereInput;
+      orderBy?: ContactOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Contact>;
+  contactsConnection: (
+    args?: {
+      where?: ContactWhereInput;
+      orderBy?: ContactOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ContactConnectionPromise;
   employee: (where: EmployeeWhereUniqueInput) => EmployeeNullablePromise;
-  employees: (args?: {
-    where?: EmployeeWhereInput;
-    orderBy?: EmployeeOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Employee>;
-  employeesConnection: (args?: {
-    where?: EmployeeWhereInput;
-    orderBy?: EmployeeOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => EmployeeConnectionPromise;
+  employees: (
+    args?: {
+      where?: EmployeeWhereInput;
+      orderBy?: EmployeeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Employee>;
+  employeesConnection: (
+    args?: {
+      where?: EmployeeWhereInput;
+      orderBy?: EmployeeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => EmployeeConnectionPromise;
   insight: (where: InsightWhereUniqueInput) => InsightNullablePromise;
-  insights: (args?: {
-    where?: InsightWhereInput;
-    orderBy?: InsightOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Insight>;
-  insightsConnection: (args?: {
-    where?: InsightWhereInput;
-    orderBy?: InsightOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => InsightConnectionPromise;
+  insights: (
+    args?: {
+      where?: InsightWhereInput;
+      orderBy?: InsightOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Insight>;
+  insightsConnection: (
+    args?: {
+      where?: InsightWhereInput;
+      orderBy?: InsightOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => InsightConnectionPromise;
   media: (where: MediaWhereUniqueInput) => MediaNullablePromise;
-  medias: (args?: {
-    where?: MediaWhereInput;
-    orderBy?: MediaOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Media>;
-  mediasConnection: (args?: {
-    where?: MediaWhereInput;
-    orderBy?: MediaOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => MediaConnectionPromise;
+  medias: (
+    args?: {
+      where?: MediaWhereInput;
+      orderBy?: MediaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Media>;
+  mediasConnection: (
+    args?: {
+      where?: MediaWhereInput;
+      orderBy?: MediaOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => MediaConnectionPromise;
   metaType: (where: MetaTypeWhereUniqueInput) => MetaTypeNullablePromise;
-  metaTypes: (args?: {
-    where?: MetaTypeWhereInput;
-    orderBy?: MetaTypeOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<MetaType>;
-  metaTypesConnection: (args?: {
-    where?: MetaTypeWhereInput;
-    orderBy?: MetaTypeOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => MetaTypeConnectionPromise;
+  metaTypes: (
+    args?: {
+      where?: MetaTypeWhereInput;
+      orderBy?: MetaTypeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<MetaType>;
+  metaTypesConnection: (
+    args?: {
+      where?: MetaTypeWhereInput;
+      orderBy?: MetaTypeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => MetaTypeConnectionPromise;
   name: (where: NameWhereUniqueInput) => NameNullablePromise;
-  names: (args?: {
-    where?: NameWhereInput;
-    orderBy?: NameOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Name>;
-  namesConnection: (args?: {
-    where?: NameWhereInput;
-    orderBy?: NameOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => NameConnectionPromise;
+  names: (
+    args?: {
+      where?: NameWhereInput;
+      orderBy?: NameOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Name>;
+  namesConnection: (
+    args?: {
+      where?: NameWhereInput;
+      orderBy?: NameOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => NameConnectionPromise;
   policy: (where: PolicyWhereUniqueInput) => PolicyNullablePromise;
-  policies: (args?: {
-    where?: PolicyWhereInput;
-    orderBy?: PolicyOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Policy>;
-  policiesConnection: (args?: {
-    where?: PolicyWhereInput;
-    orderBy?: PolicyOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => PolicyConnectionPromise;
+  policies: (
+    args?: {
+      where?: PolicyWhereInput;
+      orderBy?: PolicyOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Policy>;
+  policiesConnection: (
+    args?: {
+      where?: PolicyWhereInput;
+      orderBy?: PolicyOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => PolicyConnectionPromise;
   post: (where: PostWhereUniqueInput) => PostNullablePromise;
-  posts: (args?: {
-    where?: PostWhereInput;
-    orderBy?: PostOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Post>;
-  postsConnection: (args?: {
-    where?: PostWhereInput;
-    orderBy?: PostOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => PostConnectionPromise;
+  posts: (
+    args?: {
+      where?: PostWhereInput;
+      orderBy?: PostOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Post>;
+  postsConnection: (
+    args?: {
+      where?: PostWhereInput;
+      orderBy?: PostOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => PostConnectionPromise;
   profile: (where: ProfileWhereUniqueInput) => ProfileNullablePromise;
-  profiles: (args?: {
-    where?: ProfileWhereInput;
-    orderBy?: ProfileOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<Profile>;
-  profilesConnection: (args?: {
-    where?: ProfileWhereInput;
-    orderBy?: ProfileOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => ProfileConnectionPromise;
+  profiles: (
+    args?: {
+      where?: ProfileWhereInput;
+      orderBy?: ProfileOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Profile>;
+  profilesConnection: (
+    args?: {
+      where?: ProfileWhereInput;
+      orderBy?: ProfileOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ProfileConnectionPromise;
   sizeType: (where: SizeTypeWhereUniqueInput) => SizeTypeNullablePromise;
-  sizeTypes: (args?: {
-    where?: SizeTypeWhereInput;
-    orderBy?: SizeTypeOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<SizeType>;
-  sizeTypesConnection: (args?: {
-    where?: SizeTypeWhereInput;
-    orderBy?: SizeTypeOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => SizeTypeConnectionPromise;
+  sizeTypes: (
+    args?: {
+      where?: SizeTypeWhereInput;
+      orderBy?: SizeTypeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<SizeType>;
+  sizeTypesConnection: (
+    args?: {
+      where?: SizeTypeWhereInput;
+      orderBy?: SizeTypeOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => SizeTypeConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserNullablePromise;
-  users: (args?: {
-    where?: UserWhereInput;
-    orderBy?: UserOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => FragmentableArray<User>;
-  usersConnection: (args?: {
-    where?: UserWhereInput;
-    orderBy?: UserOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => UserConnectionPromise;
+  users: (
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<User>;
+  usersConnection: (
+    args?: {
+      where?: UserWhereInput;
+      orderBy?: UserOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => UserConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
@@ -284,191 +328,261 @@ export interface Prisma {
    */
 
   createBirth: (data: BirthCreateInput) => BirthPromise;
-  updateBirth: (args: {
-    data: BirthUpdateInput;
-    where: BirthWhereUniqueInput;
-  }) => BirthPromise;
-  updateManyBirths: (args: {
-    data: BirthUpdateManyMutationInput;
-    where?: BirthWhereInput;
-  }) => BatchPayloadPromise;
-  upsertBirth: (args: {
-    where: BirthWhereUniqueInput;
-    create: BirthCreateInput;
-    update: BirthUpdateInput;
-  }) => BirthPromise;
+  updateBirth: (
+    args: {
+      data: BirthUpdateInput;
+      where: BirthWhereUniqueInput;
+    }
+  ) => BirthPromise;
+  updateManyBirths: (
+    args: {
+      data: BirthUpdateManyMutationInput;
+      where?: BirthWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertBirth: (
+    args: {
+      where: BirthWhereUniqueInput;
+      create: BirthCreateInput;
+      update: BirthUpdateInput;
+    }
+  ) => BirthPromise;
   deleteBirth: (where: BirthWhereUniqueInput) => BirthPromise;
   deleteManyBirths: (where?: BirthWhereInput) => BatchPayloadPromise;
   createContact: (data: ContactCreateInput) => ContactPromise;
-  updateContact: (args: {
-    data: ContactUpdateInput;
-    where: ContactWhereUniqueInput;
-  }) => ContactPromise;
-  updateManyContacts: (args: {
-    data: ContactUpdateManyMutationInput;
-    where?: ContactWhereInput;
-  }) => BatchPayloadPromise;
-  upsertContact: (args: {
-    where: ContactWhereUniqueInput;
-    create: ContactCreateInput;
-    update: ContactUpdateInput;
-  }) => ContactPromise;
+  updateContact: (
+    args: {
+      data: ContactUpdateInput;
+      where: ContactWhereUniqueInput;
+    }
+  ) => ContactPromise;
+  updateManyContacts: (
+    args: {
+      data: ContactUpdateManyMutationInput;
+      where?: ContactWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertContact: (
+    args: {
+      where: ContactWhereUniqueInput;
+      create: ContactCreateInput;
+      update: ContactUpdateInput;
+    }
+  ) => ContactPromise;
   deleteContact: (where: ContactWhereUniqueInput) => ContactPromise;
   deleteManyContacts: (where?: ContactWhereInput) => BatchPayloadPromise;
   createEmployee: (data: EmployeeCreateInput) => EmployeePromise;
-  updateEmployee: (args: {
-    data: EmployeeUpdateInput;
-    where: EmployeeWhereUniqueInput;
-  }) => EmployeePromise;
-  upsertEmployee: (args: {
-    where: EmployeeWhereUniqueInput;
-    create: EmployeeCreateInput;
-    update: EmployeeUpdateInput;
-  }) => EmployeePromise;
+  updateEmployee: (
+    args: {
+      data: EmployeeUpdateInput;
+      where: EmployeeWhereUniqueInput;
+    }
+  ) => EmployeePromise;
+  upsertEmployee: (
+    args: {
+      where: EmployeeWhereUniqueInput;
+      create: EmployeeCreateInput;
+      update: EmployeeUpdateInput;
+    }
+  ) => EmployeePromise;
   deleteEmployee: (where: EmployeeWhereUniqueInput) => EmployeePromise;
   deleteManyEmployees: (where?: EmployeeWhereInput) => BatchPayloadPromise;
   createInsight: (data: InsightCreateInput) => InsightPromise;
-  updateInsight: (args: {
-    data: InsightUpdateInput;
-    where: InsightWhereUniqueInput;
-  }) => InsightPromise;
-  updateManyInsights: (args: {
-    data: InsightUpdateManyMutationInput;
-    where?: InsightWhereInput;
-  }) => BatchPayloadPromise;
-  upsertInsight: (args: {
-    where: InsightWhereUniqueInput;
-    create: InsightCreateInput;
-    update: InsightUpdateInput;
-  }) => InsightPromise;
+  updateInsight: (
+    args: {
+      data: InsightUpdateInput;
+      where: InsightWhereUniqueInput;
+    }
+  ) => InsightPromise;
+  updateManyInsights: (
+    args: {
+      data: InsightUpdateManyMutationInput;
+      where?: InsightWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertInsight: (
+    args: {
+      where: InsightWhereUniqueInput;
+      create: InsightCreateInput;
+      update: InsightUpdateInput;
+    }
+  ) => InsightPromise;
   deleteInsight: (where: InsightWhereUniqueInput) => InsightPromise;
   deleteManyInsights: (where?: InsightWhereInput) => BatchPayloadPromise;
   createMedia: (data: MediaCreateInput) => MediaPromise;
-  updateMedia: (args: {
-    data: MediaUpdateInput;
-    where: MediaWhereUniqueInput;
-  }) => MediaPromise;
-  updateManyMedias: (args: {
-    data: MediaUpdateManyMutationInput;
-    where?: MediaWhereInput;
-  }) => BatchPayloadPromise;
-  upsertMedia: (args: {
-    where: MediaWhereUniqueInput;
-    create: MediaCreateInput;
-    update: MediaUpdateInput;
-  }) => MediaPromise;
+  updateMedia: (
+    args: {
+      data: MediaUpdateInput;
+      where: MediaWhereUniqueInput;
+    }
+  ) => MediaPromise;
+  updateManyMedias: (
+    args: {
+      data: MediaUpdateManyMutationInput;
+      where?: MediaWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertMedia: (
+    args: {
+      where: MediaWhereUniqueInput;
+      create: MediaCreateInput;
+      update: MediaUpdateInput;
+    }
+  ) => MediaPromise;
   deleteMedia: (where: MediaWhereUniqueInput) => MediaPromise;
   deleteManyMedias: (where?: MediaWhereInput) => BatchPayloadPromise;
   createMetaType: (data: MetaTypeCreateInput) => MetaTypePromise;
-  updateMetaType: (args: {
-    data: MetaTypeUpdateInput;
-    where: MetaTypeWhereUniqueInput;
-  }) => MetaTypePromise;
-  updateManyMetaTypes: (args: {
-    data: MetaTypeUpdateManyMutationInput;
-    where?: MetaTypeWhereInput;
-  }) => BatchPayloadPromise;
-  upsertMetaType: (args: {
-    where: MetaTypeWhereUniqueInput;
-    create: MetaTypeCreateInput;
-    update: MetaTypeUpdateInput;
-  }) => MetaTypePromise;
+  updateMetaType: (
+    args: {
+      data: MetaTypeUpdateInput;
+      where: MetaTypeWhereUniqueInput;
+    }
+  ) => MetaTypePromise;
+  updateManyMetaTypes: (
+    args: {
+      data: MetaTypeUpdateManyMutationInput;
+      where?: MetaTypeWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertMetaType: (
+    args: {
+      where: MetaTypeWhereUniqueInput;
+      create: MetaTypeCreateInput;
+      update: MetaTypeUpdateInput;
+    }
+  ) => MetaTypePromise;
   deleteMetaType: (where: MetaTypeWhereUniqueInput) => MetaTypePromise;
   deleteManyMetaTypes: (where?: MetaTypeWhereInput) => BatchPayloadPromise;
   createName: (data: NameCreateInput) => NamePromise;
-  updateName: (args: {
-    data: NameUpdateInput;
-    where: NameWhereUniqueInput;
-  }) => NamePromise;
-  updateManyNames: (args: {
-    data: NameUpdateManyMutationInput;
-    where?: NameWhereInput;
-  }) => BatchPayloadPromise;
-  upsertName: (args: {
-    where: NameWhereUniqueInput;
-    create: NameCreateInput;
-    update: NameUpdateInput;
-  }) => NamePromise;
+  updateName: (
+    args: {
+      data: NameUpdateInput;
+      where: NameWhereUniqueInput;
+    }
+  ) => NamePromise;
+  updateManyNames: (
+    args: {
+      data: NameUpdateManyMutationInput;
+      where?: NameWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertName: (
+    args: {
+      where: NameWhereUniqueInput;
+      create: NameCreateInput;
+      update: NameUpdateInput;
+    }
+  ) => NamePromise;
   deleteName: (where: NameWhereUniqueInput) => NamePromise;
   deleteManyNames: (where?: NameWhereInput) => BatchPayloadPromise;
   createPolicy: (data: PolicyCreateInput) => PolicyPromise;
-  updatePolicy: (args: {
-    data: PolicyUpdateInput;
-    where: PolicyWhereUniqueInput;
-  }) => PolicyPromise;
-  updateManyPolicies: (args: {
-    data: PolicyUpdateManyMutationInput;
-    where?: PolicyWhereInput;
-  }) => BatchPayloadPromise;
-  upsertPolicy: (args: {
-    where: PolicyWhereUniqueInput;
-    create: PolicyCreateInput;
-    update: PolicyUpdateInput;
-  }) => PolicyPromise;
+  updatePolicy: (
+    args: {
+      data: PolicyUpdateInput;
+      where: PolicyWhereUniqueInput;
+    }
+  ) => PolicyPromise;
+  updateManyPolicies: (
+    args: {
+      data: PolicyUpdateManyMutationInput;
+      where?: PolicyWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertPolicy: (
+    args: {
+      where: PolicyWhereUniqueInput;
+      create: PolicyCreateInput;
+      update: PolicyUpdateInput;
+    }
+  ) => PolicyPromise;
   deletePolicy: (where: PolicyWhereUniqueInput) => PolicyPromise;
   deleteManyPolicies: (where?: PolicyWhereInput) => BatchPayloadPromise;
   createPost: (data: PostCreateInput) => PostPromise;
-  updatePost: (args: {
-    data: PostUpdateInput;
-    where: PostWhereUniqueInput;
-  }) => PostPromise;
-  updateManyPosts: (args: {
-    data: PostUpdateManyMutationInput;
-    where?: PostWhereInput;
-  }) => BatchPayloadPromise;
-  upsertPost: (args: {
-    where: PostWhereUniqueInput;
-    create: PostCreateInput;
-    update: PostUpdateInput;
-  }) => PostPromise;
+  updatePost: (
+    args: {
+      data: PostUpdateInput;
+      where: PostWhereUniqueInput;
+    }
+  ) => PostPromise;
+  updateManyPosts: (
+    args: {
+      data: PostUpdateManyMutationInput;
+      where?: PostWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertPost: (
+    args: {
+      where: PostWhereUniqueInput;
+      create: PostCreateInput;
+      update: PostUpdateInput;
+    }
+  ) => PostPromise;
   deletePost: (where: PostWhereUniqueInput) => PostPromise;
   deleteManyPosts: (where?: PostWhereInput) => BatchPayloadPromise;
   createProfile: (data: ProfileCreateInput) => ProfilePromise;
-  updateProfile: (args: {
-    data: ProfileUpdateInput;
-    where: ProfileWhereUniqueInput;
-  }) => ProfilePromise;
-  updateManyProfiles: (args: {
-    data: ProfileUpdateManyMutationInput;
-    where?: ProfileWhereInput;
-  }) => BatchPayloadPromise;
-  upsertProfile: (args: {
-    where: ProfileWhereUniqueInput;
-    create: ProfileCreateInput;
-    update: ProfileUpdateInput;
-  }) => ProfilePromise;
+  updateProfile: (
+    args: {
+      data: ProfileUpdateInput;
+      where: ProfileWhereUniqueInput;
+    }
+  ) => ProfilePromise;
+  updateManyProfiles: (
+    args: {
+      data: ProfileUpdateManyMutationInput;
+      where?: ProfileWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertProfile: (
+    args: {
+      where: ProfileWhereUniqueInput;
+      create: ProfileCreateInput;
+      update: ProfileUpdateInput;
+    }
+  ) => ProfilePromise;
   deleteProfile: (where: ProfileWhereUniqueInput) => ProfilePromise;
   deleteManyProfiles: (where?: ProfileWhereInput) => BatchPayloadPromise;
   createSizeType: (data: SizeTypeCreateInput) => SizeTypePromise;
-  updateSizeType: (args: {
-    data: SizeTypeUpdateInput;
-    where: SizeTypeWhereUniqueInput;
-  }) => SizeTypePromise;
-  updateManySizeTypes: (args: {
-    data: SizeTypeUpdateManyMutationInput;
-    where?: SizeTypeWhereInput;
-  }) => BatchPayloadPromise;
-  upsertSizeType: (args: {
-    where: SizeTypeWhereUniqueInput;
-    create: SizeTypeCreateInput;
-    update: SizeTypeUpdateInput;
-  }) => SizeTypePromise;
+  updateSizeType: (
+    args: {
+      data: SizeTypeUpdateInput;
+      where: SizeTypeWhereUniqueInput;
+    }
+  ) => SizeTypePromise;
+  updateManySizeTypes: (
+    args: {
+      data: SizeTypeUpdateManyMutationInput;
+      where?: SizeTypeWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertSizeType: (
+    args: {
+      where: SizeTypeWhereUniqueInput;
+      create: SizeTypeCreateInput;
+      update: SizeTypeUpdateInput;
+    }
+  ) => SizeTypePromise;
   deleteSizeType: (where: SizeTypeWhereUniqueInput) => SizeTypePromise;
   deleteManySizeTypes: (where?: SizeTypeWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
-  updateUser: (args: {
-    data: UserUpdateInput;
-    where: UserWhereUniqueInput;
-  }) => UserPromise;
-  updateManyUsers: (args: {
-    data: UserUpdateManyMutationInput;
-    where?: UserWhereInput;
-  }) => BatchPayloadPromise;
-  upsertUser: (args: {
-    where: UserWhereUniqueInput;
-    create: UserCreateInput;
-    update: UserUpdateInput;
-  }) => UserPromise;
+  updateUser: (
+    args: {
+      data: UserUpdateInput;
+      where: UserWhereUniqueInput;
+    }
+  ) => UserPromise;
+  updateManyUsers: (
+    args: {
+      data: UserUpdateManyMutationInput;
+      where?: UserWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertUser: (
+    args: {
+      where: UserWhereUniqueInput;
+      create: UserCreateInput;
+      update: UserUpdateInput;
+    }
+  ) => UserPromise;
   deleteUser: (where: UserWhereUniqueInput) => UserPromise;
   deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
 
@@ -498,24 +612,18 @@ export interface Subscription {
   metaType: (
     where?: MetaTypeSubscriptionWhereInput
   ) => MetaTypeSubscriptionPayloadSubscription;
-  name: (
-    where?: NameSubscriptionWhereInput
-  ) => NameSubscriptionPayloadSubscription;
+  name: (where?: NameSubscriptionWhereInput) => NameSubscriptionPayloadSubscription;
   policy: (
     where?: PolicySubscriptionWhereInput
   ) => PolicySubscriptionPayloadSubscription;
-  post: (
-    where?: PostSubscriptionWhereInput
-  ) => PostSubscriptionPayloadSubscription;
+  post: (where?: PostSubscriptionWhereInput) => PostSubscriptionPayloadSubscription;
   profile: (
     where?: ProfileSubscriptionWhereInput
   ) => ProfileSubscriptionPayloadSubscription;
   sizeType: (
     where?: SizeTypeSubscriptionWhereInput
   ) => SizeTypeSubscriptionPayloadSubscription;
-  user: (
-    where?: UserSubscriptionWhereInput
-  ) => UserSubscriptionPayloadSubscription;
+  user: (where?: UserSubscriptionWhereInput) => UserSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -527,134 +635,134 @@ export interface ClientConstructor<T> {
  */
 
 export type PolicyOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "publishedAt_ASC"
-  | "publishedAt_DESC"
-  | "content_ASC"
-  | "content_DESC"
-  | "title_ASC"
-  | "title_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'content_ASC'
+  | 'content_DESC'
+  | 'title_ASC'
+  | 'title_DESC';
 
 export type ContactOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "address_ASC"
-  | "address_DESC"
-  | "city_ASC"
-  | "city_DESC"
-  | "phone_ASC"
-  | "phone_DESC"
-  | "state_ASC"
-  | "state_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'address_ASC'
+  | 'address_DESC'
+  | 'city_ASC'
+  | 'city_DESC'
+  | 'phone_ASC'
+  | 'phone_DESC'
+  | 'state_ASC'
+  | 'state_DESC';
 
 export type NameOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "first_ASC"
-  | "first_DESC"
-  | "middle_ASC"
-  | "middle_DESC"
-  | "last_ASC"
-  | "last_DESC"
-  | "preferred_ASC"
-  | "preferred_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'first_ASC'
+  | 'first_DESC'
+  | 'middle_ASC'
+  | 'middle_DESC'
+  | 'last_ASC'
+  | 'last_DESC'
+  | 'preferred_ASC'
+  | 'preferred_DESC';
 
-export type UserOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
+export type UserOrderByInput = 'id_ASC' | 'id_DESC' | 'name_ASC' | 'name_DESC';
 
 export type MetaTypeOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "featured_ASC"
-  | "featured_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'featured_ASC'
+  | 'featured_DESC';
 
 export type ProfileOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "bio_ASC"
-  | "bio_DESC"
-  | "level_ASC"
-  | "level_DESC"
-  | "title_ASC"
-  | "title_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'bio_ASC'
+  | 'bio_DESC'
+  | 'level_ASC'
+  | 'level_DESC'
+  | 'title_ASC'
+  | 'title_DESC';
 
-export type MediaType = "Image" | "Video";
+export type MediaType = 'Image' | 'Video';
 
-export type EmployeeOrderByInput = "id_ASC" | "id_DESC";
+export type EmployeeOrderByInput = 'id_ASC' | 'id_DESC';
 
 export type InsightOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "publishedAt_ASC"
-  | "publishedAt_DESC"
-  | "authorId_ASC"
-  | "authorId_DESC"
-  | "category_ASC"
-  | "category_DESC"
-  | "content_ASC"
-  | "content_DESC"
-  | "desc_ASC"
-  | "desc_DESC"
-  | "title_ASC"
-  | "title_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'publishedAt_ASC'
+  | 'publishedAt_DESC'
+  | 'authorId_ASC'
+  | 'authorId_DESC'
+  | 'category_ASC'
+  | 'category_DESC'
+  | 'content_ASC'
+  | 'content_DESC'
+  | 'desc_ASC'
+  | 'desc_DESC'
+  | 'title_ASC'
+  | 'title_DESC';
 
 export type MediaOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "height_ASC"
-  | "height_DESC"
-  | "source_ASC"
-  | "source_DESC"
-  | "type_ASC"
-  | "type_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'height_ASC'
+  | 'height_DESC'
+  | 'source_ASC'
+  | 'source_DESC'
+  | 'type_ASC'
+  | 'type_DESC';
 
 export type BirthOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "address_ASC"
-  | "address_DESC"
-  | "city_ASC"
-  | "city_DESC"
-  | "date_ASC"
-  | "date_DESC"
-  | "state_ASC"
-  | "state_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'address_ASC'
+  | 'address_DESC'
+  | 'city_ASC'
+  | 'city_DESC'
+  | 'date_ASC'
+  | 'date_DESC'
+  | 'state_ASC'
+  | 'state_DESC';
 
 export type SizeTypeOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "xs_ASC"
-  | "xs_DESC"
-  | "sm_ASC"
-  | "sm_DESC"
-  | "md_ASC"
-  | "md_DESC"
-  | "lg_ASC"
-  | "lg_DESC"
-  | "xl_ASC"
-  | "xl_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'xs_ASC'
+  | 'xs_DESC'
+  | 'sm_ASC'
+  | 'sm_DESC'
+  | 'md_ASC'
+  | 'md_DESC'
+  | 'lg_ASC'
+  | 'lg_DESC'
+  | 'xl_ASC'
+  | 'xl_DESC';
 
-export type MutationType = "CREATED" | "UPDATED" | "DELETED";
+export type MutationType = 'CREATED' | 'UPDATED' | 'DELETED';
 
 export type PostOrderByInput =
-  | "id_ASC"
-  | "id_DESC"
-  | "createdAt_ASC"
-  | "createdAt_DESC"
-  | "updatedAt_ASC"
-  | "updatedAt_DESC"
-  | "description_ASC"
-  | "description_DESC"
-  | "imageUrl_ASC"
-  | "imageUrl_DESC";
+  | 'id_ASC'
+  | 'id_DESC'
+  | 'createdAt_ASC'
+  | 'createdAt_DESC'
+  | 'updatedAt_ASC'
+  | 'updatedAt_DESC'
+  | 'description_ASC'
+  | 'description_DESC'
+  | 'imageUrl_ASC'
+  | 'imageUrl_DESC';
 
 export interface ContactCreateInput {
   id?: Maybe<ID_Input>;
@@ -1469,13 +1577,9 @@ export interface MetaTypeSubscriptionWhereInput {
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
   node?: Maybe<MetaTypeWhereInput>;
-  AND?: Maybe<
-    MetaTypeSubscriptionWhereInput[] | MetaTypeSubscriptionWhereInput
-  >;
+  AND?: Maybe<MetaTypeSubscriptionWhereInput[] | MetaTypeSubscriptionWhereInput>;
   OR?: Maybe<MetaTypeSubscriptionWhereInput[] | MetaTypeSubscriptionWhereInput>;
-  NOT?: Maybe<
-    MetaTypeSubscriptionWhereInput[] | MetaTypeSubscriptionWhereInput
-  >;
+  NOT?: Maybe<MetaTypeSubscriptionWhereInput[] | MetaTypeSubscriptionWhereInput>;
 }
 
 export interface ProfileUpdateOneInput {
@@ -1493,13 +1597,9 @@ export interface EmployeeSubscriptionWhereInput {
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
   node?: Maybe<EmployeeWhereInput>;
-  AND?: Maybe<
-    EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput
-  >;
+  AND?: Maybe<EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput>;
   OR?: Maybe<EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput>;
-  NOT?: Maybe<
-    EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput
-  >;
+  NOT?: Maybe<EmployeeSubscriptionWhereInput[] | EmployeeSubscriptionWhereInput>;
 }
 
 export interface NameUpsertNestedInput {
@@ -1649,13 +1749,9 @@ export interface SizeTypeSubscriptionWhereInput {
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
   node?: Maybe<SizeTypeWhereInput>;
-  AND?: Maybe<
-    SizeTypeSubscriptionWhereInput[] | SizeTypeSubscriptionWhereInput
-  >;
+  AND?: Maybe<SizeTypeSubscriptionWhereInput[] | SizeTypeSubscriptionWhereInput>;
   OR?: Maybe<SizeTypeSubscriptionWhereInput[] | SizeTypeSubscriptionWhereInput>;
-  NOT?: Maybe<
-    SizeTypeSubscriptionWhereInput[] | SizeTypeSubscriptionWhereInput
-  >;
+  NOT?: Maybe<SizeTypeSubscriptionWhereInput[] | SizeTypeSubscriptionWhereInput>;
 }
 
 export interface NameCreateInput {
@@ -2101,9 +2197,7 @@ export interface BatchPayload {
   count: Long;
 }
 
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
+export interface BatchPayloadPromise extends Promise<BatchPayload>, Fragmentable {
   count: () => Promise<Long>;
 }
 
@@ -2150,9 +2244,7 @@ export interface AggregateUser {
   count: Int;
 }
 
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
-    Fragmentable {
+export interface AggregateUserPromise extends Promise<AggregateUser>, Fragmentable {
   count: () => Promise<Int>;
 }
 
@@ -2188,9 +2280,7 @@ export interface NameSubscription
   preferred: () => Promise<AsyncIterator<String>>;
 }
 
-export interface NameNullablePromise
-  extends Promise<Name | null>,
-    Fragmentable {
+export interface NameNullablePromise extends Promise<Name | null>, Fragmentable {
   id: () => Promise<ID_Output>;
   first: () => Promise<String>;
   middle: () => Promise<String>;
@@ -2245,9 +2335,7 @@ export interface BirthSubscription
   state: () => Promise<AsyncIterator<String>>;
 }
 
-export interface BirthNullablePromise
-  extends Promise<Birth | null>,
-    Fragmentable {
+export interface BirthNullablePromise extends Promise<Birth | null>, Fragmentable {
   id: () => Promise<ID_Output>;
   address: () => Promise<String>;
   city: () => Promise<String>;
@@ -2272,9 +2360,7 @@ export interface UserSubscription
   name: () => Promise<AsyncIterator<String>>;
 }
 
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
+export interface UserNullablePromise extends Promise<User | null>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
 }
@@ -2284,9 +2370,7 @@ export interface SizeTypeEdge {
   cursor: String;
 }
 
-export interface SizeTypeEdgePromise
-  extends Promise<SizeTypeEdge>,
-    Fragmentable {
+export interface SizeTypeEdgePromise extends Promise<SizeTypeEdge>, Fragmentable {
   node: <T = SizeTypePromise>() => T;
   cursor: () => Promise<String>;
 }
@@ -2437,9 +2521,7 @@ export interface AggregatePost {
   count: Int;
 }
 
-export interface AggregatePostPromise
-  extends Promise<AggregatePost>,
-    Fragmentable {
+export interface AggregatePostPromise extends Promise<AggregatePost>, Fragmentable {
   count: () => Promise<Int>;
 }
 
@@ -2549,9 +2631,7 @@ export interface PostSubscription
   imageUrl: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PostNullablePromise
-  extends Promise<Post | null>,
-    Fragmentable {
+export interface PostNullablePromise extends Promise<Post | null>, Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -2669,9 +2749,7 @@ export interface AggregateName {
   count: Int;
 }
 
-export interface AggregateNamePromise
-  extends Promise<AggregateName>,
-    Fragmentable {
+export interface AggregateNamePromise extends Promise<AggregateName>, Fragmentable {
   count: () => Promise<Int>;
 }
 
@@ -2991,9 +3069,7 @@ export interface EmployeeEdge {
   cursor: String;
 }
 
-export interface EmployeeEdgePromise
-  extends Promise<EmployeeEdge>,
-    Fragmentable {
+export interface EmployeeEdgePromise extends Promise<EmployeeEdge>, Fragmentable {
   node: <T = EmployeePromise>() => T;
   cursor: () => Promise<String>;
 }
@@ -3189,9 +3265,7 @@ export interface PolicySubscription
   title: () => Promise<AsyncIterator<String>>;
 }
 
-export interface PolicyNullablePromise
-  extends Promise<Policy | null>,
-    Fragmentable {
+export interface PolicyNullablePromise extends Promise<Policy | null>, Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -3435,9 +3509,7 @@ export interface MediaSubscription
   type: () => Promise<AsyncIterator<MediaType>>;
 }
 
-export interface MediaNullablePromise
-  extends Promise<Media | null>,
-    Fragmentable {
+export interface MediaNullablePromise extends Promise<Media | null>, Fragmentable {
   id: () => Promise<ID_Output>;
   height: () => Promise<Int>;
   source: () => Promise<String>;
@@ -3678,9 +3750,7 @@ export interface MetaTypeEdge {
   cursor: String;
 }
 
-export interface MetaTypeEdgePromise
-  extends Promise<MetaTypeEdge>,
-    Fragmentable {
+export interface MetaTypeEdgePromise extends Promise<MetaTypeEdge>, Fragmentable {
   node: <T = MetaTypePromise>() => T;
   cursor: () => Promise<String>;
 }
@@ -3773,57 +3843,57 @@ export type Long = string;
 
 export const models: Model[] = [
   {
-    name: "Name",
-    embedded: false
+    name: 'Name',
+    embedded: false,
   },
   {
-    name: "Birth",
-    embedded: false
+    name: 'Birth',
+    embedded: false,
   },
   {
-    name: "Contact",
-    embedded: false
+    name: 'Contact',
+    embedded: false,
   },
   {
-    name: "Profile",
-    embedded: false
+    name: 'Profile',
+    embedded: false,
   },
   {
-    name: "Employee",
-    embedded: false
+    name: 'Employee',
+    embedded: false,
   },
   {
-    name: "MediaType",
-    embedded: false
+    name: 'MediaType',
+    embedded: false,
   },
   {
-    name: "Media",
-    embedded: false
+    name: 'Media',
+    embedded: false,
   },
   {
-    name: "Post",
-    embedded: false
+    name: 'Post',
+    embedded: false,
   },
   {
-    name: "SizeType",
-    embedded: false
+    name: 'SizeType',
+    embedded: false,
   },
   {
-    name: "MetaType",
-    embedded: false
+    name: 'MetaType',
+    embedded: false,
   },
   {
-    name: "Insight",
-    embedded: false
+    name: 'Insight',
+    embedded: false,
   },
   {
-    name: "Policy",
-    embedded: false
+    name: 'Policy',
+    embedded: false,
   },
   {
-    name: "User",
-    embedded: false
-  }
+    name: 'User',
+    embedded: false,
+  },
 ];
 
 /**

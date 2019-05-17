@@ -20,4 +20,4 @@ export default function TopBarLogo() {
   const { company } = useContext(ManifestContext);
 
   return <img className={classes.logo} src={company.logo} />;
-};
+}

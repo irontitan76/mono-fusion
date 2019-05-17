@@ -1,1 +1,1 @@
-module.exports = require("@fusion/tools/eslint.config.js");
+module.exports = require('@fusion/tools/eslint.config.js');

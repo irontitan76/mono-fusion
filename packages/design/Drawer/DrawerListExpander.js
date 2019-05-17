@@ -27,7 +27,7 @@ const useStyles = makeStyles(({ palette }) => {
       position: 'relative',
       left: '-12px',
       top: '50%',
-      zIndex: 3
+      zIndex: 3,
     },
     expandContainer: {
       width: 0,
@@ -51,10 +51,11 @@ export function DrawerListSubheader({ isExpanded, isHovering, onClick }) {
   return (
     <>
       <div className={classes.border} />
-      <div className={classes.expandContainer} style={{ display: !isHovering ? 'none' : 'block' }}>
-        <IconButton
-          className={classes.expandButton}
-          onClick={onClick}>
+      <div
+        className={classes.expandContainer}
+        style={{ display: !isHovering ? 'none' : 'block' }}
+      >
+        <IconButton className={classes.expandButton} onClick={onClick}>
           <ChevronRightIcon
             className={classNames(classes.expandIcon, {
               [classes.expandIconOpen]: isExpanded,
@@ -65,6 +66,6 @@ export function DrawerListSubheader({ isExpanded, isHovering, onClick }) {
       </div>
     </>
   );
-};
+}
 
 export default DrawerListSubheader;

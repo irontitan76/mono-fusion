@@ -9,7 +9,7 @@ const useStyles = makeStyles(({ palette }) => {
   const isDark = palette.type === 'dark';
   const color = isDark ? '#999' : '#777';
 
-  return { 
+  return {
     version: {
       color,
       fontSize: 10,
@@ -23,7 +23,5 @@ export default function TopBarLogo() {
   const classes = useStyles();
   const { application } = useContext(ManifestContext);
 
-  return <Typography className={classes.version}>
-    {application.version}
-  </Typography>;
-};
+  return <Typography className={classes.version}>{application.version}</Typography>;
+}

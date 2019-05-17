@@ -7,12 +7,12 @@ import datamodelInfo from '../generated/nexus-prisma';
 // import { importSchema } from 'graphql-import';
 // import { makeExecutableSchema } from 'graphql-tools';
 
-const Query = prismaObjectType({ 
+const Query = prismaObjectType({
   name: 'Query',
-  definition: t => t.prismaFields(['*'])
+  definition: (t) => t.prismaFields(['*']),
 });
 
-const Mutation = prismaObjectType({ 
+const Mutation = prismaObjectType({
   name: 'Mutation',
   definition(t) {
     t.prismaFields(['*']);
@@ -31,7 +31,7 @@ const Mutation = prismaObjectType({
     //     })
     //   }
     // })
-  }
+  },
 });
 
 const schema = makePrismaSchema({
@@ -39,12 +39,12 @@ const schema = makePrismaSchema({
 
   prisma: {
     client: prisma,
-    datamodelInfo
+    datamodelInfo,
   },
 
   outputs: {
     schema: path.resolve(__dirname, '../generated/schema.graphql'),
-  }
+  },
 });
 
 // const resolvers = require('./resolvers/root');

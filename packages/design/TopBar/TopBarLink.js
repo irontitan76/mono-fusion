@@ -18,13 +18,11 @@ export default function TopBarLink({ children, LinkComponent }) {
   const classes = useStyles();
 
   return (
-    <LinkComponent href='/'>
-      <div className={classes.a}>
-        {children}
-      </div>
+    <LinkComponent href="/">
+      <div className={classes.a}>{children}</div>
     </LinkComponent>
-  ); 
-};
+  );
+}
 
 TopBarLink.defaultProps = {
   LinkComponent: 'a',

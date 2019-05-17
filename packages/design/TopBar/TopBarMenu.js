@@ -17,7 +17,7 @@ const useStyles = makeStyles(({ palette }) => {
         '&:hover': {
           color: palette.primary.main,
         },
-      }
+      },
     },
   };
 });
@@ -34,23 +34,20 @@ const MenuItems = ({ component, items }) => {
       </Grid>
     );
   });
-}
+};
 
 function TopBarMenu({ component, items }) {
   const classes = useStyles();
 
   return (
-    <Grid 
-      alignItems='center'
+    <Grid
+      alignItems="center"
       className={classes.menu}
       container
-      justify='center'
+      justify="center"
       spacing={6}
     >
-      <MenuItems 
-        component={component}
-        items={items}
-      />
+      <MenuItems component={component} items={items} />
     </Grid>
   );
 }

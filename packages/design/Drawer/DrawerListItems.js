@@ -9,7 +9,7 @@ export function DrawerListItems({
   isListOpen,
   items,
   LinkComponent,
-  router
+  router,
 }) {
   if (!isHorizontal && !isListOpen) return null;
 
@@ -24,17 +24,13 @@ export function DrawerListItems({
         router={router}
       />
     ));
-  
+
     if (!isHorizontal) {
-      return (
-        <Collapse in={isListOpen}>
-          {content}
-        </Collapse>
-      );
+      return <Collapse in={isListOpen}>{content}</Collapse>;
     }
-  
+
     return content;
-  }
+  };
 
   return <DrawerListItems items={items} />;
 }

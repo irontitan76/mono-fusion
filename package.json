@@ -10,7 +10,7 @@
     "packages/*",
     "scripts",
     "server/*",
-    "sites/"
+    "web/"
   ],
   "bin": {
     "fusion": "./scripts/cli.js"

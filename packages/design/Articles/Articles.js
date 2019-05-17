@@ -42,8 +42,8 @@ const useStyles = makeStyles(({ palette, spacing }) => {
     table: {
       '& td': {
         color: 'inherit',
-        paddingBottom: spacing(1) * .5,
-        paddingTop: spacing(1) * .5,
+        paddingBottom: spacing(1) * 0.5,
+        paddingTop: spacing(1) * 0.5,
       },
     },
     title: {
@@ -68,48 +68,46 @@ export function Articles({
   prefix,
   rows,
   searchValue,
-  title
+  title,
 }) {
   const classes = useStyles();
   const [open, setOpen] = useState({});
 
   const Title = () => (
     <Grid item>
-      <Typography className={classes.title} variant='h4'>
+      <Typography className={classes.title} variant="h4">
         {title}
       </Typography>
     </Grid>
   );
-  
+
   const Menu = () => (
     <Grid item>
       <TextField
         autoFocus
         className={classes.searchInput}
         inputProps={{ className: classes.searchInputBase }}
-        InputProps={{ endAdornment: <SearchIcon color='primary' /> }}
+        InputProps={{ endAdornment: <SearchIcon color="primary" /> }}
         onChange={onChange}
         onKeyDown={onKeyDown}
         placeholder={placeholder}
         value={searchValue}
-        variant='outlined'
+        variant="outlined"
       />
       <IconButton>
-        <PlusIcon color='primary' />
+        <PlusIcon color="primary" />
       </IconButton>
     </Grid>
   );
 
   const Headers = () => {
     const headersCells = headers.map((header) => (
-      <TableCell key={header}>{header}</TableCell>)
-    );
+      <TableCell key={header}>{header}</TableCell>
+    ));
 
     return (
       <TableHead>
-        <TableRow>
-          {headersCells}
-        </TableRow>
+        <TableRow>{headersCells}</TableRow>
       </TableHead>
     );
   };
@@ -119,74 +117,72 @@ export function Articles({
 
     return (
       <TableBody>
-        {
-          rows.map((row, index) => {
-            const items = [
-              { value: row.title, path: `/${prefix}?${attr}=${row[attr]}` },
-              { value: row.authorId || <span style={{ color: 'gray', fontWeight: 500 }}>ROOT</span> },
-              { value: moment(row._publishedAt).format('MMM DD, YYYY') },
-            ];
+        {rows.map((row, index) => {
+          const items = [
+            { value: row.title, path: `/${prefix}?${attr}=${row[attr]}` },
+            {
+              value: row.authorId || (
+                <span style={{ color: 'gray', fontWeight: 500 }}>ROOT</span>
+              ),
+            },
+            { value: moment(row._publishedAt).format('MMM DD, YYYY') },
+          ];
 
-            const cells = items.map((item, index) => {
-              const Wrapper = ({ children }) => (
-                <LinkComponent href={item.path}>
-                  <a>{children}</a>
-                </LinkComponent>
-              );
-          
-              if (item.path) {
-                return (
-                  <TableCell key={item.value + index}>
-                    <Wrapper>{item.value}</Wrapper>
-                  </TableCell>
-                );
-              }
-
-              return <TableCell key={item.value + index}>{item.value}</TableCell>;
-            });
-
-            return (
-              <Fragment key={row.id}>
-                <TableRow className={classes.row}>
-                  {cells}
-                  <TableCell 
-                    onClick={() => setOpen({ [index]: !open[index] })}
-                    style={{ textAlign: 'right' }}
-                  >
-                    <FontAwesomeIcon
-                      className={classNames(classes.icon, {
-                        'fa-rotate-90': open[index],
-                      })}
-                      icon={['fal', 'chevron-right']}
-                    />
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <Collapse
-                    colSpan={10}
-                    component={TableCell}
-                    in={open[index]}
-                    timeout={500}
-                    style={ !open[index] ? collapsedStyle: { padding: 25 }}
-                  >
-                    Test
-                  </Collapse>
-                </TableRow>
-              </Fragment>
+          const cells = items.map((item, index) => {
+            const Wrapper = ({ children }) => (
+              <LinkComponent href={item.path}>
+                <a>{children}</a>
+              </LinkComponent>
             );
-          })
-        }
+
+            if (item.path) {
+              return (
+                <TableCell key={item.value + index}>
+                  <Wrapper>{item.value}</Wrapper>
+                </TableCell>
+              );
+            }
+
+            return <TableCell key={item.value + index}>{item.value}</TableCell>;
+          });
+
+          return (
+            <Fragment key={row.id}>
+              <TableRow className={classes.row}>
+                {cells}
+                <TableCell
+                  onClick={() => setOpen({ [index]: !open[index] })}
+                  style={{ textAlign: 'right' }}
+                >
+                  <FontAwesomeIcon
+                    className={classNames(classes.icon, {
+                      'fa-rotate-90': open[index],
+                    })}
+                    icon={['fal', 'chevron-right']}
+                  />
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <Collapse
+                  colSpan={10}
+                  component={TableCell}
+                  in={open[index]}
+                  timeout={500}
+                  style={!open[index] ? collapsedStyle : { padding: 25 }}
+                >
+                  Test
+                </Collapse>
+              </TableRow>
+            </Fragment>
+          );
+        })}
       </TableBody>
-    )
+    );
   };
 
   return (
     <div className={classes.container}>
-      <Grid
-        alignItems='center'
-        container
-        justify='space-between'
-        >
+      <Grid alignItems="center" container justify="space-between">
         <Title />
         <Menu />
       </Grid>

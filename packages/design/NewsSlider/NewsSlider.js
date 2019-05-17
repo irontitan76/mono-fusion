@@ -10,9 +10,9 @@ import Fade from '@material-ui/core/Fade';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-const get = (property) => props => props[property];
-const getPercentage = (property) => props => `${100 / props[property]}%`;
-const styledBy = (property, mapping) => props => mapping[props[property]];
+const get = (property) => (props) => props[property];
+const getPercentage = (property) => (props) => `${100 / props[property]}%`;
+const styledBy = (property, mapping) => (props) => mapping[props[property]];
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {
@@ -90,44 +90,37 @@ export default function NewsSlider(props) {
       <CardMedia
         className={classes.cardMedia}
         style={{ height: insight.media.height }}
-        image={insight.media.source}  
+        image={insight.media.source}
       />
     );
   };
 
   const InsightDate = ({ date }) => {
     if (!showDate) return null;
-    
+
     return (
-      <Typography variant='caption'>
+      <Typography variant="caption">
         {moment(date).format('MMM DD, YYYY')}
       </Typography>
-    )
+    );
   };
 
   const Insight = ({ insight }) => {
-    
     return (
-      <Grid 
+      <Grid
         className={`${classes.insight} ${actualScroll ? classes.insightScroll : ''}`}
         item
-        key={insight.title} 
-        {...defaultSize} 
-        {...size} 
-        {...insight.meta ? insight.meta.size : {}}
+        key={insight.title}
+        {...defaultSize}
+        {...size}
+        {...(insight.meta ? insight.meta.size : {})}
       >
-        <Component 
-          href={insight.id ? `/insight?id=${insight.id}` : insight.path}
-        >
+        <Component href={insight.id ? `/insight?id=${insight.id}` : insight.path}>
           <Card className={classes.card} elevation={0}>
-            <InsightMedia insight={insight}/>
+            <InsightMedia insight={insight} />
             <CardContent className={classes.cardContent}>
-              <Typography variant='h6'>
-                {insight.title.toUpperCase()}
-              </Typography>
-              <Typography>
-                {insight.desc}
-              </Typography>
+              <Typography variant="h6">{insight.title.toUpperCase()}</Typography>
+              <Typography>{insight.desc}</Typography>
               <InsightDate date={insight._publishedAt} />
             </CardContent>
           </Card>
@@ -142,28 +135,28 @@ export default function NewsSlider(props) {
       const second = y.meta && y.meta.featured;
       return !!first === !!second ? 0 : !!first ? -1 : 1;
     });
-    
+
     return items.map((insight) => {
-      return <Insight insight={insight} key={insight.title} />
+      return <Insight insight={insight} key={insight.title} />;
     });
-  }
+  };
 
   return (
     <Fade in timeout={500}>
       <div className={classes.news}>
         <Grid
           className={actualScroll ? classes.scroll : ''}
-          container 
+          container
           justify={actualScroll ? 'flex-start' : 'center'}
           spacing={spacing}
           wrap={actualScroll ? 'nowrap' : 'wrap'}
         >
-          <Insights />    
+          <Insights />
         </Grid>
       </div>
     </Fade>
-  ); 
-};
+  );
+}
 
 NewsSlider.defaultProps = {
   component: 'a',

@@ -7,13 +7,15 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles(({ palette, spacing }) => {
   const isDark = palette.type === 'dark';
   const bgColor = isDark ? '#1d1d1d' : '#f2f2f2';
-  const borderColor = palette.grey[isDark ? 700 : 'A100'];  
+  const borderColor = palette.grey[isDark ? 700 : 'A100'];
 
   return {
     footer: {
       backgroundColor: bgColor,
       borderTop: `1px solid ${borderColor}`,
-      color: palette.getContrastText(isDark ? palette.background.default : palette.grey[200]),
+      color: palette.getContrastText(
+        isDark ? palette.background.default : palette.grey[200]
+      ),
       marginTop: spacing(4),
       padding: `${spacing(5)}px ${spacing(10)}px`,
     },
@@ -51,8 +53,8 @@ export default function Footer({ columns, component }) {
             <a>{item.name}</a>
           </LinkComponent>
         </Typography>
-      )
-    })
+      );
+    });
   };
 
   const Columns = () => {
@@ -62,28 +64,20 @@ export default function Footer({ columns, component }) {
           <ColumnTitle title={column.title} />
           <ColumnMenu items={column.items} />
         </Grid>
-      )
-    })
+      );
+    });
   };
 
   const ColumnTitle = ({ title }) => {
-    return <Typography 
-      className={classes.title}
-    >
-      {title}
-    </Typography>;
-  }
+    return <Typography className={classes.title}>{title}</Typography>;
+  };
 
   return (
-    <Grid
-      className={classes.footer}
-      container
-      component='footer'
-    >
+    <Grid className={classes.footer} container component="footer">
       <Columns />
     </Grid>
   );
-};
+}
 
 Footer.defaultProps = {
   component: 'a',

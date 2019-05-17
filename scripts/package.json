@@ -1,0 +1,13 @@
+{
+  "name": "@fusion/scripts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ross Sheppard <ross.sheppard@outlook.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "execa": "^1.0.0",
+    "listr": "^0.14.3"
+  }
+}

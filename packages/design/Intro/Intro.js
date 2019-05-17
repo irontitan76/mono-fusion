@@ -36,11 +36,7 @@ export function Intro({ logo, primaryButton, secondaryButton, slogan, title }) {
 
   const Logo = () => {
     return (
-      <Grid
-        className={classes.logo}
-        item
-        xs={12}
-      >
+      <Grid className={classes.logo} item xs={12}>
         <img src={logo} height={200} />
       </Grid>
     );
@@ -50,54 +46,49 @@ export function Intro({ logo, primaryButton, secondaryButton, slogan, title }) {
     const LinkComponent = component || 'a';
 
     const renderedButton = (
-      <Button
-        color={color}
-        fullWidth
-        variant='contained'
-      >
+      <Button color={color} fullWidth variant="contained">
         {children}
       </Button>
-    )
+    );
 
     if (path) {
       return (
         <LinkComponent href={path} style={{ textDecoration: 'none' }}>
           {renderedButton}
         </LinkComponent>
-      )
+      );
     }
 
     return renderedButton;
-  }
+  };
 
   const PrimaryButton = ({ component }) => {
-
     return (
       <Grid item md={2}>
-        <BaseButton color='primary' component={component} path={primaryButton.path}>
+        <BaseButton color="primary" component={component} path={primaryButton.path}>
           {primaryButton.label}
         </BaseButton>
       </Grid>
-    )
+    );
   };
 
   const SecondaryButton = ({ component }) => {
-
     return (
       <Grid item md={2}>
-        <BaseButton color='default' component={component} path={secondaryButton.path}>
+        <BaseButton
+          color="default"
+          component={component}
+          path={secondaryButton.path}
+        >
           {secondaryButton.label}
         </BaseButton>
       </Grid>
-    )
+    );
   };
 
   const Slogan = () => {
     return (
-      <Typography
-        className={classes.subtitle}
-        variant='h5'
-      >
+      <Typography className={classes.subtitle} variant="h5">
         {slogan}
       </Typography>
     );
@@ -105,36 +96,36 @@ export function Intro({ logo, primaryButton, secondaryButton, slogan, title }) {
 
   const Title = () => {
     return (
-      <Typography
-        className={classes.title}
-        variant='h1'
-      >
+      <Typography className={classes.title} variant="h1">
         {title.toUpperCase()}
       </Typography>
     );
   };
 
   return (
-    <Grid 
-      alignItems='center' 
-      className={classes.intro} 
-      component='center' 
-      container 
-      justify='center'
+    <Grid
+      alignItems="center"
+      className={classes.intro}
+      component="center"
+      container
+      justify="center"
       spacing={5}
     >
       <Logo />
-      <Grid 
-        className={classes.content}
-        item
-        xs={12}
-      >
+      <Grid className={classes.content} item xs={12}>
         <Title />
         <Slogan />
-        
-        <Grid container justify='center' spacing={4}>
-          { primaryButton && <PrimaryButton label={primaryButton.label} path={primaryButton.path} /> }
-          { secondaryButton && <SecondaryButton label={secondaryButton.label} path={secondaryButton.path} /> }
+
+        <Grid container justify="center" spacing={4}>
+          {primaryButton && (
+            <PrimaryButton label={primaryButton.label} path={primaryButton.path} />
+          )}
+          {secondaryButton && (
+            <SecondaryButton
+              label={secondaryButton.label}
+              path={secondaryButton.path}
+            />
+          )}
         </Grid>
       </Grid>
     </Grid>
@@ -148,4 +139,4 @@ Intro.defaultProps = {
   secondaryButton: null,
   slogan: '',
   title: '',
-}
+};

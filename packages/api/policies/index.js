@@ -10,10 +10,8 @@ module.exports = {
     }
   `,
   getAll: gql`
-    query allPolicies($value: String) { 
-      allPolicies(filter: {
-        title_contains: $value 
-      }) {
+    query allPolicies($value: String) {
+      allPolicies(filter: { title_contains: $value }) {
         id
         modifiedAt
         publishedAt
@@ -40,7 +38,7 @@ module.exports = {
     mutation updatePolicy($id: ID!, $content: String!) {
       updatePolicy(id: $id, content: $content) {
         content
-        id,
+        id
       }
     }
   `,

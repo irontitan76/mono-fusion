@@ -22,11 +22,11 @@ function Article({ article }) {
   const classes = useStyles();
 
   if (!article.title && !article.content) {
-    return <LinearProgress variant='query' />;
+    return <LinearProgress variant="query" />;
   }
 
   return (
-    <Grid container justify='center'>
+    <Grid container justify="center">
       <Grid className={classes.item} item md={8} xs={12}>
         <ArticleHeader
           author={article.authorId}
@@ -37,6 +37,6 @@ function Article({ article }) {
       </Grid>
     </Grid>
   );
-};
+}
 
 export default Article;

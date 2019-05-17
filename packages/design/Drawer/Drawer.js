@@ -10,71 +10,66 @@ import DrawerListExpander from './DrawerListExpander';
 import DrawerListItems from './DrawerListItems';
 import DrawerListSubheader from './DrawerListSubheader';
 
-const useStyles = makeStyles(({
-    breakpoints,
-    mixins,
-    palette,
-    spacing,
-    transitions
-  }) => {
+const useStyles = makeStyles(
+  ({ breakpoints, mixins, palette, spacing, transitions }) => {
+    const drawerTransition = transitions.create('width', {
+      easing: transitions.easing.sharp,
+      duration: transitions.duration.complex,
+    });
 
-  const drawerTransition = transitions.create('width', {
-    easing: transitions.easing.sharp,
-    duration: transitions.duration.complex,
-  });
-
-  return {
-    drawer: {
-      border: 'none',
-      color: palette.getContrastText(palette.primary.main),
-      flexShrink: 0,
-      whiteSpace: 'nowrap',
-      width: 240,
-    },
-    drawerOpen: {
-      transition: drawerTransition,
-      width: 240,
-    },
-    drawerClose: {
-      overflowX: 'hidden',
-      transition: drawerTransition,
-      width: spacing(5) + 1,
-      [breakpoints.up('sm')]: {
-        width: spacing(7) + 1,
+    return {
+      drawer: {
+        border: 'none',
+        color: palette.getContrastText(palette.primary.main),
+        flexShrink: 0,
+        whiteSpace: 'nowrap',
+        width: 240,
       },
-    },
-    list: {
-      height: 'calc(100% - 160px)',
-      paddingTop: (() => props => props.underToolbar ? 0 : spacing(2))(), 
-    },
-    nav: {
-      display: 'flex',
-    },
-    paper: {
-      backgroundColor: palette.background.default,
-      borderLeft: 'none',
-      borderRight: 'none',
-      color: palette.getContrastText(palette.background.paper),
-      overflowY: 'hidden',
-      zIndex: 1,
-    },
-    toolbar: mixins.toolbar,
-  };
-});
+      drawerOpen: {
+        transition: drawerTransition,
+        width: 240,
+      },
+      drawerClose: {
+        overflowX: 'hidden',
+        transition: drawerTransition,
+        width: spacing(5) + 1,
+        [breakpoints.up('sm')]: {
+          width: spacing(7) + 1,
+        },
+      },
+      list: {
+        height: 'calc(100% - 160px)',
+        paddingTop: (() => (props) => (props.underToolbar ? 0 : spacing(2)))(),
+      },
+      nav: {
+        display: 'flex',
+      },
+      paper: {
+        backgroundColor: palette.background.default,
+        borderLeft: 'none',
+        borderRight: 'none',
+        color: palette.getContrastText(palette.background.paper),
+        overflowY: 'hidden',
+        zIndex: 1,
+      },
+      toolbar: mixins.toolbar,
+    };
+  }
+);
 
 function NavigationDrawer(props) {
   const classes = useStyles(props);
   const {
     anchor,
     collapsedTitle,
-    dense, 
+    dense,
     expandedTitle,
-    items, 
-    LinkComponent, 
-    router, 
-    underToolbar
+    items,
+    LinkComponent,
+    router,
+    underToolbar,
   } = props;
-  
+
   const [open, setOpen] = useState({
     drawer: false,
     menus: [],
@@ -89,7 +84,7 @@ function NavigationDrawer(props) {
   const onClick = () => setOpen({ ...open, drawer: !open.drawer });
   const onToggle = () => setOpen({ ...open, list: !open.list });
   const onMenu = (name) => {
-    let menusOpen = [ ...open.menus ];
+    let menusOpen = [...open.menus];
     const menuIndex = open.menus.indexOf(name);
 
     if (menuIndex > -1) {
@@ -97,7 +92,7 @@ function NavigationDrawer(props) {
     } else {
       menusOpen.push(name);
     }
-    
+
     setOpen({ ...open, menus: menusOpen });
   };
 
@@ -109,16 +104,17 @@ function NavigationDrawer(props) {
   return (
     <nav
       className={classes.nav}
-      onMouseOver={() => setHover(true)} 
+      onMouseOver={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onDoubleClick={() => setOpen({ ...open, drawer: !open.drawer })}
     >
       <div>
-        <Drawer 
+        <Drawer
           anchor={anchor}
-          classes={{ paper: classNames(classes.paper, openClass)}}
+          classes={{ paper: classNames(classes.paper, openClass) }}
           className={classNames(classes.drawer, openClass)}
-          variant='permanent'>
+          variant="permanent"
+        >
           {spacer}
           <List className={classes.list}>
             <DrawerListSubheader

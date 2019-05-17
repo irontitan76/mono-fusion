@@ -12,7 +12,7 @@ const useStyles = makeStyles(() => {
       height: '100%',
       lineHeight: 2.75,
       textAlign: 'center',
-    }
+    },
   };
 });
 
@@ -21,13 +21,12 @@ export default function BannerMessage(props) {
   const { message } = props;
 
   return (
-    <Typography className={classes.text} component='div'>
+    <Typography className={classes.text} component="div">
       {message}
     </Typography>
   );
-};
+}
 
 BannerMessage.defaultProps = {
   message: '',
 };
-

@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 
-const getBorder = (property, palette) => (props) => { 
+const getBorder = (property, palette) => (props) => {
   const isDark = palette.type === 'dark';
   const borderColor = palette.grey[isDark ? 700 : 300];
   return props[property] === 'default' ? `1px solid ${borderColor}` : 'none';
@@ -28,7 +28,7 @@ const useStyles = makeStyles(({ palette }) => {
     center: {
       ...getColor(palette),
       display: 'flex',
-      justifyContent: 'center', 
+      justifyContent: 'center',
       textAlign: 'center',
     },
     leading: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles(({ palette }) => {
       },
       alignItems: 'center',
       display: 'flex',
-      justifyContent: 'flex-start', 
+      justifyContent: 'flex-start',
       textAlign: 'left',
     },
     toolbar: {
@@ -47,9 +47,9 @@ const useStyles = makeStyles(({ palette }) => {
     trailing: {
       ...getColor(palette),
       display: 'flex',
-      justifyContent: 'flex-end', 
+      justifyContent: 'flex-end',
       textAlign: 'right',
-    }
+    },
   };
 });
 
@@ -58,11 +58,11 @@ export default function TopBar(props) {
   const { color, variant } = props;
 
   return (
-    <AppBar className={classes.appBar} color={color} component='nav'>
+    <AppBar className={classes.appBar} color={color} component="nav">
       <Toolbar className={classes.toolbar} variant={variant}>
-        <Grid alignItems='center' container justify='center'>
+        <Grid alignItems="center" container justify="center">
           <Grid item xl={8} xs={12}>
-            <Grid alignItems='center' container justify='space-between'>
+            <Grid alignItems="center" container justify="space-between">
               <Grid className={classes.leading} item xs={4}>
                 {props.leading}
               </Grid>
@@ -77,8 +77,8 @@ export default function TopBar(props) {
         </Grid>
       </Toolbar>
     </AppBar>
-  ); 
-};
+  );
+}
 
 TopBar.defaultProps = {
   color: 'default',

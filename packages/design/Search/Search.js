@@ -8,14 +8,14 @@ import Typography from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   const isDark = palette.type === 'dark';
-  
+
   return {
     logo: {
       cursor: 'pointer',
     },
     separator: {
       color: palette.primary.main,
-      lineHeight: .5,
+      lineHeight: 0.5,
       fontSize: 32,
       fontWeight: 700,
     },
@@ -39,17 +39,25 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       top: 48,
       zIndex: 1,
     },
-  }
+  };
 });
 
-function Search({ component, filter, filterIcon, onChange, onKeyDown, searchIcon, searchValue }) {
+function Search({
+  component,
+  filter,
+  filterIcon,
+  onChange,
+  onKeyDown,
+  searchIcon,
+  searchValue,
+}) {
   const classes = useStyles();
 
   const Logo = () => {
     const LinkComponent = component || 'a';
     return (
       <Grid className={classes.logo} item>
-        <LinkComponent href='/insights'>
+        <LinkComponent href="/insights">
           <Typography>
             <span className={classes.title1}>insights</span>
             <span className={classes.separator}>.</span>
@@ -68,11 +76,11 @@ function Search({ component, filter, filterIcon, onChange, onKeyDown, searchIcon
           InputProps={{
             endAdornment: searchIcon,
           }}
-          inputProps={{ style: { padding: 8, fontSize: 14, } }}
+          inputProps={{ style: { padding: 8, fontSize: 14 } }}
           onChange={onChange}
           onKeyDown={onKeyDown}
-          placeholder='Search insights...'
-          variant='outlined'
+          placeholder="Search insights..."
+          variant="outlined"
           value={searchValue}
         />
       </Grid>
@@ -85,8 +93,10 @@ function Search({ component, filter, filterIcon, onChange, onKeyDown, searchIcon
     return (
       <Grid item>
         <Button
-          color='primary'
-          onClick={() => { console.log('hello')}}
+          color="primary"
+          onClick={() => {
+            console.log('hello');
+          }}
         >
           {filterIcon}
           Filter
@@ -96,15 +106,15 @@ function Search({ component, filter, filterIcon, onChange, onKeyDown, searchIcon
   };
 
   return (
-    <div className={classes.toolbar} variant='dense'>
-      <Grid alignItems='center' container justify='space-between'>
+    <div className={classes.toolbar} variant="dense">
+      <Grid alignItems="center" container justify="space-between">
         <Logo />
         <SearchInput />
         <Filter />
       </Grid>
     </div>
   );
-};
+}
 
 Search.defaultProps = {
   filter: false,

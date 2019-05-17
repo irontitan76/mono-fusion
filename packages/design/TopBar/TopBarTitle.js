@@ -33,5 +33,5 @@ export default function TopBarTitle({ LinkComponent }) {
         </div>
       </div>
     </TopBarLink>
-  ); 
-};
+  );
+}

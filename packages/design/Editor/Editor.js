@@ -24,7 +24,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
           },
           '&:hover': {
             borderColor: palette.primary.main,
-          }
+          },
         },
         alignItems: 'center',
         borderBottom: `1px solid ${palette.grey[300]}`,
@@ -41,7 +41,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
           overflowY: 'visible',
           '& .CodeMirror-scroll': {
             padding: spacing(2),
-          }
+          },
         },
         '& .CodeMirror-scroll': {
           overflow: 'hidden',
@@ -57,7 +57,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
         padding: 0,
         '& .cm-header': {
           color: palette.primary.main,
-        }
+        },
       },
       '& .editor-preview': {
         paddingBottom: spacing(3),
@@ -69,7 +69,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       '& .editor-preview-side': {
         padding: spacing(2),
         ...mdStyles(palette, spacing),
-      }
+      },
     },
     input: {
       borderRadius: 0,
@@ -98,9 +98,9 @@ export function Editor({ article, onChange, onSubmit, sidebar }) {
 
   return (
     <Grid container style={{ maxHeight: '100vh', overflow: 'hidden' }}>
-      <Grid item md={8} xs={12}>       
+      <Grid item md={8} xs={12}>
         <SimpleMDE
-          id='markdown-editor'
+          id="markdown-editor"
           className={classes.editor}
           onChange={onChange}
           value={article.content}
@@ -110,16 +110,19 @@ export function Editor({ article, onChange, onSubmit, sidebar }) {
           }}
         />
       </Grid>
-      <Grid
-        item
-        md={4}
-        xs={12}
-      >
+      <Grid item md={4} xs={12}>
         <div style={{ height: 64 }} />
 
-        <Grid container className={classes.sidebar} direction='column' justify='space-between'>
+        <Grid
+          container
+          className={classes.sidebar}
+          direction="column"
+          justify="space-between"
+        >
           <Grid item>
-            <Typography component='h2' variant='h6'>Details</Typography>
+            <Typography component="h2" variant="h6">
+              Details
+            </Typography>
             {sidebar.fields.map((field) => (
               <TextField
                 className={classes.input}
@@ -131,15 +134,25 @@ export function Editor({ article, onChange, onSubmit, sidebar }) {
           </Grid>
 
           <Grid item>
-            <Grid container justify='space-between'>
-              <Button color='default' component={Grid} item variant='outlined'>Discard Changes</Button>
-              <Button color='primary' component={Grid} item onClick={onSubmit} variant='contained'>Update</Button>
+            <Grid container justify="space-between">
+              <Button color="default" component={Grid} item variant="outlined">
+                Discard Changes
+              </Button>
+              <Button
+                color="primary"
+                component={Grid}
+                item
+                onClick={onSubmit}
+                variant="contained"
+              >
+                Update
+              </Button>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
     </Grid>
-  )
-};
+  );
+}
 
 export default Editor;
