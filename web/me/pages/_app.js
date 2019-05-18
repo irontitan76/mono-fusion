@@ -8,8 +8,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Layout from '@fusion/design/Layout';
 import ManifestProvider from '@fusion/design/Provider/Manifest';
 import PageContext from '@fusion/design/Provider/PageContext';
-import { manifest } from '@fusion/client/__config__/me.manifest';
-import { theme } from '@fusion/client/__config__/theme';
+import { manifest } from '@fusion/client/helpers/me.manifest';
+import { theme } from '@fusion/client/helpers/theme';
 import '@fusion/client/me/icon.config.js';
 
 class MyApp extends App {

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "web/main/package.json", "use": "now/next" }
+  ],
+  "env": {
+    "NPM_TOKEN": "@npm-token"
+  },
+  "name": "fusion"
+}

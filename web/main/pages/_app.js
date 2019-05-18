@@ -8,13 +8,14 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import StylesProvider from '@material-ui/styles/StylesProvider';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 
-import { manifest } from '@fusion/sites/main/manifest';
-import { theme } from '@fusion/sites/__config__/theme';
-import Layout from '@fusion/sites//main/pages/_layout';
+import { theme } from '@fusion/design/theme';
 import ManifestProvider from '@fusion/design/Provider/Manifest';
 import PageContext from '@fusion/design/Provider/PageContext';
-import withApollo from '@fusion/sites/__config__/withApollo';
-import '@fusion/sites/main/icon.config.js';
+import { withApollo } from '@fusion/design/helpers';
+
+import { manifest } from '../manifest';
+import Layout from './_layout';
+import '../icon.config.js';
 
 class MyApp extends App {
   constructor() {

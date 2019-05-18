@@ -18,5 +18,5 @@ module.exports = withTM({
 
     return config;
   },
-  transpileModules: ['@fusion/api', '@fusion/design', '@fusion/sites'],
+  transpileModules: ['@fusion/api', '@fusion/design'],
 });

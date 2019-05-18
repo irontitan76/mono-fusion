@@ -5,7 +5,7 @@ import { Query } from 'react-apollo';
 import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 
-import { manifest } from '@fusion/sites/main/manifest';
+import { manifest } from '@fusion/main/manifest';
 import Hero from '@fusion/design/Hero';
 import InsightsApi from '@fusion/api/insights';
 import Intro from '@fusion/design/Intro';

@@ -1,5 +1,5 @@
 {
-  "name": "@fusion/sites",
+  "name": "@fusion/corp",
   "version": "1.0.0",
   "main": "index.js",
   "keywords": [],
@@ -7,15 +7,9 @@
   "license": "ISC",
   "description": "",
   "scripts": {
-    "build:corp": "cd corp && next build",
-    "build:main": "cd main && next build",
-    "build:me": "cd me && next build",
-    "dev:corp": "cd corp && next -p 4001",
-    "dev:main": "cd main && next -p 4000",
-    "dev:me": "cd me && next",
-    "start:corp": "cd corp && next start",
-    "start:main": "cd main && next start",
-    "start:me": "cd me && next start"
+    "build": "next build",
+    "dev": "next",
+    "start": "next start"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",

@@ -1,5 +1,6 @@
 .next
 node_modules/
+yarn-error.log
 
 .gcloudignore
 .git

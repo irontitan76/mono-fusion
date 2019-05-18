@@ -13,11 +13,7 @@ function parseArguments() {
 
   if (!args) return null;
 
-  if (args[0] === 'all') {
-    return `${root}/**/*`;
-  } else {
-    return args[0];
-  }
+  return args[0] === 'all' ? `${root}/**/*` : args[0];
 }
 
 function fail(message) {

@@ -4,19 +4,20 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import ApolloProvider from 'react-apollo/ApolloProvider';
-import withApollo from '@fusion/sites/__config__/withApollo';
+import { withApollo } from '@fusion/design/helpers';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import StylesProvider from '@material-ui/styles/StylesProvider';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 
-import { theme } from '@fusion/sites/__config__/theme';
-import { manifest } from '@fusion/sites/corp/manifest';
-import Layout from '@fusion/sites/corp/pages/_layout';
+import { theme } from '@fusion/design/theme';
 import ManifestProvider from '@fusion/design/Provider/Manifest';
 import PageContext from '@fusion/design/Provider/PageContext';
-import '@fusion/sites/corp/icon.config.js';
 import 'easymde/dist/easymde.min.css';
+
+import { manifest } from '../manifest';
+import Layout from './_layout';
+import '../icon.config.js';
 
 class MyApp extends App {
   constructor() {

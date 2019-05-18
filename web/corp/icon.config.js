@@ -1,4 +1,4 @@
-import { library } from '@fortawesome/fontawesome-svg-core';
+import { config, library } from '@fortawesome/fontawesome-svg-core';
 
 import {
   faAnalytics,
@@ -13,6 +13,9 @@ import {
   faUserPlus,
   faUserTie,
 } from '@fortawesome/pro-light-svg-icons';
+
+config.familyPrefix = 'fusion';
+config.replacementClass = 'svg-inline--fusion';
 
 library.add(
   faAnalytics,

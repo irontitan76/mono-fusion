@@ -20,8 +20,8 @@
     "lerna": "^3.13.3"
   },
   "dependencies": {
-    "@fusion/api": "file:api",
-    "@fusion/design": "file:design",
-    "@fusion/system": "file:system"
+    "@fusion/api": "*",
+    "@fusion/design": "*",
+    "@fusion/system": "*"
   }
 }
