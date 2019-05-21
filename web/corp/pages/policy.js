@@ -3,8 +3,8 @@ import { Mutation, Query } from 'react-apollo';
 
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-import Editor from '@fusion/design/Editor';
-import PoliciesApi from '@fusion/api/policies';
+import Editor from '@fusion/design/lib/Editor';
+import PoliciesApi from '@fusion/api/lib/policies';
 
 export function Policy({ query }) {
   return (

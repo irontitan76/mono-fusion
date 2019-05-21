@@ -4,8 +4,8 @@ import { Mutation, Query } from 'react-apollo';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import Editor from '@fusion/design/Editor';
-import InsightsApi from '@fusion/api/insights';
+import Editor from '@fusion/design/lib/Editor';
+import InsightsApi from '@fusion/api/lib/insights';
 
 export function Insight({ query }) {
   const categories = [{ label: 'Corporate', value: 'corporate' }];

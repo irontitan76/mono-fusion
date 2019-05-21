@@ -9,7 +9,7 @@ module.exports = {
     company: {
       address: {},
       email: 'support@fusion.com',
-      logo: '/static/images/fusion-logo.svg',
+      logo: './static/images/fusion-logo.svg',
       name: 'Fusion Industries',
       phone: '',
       slogan:

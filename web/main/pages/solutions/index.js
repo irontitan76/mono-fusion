@@ -7,7 +7,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
 
-import NewsSlider from '@fusion/design/NewsSlider';
+import NewsSlider from '@fusion/design/lib/NewsSlider';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {

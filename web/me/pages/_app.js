@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import Layout from '@fusion/design/Layout';
-import ManifestProvider from '@fusion/design/Provider/Manifest';
-import PageContext from '@fusion/design/Provider/PageContext';
+import Layout from '@fusion/design/lib/Layout';
+import ManifestProvider from '@fusion/design/lib/Provider/Manifest';
+import PageContext from '@fusion/design/lib/Provider/PageContext';
 import { manifest } from '@fusion/client/helpers/me.manifest';
 import { theme } from '@fusion/client/helpers/theme';
 import '@fusion/client/me/icon.config.js';

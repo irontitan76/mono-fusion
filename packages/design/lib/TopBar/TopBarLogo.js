@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import { makeStyles } from '@material-ui/styles';
 
-import { ManifestContext } from '@fusion/design/Provider/Manifest';
+import { ManifestContext } from '@fusion/design/lib/Provider/Manifest';
 
 const useStyles = makeStyles(({ spacing }) => {
   return {

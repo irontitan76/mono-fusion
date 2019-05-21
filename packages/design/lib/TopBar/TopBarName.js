@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 
-import { ManifestContext } from '@fusion/design/Provider/Manifest';
+import { ManifestContext } from '@fusion/design/lib/Provider/Manifest';
 
 const useStyles = makeStyles(({ palette }) => {
   return {

@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { makeStyles } from '@material-ui/styles';
 
-import Drawer from '@fusion/design/Drawer';
-import { TopBarLink, TopBarLogo, TopBarTitle } from '@fusion/design/TopBar';
+import Drawer from '@fusion/design/lib/Drawer';
+import { TopBarLink, TopBarLogo, TopBarTitle } from '@fusion/design/lib/TopBar';
 
 const useStyles = makeStyles(({ palette }) => {
   return {

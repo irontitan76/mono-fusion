@@ -3,8 +3,8 @@ import { Query } from 'react-apollo';
 
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-import Article from '@fusion/design/Article';
-import InsightsApi from '@fusion/api/insights';
+import Article from '@fusion/design/lib/Article';
+import InsightsApi from '@fusion/api/lib/insights';
 
 function Insight({ query }) {
   return (

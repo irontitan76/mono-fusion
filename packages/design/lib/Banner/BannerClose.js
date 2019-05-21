@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 import CloseIcon from '@material-ui/icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 
-import { setCookie } from '@fusion/design/helpers';
+import { setCookie } from '@fusion/design/lib/helpers';
 
 const useStyles = makeStyles(() => {
   return {

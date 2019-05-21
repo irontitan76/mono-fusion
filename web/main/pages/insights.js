@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 
-import InsightsApi from '@fusion/api/insights';
-import NewsSlider from '@fusion/design/NewsSlider';
-import Search from '@fusion/design/Search';
+import InsightsApi from '@fusion/api/lib/insights';
+import NewsSlider from '@fusion/design/lib/NewsSlider';
+import Search from '@fusion/design/lib/Search';
 
 function Insights() {
   const [search, setSearch] = useState('');

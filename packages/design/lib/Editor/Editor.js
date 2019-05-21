@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { styles as mdStyles } from '@fusion/design/Markdown';
+import { styles as mdStyles } from '@fusion/design/lib/Markdown';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {

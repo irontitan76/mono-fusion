@@ -4,15 +4,15 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import ApolloProvider from 'react-apollo/ApolloProvider';
-import { withApollo } from '@fusion/design/helpers';
+import { withApollo } from '@fusion/design/lib/helpers';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import StylesProvider from '@material-ui/styles/StylesProvider';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 
-import { theme } from '@fusion/design/theme';
-import ManifestProvider from '@fusion/design/Provider/Manifest';
-import PageContext from '@fusion/design/Provider/PageContext';
+import { theme } from '@fusion/design/lib/theme';
+import ManifestProvider from '@fusion/design/lib/Provider/Manifest';
+import PageContext from '@fusion/design/lib/Provider/PageContext';
 import 'easymde/dist/easymde.min.css';
 
 import { manifest } from '../manifest';

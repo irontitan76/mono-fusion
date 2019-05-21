@@ -19,7 +19,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       color: palette.error.main,
     },
     root: {
-      backgroundImage: 'url(/static/images/people-3.jpg)',
+      backgroundImage: 'url(./static/images/people-3.jpg)',
       backgroundPosition: 'center center',
       backgroundSize: '100% 150%',
       filter: 'grayscale(20%)',

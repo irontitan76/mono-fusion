@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-import Articles from '@fusion/design/Articles';
-import InsightsApi from '@fusion/api/insights';
+import Articles from '@fusion/design/lib/Articles';
+import InsightsApi from '@fusion/api/lib/insights';
 
 export function Insights() {
   const [search, setSearch] = useState('');

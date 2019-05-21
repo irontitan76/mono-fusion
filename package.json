@@ -8,11 +8,10 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "scripts",
     "server/*",
     "web/*"
   ],
   "bin": {
-    "fusion": "./scripts/cli.js"
+    "fusion": "./packages/build/lib/cli.js"
   }
 }

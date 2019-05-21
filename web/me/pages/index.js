@@ -37,21 +37,21 @@ export function Home() {
     {
       name: 'Test 1',
       media: {
-        source: '/static/images/building-1.jpg',
+        source: './static/images/building-1.jpg',
         type: 'image',
       },
     },
     {
       name: 'Test 2',
       media: {
-        source: '/static/images/desk-laptop.jpg',
+        source: './static/images/desk-laptop.jpg',
         type: 'image',
       },
     },
     {
       name: 'Test 3',
       media: {
-        source: '/static/images/space-1.jpg',
+        source: './static/images/space-1.jpg',
         type: 'image',
       },
     },

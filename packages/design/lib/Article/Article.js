@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import ArticleHeader from './ArticleHeader';
-import Markdown from '@fusion/design/Markdown';
+import Markdown from '@fusion/design/lib/Markdown';
 
 const useStyles = makeStyles(({ spacing }) => {
   return {

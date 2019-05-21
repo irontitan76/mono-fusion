@@ -1,10 +1,19 @@
 {
   "version": 2,
   "builds": [
-    { "src": "web/main/package.json", "use": "now/next" }
+    { "src": "web/main/next.config.js", "use": "@now/next" },
+    { "src": "web/corp/next.config.js", "use": "@now/next" },
+    { "src": "packages/api/**/*", "use": "@now/static" },
+    { "src": "packages/design/**/*", "use": "@now/static" }
   ],
-  "env": {
-    "NPM_TOKEN": "@npm-token"
+  "build": {
+    "env": {
+      "NPM_TOKEN": "@npm-token"
+    }
   },
-  "name": "fusion"
+  "name": "fusion",
+  "routes": [
+    { "src": "/(.*)", "dest": "/web/main/$1" },
+    { "src": "/admin/(.*)", "dest": "/web/corp/$1" }
+  ]
 }

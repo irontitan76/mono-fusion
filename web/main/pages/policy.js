@@ -4,8 +4,8 @@ import { Query } from 'react-apollo';
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-import PoliciesApi from '@fusion/api/policies';
-import Markdown from '@fusion/design/Markdown';
+import PoliciesApi from '@fusion/api/lib/policies';
+import Markdown from '@fusion/design/lib/Markdown';
 
 function Policy({ query }) {
   return (

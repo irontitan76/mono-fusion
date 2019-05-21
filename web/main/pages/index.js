@@ -6,10 +6,10 @@ import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 
 import { manifest } from '@fusion/main/manifest';
-import Hero from '@fusion/design/Hero';
-import InsightsApi from '@fusion/api/insights';
-import Intro from '@fusion/design/Intro';
-import NewsSlider from '@fusion/design/NewsSlider';
+import Hero from '@fusion/design/lib/Hero';
+import InsightsApi from '@fusion/api/lib/insights';
+import Intro from '@fusion/design/lib/Intro';
+import NewsSlider from '@fusion/design/lib/NewsSlider';
 
 const useStyles = makeStyles(({ spacing }) => {
   return {
@@ -27,7 +27,7 @@ export function Home() {
       action: 'Learn more',
       description: 'Integrate our solutions into your existing workflow',
       media: {
-        source: '/static/images/building-2.jpg',
+        source: './static/images/building-2.jpg',
         type: 'image',
       },
       path: '/solutions',
@@ -38,7 +38,7 @@ export function Home() {
       action: 'See how we work',
       description: 'Quicken development with our qualified consultants',
       media: {
-        source: '/static/images/people-4.jpg',
+        source: './static/images/people-4.jpg',
         type: 'image',
       },
       path: '/insight?id=cjv8ygn7k04ku0177uvx8chg9',
@@ -49,7 +49,7 @@ export function Home() {
       action: 'See our standard',
       description: 'Proven strategies that effectively grow your business',
       media: {
-        source: '/static/images/plant-1.jpg',
+        source: './static/images/plant-1.jpg',
         type: 'image',
       },
       path: '/insight?id=cjv8y928r03su01908ylxhpej',

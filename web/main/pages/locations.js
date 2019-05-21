@@ -43,7 +43,7 @@ function Locations(props) {
       desc: `Situated in the heart of Texas' capital,
         Fusion Industries has established itself as
         a premier technology company`,
-      image: '/static/images/office-1.jpg',
+      image: './static/images/office-1.jpg',
       title: 'Austin, TX',
     },
   ];

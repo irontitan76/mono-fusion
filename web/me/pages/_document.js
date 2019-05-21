@@ -14,7 +14,7 @@ class MyDocument extends Document {
           <link
             rel="shortcut icon"
             type="image/png"
-            href="/static/images/fusion-logo@4x.png"
+            href="./static/images/fusion-logo@4x.png"
           />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta

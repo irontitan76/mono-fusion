@@ -1,5 +1,5 @@
 {
-  "name": "@fusion/scripts",
+  "name": "@fusion/build",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Ross Sheppard <ross.sheppard@outlook.com>",
