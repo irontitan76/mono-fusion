@@ -3,12 +3,10 @@ import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/styles';
-import Grid from '@material-ui/core/Grid';
 
 import Banner from '@fusion/design/lib/Banner';
 import Footer from '@fusion/design/lib/Footer';
 import PoliciesApi from '@fusion/api/lib/policies';
-import Search from '@fusion/design/lib/Search';
 import TopBar, { TopBarMenu, TopBarTitle } from '@fusion/design/lib/TopBar';
 
 const useStyles = makeStyles(({ palette }) => {

@@ -5,12 +5,12 @@ import Link from 'next/link';
 import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import Layout from '@fusion/design/lib/Layout';
 import ManifestProvider from '@fusion/design/lib/Provider/Manifest';
 import PageContext from '@fusion/design/lib/Provider/PageContext';
-import { manifest } from '@fusion/client/helpers/me.manifest';
-import { theme } from '@fusion/client/helpers/theme';
-import '@fusion/client/me/icon.config.js';
+import { theme } from '@fusion/design/lib/theme';
+
+import manifest from '../manifest';
+import '../icon.config.js';
 
 class MyApp extends App {
   constructor() {
@@ -36,16 +36,7 @@ class MyApp extends App {
     } = this.pageContext;
 
     const Page = () => (
-      <Layout
-        // bannerMessage='This site is under maintenance. Please bear with us as we optimize your experience.'
-        component={Link}
-        items={manifest.navigation.items}
-        TopBarProps={{
-          color: 'default',
-        }}
-      >
-        <Component pageContext={this.pageContext} {...pageProps} />
-      </Layout>
+      <Component pageContext={this.pageContext} {...pageProps} />
     );
 
     const Providers = ({ children }) => (

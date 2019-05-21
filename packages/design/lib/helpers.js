@@ -72,7 +72,7 @@ export function initApollo(initialState) {
   }
 
   return apolloClient;
-};
+}
 
 export const withApollo = (App) => {
   return class Apollo extends React.Component {
@@ -130,5 +130,3 @@ export const withApollo = (App) => {
     }
   };
 };
-
-

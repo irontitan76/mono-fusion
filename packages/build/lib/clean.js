@@ -4,8 +4,8 @@ const chalk = require('chalk');
 const execa = require('execa');
 const Listr = require('listr');
 
-const root = resolve(__dirname, '..');
-const config = resolve(__dirname, '..', 'packages', 'system', 'prettier.config.js');
+const root = resolve(__dirname, '..', '..', '..');
+const config = resolve(__dirname, '..', '..', 'system', 'prettier.config.js');
 const prettier = `${root}/node_modules/.bin/prettier`;
 
 function parseArguments() {

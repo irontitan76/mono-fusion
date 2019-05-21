@@ -7,9 +7,9 @@
   "license": "ISC",
   "description": "",
   "scripts": {
-    "build": "cd me && next build",
-    "dev": "cd me && next",
-    "start": "cd me && next start"
+    "build": "next build",
+    "dev": "next",
+    "start": "next start"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.17",

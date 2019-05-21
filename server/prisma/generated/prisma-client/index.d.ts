@@ -46,281 +46,233 @@ export interface Prisma {
    */
 
   birth: (where: BirthWhereUniqueInput) => BirthNullablePromise;
-  births: (
-    args?: {
-      where?: BirthWhereInput;
-      orderBy?: BirthOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Birth>;
-  birthsConnection: (
-    args?: {
-      where?: BirthWhereInput;
-      orderBy?: BirthOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => BirthConnectionPromise;
+  births: (args?: {
+    where?: BirthWhereInput;
+    orderBy?: BirthOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Birth>;
+  birthsConnection: (args?: {
+    where?: BirthWhereInput;
+    orderBy?: BirthOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => BirthConnectionPromise;
   contact: (where: ContactWhereUniqueInput) => ContactNullablePromise;
-  contacts: (
-    args?: {
-      where?: ContactWhereInput;
-      orderBy?: ContactOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Contact>;
-  contactsConnection: (
-    args?: {
-      where?: ContactWhereInput;
-      orderBy?: ContactOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => ContactConnectionPromise;
+  contacts: (args?: {
+    where?: ContactWhereInput;
+    orderBy?: ContactOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Contact>;
+  contactsConnection: (args?: {
+    where?: ContactWhereInput;
+    orderBy?: ContactOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ContactConnectionPromise;
   employee: (where: EmployeeWhereUniqueInput) => EmployeeNullablePromise;
-  employees: (
-    args?: {
-      where?: EmployeeWhereInput;
-      orderBy?: EmployeeOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Employee>;
-  employeesConnection: (
-    args?: {
-      where?: EmployeeWhereInput;
-      orderBy?: EmployeeOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => EmployeeConnectionPromise;
+  employees: (args?: {
+    where?: EmployeeWhereInput;
+    orderBy?: EmployeeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Employee>;
+  employeesConnection: (args?: {
+    where?: EmployeeWhereInput;
+    orderBy?: EmployeeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => EmployeeConnectionPromise;
   insight: (where: InsightWhereUniqueInput) => InsightNullablePromise;
-  insights: (
-    args?: {
-      where?: InsightWhereInput;
-      orderBy?: InsightOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Insight>;
-  insightsConnection: (
-    args?: {
-      where?: InsightWhereInput;
-      orderBy?: InsightOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => InsightConnectionPromise;
+  insights: (args?: {
+    where?: InsightWhereInput;
+    orderBy?: InsightOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Insight>;
+  insightsConnection: (args?: {
+    where?: InsightWhereInput;
+    orderBy?: InsightOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => InsightConnectionPromise;
   media: (where: MediaWhereUniqueInput) => MediaNullablePromise;
-  medias: (
-    args?: {
-      where?: MediaWhereInput;
-      orderBy?: MediaOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Media>;
-  mediasConnection: (
-    args?: {
-      where?: MediaWhereInput;
-      orderBy?: MediaOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => MediaConnectionPromise;
+  medias: (args?: {
+    where?: MediaWhereInput;
+    orderBy?: MediaOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Media>;
+  mediasConnection: (args?: {
+    where?: MediaWhereInput;
+    orderBy?: MediaOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => MediaConnectionPromise;
   metaType: (where: MetaTypeWhereUniqueInput) => MetaTypeNullablePromise;
-  metaTypes: (
-    args?: {
-      where?: MetaTypeWhereInput;
-      orderBy?: MetaTypeOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<MetaType>;
-  metaTypesConnection: (
-    args?: {
-      where?: MetaTypeWhereInput;
-      orderBy?: MetaTypeOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => MetaTypeConnectionPromise;
+  metaTypes: (args?: {
+    where?: MetaTypeWhereInput;
+    orderBy?: MetaTypeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<MetaType>;
+  metaTypesConnection: (args?: {
+    where?: MetaTypeWhereInput;
+    orderBy?: MetaTypeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => MetaTypeConnectionPromise;
   name: (where: NameWhereUniqueInput) => NameNullablePromise;
-  names: (
-    args?: {
-      where?: NameWhereInput;
-      orderBy?: NameOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Name>;
-  namesConnection: (
-    args?: {
-      where?: NameWhereInput;
-      orderBy?: NameOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => NameConnectionPromise;
+  names: (args?: {
+    where?: NameWhereInput;
+    orderBy?: NameOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Name>;
+  namesConnection: (args?: {
+    where?: NameWhereInput;
+    orderBy?: NameOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => NameConnectionPromise;
   policy: (where: PolicyWhereUniqueInput) => PolicyNullablePromise;
-  policies: (
-    args?: {
-      where?: PolicyWhereInput;
-      orderBy?: PolicyOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Policy>;
-  policiesConnection: (
-    args?: {
-      where?: PolicyWhereInput;
-      orderBy?: PolicyOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => PolicyConnectionPromise;
+  policies: (args?: {
+    where?: PolicyWhereInput;
+    orderBy?: PolicyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Policy>;
+  policiesConnection: (args?: {
+    where?: PolicyWhereInput;
+    orderBy?: PolicyOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => PolicyConnectionPromise;
   post: (where: PostWhereUniqueInput) => PostNullablePromise;
-  posts: (
-    args?: {
-      where?: PostWhereInput;
-      orderBy?: PostOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Post>;
-  postsConnection: (
-    args?: {
-      where?: PostWhereInput;
-      orderBy?: PostOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => PostConnectionPromise;
+  posts: (args?: {
+    where?: PostWhereInput;
+    orderBy?: PostOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Post>;
+  postsConnection: (args?: {
+    where?: PostWhereInput;
+    orderBy?: PostOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => PostConnectionPromise;
   profile: (where: ProfileWhereUniqueInput) => ProfileNullablePromise;
-  profiles: (
-    args?: {
-      where?: ProfileWhereInput;
-      orderBy?: ProfileOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<Profile>;
-  profilesConnection: (
-    args?: {
-      where?: ProfileWhereInput;
-      orderBy?: ProfileOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => ProfileConnectionPromise;
+  profiles: (args?: {
+    where?: ProfileWhereInput;
+    orderBy?: ProfileOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Profile>;
+  profilesConnection: (args?: {
+    where?: ProfileWhereInput;
+    orderBy?: ProfileOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ProfileConnectionPromise;
   sizeType: (where: SizeTypeWhereUniqueInput) => SizeTypeNullablePromise;
-  sizeTypes: (
-    args?: {
-      where?: SizeTypeWhereInput;
-      orderBy?: SizeTypeOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<SizeType>;
-  sizeTypesConnection: (
-    args?: {
-      where?: SizeTypeWhereInput;
-      orderBy?: SizeTypeOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => SizeTypeConnectionPromise;
+  sizeTypes: (args?: {
+    where?: SizeTypeWhereInput;
+    orderBy?: SizeTypeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<SizeType>;
+  sizeTypesConnection: (args?: {
+    where?: SizeTypeWhereInput;
+    orderBy?: SizeTypeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => SizeTypeConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserNullablePromise;
-  users: (
-    args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => FragmentableArray<User>;
-  usersConnection: (
-    args?: {
-      where?: UserWhereInput;
-      orderBy?: UserOrderByInput;
-      skip?: Int;
-      after?: String;
-      before?: String;
-      first?: Int;
-      last?: Int;
-    }
-  ) => UserConnectionPromise;
+  users: (args?: {
+    where?: UserWhereInput;
+    orderBy?: UserOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<User>;
+  usersConnection: (args?: {
+    where?: UserWhereInput;
+    orderBy?: UserOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => UserConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
@@ -328,261 +280,191 @@ export interface Prisma {
    */
 
   createBirth: (data: BirthCreateInput) => BirthPromise;
-  updateBirth: (
-    args: {
-      data: BirthUpdateInput;
-      where: BirthWhereUniqueInput;
-    }
-  ) => BirthPromise;
-  updateManyBirths: (
-    args: {
-      data: BirthUpdateManyMutationInput;
-      where?: BirthWhereInput;
-    }
-  ) => BatchPayloadPromise;
-  upsertBirth: (
-    args: {
-      where: BirthWhereUniqueInput;
-      create: BirthCreateInput;
-      update: BirthUpdateInput;
-    }
-  ) => BirthPromise;
+  updateBirth: (args: {
+    data: BirthUpdateInput;
+    where: BirthWhereUniqueInput;
+  }) => BirthPromise;
+  updateManyBirths: (args: {
+    data: BirthUpdateManyMutationInput;
+    where?: BirthWhereInput;
+  }) => BatchPayloadPromise;
+  upsertBirth: (args: {
+    where: BirthWhereUniqueInput;
+    create: BirthCreateInput;
+    update: BirthUpdateInput;
+  }) => BirthPromise;
   deleteBirth: (where: BirthWhereUniqueInput) => BirthPromise;
   deleteManyBirths: (where?: BirthWhereInput) => BatchPayloadPromise;
   createContact: (data: ContactCreateInput) => ContactPromise;
-  updateContact: (
-    args: {
-      data: ContactUpdateInput;
-      where: ContactWhereUniqueInput;
-    }
-  ) => ContactPromise;
-  updateManyContacts: (
-    args: {
-      data: ContactUpdateManyMutationInput;
-      where?: ContactWhereInput;
-    }
-  ) => BatchPayloadPromise;
-  upsertContact: (
-    args: {
-      where: ContactWhereUniqueInput;
-      create: ContactCreateInput;
-      update: ContactUpdateInput;
-    }
-  ) => ContactPromise;
+  updateContact: (args: {
+    data: ContactUpdateInput;
+    where: ContactWhereUniqueInput;
+  }) => ContactPromise;
+  updateManyContacts: (args: {
+    data: ContactUpdateManyMutationInput;
+    where?: ContactWhereInput;
+  }) => BatchPayloadPromise;
+  upsertContact: (args: {
+    where: ContactWhereUniqueInput;
+    create: ContactCreateInput;
+    update: ContactUpdateInput;
+  }) => ContactPromise;
   deleteContact: (where: ContactWhereUniqueInput) => ContactPromise;
   deleteManyContacts: (where?: ContactWhereInput) => BatchPayloadPromise;
   createEmployee: (data: EmployeeCreateInput) => EmployeePromise;
-  updateEmployee: (
-    args: {
-      data: EmployeeUpdateInput;
-      where: EmployeeWhereUniqueInput;
-    }
-  ) => EmployeePromise;
-  upsertEmployee: (
-    args: {
-      where: EmployeeWhereUniqueInput;
-      create: EmployeeCreateInput;
-      update: EmployeeUpdateInput;
-    }
-  ) => EmployeePromise;
+  updateEmployee: (args: {
+    data: EmployeeUpdateInput;
+    where: EmployeeWhereUniqueInput;
+  }) => EmployeePromise;
+  upsertEmployee: (args: {
+    where: EmployeeWhereUniqueInput;
+    create: EmployeeCreateInput;
+    update: EmployeeUpdateInput;
+  }) => EmployeePromise;
   deleteEmployee: (where: EmployeeWhereUniqueInput) => EmployeePromise;
   deleteManyEmployees: (where?: EmployeeWhereInput) => BatchPayloadPromise;
   createInsight: (data: InsightCreateInput) => InsightPromise;
-  updateInsight: (
-    args: {
-      data: InsightUpdateInput;
-      where: InsightWhereUniqueInput;
-    }
-  ) => InsightPromise;
-  updateManyInsights: (
-    args: {
-      data: InsightUpdateManyMutationInput;
-      where?: InsightWhereInput;
-    }
-  ) => BatchPayloadPromise;
-  upsertInsight: (
-    args: {
-      where: InsightWhereUniqueInput;
-      create: InsightCreateInput;
-      update: InsightUpdateInput;
-    }
-  ) => InsightPromise;
+  updateInsight: (args: {
+    data: InsightUpdateInput;
+    where: InsightWhereUniqueInput;
+  }) => InsightPromise;
+  updateManyInsights: (args: {
+    data: InsightUpdateManyMutationInput;
+    where?: InsightWhereInput;
+  }) => BatchPayloadPromise;
+  upsertInsight: (args: {
+    where: InsightWhereUniqueInput;
+    create: InsightCreateInput;
+    update: InsightUpdateInput;
+  }) => InsightPromise;
   deleteInsight: (where: InsightWhereUniqueInput) => InsightPromise;
   deleteManyInsights: (where?: InsightWhereInput) => BatchPayloadPromise;
   createMedia: (data: MediaCreateInput) => MediaPromise;
-  updateMedia: (
-    args: {
-      data: MediaUpdateInput;
-      where: MediaWhereUniqueInput;
-    }
-  ) => MediaPromise;
-  updateManyMedias: (
-    args: {
-      data: MediaUpdateManyMutationInput;
-      where?: MediaWhereInput;
-    }
-  ) => BatchPayloadPromise;
-  upsertMedia: (
-    args: {
-      where: MediaWhereUniqueInput;
-      create: MediaCreateInput;
-      update: MediaUpdateInput;
-    }
-  ) => MediaPromise;
+  updateMedia: (args: {
+    data: MediaUpdateInput;
+    where: MediaWhereUniqueInput;
+  }) => MediaPromise;
+  updateManyMedias: (args: {
+    data: MediaUpdateManyMutationInput;
+    where?: MediaWhereInput;
+  }) => BatchPayloadPromise;
+  upsertMedia: (args: {
+    where: MediaWhereUniqueInput;
+    create: MediaCreateInput;
+    update: MediaUpdateInput;
+  }) => MediaPromise;
   deleteMedia: (where: MediaWhereUniqueInput) => MediaPromise;
   deleteManyMedias: (where?: MediaWhereInput) => BatchPayloadPromise;
   createMetaType: (data: MetaTypeCreateInput) => MetaTypePromise;
-  updateMetaType: (
-    args: {
-      data: MetaTypeUpdateInput;
-      where: MetaTypeWhereUniqueInput;
-    }
-  ) => MetaTypePromise;
-  updateManyMetaTypes: (
-    args: {
-      data: MetaTypeUpdateManyMutationInput;
-      where?: MetaTypeWhereInput;
-    }
-  ) => BatchPayloadPromise;
-  upsertMetaType: (
-    args: {
-      where: MetaTypeWhereUniqueInput;
-      create: MetaTypeCreateInput;
-      update: MetaTypeUpdateInput;
-    }
-  ) => MetaTypePromise;
+  updateMetaType: (args: {
+    data: MetaTypeUpdateInput;
+    where: MetaTypeWhereUniqueInput;
+  }) => MetaTypePromise;
+  updateManyMetaTypes: (args: {
+    data: MetaTypeUpdateManyMutationInput;
+    where?: MetaTypeWhereInput;
+  }) => BatchPayloadPromise;
+  upsertMetaType: (args: {
+    where: MetaTypeWhereUniqueInput;
+    create: MetaTypeCreateInput;
+    update: MetaTypeUpdateInput;
+  }) => MetaTypePromise;
   deleteMetaType: (where: MetaTypeWhereUniqueInput) => MetaTypePromise;
   deleteManyMetaTypes: (where?: MetaTypeWhereInput) => BatchPayloadPromise;
   createName: (data: NameCreateInput) => NamePromise;
-  updateName: (
-    args: {
-      data: NameUpdateInput;
-      where: NameWhereUniqueInput;
-    }
-  ) => NamePromise;
-  updateManyNames: (
-    args: {
-      data: NameUpdateManyMutationInput;
-      where?: NameWhereInput;
-    }
-  ) => BatchPayloadPromise;
-  upsertName: (
-    args: {
-      where: NameWhereUniqueInput;
-      create: NameCreateInput;
-      update: NameUpdateInput;
-    }
-  ) => NamePromise;
+  updateName: (args: {
+    data: NameUpdateInput;
+    where: NameWhereUniqueInput;
+  }) => NamePromise;
+  updateManyNames: (args: {
+    data: NameUpdateManyMutationInput;
+    where?: NameWhereInput;
+  }) => BatchPayloadPromise;
+  upsertName: (args: {
+    where: NameWhereUniqueInput;
+    create: NameCreateInput;
+    update: NameUpdateInput;
+  }) => NamePromise;
   deleteName: (where: NameWhereUniqueInput) => NamePromise;
   deleteManyNames: (where?: NameWhereInput) => BatchPayloadPromise;
   createPolicy: (data: PolicyCreateInput) => PolicyPromise;
-  updatePolicy: (
-    args: {
-      data: PolicyUpdateInput;
-      where: PolicyWhereUniqueInput;
-    }
-  ) => PolicyPromise;
-  updateManyPolicies: (
-    args: {
-      data: PolicyUpdateManyMutationInput;
-      where?: PolicyWhereInput;
-    }
-  ) => BatchPayloadPromise;
-  upsertPolicy: (
-    args: {
-      where: PolicyWhereUniqueInput;
-      create: PolicyCreateInput;
-      update: PolicyUpdateInput;
-    }
-  ) => PolicyPromise;
+  updatePolicy: (args: {
+    data: PolicyUpdateInput;
+    where: PolicyWhereUniqueInput;
+  }) => PolicyPromise;
+  updateManyPolicies: (args: {
+    data: PolicyUpdateManyMutationInput;
+    where?: PolicyWhereInput;
+  }) => BatchPayloadPromise;
+  upsertPolicy: (args: {
+    where: PolicyWhereUniqueInput;
+    create: PolicyCreateInput;
+    update: PolicyUpdateInput;
+  }) => PolicyPromise;
   deletePolicy: (where: PolicyWhereUniqueInput) => PolicyPromise;
   deleteManyPolicies: (where?: PolicyWhereInput) => BatchPayloadPromise;
   createPost: (data: PostCreateInput) => PostPromise;
-  updatePost: (
-    args: {
-      data: PostUpdateInput;
-      where: PostWhereUniqueInput;
-    }
-  ) => PostPromise;
-  updateManyPosts: (
-    args: {
-      data: PostUpdateManyMutationInput;
-      where?: PostWhereInput;
-    }
-  ) => BatchPayloadPromise;
-  upsertPost: (
-    args: {
-      where: PostWhereUniqueInput;
-      create: PostCreateInput;
-      update: PostUpdateInput;
-    }
-  ) => PostPromise;
+  updatePost: (args: {
+    data: PostUpdateInput;
+    where: PostWhereUniqueInput;
+  }) => PostPromise;
+  updateManyPosts: (args: {
+    data: PostUpdateManyMutationInput;
+    where?: PostWhereInput;
+  }) => BatchPayloadPromise;
+  upsertPost: (args: {
+    where: PostWhereUniqueInput;
+    create: PostCreateInput;
+    update: PostUpdateInput;
+  }) => PostPromise;
   deletePost: (where: PostWhereUniqueInput) => PostPromise;
   deleteManyPosts: (where?: PostWhereInput) => BatchPayloadPromise;
   createProfile: (data: ProfileCreateInput) => ProfilePromise;
-  updateProfile: (
-    args: {
-      data: ProfileUpdateInput;
-      where: ProfileWhereUniqueInput;
-    }
-  ) => ProfilePromise;
-  updateManyProfiles: (
-    args: {
-      data: ProfileUpdateManyMutationInput;
-      where?: ProfileWhereInput;
-    }
-  ) => BatchPayloadPromise;
-  upsertProfile: (
-    args: {
-      where: ProfileWhereUniqueInput;
-      create: ProfileCreateInput;
-      update: ProfileUpdateInput;
-    }
-  ) => ProfilePromise;
+  updateProfile: (args: {
+    data: ProfileUpdateInput;
+    where: ProfileWhereUniqueInput;
+  }) => ProfilePromise;
+  updateManyProfiles: (args: {
+    data: ProfileUpdateManyMutationInput;
+    where?: ProfileWhereInput;
+  }) => BatchPayloadPromise;
+  upsertProfile: (args: {
+    where: ProfileWhereUniqueInput;
+    create: ProfileCreateInput;
+    update: ProfileUpdateInput;
+  }) => ProfilePromise;
   deleteProfile: (where: ProfileWhereUniqueInput) => ProfilePromise;
   deleteManyProfiles: (where?: ProfileWhereInput) => BatchPayloadPromise;
   createSizeType: (data: SizeTypeCreateInput) => SizeTypePromise;
-  updateSizeType: (
-    args: {
-      data: SizeTypeUpdateInput;
-      where: SizeTypeWhereUniqueInput;
-    }
-  ) => SizeTypePromise;
-  updateManySizeTypes: (
-    args: {
-      data: SizeTypeUpdateManyMutationInput;
-      where?: SizeTypeWhereInput;
-    }
-  ) => BatchPayloadPromise;
-  upsertSizeType: (
-    args: {
-      where: SizeTypeWhereUniqueInput;
-      create: SizeTypeCreateInput;
-      update: SizeTypeUpdateInput;
-    }
-  ) => SizeTypePromise;
+  updateSizeType: (args: {
+    data: SizeTypeUpdateInput;
+    where: SizeTypeWhereUniqueInput;
+  }) => SizeTypePromise;
+  updateManySizeTypes: (args: {
+    data: SizeTypeUpdateManyMutationInput;
+    where?: SizeTypeWhereInput;
+  }) => BatchPayloadPromise;
+  upsertSizeType: (args: {
+    where: SizeTypeWhereUniqueInput;
+    create: SizeTypeCreateInput;
+    update: SizeTypeUpdateInput;
+  }) => SizeTypePromise;
   deleteSizeType: (where: SizeTypeWhereUniqueInput) => SizeTypePromise;
   deleteManySizeTypes: (where?: SizeTypeWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
-  updateUser: (
-    args: {
-      data: UserUpdateInput;
-      where: UserWhereUniqueInput;
-    }
-  ) => UserPromise;
-  updateManyUsers: (
-    args: {
-      data: UserUpdateManyMutationInput;
-      where?: UserWhereInput;
-    }
-  ) => BatchPayloadPromise;
-  upsertUser: (
-    args: {
-      where: UserWhereUniqueInput;
-      create: UserCreateInput;
-      update: UserUpdateInput;
-    }
-  ) => UserPromise;
+  updateUser: (args: {
+    data: UserUpdateInput;
+    where: UserWhereUniqueInput;
+  }) => UserPromise;
+  updateManyUsers: (args: {
+    data: UserUpdateManyMutationInput;
+    where?: UserWhereInput;
+  }) => BatchPayloadPromise;
+  upsertUser: (args: {
+    where: UserWhereUniqueInput;
+    create: UserCreateInput;
+    update: UserUpdateInput;
+  }) => UserPromise;
   deleteUser: (where: UserWhereUniqueInput) => UserPromise;
   deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
 

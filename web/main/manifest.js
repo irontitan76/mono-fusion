@@ -22,7 +22,7 @@ module.exports = {
       ],
     },
   },
-}
+};
 
 // Navigation sub-object
 // Home sub-object

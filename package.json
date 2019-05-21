@@ -13,5 +13,9 @@
   ],
   "bin": {
     "fusion": "./packages/build/lib/cli.js"
+  },
+  "scripts": {
+    "clean": "node packages/build/lib/clean",
+    "clean-all": "node packages/build/lib/clean all"
   }
 }
