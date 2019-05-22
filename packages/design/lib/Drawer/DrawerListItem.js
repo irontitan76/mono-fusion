@@ -12,6 +12,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DrawerListItems from './DrawerListItems';
 
 const useStyles = makeStyles(({ breakpoints, palette, spacing, transitions }) => {
+  const isDark = palette.type === 'dark';
+
   const buttonTransition = transitions.create('transform', {
     easing: transitions.easing.sharp,
     duration: transitions.duration.shorter,
@@ -19,7 +21,7 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing, transitions }) =>
 
   return {
     collapse: {
-      backgroundColor: palette.grey[200],
+      backgroundColor: palette.grey[isDark ? 900 : 200],
       color: palette.getContrastText(palette.background.default),
     },
     collapseButton: {

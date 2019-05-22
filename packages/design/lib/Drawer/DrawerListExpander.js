@@ -10,17 +10,16 @@ const useStyles = makeStyles(({ palette }) => {
 
   return {
     border: {
-      borderLeft: `1px solid ${palette.grey[200]}`,
+      borderLeft: `1px solid ${palette.grey[isDark ? 900 : 'A100']}`,
     },
     expandButton: {
       '&:hover': {
-        backgroundColor: 'white',
-        border: `2px solid ${palette.primary.light}`,
+        backgroundColor: palette.primary.light,
         '& svg': {
-          color: palette.primary.main,
+          color: palette.common.white,
         },
       },
-      backgroundColor: 'white',
+      backgroundColor: palette.background.paper,
       border: `2px solid ${palette.grey[isDark ? 900 : 'A100']}`,
       boxSizing: 'border-box',
       padding: '3px',

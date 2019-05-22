@@ -16,7 +16,7 @@ import PageContext from '@fusion/design/lib/Provider/PageContext';
 import 'easymde/dist/easymde.min.css';
 
 import { manifest } from '../manifest';
-import Layout from './_layout';
+import Layout from '../layouts/primary';
 import '../icon.config.js';
 
 class MyApp extends App {
@@ -33,16 +33,9 @@ class MyApp extends App {
     }
   }
 
-  render() {
-    const { Component, pageProps, apolloClient } = this.props;
-    const {
-      generateClassName,
-      sheetsManager,
-      sheetsRegistry,
-      theme,
-    } = this.pageContext;
-
-    const Page = () => (
+  Page = () => {
+    const { Component, pageProps } = this.props;
+    return (
       <Layout
         bannerMessage="This site is under maintenance. Please bear with us as we optimize your experience."
         component={Link}
@@ -50,34 +43,40 @@ class MyApp extends App {
         <Component pageContext={this.pageContext} {...pageProps} />
       </Layout>
     );
+  }
 
-    const Providers = ({ children }) => (
+  Providers = ({ children }) => {
+    const { apolloClient } = this.props;
+    const {
+      generateClassName,
+      sheetsManager,
+      sheetsRegistry,
+      theme,
+    } = this.pageContext;
+
+    return (
       <ApolloProvider client={apolloClient}>
         <StylesProvider
           generateClassName={generateClassName}
           sheetsManager={sheetsManager}
           sheetsRegistry={sheetsRegistry}
         >
-          {/* ThemeProvider enables its children to use the theme. */}
           <ThemeProvider theme={theme}>
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
-            {/* Pass pageContext to the _document though the renderPage enhancer
-                to render collected styles on server-side. */}
             <ManifestProvider manifest={manifest}>{children}</ManifestProvider>
           </ThemeProvider>
         </StylesProvider>
       </ApolloProvider>
     );
+  }
 
+  render() {
     return (
       <Container>
-        <Head>
-          <title>{manifest.company.name}</title>
-        </Head>
-        <Providers>
-          <Page />
-        </Providers>
+        <Head><title>{manifest.company.name}</title></Head>
+        <this.Providers>
+          <this.Page />
+        </this.Providers>
       </Container>
     );
   }

@@ -1,6 +1,9 @@
 const withTM = require('next-transpile-modules');
+const withPlugins = require('next-compose-plugins');
 
-module.exports = withTM({
+module.exports = withPlugins([
+  [withTM, { transpileModules: ['@fusion/api', '@fusion/design', '@fusion/corp', '@fusion/main'] }],
+], {
   webpack: (config) => {
     config.module.rules.push({
       test: /\.(md|mdx|svg)$/,
@@ -18,5 +21,5 @@ module.exports = withTM({
 
     return config;
   },
-  transpileModules: ['@fusion/api', '@fusion/design'],
+  target: 'serverless',
 });

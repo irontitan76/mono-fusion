@@ -683,43 +683,6 @@
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.7.1.tgz#9833722341379fb7d67f06a4b00ab3c37913da53"
   integrity sha512-OYpa/Sg+2GDX+jibUfpZVn1YqSVRpYmTLF2eyAfrFTIJSbwyIrc+YscayoykvaOME/wV4BV0Sa0yqdMrgse6mA==
 
-"@fusion/api@file:api":
-  version "1.0.0"
-  dependencies:
-    graphql "^14.3.0"
-    graphql-tag "^2.10.1"
-
-"@fusion/design@file:design":
-  version "1.0.0"
-  dependencies:
-    "@material-ui/core" "^4.0.0-alpha.6"
-    "@material-ui/icons" "^4.0.0-alpha.1"
-    "@material-ui/styles" "^4.0.0-alpha.6"
-    moment "^2.24.0"
-    prop-types "^15.7.2"
-    react "16.8.6"
-    react-dom "16.8.6"
-    react-markdown "^4.0.6"
-
-"@fusion/system@file:system":
-  version "0.0.0"
-  dependencies:
-    "@babel/cli" "^7.4.4"
-    "@babel/core" "^7.4.4"
-    "@babel/node" "^7.2.2"
-    "@babel/preset-env" "^7.4.4"
-    eslint "^5.16.0"
-    eslint-config-airbnb "^17.1.0"
-    eslint-plugin-import "^2.17.2"
-    eslint-plugin-jsx-a11y "^6.2.1"
-    eslint-plugin-prettier "^3.1.0"
-    eslint-plugin-react "^7.13.0"
-    husky "^2.3.0"
-    lint-staged "^8.1.7"
-    nodemon "^1.19.0"
-    onchange "^5.2.0"
-    prettier "^1.17.1"
-
 "@lerna/add@3.14.0":
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@lerna/add/-/add-3.14.0.tgz#799d416e67d48c285967abf883be746557aefa48"
@@ -5166,6 +5129,11 @@ neo-async@^2.6.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
+
+next-compose-plugins@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/next-compose-plugins/-/next-compose-plugins-2.2.0.tgz#95cd8eb40ab0652070d76572fb648354191628b0"
+  integrity sha512-ChUlpT9tWfJ7YxqGw/WQ2T1gf8EeX93n1XqeQw0lkvGa7seszahvF4eOZUJoq7Hetsbzg4UHVnPoCXfXTyQR3g==
 
 nice-try@^1.0.4:
   version "1.0.5"

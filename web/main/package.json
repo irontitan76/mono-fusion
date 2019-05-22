@@ -8,7 +8,7 @@
   "description": "",
   "scripts": {
     "build": "next build",
-    "dev": "next",
+    "dev": "next -p 4003",
     "now-build": "next build",
     "start": "next start"
   },

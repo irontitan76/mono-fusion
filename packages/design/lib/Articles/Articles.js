@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { makeStyles } from '@material-ui/styles';
 import Collapse from '@material-ui/core/Collapse';
 import Grid from '@material-ui/core/Grid';
-import Grow from '@material-ui/core/Grow';
 import IconButton from '@material-ui/core/IconButton';
 import PlusIcon from '@material-ui/icons/Add';
 import SearchIcon from '@material-ui/icons/Search';
@@ -20,6 +19,9 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {
+    cell: {
+      color: palette.primary.light,
+    },
     container: {
       margin: spacing(3),
       width: '100%',
@@ -131,7 +133,7 @@ export function Articles({
           const cells = items.map((item, index) => {
             const Wrapper = ({ children }) => (
               <LinkComponent href={item.path}>
-                <a>{children}</a>
+                <a className={classes.cell}>{children}</a>
               </LinkComponent>
             );
 

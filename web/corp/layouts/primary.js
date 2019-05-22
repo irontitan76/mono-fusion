@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import { withRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { makeStyles } from '@material-ui/styles';
 
 import Drawer from '@fusion/design/lib/Drawer';
-import { TopBarLink, TopBarLogo, TopBarTitle } from '@fusion/design/lib/TopBar';
+import { TopBarTitle } from '@fusion/design/lib/TopBar';
 
 const useStyles = makeStyles(({ palette }) => {
   return {

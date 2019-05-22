@@ -49,7 +49,7 @@ export function Home() {
       action: 'See our standard',
       description: 'Proven strategies that effectively grow your business',
       media: {
-        source: './static/images/plant-1.jpg',
+        source: './static/images/plant-1.jpg?resize&size=300',
         type: 'image',
       },
       path: '/insight?id=cjv8y928r03su01908ylxhpej',

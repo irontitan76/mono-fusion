@@ -8,7 +8,8 @@
   "description": "",
   "scripts": {
     "build": "next build",
-    "dev": "next",
+    "dev": "next -p 4002",
+    "now-build": "next build",
     "start": "next start"
   },
   "dependencies": {

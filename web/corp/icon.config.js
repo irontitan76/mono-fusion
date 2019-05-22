@@ -14,8 +14,7 @@ import {
   faUserTie,
 } from '@fortawesome/pro-light-svg-icons';
 
-config.familyPrefix = 'fusion';
-config.replacementClass = 'svg-inline--fusion';
+config.autoAddCss = false;
 
 library.add(
   faAnalytics,

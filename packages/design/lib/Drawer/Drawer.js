@@ -14,7 +14,7 @@ const useStyles = makeStyles(
   ({ breakpoints, mixins, palette, spacing, transitions }) => {
     const drawerTransition = transitions.create('width', {
       easing: transitions.easing.sharp,
-      duration: transitions.duration.complex,
+      duration: transitions.duration.shortest,
     });
 
     return {
@@ -38,6 +38,7 @@ const useStyles = makeStyles(
         },
       },
       list: {
+        border: 'none',
         height: 'calc(100% - 160px)',
         paddingTop: (() => (props) => (props.underToolbar ? 0 : spacing(2)))(),
       },
