@@ -13,7 +13,7 @@
   },
   "name": "fusion",
   "routes": [
-    { "src": "/(.*)", "dest": "/web/main/$1" },
-    { "src": "/admin/(.*)", "dest": "/web/corp/$1" }
+    { "src": "/admin/(.*)", "dest": "/web/corp/$1" },
+    { "src": "/(.*)", "dest": "/web/main/$1" }
   ]
 }

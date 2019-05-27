@@ -13,7 +13,7 @@ module.exports = {
       name: 'Fusion Industries',
       phone: '',
       slogan:
-        'Optimizing business through intelligent design and professional services',
+        'Optimizing business through intelligent design',
     },
     navigation: {
       items: [

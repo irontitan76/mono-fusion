@@ -14,7 +14,7 @@ const get = (property) => (props) => props[property];
 const getPercentage = (property) => (props) => `${100 / props[property]}%`;
 const styledBy = (property, mapping) => (props) => mapping[props[property]];
 
-const useStyles = makeStyles(({ palette, spacing }) => {
+const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   return {
     card: {
       '&:hover': {
@@ -61,6 +61,10 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       marginRight: spacing(10),
       overflowX: 'hidden',
       overflowY: 'hidden',
+      [breakpoints.down('sm')]: {
+        marginLeft: spacing(2),
+        marginRight: spacing(2),
+      },
     },
     scroll: {
       overflowX: 'scroll',
@@ -71,6 +75,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
 const defaultSize = {
   xl: 2,
   md: 3,
+  sm: 6,
   xs: 12,
 };
 

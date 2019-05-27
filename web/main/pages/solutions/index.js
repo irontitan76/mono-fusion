@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 import NewsSlider from '@fusion/design/lib/NewsSlider';
 
-const useStyles = makeStyles(({ palette, spacing }) => {
+const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   return {
     focus: {
       paddingBottom: spacing(2),
@@ -50,6 +50,11 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       marginLeft: spacing(10),
       marginRight: spacing(10),
       marginTop: spacing(5),
+      [breakpoints.down('sm')]: {
+        marginLeft: 0,
+        marginRight: 0,
+        marginTop: 0,
+      },
     },
     heroContent: {
       height: '100%',
@@ -57,9 +62,18 @@ const useStyles = makeStyles(({ palette, spacing }) => {
     },
     heroTitle: {
       color: palette.common.white,
+      fontSize: '5rem',
+      [breakpoints.down('xs')]: {
+        fontSize: '3rem',
+      },
     },
     heroSubtitle: {
       color: palette.common.white,
+      fontSize: '3rem',
+      fontWeight: 400,
+      [breakpoints.down('xs')]: {
+        fontSize: '2rem',
+      },
     },
   };
 });
@@ -135,13 +149,16 @@ function Solutions() {
         justify="flex-start"
       >
         <Grid item xs={4}>
-          <Typography align="left" className={classes.heroTitle} variant="h1">
+          <Typography
+            align="left"
+            className={classes.heroTitle}
+            variant="h1"
+          >
             Accelerate
           </Typography>
           <Typography
             align="left"
             className={classes.heroSubtitle}
-            style={{ fontWeight: 400 }}
             variant="h4"
           >
             Development

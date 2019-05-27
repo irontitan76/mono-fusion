@@ -46,10 +46,10 @@ const useStyles = makeStyles(
         display: 'flex',
       },
       paper: {
-        backgroundColor: palette.background.default,
+        backgroundColor: palette.primary.main,
         borderLeft: 'none',
         borderRight: 'none',
-        color: palette.getContrastText(palette.background.paper),
+        color: palette.getContrastText(palette.primary.main),
         overflowY: 'hidden',
         zIndex: 1,
       },

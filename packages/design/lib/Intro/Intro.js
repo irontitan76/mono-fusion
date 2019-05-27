@@ -8,6 +8,8 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(({ palette, spacing }) => ({
   intro: {
     paddingBottom: spacing(9),
+    paddingLeft: spacing(2),
+    paddingRight: spacing(2),
     paddingTop: spacing(8),
     width: '100%',
   },
@@ -16,7 +18,6 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   },
   logo: {
     color: palette.primary.main,
-    marginRight: spacing(5),
   },
   subtitle: {
     fontWeight: 300,
@@ -24,7 +25,7 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   },
   title: {
     color: palette.text.primary,
-    fontSize: 48,
+    fontSize: '3rem',
     fontWeight: 400,
     letterSpacing: spacing(1.75),
     paddingBottom: spacing(4),
@@ -88,7 +89,11 @@ export function Intro({ logo, primaryButton, secondaryButton, slogan, title }) {
 
   const Slogan = () => {
     return (
-      <Typography className={classes.subtitle} variant="h5">
+      <Typography
+        align="center"
+        className={classes.subtitle}
+        variant="h5"
+      >
         {slogan}
       </Typography>
     );
@@ -96,7 +101,11 @@ export function Intro({ logo, primaryButton, secondaryButton, slogan, title }) {
 
   const Title = () => {
     return (
-      <Typography className={classes.title} variant="h1">
+      <Typography
+        align="center"
+        className={classes.title}
+        variant="h1"
+      >
         {title.toUpperCase()}
       </Typography>
     );
@@ -109,7 +118,6 @@ export function Intro({ logo, primaryButton, secondaryButton, slogan, title }) {
       component="center"
       container
       justify="center"
-      spacing={5}
     >
       <Logo />
       <Grid className={classes.content} item xs={12}>

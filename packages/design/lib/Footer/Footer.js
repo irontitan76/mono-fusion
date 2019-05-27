@@ -1,8 +1,10 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/styles';
+import Drawer from '@material-ui/core/Drawer';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   const isDark = palette.type === 'dark';
@@ -41,7 +43,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
   };
 });
 
-export default function Footer({ columns, component }) {
+export function Footer({ columns, component }) {
   const classes = useStyles();
   const LinkComponent = component;
 
@@ -72,6 +74,12 @@ export default function Footer({ columns, component }) {
     return <Typography className={classes.title}>{title}</Typography>;
   };
 
+  const SmallScreens = ({ children }) => {
+    return (
+      <Drawer>{children}</Drawer>
+    )
+  }
+
   return (
     <Grid className={classes.footer} container component="footer">
       <Columns />
@@ -82,3 +90,5 @@ export default function Footer({ columns, component }) {
 Footer.defaultProps = {
   component: 'a',
 };
+
+export default Footer;

@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(({ palette }) => {
+const useStyles = makeStyles(({ breakpoints, palette }) => {
   return {
     menu: {
       '& a': {
@@ -17,6 +17,9 @@ const useStyles = makeStyles(({ palette }) => {
         '&:hover': {
           color: palette.primary.main,
         },
+      },
+      [breakpoints.down('sm')]: {
+        display: 'none',
       },
     },
   };
