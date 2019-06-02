@@ -5,20 +5,22 @@ import { ListItemIcon } from '@material-ui/core';
 
 const useStyles = makeStyles(() => {
   return {
-
-  };
+    icon: {
+      color: 'inherit',
+    }
+  }
 });
 
-export function Icon({ icon }) {
-  const classes = useStyles();
-
+export function SliderItemIcon({ icon }) {
   if (!icon) return null;
 
+  const classes = useStyles();
+
   return (
-    <ListItemIcon>
+    <ListItemIcon className={classes.icon}>
       {icon}
     </ListItemIcon>
   );
 }
 
-export default Icon;
+export default SliderItemIcon;

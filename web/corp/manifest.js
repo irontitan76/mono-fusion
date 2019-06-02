@@ -8,7 +8,7 @@ export const manifest = {
   company: {
     address: {},
     email: 'support@fusion.com',
-    logo: './static/images/fusion-logo.svg',
+    logo: './static/images/fusion-logo-white.svg',
     name: 'Fusion Industries',
     phone: '',
     slogan:

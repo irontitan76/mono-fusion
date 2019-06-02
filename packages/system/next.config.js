@@ -19,6 +19,11 @@ module.exports = withPlugins([
       use: [{ loader: 'css-loader' }],
     });
 
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@material-ui/styles": require('path').resolve(process.cwd(), "../../node_modules", "@material-ui/styles"),
+    }
+
     return config;
   },
   target: 'serverless',

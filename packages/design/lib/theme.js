@@ -5,7 +5,9 @@ import green from '@material-ui/core/colors/green';
 import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
 
-const baseTheme = createMuiTheme({
+const type = 'light';
+
+const base = {
   palette: {
     error: {
       contrastText: grey[50],
@@ -15,7 +17,7 @@ const baseTheme = createMuiTheme({
     },
     primary: {
       contrastText: grey[50],
-      dark: '#07285a',
+      dark: '#0052A2',
       light: blue[500],
       main: blue[700],
     },
@@ -25,32 +27,53 @@ const baseTheme = createMuiTheme({
       light: green[300],
       main: green[500],
     },
-    type: 'light',
+    type: type || 'light',
   },
-});
+};
+
+const baseTheme = createMuiTheme(base);
+
+const overrides = {
+  MuiAppBar: {
+    colorDefault: {
+      backgroundColor:
+        baseTheme.type === 'dark' ? '#2f2f2f' : baseTheme.palette.background.paper,
+      boxShadow: baseTheme.shadows[0],
+    },
+  },
+  MuiButton: {
+    root: {
+      borderRadius: 0,
+    },
+  },
+  MuiCard: {},
+  MuiPaper: {
+    rounded: {
+      borderRadius: 0,
+    },
+  },
+};
 
 export const theme = createMuiTheme({
   ...baseTheme,
-  overrides: {
-    MuiAppBar: {
-      colorDefault: {
-        backgroundColor:
-          baseTheme.type === 'dark' ? '#2f2f2f' : baseTheme.palette.background.paper,
-        boxShadow: baseTheme.shadows[0],
-      },
-    },
-    MuiButton: {
-      root: {
-        borderRadius: 0,
-      },
-    },
-    MuiCard: {},
-    MuiPaper: {
-      rounded: {
-        borderRadius: 0,
-      },
-    },
-  },
+  overrides,
 });
+
+export const getTheme = (type) => {
+  const baseTheme = createMuiTheme({
+    ...base,
+    palette: {
+      ...base.palette,
+      type,
+    },
+  });
+
+  const theme = createMuiTheme({
+    ...baseTheme,
+    overrides,
+  });
+
+  return theme;
+};
 
 export default theme;

@@ -11,6 +11,8 @@ import InsightsApi from '@fusion/api/lib/insights';
 import Intro from '@fusion/design/lib/Intro';
 import NewsSlider from '@fusion/design/lib/NewsSlider';
 
+import SSR from '@fusion/design/lib/_v2/Ssr/Ssr';
+
 const useStyles = makeStyles(({ spacing }) => {
   return {
     subheading: {
@@ -59,7 +61,7 @@ export function Home() {
   ];
 
   return (
-    <>
+    <SSR>
       <Intro
         logo={manifest.company.logo}
         slogan={manifest.company.slogan}
@@ -93,7 +95,7 @@ export function Home() {
       {heros.map((hero) => {
         return <Hero component={Link} hero={hero} key={hero.title} />;
       })}
-    </>
+    </SSR>
   );
 }
 

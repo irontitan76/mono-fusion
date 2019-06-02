@@ -1,28 +1,18 @@
-import React from 'react';
+import React from "react";
 
-import Box from '@fusion/design/lib/_v2/NavSidebar/Box';
-import Items from '@fusion/design/lib/_v2/NavSidebar/Items';
-
-import UserIcon from '@material-ui/icons/Person';
+import { IconButton, Typography } from '@material-ui/core';
 
 export function Home() {
   return (
-    <Box>
-      <Items items={[
-        {
-          icon: <UserIcon />,
-          label: 'YAY',
-        },
-        {
-          icon: <UserIcon />,
-          label: 'WOOT',
-        },
-        {
-          icon: <UserIcon />,
-          label: 'HALLO',
-        }
-      ]} />
-    </Box>
+    <>
+      <Typography
+        component="h1"
+        style={{ fontWeight: 500, padding: "25px 40px" }}
+        variant="h5"
+      >
+        Home
+      </Typography>
+    </>
   );
 }
 

@@ -1,59 +1,57 @@
 import React from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
-import Link from 'next/link';
-import { StylesProvider, ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import ManifestProvider from '@fusion/design/lib/Provider/Manifest';
-import PageContext from '@fusion/design/lib/Provider/PageContext';
-import { theme } from '@fusion/design/lib/theme';
+import { getTheme } from '@fusion/design/lib/theme';
 
+import Layout from '../layouts/primary';
 import manifest from '../manifest';
 import '../icon.config.js';
 
 class MyApp extends App {
   constructor() {
     super();
-    this.pageContext = PageContext(theme);
+
+    this.state = {
+      tint: getTheme('light').palette.type,
+    };
   }
 
   componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles && jssStyles.parentNode) {
+    if (jssStyles) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
   }
 
   render() {
+    const { tint } = this.state;
     const { Component, pageProps } = this.props;
-    const {
-      generateClassName,
-      sheetsManager,
-      sheetsRegistry,
-      theme,
-    } = this.pageContext;
+
+    const updatedTheme = getTheme(tint);
+
+    const setTint = () => {
+      history.pushState("", document.title, `${window.location.pathname} ${window.location.search}`);
+      this.setState({
+        tint: tint === 'dark' ? 'light' : 'dark',
+      });
+    };
 
     const Page = () => (
-      <Component pageContext={this.pageContext} {...pageProps} />
+      <Component {...pageProps} />
     );
 
     const Providers = ({ children }) => (
-      <StylesProvider
-        generateClassName={generateClassName}
-        sheetsManager={sheetsManager}
-        sheetsRegistry={sheetsRegistry}
-      >
-        {/* ThemeProvider enables its children to use the theme. */}
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+      <ThemeProvider theme={updatedTheme}>
+        <ManifestProvider manifest={manifest}>
           <CssBaseline />
-          {/* Pass pageContext to the _document though the renderPage enhancer
-              to render collected styles on server-side. */}
-          <ManifestProvider manifest={manifest}>{children}</ManifestProvider>
-        </ThemeProvider>
-      </StylesProvider>
+          {children}
+        </ManifestProvider>
+      </ThemeProvider>
     );
 
     return (
@@ -63,7 +61,9 @@ class MyApp extends App {
         </Head>
         {/* Wrap every page in relevant providers */}
         <Providers>
-          <Page />
+          <Layout setTint={setTint}>
+            <Page />
+          </Layout>
         </Providers>
       </Container>
     );

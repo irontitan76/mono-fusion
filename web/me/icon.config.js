@@ -1,5 +1,46 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 
-import { faAnalytics, faFilter, faSearch } from '@fortawesome/pro-light-svg-icons';
+import {
+  faAnalytics,
+  faBars,
+  faCalendarAlt,
+  faChevronLeft,
+  faChevronRight,
+  faCode,
+  faCopy,
+  faDatabase,
+  faFilter,
+  faMoneyCheck,
+  faPalette,
+  faProjectDiagram,
+  faSearch,
+  faTimes,
+  faUmbrellaBeach,
+  faUserPlus,
+  faUserTie,
+} from '@fortawesome/pro-light-svg-icons';
 
-library.add(faAnalytics, faFilter, faSearch);
+import {
+  faGithub,
+} from '@fortawesome/free-brands-svg-icons';
+
+library.add(
+  faAnalytics,
+  faBars,
+  faCalendarAlt,
+  faChevronLeft,
+  faChevronRight,
+  faCode,
+  faCopy,
+  faDatabase,
+  faFilter,
+  faGithub,
+  faMoneyCheck,
+  faPalette,
+  faProjectDiagram,
+  faSearch,
+  faTimes,
+  faUmbrellaBeach,
+  faUserPlus,
+  faUserTie,
+);

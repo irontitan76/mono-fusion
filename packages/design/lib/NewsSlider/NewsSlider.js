@@ -83,7 +83,7 @@ export default function NewsSlider(props) {
   const classes = useStyles(props);
   const { component, insights, scroll, showDate, size, spacing } = props;
 
-  if (props.insights.length === 0) return <div style={{ height: 200 }} />;
+  if (insights.length === 0) return <div style={{ height: 200 }} />;
 
   let Component = component || 'a';
   let actualScroll = scroll;

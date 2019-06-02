@@ -5,38 +5,40 @@ import Link from 'next/link';
 import ApolloProvider from 'react-apollo/ApolloProvider';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/styles';
+import StylesProvider from '@material-ui/styles/StylesProvider';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
 
-import { getTheme } from '@fusion/design/lib/theme';
+import { theme } from '@fusion/design/lib/theme';
 import ManifestProvider from '@fusion/design/lib/Provider/Manifest';
+import PageContext from '@fusion/design/lib/Provider/PageContext';
 import { withApollo } from '@fusion/design/lib/helpers';
 
 import { manifest } from '../manifest';
-import Layout from '../components/layout';
+import Layout from './_layout';
 import '../icon.config.js';
 
 class MyApp extends App {
   constructor() {
     super();
-
-    this.state = {
-      tint: getTheme('light').palette.type,
-    };
+    this.pageContext = PageContext(theme);
   }
 
   componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
+    if (jssStyles && jssStyles.parentNode) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
   }
 
   render() {
-    const { tint } = this.state;
     const { Component, pageProps, apolloClient } = this.props;
-
-    const updatedTheme = getTheme(tint);
+    const {
+      generateClassName,
+      sheetsManager,
+      sheetsRegistry,
+      theme,
+    } = this.pageContext;
 
     const Page = () => (
       <Layout
@@ -44,7 +46,7 @@ class MyApp extends App {
         component={Link}
         items={manifest.navigation.items}
       >
-        <Component {...pageProps} />
+        <Component pageContext={this.pageContext} {...pageProps} />
       </Layout>
     );
 
@@ -57,10 +59,16 @@ class MyApp extends App {
 
     const Providers = ({ children }) => (
       <ApolloProvider client={apolloClient}>
-        <ThemeProvider theme={updatedTheme}>
-          <CssBaseline />
-          <ManifestProvider manifest={manifest}>{children}</ManifestProvider>
-        </ThemeProvider>
+        <StylesProvider
+          generateClassName={generateClassName}
+          sheetsManager={sheetsManager}
+          sheetsRegistry={sheetsRegistry}
+        >
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <ManifestProvider manifest={manifest}>{children}</ManifestProvider>
+          </ThemeProvider>
+        </StylesProvider>
       </ApolloProvider>
     );
 
