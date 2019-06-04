@@ -32,11 +32,11 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       borderBottom: `1px solid ${palette.grey[isDark ? 700 : 'A100']}`,
       boxShadow: '0 2px 5px rgba(0,0,0,.4)',
       display: 'flex',
-      height: 48,
+      height: 64,
       paddingLeft: spacing(3),
       paddingRight: spacing(3),
       position: 'sticky',
-      top: 48,
+      top: 64,
       zIndex: 1,
     },
   };

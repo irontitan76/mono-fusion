@@ -5,17 +5,19 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(({ breakpoints, palette }) => {
+  const isDark = palette.type === 'dark';
   return {
     menu: {
       '& a': {
         textDecoration: 'none',
       },
       '& p': {
+        color: palette.grey[isDark ? 200 : 500],
         cursor: 'pointer',
         fontSize: 14,
-        fontWeight: 400,
+        fontWeight: 300,
         '&:hover': {
-          color: palette.primary.main,
+          color: palette.grey[isDark ? 500 : 900],
         },
       },
       [breakpoints.down('sm')]: {

@@ -29,6 +29,15 @@ const base = {
     },
     type: type || 'light',
   },
+  typography: {
+    fontFamily: [
+      'Open Sans',
+      'Roboto',
+      'Helvetica',
+      'Arial',
+      'sans-serif',
+    ]
+  }
 };
 
 const baseTheme = createMuiTheme(base);

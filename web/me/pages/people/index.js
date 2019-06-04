@@ -4,15 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { makeStyles } from '@material-ui/styles';
 
-import { IconButton, Grid, Tooltip } from '@material-ui/core';
+import { IconButton, Tooltip } from '@material-ui/core';
 
 import Contents from '@fusion/design/lib/_v2/Contents/Contents';
 import Markdown from '@fusion/design/lib/_v2/Markdown/Markdown';
-import Page from '@fusion/design/lib/_v2/Page/Page';
-import Slideout from '@fusion/design/lib/_v2/Slideout/Slideout';
-import TitleBar from '@fusion/design/lib/_v2/TitleBar/TitleBar';
+import Split from '@fusion/design/lib/_v2/Split/Split';
 
 import standards from '../../static/markdown/FusionStandard.md';
+import Page from '../../layouts/Page';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   const isDark = palette.type === 'dark';
@@ -39,7 +38,6 @@ const useStyles = makeStyles(({ palette, spacing }) => {
 
 export function Payroll() {
   const [copyLabel, setCopyLabel] = useState("Copy");
-  const [open, setOpen] = useState(false);
   const classes = useStyles();
 
   const onCopy = (event, value) => {
@@ -49,39 +47,37 @@ export function Payroll() {
     setTimeout(() => setCopyLabel("Copy"), 300);
   };
 
-  const Md = () => {
+  const MarkDownRender = () => {
+    const codeBar = [
+      <div onClick={onCopy}>
+        <Tooltip title={copyLabel}>
+          <IconButton className={classes.iconButton}>
+              <FontAwesomeIcon
+                className={classes.icon}
+                style={{ fontSize: 18 }}
+                icon={["fal", "copy"]}
+              />
+          </IconButton>
+        </Tooltip>
+      </div>,
+      <Tooltip title="View source code">
+        <IconButton
+          className={classes.iconButton}
+          component="a"
+          href="https://github.com"
+          target="_blank"
+        >
+          <FontAwesomeIcon
+            className={classes.icon}
+            icon={["fab", "github"]}
+          />
+        </IconButton>
+      </Tooltip>
+    ];
+
     return (
       <Markdown
-        codeProps={{
-          buttons: [
-            <div onClick={onCopy}>
-              <Tooltip title={copyLabel}>
-                <IconButton 
-                  className={classes.iconButton}
-                >
-                    <FontAwesomeIcon
-                      className={classes.icon}
-                      style={{ fontSize: 18 }}
-                      icon={["fal", "copy"]}
-                    />
-                </IconButton>
-              </Tooltip>
-            </div>,
-            <Tooltip title="View source code">
-              <IconButton
-                className={classes.iconButton}
-                component="a"
-                href="https://github.com"
-                target="_blank"
-              >
-                <FontAwesomeIcon
-                  className={classes.icon}
-                  icon={["fab", "github"]}
-                />
-              </IconButton>
-            </Tooltip>,
-          ]
-        }}
+        codeProps={{ buttons: codeBar }}
         source={standards}
       />
     );
@@ -104,27 +100,15 @@ export function Payroll() {
   });
   
   return (
-    <Grid className={classes.root} container>
-      <TitleBar
-        buttonLabel="Manage People"
-        onClick={() => setOpen(true)}
-        title="People"
+    <Page
+      SlideoutProps={{ title: "Details" }}
+      TitleBarProps={{ buttonLabel: "Manage People", title: "People" }}
+    >
+      <Split
+        left={<MarkDownRender />}
+        right={<Contents items={headers} title="Contents" />}
       />
-      <Grid component='main' item xs={12}>
-        <Page
-          left={<Md />}
-          right={<Contents
-            items={headers}
-            title="Contents"
-          />}
-        />
-        <Slideout
-          open={open}
-          onClose={() => setOpen(false)}
-          title="Details"
-        />
-      </Grid>
-    </Grid>
+    </Page>
   );
 }
 

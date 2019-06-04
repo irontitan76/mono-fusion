@@ -12,7 +12,7 @@ import Search from '@fusion/design/lib/Search';
 function Insights() {
   const [search, setSearch] = useState('');
   const [value, setValue] = useState('');
-
+  
   const content = (
     <>
       <Query query={InsightsApi.getAll} variables={{ value: search }}>

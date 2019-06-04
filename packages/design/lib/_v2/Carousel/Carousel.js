@@ -33,7 +33,6 @@ const useStyles = makeStyles(() => {
       },
       boxSizing: 'border-box',
       height: 'auto',
-      maxWidth: '100%',
       scrollBehavior: 'smooth',
       overflowX: 'scroll',
       '-webkit-overflow-scrolling': 'touch',
@@ -42,9 +41,9 @@ const useStyles = makeStyles(() => {
     container: {
       boxSizing: 'border-box',
       margin: 'auto 0',
-      maxWidth: 'calc(100% - 90px)',
+      // maxWidth: 'calc(100% - 90px)',
       position: 'relative',
-      width: 'calc(100% - 90px)',
+      // width: 'calc(100% - 90px)',
     },
     item: {
       boxSizing: 'border-box',
@@ -66,7 +65,9 @@ export function Carousel({ icons, items, ratio }) {
     const element = document.getElementById("carousel");
     const width = element.offsetWidth;
 
-    if (element.scrollWidth - (element.scrollLeft + element.offsetWidth / ratio) === 0) {
+    console.log(element.scrollWidth);
+    console.log(element.scrollWidth - (element.scrollLeft + element.offsetWidth));
+    if (element.scrollWidth - (element.scrollLeft + element.offsetWidth) <= 1) {
       return element.scrollLeft = 0;
     }
 
@@ -74,6 +75,8 @@ export function Carousel({ icons, items, ratio }) {
   };
 
   const BackButton = () => {
+    if (items.length / ratio <= 1) return null;
+
     return (
       <Button
         className={clsx(classes.button, classes.buttonBack)}
@@ -85,6 +88,8 @@ export function Carousel({ icons, items, ratio }) {
   };
 
   const NextButton = () => {
+    if (items.length / ratio <= 1) return null;
+
     return (
       <Button
         className={clsx(classes.button, classes.buttonNext)}

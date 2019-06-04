@@ -8,7 +8,7 @@ const useStyles = makeStyles(({ spacing }) => {
   return {};
 });
 
-export function Page({ left, right }) {
+export function Split({ left, right }) {
   const classes = useStyles();
 
   return (
@@ -28,6 +28,6 @@ export function Page({ left, right }) {
   );
 };
 
-Page.propTypes = {};
+Split.propTypes = {};
 
-export default Page;
+export default Split;
