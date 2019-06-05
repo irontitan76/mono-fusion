@@ -63,8 +63,28 @@ const useStyles = makeStyles(({ palette, spacing }) => {
   };
 });
 
-export function Contents({ items, sticky, title }) {
+export function Contents({ as, component, items, level, sticky, source, title }) {
   const classes = useStyles();
+
+  const check = RegExp(`(^|\n)#{${level}} .*\n`, "g");
+
+  if (as === 'toc') {
+    items = source.match(check).map((header) => {
+      const label = header.replace(/(\*|#)*/g, '').trim();
+      return {
+        label,
+        path: {
+          component,
+          href: `#${label.replace(' ', '-').toLowerCase()}`
+        }
+      };
+    });
+  
+    items.unshift({
+      label: "Back to top",
+      path: { component, href: "#" },
+    });
+  }
 
   const list = items.map((item) => {
     const { label, path } = item;
@@ -114,10 +134,14 @@ export function Contents({ items, sticky, title }) {
 };
 
 Contents.defaultProps = {
+  as: 'default',
+  level: 2,
   sticky: true,
 }
 
 Contents.propTypes = {
+  as: PropTypes.oneOf(['default', 'toc']),
+  level: PropTypes.number,
   items: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
     path: PropTypes.shape({}),

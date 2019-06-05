@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => {
     slide: {
       alignItems: 'center',
       display: 'flex',
+      flex: 1,
       fontSize: 42,
       fontWeight: 500,
       height: 'calc(100vh - 100px)',

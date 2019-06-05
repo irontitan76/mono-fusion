@@ -11,6 +11,7 @@ import { Toolbar, Typography } from '@material-ui/core';
 import { headingRenderer, imageRenderer, quoteRenderer, tableRenderer } from './renderers';
 import { scrollToElement } from '../helpers';
 
+import MarkdownCodebar from './MarkdownCodebar';
 import SSR from '../Ssr/Ssr';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
@@ -103,23 +104,14 @@ export function Markdown({ codeProps, source }) {
         language.indexOf(']')
       )
       .replace('_', ' ');
-  
-    const buttons = codeProps.buttons.map((button, index) => {
-      const click = button.props.onClick;
-  
-      return React.cloneElement(button, {
-        key: index,
-        onClick: click ? (event) => click(event, value.trim()) : undefined,
-      });
-    });
-  
+
     return (
       <>
         <Toolbar className={classes.codeBar}>
           <Typography style={{ display: 'flex', flex: 1 }}>
             {title ? title : null}
           </Typography>
-          {buttons}
+          <MarkdownCodebar buttons={codeProps.buttons} value={value} />
         </Toolbar>
         <SyntaxHighlighter
           language={language && language.split('[')[0]}

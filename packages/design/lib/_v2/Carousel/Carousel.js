@@ -41,9 +41,9 @@ const useStyles = makeStyles(() => {
     container: {
       boxSizing: 'border-box',
       margin: 'auto 0',
-      // maxWidth: 'calc(100% - 90px)',
+      maxWidth: 'calc(100% - 90px)',
       position: 'relative',
-      // width: 'calc(100% - 90px)',
+      width: 'calc(100% - 90px)',
     },
     item: {
       boxSizing: 'border-box',

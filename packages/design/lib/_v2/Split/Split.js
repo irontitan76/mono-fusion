@@ -8,13 +8,13 @@ const useStyles = makeStyles(({ spacing }) => {
   return {};
 });
 
-export function Split({ left, right }) {
+export function Split({ children }) {
   const classes = useStyles();
 
   return (
     <Grid container justify="space-between" spacing={5}>
       <Grid item md={10} xl={10} xs={12}>
-        {left}
+        {children[0]}
       </Grid>
       <Grid
         item
@@ -22,7 +22,7 @@ export function Split({ left, right }) {
         xl={2}
         xs={12}
       >
-        {right}
+        {children[1]}
       </Grid>
     </Grid>
   );

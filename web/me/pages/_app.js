@@ -34,6 +34,7 @@ class MyApp extends App {
 
     const updatedTheme = getTheme(tint);
 
+    // I could put this in manifest with different default functions
     const setTint = () => {
       history.pushState("", document.title, `${window.location.pathname} ${window.location.search}`);
       this.setState({
@@ -41,17 +42,23 @@ class MyApp extends App {
       });
     };
 
+    manifest.navigation.primary.forEach((item) => {
+      if (item.intent === 'changeTheme') {
+        item.onClick = setTint;
+      }
+    });
+
     const Page = () => (
       <Component {...pageProps} />
     );
 
     const Providers = ({ children }) => (
-      <ThemeProvider theme={updatedTheme}>
-        <ManifestProvider manifest={manifest}>
-          <CssBaseline />
-          {children}
-        </ManifestProvider>
-      </ThemeProvider>
+      <ManifestProvider manifest={manifest}>
+        <ThemeProvider theme={updatedTheme}>
+            <CssBaseline />
+            {children}
+        </ThemeProvider>
+      </ManifestProvider>
     );
 
     return (
@@ -61,7 +68,7 @@ class MyApp extends App {
         </Head>
         {/* Wrap every page in relevant providers */}
         <Providers>
-          <Layout setTint={setTint}>
+          <Layout>
             <Page />
           </Layout>
         </Providers>

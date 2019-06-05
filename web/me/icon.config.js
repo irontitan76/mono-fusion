@@ -3,6 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faAnalytics,
   faBars,
+  faBinoculars,
   faCalendarAlt,
   faChevronLeft,
   faChevronRight,
@@ -27,6 +28,7 @@ import {
 library.add(
   faAnalytics,
   faBars,
+  faBinoculars,
   faCalendarAlt,
   faChevronLeft,
   faChevronRight,
