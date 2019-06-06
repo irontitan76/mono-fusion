@@ -1,0 +1,13 @@
+type Order {
+  _id: ID! @id
+  _customerId: Person! @relation(link: INLINE)
+  items: [Product!]! @relation(link: INLINE)
+  total: Float!
+  status: OrderStatus! @default(value: CART)
+}
+
+enum OrderStatus {
+  CART
+  PAID
+  WISH
+}

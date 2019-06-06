@@ -1,0 +1,17 @@
+enum CommentType {
+  CONVERSATION
+  REVIEW
+}
+
+type Comment {
+  _id: ID! @id
+  _authorId: Person! @relation(link: INLINE)
+  _createdAt: DateTime! @createdAt
+  _discussionId: ID!
+  _parentId: Comment @relation(link: INLINE)
+  _updatedAt: DateTime! @updatedAt
+  content: String!
+  fullSlug: String @unique
+  slug: String
+  type: CommentType @default(value: CONVERSATION)
+}

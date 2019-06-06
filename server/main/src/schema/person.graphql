@@ -1,0 +1,116 @@
+type Account {
+  number: Int # Need a custom scalar
+  routing: Int # Need a custom scalar
+  type: AccountType
+}
+
+enum AccountType {
+  CHECKING
+  SAVINGS
+}
+
+type Billing {
+  accounts: [Account!]
+  cards: [Card!]
+}
+
+type Card {
+  name: String!
+  number: Int! # Need a custom scalar
+  cvv: Int! # Need a custom scalar (3 digits)
+  expiration: String!
+  type: CardType
+}
+
+enum CardType {
+  CREDIT
+  DEBIT
+}
+
+type Career {
+  company: String!
+  experience: Experience
+  position: String!
+}
+
+type Contact {
+  emails: [String!]
+  address1: String!
+  address2: String!
+  city: String!
+  state: String!
+  country: String!
+  postalCode: String!
+  phones: [String!]
+}
+
+type Email {
+  type: EmailType!
+  value: String! # Need a custom scalar
+}
+
+enum EmailType {
+  PRIMARY
+  SECONDARY
+  ADDITIONAL
+}
+
+type Experience {
+  company: String!
+  position: String!
+  description: String
+  start: String!
+  end: String!
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+type Name {
+  first: String!
+  last: String!
+  middle: String
+  preferred: String
+}
+
+type Person {
+  _id: ID!
+  _createdAt: String!
+  _updatedAt: String!
+  billing: Billing
+  connections: [Person!]
+  contact: Contact
+  career: Career
+  name: Name!
+  password: String!
+  profile: Profile
+  sessions: [Session!]
+  username: String!
+}
+
+type Phone {
+  type: PhoneType!
+  value: String! # Need a custom scalar
+}
+
+enum PhoneType {
+  PRIMARY
+  BUSINESS
+  MOBILE
+  ADDITIONAL
+}
+
+type Profile {
+  avatar: String
+  gender: Gender
+  headline: String
+}
+
+type Session {
+  device: String
+  location: String
+  token: String # Need a custom scalar
+}

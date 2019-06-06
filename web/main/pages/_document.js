@@ -44,7 +44,7 @@ class MyDocument extends Document {
             }
           </style>
         </Head>
-        <body class='loading'>
+        <body className='loading'>
           <Main />
           <NextScript />
         </body>

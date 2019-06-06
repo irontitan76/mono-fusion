@@ -56,12 +56,14 @@ class MyApp extends App {
      */
 
     const Providers = ({ children }) => (
-      <ApolloProvider client={apolloClient}>
-        <ThemeProvider theme={updatedTheme}>
-          <CssBaseline />
-          <ManifestProvider manifest={manifest}>{children}</ManifestProvider>
-        </ThemeProvider>
-      </ApolloProvider>
+      <ManifestProvider manifest={manifest}>
+        <ApolloProvider client={apolloClient}>
+          <ThemeProvider theme={updatedTheme}>
+            <CssBaseline />
+              {children}
+          </ThemeProvider>
+        </ApolloProvider>
+      </ManifestProvider>
     );
 
     return (

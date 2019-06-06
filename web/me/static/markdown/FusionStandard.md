@@ -35,7 +35,7 @@ To soften the iron law of oligarchy, or inevitable tendency of decisions being m
 ### Administrators
 Administrators are focused on the management of the team including technical and leadership pathways.
 
-- **Leader - ** Responsible for overseeing and leading the work of his or her team. He or she is also responsible for planning and maintaining systems, procedures, and policies that enable and encourage the optimum performance of team members.
+- __Leader -__ Responsible for overseeing and leading the work of his or her team. He or she is also responsible for planning and maintaining systems, procedures, and policies that enable and encourage the optimum performance of team members.
 
 - ** Project Leader - ** Project Leaders’ roles are multi-faceted and span teams. They are responsible for communicating deadlines and requirements for deliverables to the teams involved in an offering’s release or campaign’s strategy.
 

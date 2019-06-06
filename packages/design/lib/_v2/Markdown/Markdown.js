@@ -42,6 +42,9 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       '& h1, h2, h3, h4, h5, h6': {
         fontWeight: 300,
         marginBottom: spacing(4),
+        '& strong': {
+          fontWeight: 700,
+        }
       },
       '& h1': {
         '&::after': {
@@ -85,7 +88,10 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       },
       '& p': {
         fontSize: 15,
-      }
+      },
+      '& strong': {
+        fontWeight: 700,
+      },
     }
   };
 });

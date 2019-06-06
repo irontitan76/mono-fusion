@@ -1,0 +1,116 @@
+type Account @embedded {
+  number: Int # Need a custom scalar
+  routing: Int # Need a custom scalar
+  type: AccountType
+}
+
+enum AccountType {
+  CHECKING
+  SAVINGS
+}
+
+type Billing @embedded {
+  accounts: [Account!]
+  cards: [Card!]
+}
+
+type Card @embedded {
+  name: String!
+  number: Int! # Need a custom scalar
+  cvv: Int! # Need a custom scalar (3 digits)
+  expiration: DateTime!
+  type: CardType
+}
+
+enum CardType {
+  CREDIT
+  DEBIT
+}
+
+type Career @embedded {
+  company: String!
+  experience: Experience
+  position: String!
+}
+
+type Contact @embedded {
+  emails: [String!]
+  address1: String!
+  address2: String!
+  city: String!
+  state: String!
+  country: String!
+  postalCode: String!
+  phones: [String!]
+}
+
+type Email @embedded {
+  type: EmailType!
+  value: String! # Need a custom scalar
+}
+
+enum EmailType {
+  PRIMARY
+  SECONDARY
+  ADDITIONAL
+}
+
+type Experience @embedded {
+  company: String!
+  position: String!
+  description: String
+  start: DateTime!
+  end: DateTime!
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+type Name @embedded {
+  first: String!
+  last: String!
+  middle: String
+  preferred: String
+}
+
+type Person {
+  _id: ID! @id
+  _createdAt: DateTime! @createdAt
+  _updatedAt: DateTime! @updatedAt
+  billing: Billing
+  connections: [Person!] @relation(link: INLINE)
+  contact: Contact
+  career: Career
+  name: Name!
+  password: String!
+  profile: Profile
+  sessions: [Session!]
+  username: String! @unique
+}
+
+type Phone @embedded {
+  type: PhoneType!
+  value: String! # Need a custom scalar
+}
+
+enum PhoneType {
+  PRIMARY
+  BUSINESS
+  MOBILE
+  ADDITIONAL
+}
+
+type Profile @embedded {
+  avatar: String
+  gender: Gender @default(value: OTHER)
+  headline: String
+}
+
+type Session @embedded {
+  device: String
+  location: String
+  token: String # Need a custom scalar
+}

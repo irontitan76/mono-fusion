@@ -104,15 +104,13 @@ export const manifest = {
     people: {
       record: {
         headers: [
-          { value: 'Title' },
-          { value: 'Author' },
-          { value: 'Created At' },
-          { value: 'Last Modified' },
-          { value: 'Published At' },
-          { value: '' },
+          { value: 'Name' },
+          { value: 'Primary Email' },
+          { value: 'Primary Phone' },
+          { value: 'Status' },
         ],
         rows: [
-          { title: 'Title', author: 'Author', created_at: 'Created At', last_modified: 'Last Modified', published: 'Published' },
+          { name: 'name', email: 'email', phone: 'phone', status: 'status' },
           {},
         ],
       },

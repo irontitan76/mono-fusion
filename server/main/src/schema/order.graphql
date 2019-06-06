@@ -1,0 +1,13 @@
+type Order {
+  _id: ID!
+  _customerId: String!
+  items: [Product!]!
+  total: Float!
+  status: OrderStatus!
+}
+
+enum OrderStatus {
+  CART
+  PAID
+  WISH
+}

@@ -9,6 +9,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
+  const isDark = palette.type === 'dark';
+  const bgColor = isDark ? '#1d1d1d' : '#f2f2f2';
+
   return {
     desc: {
       fontSize: 14,
@@ -18,7 +21,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       paddingBottom: 0,
     },
     heading: {
-      backgroundColor: palette.common.white,
+      backgroundColor: palette.background.default,
       borderBottom: `1px solid ${palette.grey[200]}`,
       boxShadow: '0 2px 5px rgba(0,0,0,.4)',
       padding: spacing(3),

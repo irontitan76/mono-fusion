@@ -19,8 +19,12 @@ const getColor = (palette) => (props) => {
 };
 
 const useStyles = makeStyles(({ palette }) => {
+  const isDark = palette.type === 'dark';
+  const bgColor = isDark ? '#1d1d1d' : '#fefefe';
+
   return {
     appBar: {
+      backgroundColor: bgColor,
       borderBottom: getBorder('color', palette),
       position: 'sticky',
       top: 0,

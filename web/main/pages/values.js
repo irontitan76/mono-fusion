@@ -10,7 +10,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       color: palette.secondary.main,
     },
     phrase: {
-      color: '#111',
+      color: '#212121',
       fontWeight: 300,
       lineHeight: 1.32,
       padding: spacing(7),
@@ -76,12 +76,24 @@ function Values({ query }) {
 
   const Container = ({ children, id, subtitle, title }) => {
     return (
-      <Grid container id={id} justify="center" style={{ height: 500 }}>
+      <Grid
+        container
+        id={id}
+        justify="center"
+        style={{ height: 500 }}
+      >
         <Grid item xs={12}>
-          <Typography align="center" variant="h4">
+          <Typography
+            align="center"
+            variant="h4"
+          >
             {title}
           </Typography>
-          <Typography align="center" style={{ fontWeight: 300 }} variant="subtitle1">
+          <Typography
+            align="center"
+            style={{ fontWeight: 300 }}
+            variant="subtitle1"
+          >
             {subtitle}
           </Typography>
           {children}
@@ -99,7 +111,12 @@ function Values({ query }) {
         justify="flex-start"
       >
         <Grid item md={5} xs={12}>
-          <Typography align="left" className={classes.phrase} variant="h2">
+          <Typography
+            align="left"
+            component='h1'
+            className={classes.phrase}
+            variant="h3"
+          >
             Values reflect what is important to the way you live and work.
           </Typography>
         </Grid>

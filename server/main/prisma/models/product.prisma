@@ -1,0 +1,42 @@
+enum DimensionScale {
+  FOOT
+  METER
+}
+
+type Manufacturer @embedded {
+  model: String!
+  releaseDate: DateTime!
+}
+
+type Price @embedded {
+  list: Float!
+  retail: Float!
+  savings: Float
+  savingsPct: Float
+}
+
+type Product {
+  _id: ID! @id
+  _handlerId: ID! @id
+  name: String! @unique
+  category: ProductCategory @default(value: UNCATEGORIZED)
+  description: String!
+  details: Json
+  manufacturer: Manufacturer
+  price: Price!
+  quantity: Int! @default(value: 0)
+  shipping: Shipping
+  sku: String
+}
+
+enum ProductCategory {
+  UNCATEGORIZED
+}
+
+type Shipping @embedded {
+  depth: Float!
+  height: Float!
+  scale: DimensionScale! @default(value: FOOT)
+  weight: Float!
+  width: Float!
+}

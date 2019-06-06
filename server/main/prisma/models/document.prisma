@@ -1,0 +1,16 @@
+enum DocumentCategory {
+  UNCATEGORIZED
+  CORPORATE
+}
+
+type Document {
+  _id: ID! @id
+  _authorId: Person! @relation(link: INLINE)
+  _createdAt: DateTime! @createdAt
+  _publishedAt: DateTime # If null, not published
+  _updatedAt: DateTime! @updatedAt
+  category: DocumentCategory! @default(value: UNCATEGORIZED)
+  content: String!
+  subtitle: String
+  title: String! @unique
+}

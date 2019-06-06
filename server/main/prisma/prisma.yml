@@ -1,0 +1,16 @@
+endpoint: http://localhost:4466
+datamodel: 
+  - ./models/comment.prisma
+  - ./models/document.prisma
+  - ./models/notification.prisma
+  - ./models/order.prisma
+  - ./models/person.prisma
+  - ./models/product.prisma
+databaseType: document
+generate:
+  - generator: typescript-client
+    output: ./generated/prisma-client/
+# Ensures Prisma client is re-generated after a datamodel change.
+hooks:
+  post-deploy:
+    - npx nexus-prisma-generate --client ./src/generated/prisma-client --output ./src/generated/nexus-prisma # Runs the codegen tool from nexus-prisma.

@@ -1,0 +1,27 @@
+type Notification {
+  _id: ID!
+  _createdAt: String!
+  _sentAt: String!
+  receiver: [ID!]!
+  message: String!
+  receivedBy: [ReceivedBy!]!
+  sender: Sender!
+  title: String!
+}
+
+type ReceivedBy {
+  _personId: ID!
+  _receivedAt: String!
+  _readAt: String!
+}
+
+type Sender {
+  _personId: ID!
+  name: String!
+  type: SenderType!
+}
+
+enum SenderType {
+  SYSTEM
+  PERSON
+}
