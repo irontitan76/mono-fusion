@@ -48,16 +48,22 @@ export function MenuItem(props) {
   }
 
   if (path.component && path.href) {
-    renderedIcon = <path.component href={path.href}>
-      {renderedIcon}
-    </path.component>    
+    renderedIcon = (
+      <path.component href={path.href}>
+        {renderedIcon}
+      </path.component>
+    );
   }
+
+  const isCurrentView = path.href
+    && global.window
+    && global.window.location.pathname.substring(1) === path.href.substring(1);
 
   return (
     <ListItem
       button
       className={classes.item}
-      selected={path && global.window && global.window.location.pathname === path.href}
+      selected={isCurrentView}
       {...rest}
     >
       {renderedIcon}

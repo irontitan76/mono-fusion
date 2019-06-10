@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { makeStyles } from '@material-ui/styles';
-import { Grid } from '@material-ui/core';
+import { Grid, LinearProgress } from '@material-ui/core';
 
 import Slideout from '@fusion/design/lib/_v2/Slideout/Slideout';
 import TitleBar from '@fusion/design/lib/_v2/TitleBar/TitleBar';
@@ -12,19 +12,23 @@ const useStyles = makeStyles(({ spacing }) => {
       paddingLeft: spacing(5),
       paddingRight: spacing(5),
     },
+    progress: {
+      marginLeft: -50,
+      marginRight: -50,
+    },
     root: {
       boxSizing: 'border-box',
     },
   };
 });
 
-export function Page({ children, ItemProps, TitleBarProps, SlideoutProps, ...rest }) {
+export function Page({ children, isLoading, ItemProps, TitleBarProps, SlideoutProps, ...rest }) {
   const [open, setOpen] = useState(SlideoutProps.open || false);
   const classes = useStyles();
 
   const onClick = TitleBarProps.onClick || (() => setOpen(true));
   const onClose = SlideoutProps.onClose || (() => setOpen(false));
-
+  
   return (
     <Grid className={classes.root} container {...rest}>
       <TitleBar
@@ -38,7 +42,11 @@ export function Page({ children, ItemProps, TitleBarProps, SlideoutProps, ...res
         xs={12}
         {...ItemProps}
       >
-        {children}
+        {
+          isLoading
+            ? <LinearProgress className={classes.progress} />
+            : children
+        }
         <Slideout
           open={open}
           onClose={onClose}

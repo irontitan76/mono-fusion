@@ -3,14 +3,21 @@ enum DocumentCategory {
   CORPORATE
 }
 
+enum DocumentType {
+  DEFAULT
+  INSIGHT
+  POLICY
+}
+
 type Document {
   _id: ID! @id
-  _authorId: Person! @relation(link: INLINE)
   _createdAt: DateTime! @createdAt
   _publishedAt: DateTime # If null, not published
   _updatedAt: DateTime! @updatedAt
+  author: Person! @relation(link: INLINE)
   category: DocumentCategory! @default(value: UNCATEGORIZED)
   content: String!
   subtitle: String
   title: String! @unique
+  type: DocumentType! @default(value: DEFAULT)
 }

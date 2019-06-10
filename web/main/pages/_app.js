@@ -79,4 +79,4 @@ class MyApp extends App {
   }
 }
 
-export default withApollo(MyApp);
+export default withApollo(MyApp, { uri: "https://api.graph.cool/simple/v1/cjv8u8vxs0dfu0192op18chtu" });

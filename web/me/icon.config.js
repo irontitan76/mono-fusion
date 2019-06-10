@@ -1,19 +1,20 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 import {
-  faAnalytics,
   faBars,
-  faBinoculars,
+  faBells,
+  faBox,
   faCalendarAlt,
   faChevronLeft,
   faChevronRight,
   faCode,
+  faConveyorBelt,
   faCopy,
-  faDatabase,
   faFilter,
+  faFolders,
+  faHome,
   faMoneyCheck,
   faPalette,
-  faProjectDiagram,
   faSearch,
   faTimes,
   faUmbrellaBeach,
@@ -26,20 +27,24 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 
 library.add(
-  faAnalytics,
+  faGithub,
+);
+
+library.add(
   faBars,
-  faBinoculars,
+  faBells,
+  faBox,
   faCalendarAlt,
   faChevronLeft,
   faChevronRight,
+  faConveyorBelt,
   faCode,
   faCopy,
-  faDatabase,
   faFilter,
-  faGithub,
+  faFolders,
+  faHome,
   faMoneyCheck,
   faPalette,
-  faProjectDiagram,
   faSearch,
   faTimes,
   faUmbrellaBeach,

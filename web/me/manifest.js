@@ -29,24 +29,24 @@ export const manifest = {
         path: { component: Link, href: "/people" },
       },
       {
-        icon: <FontAwesomeIcon icon={["fal", "binoculars"]} />,
-        label: "Insights",
-        path: { component: Link, href: "/insights" },
+        icon: <FontAwesomeIcon icon={["fal", "folders"]} />,
+        label: "Documents",
+        path: { component: Link, href: "/documents" },
       },
       {
-        icon: <FontAwesomeIcon icon={["fal", "code"]} />,
-        label: "Technology",
-        path: { component: Link, href: "/tech" },
+        icon: <FontAwesomeIcon icon={["fal", "box"]} />,
+        label: "Products",
+        path: { component: Link, href: "/products" },
       },
       {
-        icon: <FontAwesomeIcon icon={["fal", "project-diagram"]} />,
-        label: "Projects",
-        path: { component: Link, href: "/projects" },
+        icon: <FontAwesomeIcon icon={["fal", "conveyor-belt"]} />,
+        label: "Orders",
+        path: { component: Link, href: "/orders" },
       },
       {
-        icon: <FontAwesomeIcon icon={["fal", "database"]} />,
-        label: "Data",
-        path: { component: Link, href: "/data" },
+        icon: <FontAwesomeIcon icon={["fal", "bells"]} />,
+        label: "Notifications",
+        path: { component: Link, href: "/notifications" },
       },
       {
         icon: <FontAwesomeIcon icon={["fal", "palette"]} />,
@@ -55,7 +55,19 @@ export const manifest = {
       }
     ],
     secondary: {
+      documents: [
+        {
+          icon: <FontAwesomeIcon icon={["fal", "home"]} />,
+          label: "Home",
+          path: { component: Link, href: "/documents" },
+        }
+      ],
       people: [
+        {
+          icon: <FontAwesomeIcon icon={["fal", "home"]} />,
+          label: "Home",
+          path: { component: Link, href: "/people" },
+        },
         {
           icon: <FontAwesomeIcon icon={["fal", "money-check"]} />,
           label: "Payroll",
@@ -80,7 +92,7 @@ export const manifest = {
     },
   },
   pages: {
-    insights: {
+    document: {
       markdown: {},
       markdownCodebar: {
         buttons: [
@@ -95,32 +107,274 @@ export const manifest = {
         ],
       },
       contents: { title: "Contents" },
-      slideout: { title: "Details" },
+      slideout: { title: "Add Document" },
       titlebar: {
-        button: "Manage Insights",
-        title: "Insights",
+        button: "Add Document",
+        title: "Documents",
+      },
+    },
+    documents: {
+      record: {
+        headers: [
+          { value: 'ID' },
+          { value: 'Title' },
+          { value: 'Category' },
+          { value: 'Author' },
+          { value: 'Type' },
+        ],
+        paths: [
+          "_id",
+          "title",
+          "category",
+          ["author.name.first", "author.name.last"],
+          'type',
+        ],
+        // data,
+        // rows: [
+        //   { name: 'name', email: 'email', phone: 'phone', status: 'status' },
+        //   {},
+        // ],
+      },
+      slideout: {
+        content: {
+          fields: [
+            {
+              autoFocus: true,
+              fullWidth: true,
+              label: 'Author',
+              name: 'author',
+              required: true,
+              select: true,
+              type: 'select',
+              variant: 'outlined'
+            },
+            {
+              fullWidth: true,
+              label: 'Title',
+              name: 'title',
+              placeholder: 'Type the document title',
+              required: true,
+              type: 'text',
+              variant: 'outlined'
+            },
+            {
+              fullWidth: true,
+              label: 'Subtitle',
+              name: 'subtitle',
+              required: true,
+              placeholder: 'Type the document subtitle',
+              type: 'text',
+              variant: 'outlined'
+            },
+            {
+              fullWidth: true,
+              label: 'Content',
+              multiline: true,
+              name: 'contents',
+              placeholder: 'Type the document content',
+              required: true,
+              rows: 10,
+              type: 'text',
+              variant: 'outlined'
+            },
+            {
+              fullWidth: true,
+              label: 'Category',
+              name: 'category',
+              required: true,
+              select: true,
+              type: 'select',
+              variant: 'outlined'
+            },
+            {
+              fullWidth: true,
+              label: 'Type',
+              name: 'type',
+              required: true,
+              select: true,
+              type: 'select',
+              variant: 'outlined'
+            },
+          ],
+          type: 'form',
+        },
+        title: "Add Document"
+      },
+      titlebar: {
+        button: "Add Document",
+        title: "Documents",
+      },
+    },
+    notifications: {
+      record: {
+        headers: [
+          { value: "ID" },
+          { value: "Title" },
+          { value: "Sender" },
+          { value: "Created At" },
+          { value: "Sent At" },
+        ],
+        paths: [
+          "_id",
+          "title",
+          "sender",
+          "_createdAt",
+          "_sentAt",
+        ],
+      },
+      slideout: {
+        title: "Add Notification"
+      },
+      titlebar: {
+        button: "Add Notification",
+        title: "Notifications",
+      },
+    },
+    orders: {
+      record: {
+        headers: [
+          { value: "ID" },
+          { value: "Customer ID" },
+          { value: "Item Count" },
+          { value: "Total Cost" },
+          { value: "Status" },
+        ],
+        paths: [
+          "_id",
+          "customer._id",
+          "items",
+          "total",
+          "status",
+        ],
+      },
+      slideout: {
+        title: "Add Order"
+      },
+      titlebar: {
+        button: "Add Order",
+        title: "Orders",
       },
     },
     people: {
       record: {
         headers: [
-          { value: 'Name' },
-          { value: 'Primary Email' },
-          { value: 'Primary Phone' },
-          { value: 'Status' },
+          { value: "ID" },
+          { value: "Username" },
+          { value: "First Name" },
+          { value: "Last Name" },
+          { value: "Role" },
         ],
-        rows: [
-          { name: 'name', email: 'email', phone: 'phone', status: 'status' },
-          {},
+        paths: [
+          "_id",
+          "username",
+          "name.first",
+          "name.last",
+          'type',
         ],
       },
-      slideout: { title: "Details" },
+      slideout: {
+        content: {
+          fields: [
+            {
+              fullWidth: true,
+              label: 'First name',
+              name: 'first',
+              required: true,
+              placeholder: 'Type the person\'s first name',
+              type: 'text',
+              variant: 'outlined'
+            },
+            {
+              fullWidth: true,
+              label: 'Middle name',
+              name: 'middle',
+              required: true,
+              placeholder: 'Type the person\'s middle name',
+              type: 'text',
+              variant: 'outlined'
+            },
+            {
+              fullWidth: true,
+              label: 'Last name',
+              name: 'last',
+              required: true,
+              placeholder: 'Type the person\'s last name',
+              type: 'text',
+              variant: 'outlined'
+            },
+            {
+              fullWidth: true,
+              label: 'Preferred name',
+              name: 'preferred',
+              required: true,
+              placeholder: 'Type the person\'s preferred name',
+              type: 'text',
+              variant: 'outlined'
+            },
+            {
+              fullWidth: true,
+              label: 'Username',
+              name: 'username',
+              required: true,
+              placeholder: 'Type the person\'s username',
+              type: 'text',
+              variant: 'outlined'
+            },
+            {
+              fullWidth: true,
+              label: 'Password',
+              name: 'password',
+              required: true,
+              placeholder: 'Type the person\'s password',
+              type: 'password',
+              variant: 'outlined'
+            },
+            {
+              fullWidth: true,
+              label: 'Role',
+              name: 'type',
+              required: true,
+              placeholder: 'Type the person\'s role',
+              type: 'text',
+              variant: 'outlined'
+            },
+          ],
+          type: 'form',
+        },
+        title: "Add Person"
+      },
       titlebar: {
-        button: "Manage People",
+        button: "Add Person",
         title: "People",
       },
     },
-    tech: {},
+    products: {
+      record: {
+        headers: [
+          { value: "SKU" },
+          { value: "Manufacturer" },
+          { value: "Name" },
+          { value: "Category" },
+          { value: "List Price" },
+          { value: "Retail Price" },
+        ],
+        paths: [
+          "sku",
+          "manufacturer.model",
+          "name",
+          "category",
+          "price.list",
+          "price.retail",
+        ],
+      },
+      slideout: {
+        title: "Add Product"
+      },
+      titlebar: {
+        button: "Add Product",
+        title: "Products",
+      },
+    },
   },
   footer: {},
 };

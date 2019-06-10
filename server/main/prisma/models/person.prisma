@@ -1,7 +1,7 @@
 type Account @embedded {
-  number: Int # Need a custom scalar
-  routing: Int # Need a custom scalar
-  type: AccountType
+  number: Int! # Need a custom scalar
+  routing: Int! # Need a custom scalar
+  type: AccountType!
 }
 
 enum AccountType {
@@ -19,7 +19,7 @@ type Card @embedded {
   number: Int! # Need a custom scalar
   cvv: Int! # Need a custom scalar (3 digits)
   expiration: DateTime!
-  type: CardType
+  type: CardType!
 }
 
 enum CardType {
@@ -29,7 +29,7 @@ enum CardType {
 
 type Career @embedded {
   company: String!
-  experience: Experience
+  experience: [Experience!]
   position: String!
 }
 
@@ -76,6 +76,14 @@ type Name @embedded {
   preferred: String
 }
 
+enum PersonType {
+  ADMINISTRATOR
+  EMPLOYEE
+  PARTNER
+  USER
+  VENDOR
+}
+
 type Person {
   _id: ID! @id
   _createdAt: DateTime! @createdAt
@@ -86,8 +94,11 @@ type Person {
   career: Career
   name: Name!
   password: String!
+  # payroll [if employee]
   profile: Profile
+  # schedule [if employee]
   sessions: [Session!]
+  type: PersonType! @default(value: USER)
   username: String! @unique
 }
 

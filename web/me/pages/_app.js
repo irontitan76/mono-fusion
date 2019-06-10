@@ -1,6 +1,9 @@
 import React from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
+import ApolloProvider from 'react-apollo/ApolloProvider';
+import { withApollo } from '@fusion/design/lib/helpers';
+
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -30,13 +33,18 @@ class MyApp extends App {
 
   render() {
     const { tint } = this.state;
-    const { Component, pageProps } = this.props;
+    const { apolloClient, Component, pageProps } = this.props;
 
     const updatedTheme = getTheme(tint);
 
     // I could put this in manifest with different default functions
     const setTint = () => {
-      history.pushState("", document.title, `${window.location.pathname} ${window.location.search}`);
+      history.pushState(
+        "", 
+        document.title, 
+        `${window.location.pathname} ${window.location.search}`
+      );
+
       this.setState({
         tint: tint === 'dark' ? 'light' : 'dark',
       });
@@ -53,12 +61,14 @@ class MyApp extends App {
     );
 
     const Providers = ({ children }) => (
-      <ManifestProvider manifest={manifest}>
-        <ThemeProvider theme={updatedTheme}>
-            <CssBaseline />
-            {children}
-        </ThemeProvider>
-      </ManifestProvider>
+      <ApolloProvider client={apolloClient}>
+        <ManifestProvider manifest={manifest}>
+          <ThemeProvider theme={updatedTheme}>
+              <CssBaseline />
+              {children}
+          </ThemeProvider>
+        </ManifestProvider>
+      </ApolloProvider>
     );
 
     return (
@@ -77,4 +87,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp;
+export default withApollo(MyApp, { uri: "http://localhost:4100/api/graphql" });

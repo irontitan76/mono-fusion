@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -8,6 +8,7 @@ import { Button, Grid, TextField } from '@material-ui/core';
 import Page from '../../layouts/Page';
 import { ManifestContext } from '@fusion/design/lib/Provider/Manifest';
 import Record from '@fusion/design/lib/_v2/Record/Record';
+
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {
@@ -38,81 +39,70 @@ const useStyles = makeStyles(({ palette, spacing }) => {
   };
 });
 
-const GET_PEOPLE = gql`
+const GET_DOCUMENTS = gql`
   query {
-    persons {
+    documents {
       _id
-      name {
-        first
-        last
+      author {
+        _id
+        name {
+          first
+          last
+        }
       }
-      username
+      category
+      content
+      title
+      type
+    }
+  }
+`
+
+const CREATE_DOCUMENT = gql`
+  mutation createDocument($category: String!, $content: String!, $title: String!, $type: String) {
+    createDocument(
+      category: $category,
+      content: $content,
+      title: $title,
+      type: $type,
+    ) {
+      category
+      content
+      title
       type
     }
   }
 `;
 
-const CREATE_PERSON = gql`
-  mutation createPerson(
-      $first: String!,
-      $last: String!,
-      $middle: String!,
-      $password: String!
-      $preferred: String,
-      $username: String!
-    ) {
-    createPerson(data: {
-      name: {
-        create: {
-          first: $first,
-          last: $last,
-          middle: $middle,
-          preferred: $preferred,
-        }
-      }
-      password: $password,
-      username: $username
-    }) { _id username }
-  }
-`;
-
 export function People() {
   const manifest = useContext(ManifestContext);
-  const { record, slideout, titlebar } = manifest.pages.people;
+  const { record, slideout, titlebar } = manifest.pages.documents;
   const classes = useStyles();
 
-  function CreatePerson() {
-    let formState = {};
-    slideout.content.fields.forEach((field) => {
-      formState[field.name] = field.value || '';
-    });
-
-    const [form, setForm] = useState(formState);
-
-    const contents = slideout.content.fields.map((field) => {
+  function CreateDocument() {
+    const form = slideout.content.fields.map((field) => {
       return (
         <TextField
           className={classes.field}
-          InputProps={{ classes: { notchedOutline: classes.outlinedField } }}
-          key={field.name}
+          InputProps={{
+            classes: { notchedOutline: classes.outlinedField },
+          }}
           margin='dense'
-          onChange={(event) => setForm({ ...form, [event.target.name]: event.target.value })}
           {...field}
         />
       );
     });
 
     return (
-      <Mutation mutation={CREATE_PERSON}>
-        {(addPerson, { data }) => (
+      <Mutation mutation={CREATE_DOCUMENT}>
+        {(addDocument, { data }) => (
           <form onSubmit={(event) => {
             event.preventDefault();
-            console.log(form)
-            addPerson({ variables: form });
+            addDocument({});
           }}>
             <Grid container>
               <Grid item xs={12}>
-                {contents}
+                {form}
               </Grid>
             </Grid>
             <Button
@@ -130,7 +120,7 @@ export function People() {
   };
 
   return (
-    <Query query={GET_PEOPLE}>
+    <Query query={GET_DOCUMENTS}>
       {({ loading, error, data }) => {
         if (error) return null;
 
@@ -139,7 +129,7 @@ export function People() {
             isLoading={loading}
             ItemProps={{ className: classes.item }}
             SlideoutProps={{
-              children: <CreatePerson />,
+              children: <CreateDocument />,
               title: slideout.title
             }}
             TitleBarProps={{
@@ -148,7 +138,7 @@ export function People() {
             }}
           >
             <Record
-              data={data.persons}
+              data={data.documents}
               headers={record.headers}
               paths={record.paths}
             />

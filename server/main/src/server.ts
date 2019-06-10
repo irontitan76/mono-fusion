@@ -12,23 +12,25 @@ const graphqlPath: string  = '/api/graphql';
 const app: express.Application = express();
 app.use(cors());
 
+const queryFields: string[] = [
+  'comment',
+  'comments',
+  'document',
+  'documents',
+  'notification',
+  'notifications',
+  'order',
+  'orders',
+  'person',
+  'persons',
+  'product',
+  'products',
+];
+
 // Expose the full "Query" building block
-const Query = prismaObjectType({ 
+const Query = prismaObjectType({
   name: 'Query',
-  definition: t => t.prismaFields([
-    'comment',
-    'comments',
-    'document',
-    'documents',
-    'notification',
-    'notifications',
-    'order',
-    'orders',
-    'person',
-    'persons',
-    'product',
-    'products',
-  ]),
+  definition: t => t.prismaFields(queryFields),
 });
 
 // Customize the "Mutation" building block

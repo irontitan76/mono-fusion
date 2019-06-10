@@ -15,7 +15,14 @@
     "fusion": "./packages/build/lib/cli.js"
   },
   "scripts": {
+    "check": "yarn clean-all && yarn compile && yarn test && yarn lint",
     "clean": "node packages/build/lib/clean",
     "clean-all": "node packages/build/lib/clean all"
+  },
+  "devDependencies": {
+    "lerna": "^3.13.3"
+  },
+  "resolutions": {
+    "**/graphql": "14.3.0"
   }
 }

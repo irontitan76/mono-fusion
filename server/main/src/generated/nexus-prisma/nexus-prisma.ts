@@ -140,6 +140,7 @@ export interface NexusPrismaTypes {
       ContactWhereInput: ContactWhereInputInputObject
       CareerWhereInput: CareerWhereInputInputObject
       ExperienceWhereInput: ExperienceWhereInputInputObject
+      ExperienceRestrictedWhereInput: ExperienceRestrictedWhereInputInputObject
       NameWhereInput: NameWhereInputInputObject
       ProfileWhereInput: ProfileWhereInputInputObject
       SessionWhereInput: SessionWhereInputInputObject
@@ -161,6 +162,7 @@ export interface NexusPrismaTypes {
       PersonWhereUniqueInput: PersonWhereUniqueInputInputObject
       ProductWhereUniqueInput: ProductWhereUniqueInputInputObject
       CommentCreateInput: CommentCreateInputInputObject
+      CommentCreateOneInput: CommentCreateOneInputInputObject
       PersonCreateOneInput: PersonCreateOneInputInputObject
       PersonCreateInput: PersonCreateInputInputObject
       BillingCreateOneInput: BillingCreateOneInputInputObject
@@ -176,7 +178,7 @@ export interface NexusPrismaTypes {
       ContactCreatephonesInput: ContactCreatephonesInputInputObject
       CareerCreateOneInput: CareerCreateOneInputInputObject
       CareerCreateInput: CareerCreateInputInputObject
-      ExperienceCreateOneInput: ExperienceCreateOneInputInputObject
+      ExperienceCreateManyInput: ExperienceCreateManyInputInputObject
       ExperienceCreateInput: ExperienceCreateInputInputObject
       NameCreateOneInput: NameCreateOneInputInputObject
       NameCreateInput: NameCreateInputInputObject
@@ -184,8 +186,9 @@ export interface NexusPrismaTypes {
       ProfileCreateInput: ProfileCreateInputInputObject
       SessionCreateManyInput: SessionCreateManyInputInputObject
       SessionCreateInput: SessionCreateInputInputObject
-      CommentCreateOneInput: CommentCreateOneInputInputObject
       CommentUpdateInput: CommentUpdateInputInputObject
+      CommentUpdateOneInput: CommentUpdateOneInputInputObject
+      CommentUpdateDataInput: CommentUpdateDataInputInputObject
       PersonUpdateOneRequiredInput: PersonUpdateOneRequiredInputInputObject
       PersonUpdateDataInput: PersonUpdateDataInputInputObject
       BillingUpdateOneInput: BillingUpdateOneInputInputObject
@@ -212,9 +215,10 @@ export interface NexusPrismaTypes {
       ContactUpsertNestedInput: ContactUpsertNestedInputInputObject
       CareerUpdateOneInput: CareerUpdateOneInputInputObject
       CareerUpdateDataInput: CareerUpdateDataInputInputObject
-      ExperienceUpdateOneInput: ExperienceUpdateOneInputInputObject
-      ExperienceUpdateDataInput: ExperienceUpdateDataInputInputObject
-      ExperienceUpsertNestedInput: ExperienceUpsertNestedInputInputObject
+      ExperienceUpdateManyInput: ExperienceUpdateManyInputInputObject
+      ExperienceScalarWhereInput: ExperienceScalarWhereInputInputObject
+      ExperienceUpdateManyWithWhereNestedInput: ExperienceUpdateManyWithWhereNestedInputInputObject
+      ExperienceUpdateManyDataInput: ExperienceUpdateManyDataInputInputObject
       CareerUpsertNestedInput: CareerUpsertNestedInputInputObject
       NameUpdateOneRequiredInput: NameUpdateOneRequiredInputInputObject
       NameUpdateDataInput: NameUpdateDataInputInputObject
@@ -227,8 +231,6 @@ export interface NexusPrismaTypes {
       SessionUpdateManyWithWhereNestedInput: SessionUpdateManyWithWhereNestedInputInputObject
       SessionUpdateManyDataInput: SessionUpdateManyDataInputInputObject
       PersonUpsertNestedInput: PersonUpsertNestedInputInputObject
-      CommentUpdateOneInput: CommentUpdateOneInputInputObject
-      CommentUpdateDataInput: CommentUpdateDataInputInputObject
       CommentUpsertNestedInput: CommentUpsertNestedInputInputObject
       CommentUpdateManyMutationInput: CommentUpdateManyMutationInputInputObject
       DocumentCreateInput: DocumentCreateInputInputObject
@@ -293,10 +295,12 @@ export interface NexusPrismaTypes {
     AccountType: AccountTypeValues,
     CardType: CardTypeValues,
     Gender: GenderValues,
+    PersonType: PersonTypeValues,
     PersonOrderByInput: PersonOrderByInputValues,
     CommentType: CommentTypeValues,
     CommentOrderByInput: CommentOrderByInputValues,
     DocumentCategory: DocumentCategoryValues,
+    DocumentType: DocumentTypeValues,
     DocumentOrderByInput: DocumentOrderByInputValues,
     SenderType: SenderTypeValues,
     NotificationOrderByInput: NotificationOrderByInputValues,
@@ -706,11 +710,11 @@ export interface QueryFieldDetails {
 type CommentObject =
   | CommentFields
   | { name: '_id', args?: [] | false, alias?: string  } 
-  | { name: '_authorId', args?: [] | false, alias?: string  } 
   | { name: '_createdAt', args?: [] | false, alias?: string  } 
   | { name: '_discussionId', args?: [] | false, alias?: string  } 
   | { name: '_parentId', args?: [] | false, alias?: string  } 
   | { name: '_updatedAt', args?: [] | false, alias?: string  } 
+  | { name: 'author', args?: [] | false, alias?: string  } 
   | { name: 'content', args?: [] | false, alias?: string  } 
   | { name: 'fullSlug', args?: [] | false, alias?: string  } 
   | { name: 'slug', args?: [] | false, alias?: string  } 
@@ -718,11 +722,11 @@ type CommentObject =
 
 type CommentFields =
   | '_id'
-  | '_authorId'
   | '_createdAt'
   | '_discussionId'
   | '_parentId'
   | '_updatedAt'
+  | 'author'
   | 'content'
   | 'fullSlug'
   | 'slug'
@@ -740,19 +744,6 @@ export interface CommentFieldDetails {
     list: undefined
     nullable: false
     resolve: undefined
-  }
-  _authorId: {
-    type: 'Person'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: (
-      root: core.RootValue<"Comment">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Person> | prisma.Person
   }
   _createdAt: {
     type: 'DateTime'
@@ -790,6 +781,19 @@ export interface CommentFieldDetails {
     list: undefined
     nullable: false
     resolve: undefined
+  }
+  author: {
+    type: 'Person'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Comment">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Person> | prisma.Person
   }
   content: {
     type: 'String'
@@ -846,6 +850,7 @@ type PersonObject =
   | { name: 'password', args?: [] | false, alias?: string  } 
   | { name: 'profile', args?: [] | false, alias?: string  } 
   | { name: 'sessions', args?: [] | false, alias?: string  } 
+  | { name: 'type', args?: [] | false, alias?: string  } 
   | { name: 'username', args?: [] | false, alias?: string  } 
 
 type PersonFields =
@@ -860,6 +865,7 @@ type PersonFields =
   | 'password'
   | 'profile'
   | 'sessions'
+  | 'type'
   | 'username'
 
 
@@ -997,6 +1003,19 @@ export interface PersonFieldDetails {
       info?: GraphQLResolveInfo
     ) => Promise<prisma.Session[]> | prisma.Session[]
   }
+  type: {
+    type: 'PersonType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Person">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PersonType> | prisma.PersonType
+  }
   username: {
     type: 'String'
     args: {}
@@ -1076,7 +1095,7 @@ export interface AccountFieldDetails {
     args: {}
     description: string
     list: undefined
-    nullable: true
+    nullable: false
     resolve: undefined
   }
   routing: {
@@ -1084,7 +1103,7 @@ export interface AccountFieldDetails {
     args: {}
     description: string
     list: undefined
-    nullable: true
+    nullable: false
     resolve: undefined
   }
   type: {
@@ -1092,13 +1111,13 @@ export interface AccountFieldDetails {
     args: {}
     description: string
     list: undefined
-    nullable: true
+    nullable: false
     resolve: (
       root: core.RootValue<"Account">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.AccountType | null> | prisma.AccountType | null
+    ) => Promise<prisma.AccountType> | prisma.AccountType
   }
 }
   
@@ -1162,13 +1181,13 @@ export interface CardFieldDetails {
     args: {}
     description: string
     list: undefined
-    nullable: true
+    nullable: false
     resolve: (
       root: core.RootValue<"Card">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.CardType | null> | prisma.CardType | null
+    ) => Promise<prisma.CardType> | prisma.CardType
   }
 }
   
@@ -1298,14 +1317,14 @@ export interface CareerFieldDetails {
     type: 'Experience'
     args: {}
     description: string
-    list: undefined
-    nullable: true
+    list: true
+    nullable: false
     resolve: (
       root: core.RootValue<"Career">,
       args: {  }  ,
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
-    ) => Promise<prisma.Experience | null> | prisma.Experience | null
+    ) => Promise<prisma.Experience[]> | prisma.Experience[]
   }
   position: {
     type: 'String'
@@ -1718,25 +1737,27 @@ export interface AggregateCommentFieldDetails {
 type DocumentObject =
   | DocumentFields
   | { name: '_id', args?: [] | false, alias?: string  } 
-  | { name: '_authorId', args?: [] | false, alias?: string  } 
   | { name: '_createdAt', args?: [] | false, alias?: string  } 
   | { name: '_publishedAt', args?: [] | false, alias?: string  } 
   | { name: '_updatedAt', args?: [] | false, alias?: string  } 
+  | { name: 'author', args?: [] | false, alias?: string  } 
   | { name: 'category', args?: [] | false, alias?: string  } 
   | { name: 'content', args?: [] | false, alias?: string  } 
   | { name: 'subtitle', args?: [] | false, alias?: string  } 
   | { name: 'title', args?: [] | false, alias?: string  } 
+  | { name: 'type', args?: [] | false, alias?: string  } 
 
 type DocumentFields =
   | '_id'
-  | '_authorId'
   | '_createdAt'
   | '_publishedAt'
   | '_updatedAt'
+  | 'author'
   | 'category'
   | 'content'
   | 'subtitle'
   | 'title'
+  | 'type'
 
 
 
@@ -1750,19 +1771,6 @@ export interface DocumentFieldDetails {
     list: undefined
     nullable: false
     resolve: undefined
-  }
-  _authorId: {
-    type: 'Person'
-    args: {}
-    description: string
-    list: undefined
-    nullable: false
-    resolve: (
-      root: core.RootValue<"Document">,
-      args: {  }  ,
-      context: core.GetGen<"context">,
-      info?: GraphQLResolveInfo
-    ) => Promise<prisma.Person> | prisma.Person
   }
   _createdAt: {
     type: 'DateTime'
@@ -1787,6 +1795,19 @@ export interface DocumentFieldDetails {
     list: undefined
     nullable: false
     resolve: undefined
+  }
+  author: {
+    type: 'Person'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Document">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Person> | prisma.Person
   }
   category: {
     type: 'DocumentCategory'
@@ -1824,6 +1845,19 @@ export interface DocumentFieldDetails {
     list: undefined
     nullable: false
     resolve: undefined
+  }
+  type: {
+    type: 'DocumentType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"Document">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.DocumentType> | prisma.DocumentType
   }
 }
   
@@ -2293,14 +2327,14 @@ export interface AggregateNotificationFieldDetails {
 type OrderObject =
   | OrderFields
   | { name: '_id', args?: [] | false, alias?: string  } 
-  | { name: '_customerId', args?: [] | false, alias?: string  } 
+  | { name: 'customer', args?: [] | false, alias?: string  } 
   | { name: 'items', args?: OrderItemsArgs[] | false, alias?: string  } 
   | { name: 'total', args?: [] | false, alias?: string  } 
   | { name: 'status', args?: [] | false, alias?: string  } 
 
 type OrderFields =
   | '_id'
-  | '_customerId'
+  | 'customer'
   | 'items'
   | 'total'
   | 'status'
@@ -2325,7 +2359,7 @@ export interface OrderFieldDetails {
     nullable: false
     resolve: undefined
   }
-  _customerId: {
+  customer: {
     type: 'Person'
     args: {}
     description: string
@@ -4098,6 +4132,7 @@ type DocumentPreviousValuesObject =
   | { name: 'content', args?: [] | false, alias?: string  } 
   | { name: 'subtitle', args?: [] | false, alias?: string  } 
   | { name: 'title', args?: [] | false, alias?: string  } 
+  | { name: 'type', args?: [] | false, alias?: string  } 
 
 type DocumentPreviousValuesFields =
   | '_id'
@@ -4108,6 +4143,7 @@ type DocumentPreviousValuesFields =
   | 'content'
   | 'subtitle'
   | 'title'
+  | 'type'
 
 
 
@@ -4182,6 +4218,19 @@ export interface DocumentPreviousValuesFieldDetails {
     list: undefined
     nullable: false
     resolve: undefined
+  }
+  type: {
+    type: 'DocumentType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"DocumentPreviousValues">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.DocumentType> | prisma.DocumentType
   }
 }
   
@@ -4529,6 +4578,7 @@ type PersonPreviousValuesObject =
   | { name: '_createdAt', args?: [] | false, alias?: string  } 
   | { name: '_updatedAt', args?: [] | false, alias?: string  } 
   | { name: 'password', args?: [] | false, alias?: string  } 
+  | { name: 'type', args?: [] | false, alias?: string  } 
   | { name: 'username', args?: [] | false, alias?: string  } 
 
 type PersonPreviousValuesFields =
@@ -4536,6 +4586,7 @@ type PersonPreviousValuesFields =
   | '_createdAt'
   | '_updatedAt'
   | 'password'
+  | 'type'
   | 'username'
 
 
@@ -4574,6 +4625,19 @@ export interface PersonPreviousValuesFieldDetails {
     list: undefined
     nullable: false
     resolve: undefined
+  }
+  type: {
+    type: 'PersonType'
+    args: {}
+    description: string
+    list: undefined
+    nullable: false
+    resolve: (
+      root: core.RootValue<"PersonPreviousValues">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.PersonType> | prisma.PersonType
   }
   username: {
     type: 'String'
@@ -4820,6 +4884,10 @@ export interface PersonWhereInput {
   sessions_some?: SessionWhereInput | null
   sessions_every?: SessionRestrictedWhereInput | null
   sessions_none?: SessionRestrictedWhereInput | null
+  type?: prisma.PersonType | null
+  type_not?: prisma.PersonType | null
+  type_in?: prisma.PersonType[]
+  type_not_in?: prisma.PersonType[]
   username?: string | null
   username_not?: string | null
   username_in?: string[]
@@ -4891,6 +4959,10 @@ export type PersonWhereInputInputObject =
   | { name: 'sessions_some', alias?: string  } 
   | { name: 'sessions_every', alias?: string  } 
   | { name: 'sessions_none', alias?: string  } 
+  | { name: 'type', alias?: string  } 
+  | { name: 'type_not', alias?: string  } 
+  | { name: 'type_in', alias?: string  } 
+  | { name: 'type_not_in', alias?: string  } 
   | { name: 'username', alias?: string  } 
   | { name: 'username_not', alias?: string  } 
   | { name: 'username_in', alias?: string  } 
@@ -5392,7 +5464,9 @@ export interface CareerWhereInput {
   company_not_starts_with?: string | null
   company_ends_with?: string | null
   company_not_ends_with?: string | null
-  experience?: ExperienceWhereInput | null
+  experience_some?: ExperienceWhereInput | null
+  experience_every?: ExperienceRestrictedWhereInput | null
+  experience_none?: ExperienceRestrictedWhereInput | null
   position?: string | null
   position_not?: string | null
   position_in?: string[]
@@ -5425,7 +5499,9 @@ export type CareerWhereInputInputObject =
   | { name: 'company_not_starts_with', alias?: string  } 
   | { name: 'company_ends_with', alias?: string  } 
   | { name: 'company_not_ends_with', alias?: string  } 
-  | { name: 'experience', alias?: string  } 
+  | { name: 'experience_some', alias?: string  } 
+  | { name: 'experience_every', alias?: string  } 
+  | { name: 'experience_none', alias?: string  } 
   | { name: 'position', alias?: string  } 
   | { name: 'position_not', alias?: string  } 
   | { name: 'position_in', alias?: string  } 
@@ -5505,6 +5581,129 @@ export interface ExperienceWhereInput {
 }
 export type ExperienceWhereInputInputObject =
   | Extract<keyof ExperienceWhereInput, string>
+  | { name: 'company', alias?: string  } 
+  | { name: 'company_not', alias?: string  } 
+  | { name: 'company_in', alias?: string  } 
+  | { name: 'company_not_in', alias?: string  } 
+  | { name: 'company_lt', alias?: string  } 
+  | { name: 'company_lte', alias?: string  } 
+  | { name: 'company_gt', alias?: string  } 
+  | { name: 'company_gte', alias?: string  } 
+  | { name: 'company_contains', alias?: string  } 
+  | { name: 'company_not_contains', alias?: string  } 
+  | { name: 'company_starts_with', alias?: string  } 
+  | { name: 'company_not_starts_with', alias?: string  } 
+  | { name: 'company_ends_with', alias?: string  } 
+  | { name: 'company_not_ends_with', alias?: string  } 
+  | { name: 'position', alias?: string  } 
+  | { name: 'position_not', alias?: string  } 
+  | { name: 'position_in', alias?: string  } 
+  | { name: 'position_not_in', alias?: string  } 
+  | { name: 'position_lt', alias?: string  } 
+  | { name: 'position_lte', alias?: string  } 
+  | { name: 'position_gt', alias?: string  } 
+  | { name: 'position_gte', alias?: string  } 
+  | { name: 'position_contains', alias?: string  } 
+  | { name: 'position_not_contains', alias?: string  } 
+  | { name: 'position_starts_with', alias?: string  } 
+  | { name: 'position_not_starts_with', alias?: string  } 
+  | { name: 'position_ends_with', alias?: string  } 
+  | { name: 'position_not_ends_with', alias?: string  } 
+  | { name: 'description', alias?: string  } 
+  | { name: 'description_not', alias?: string  } 
+  | { name: 'description_in', alias?: string  } 
+  | { name: 'description_not_in', alias?: string  } 
+  | { name: 'description_lt', alias?: string  } 
+  | { name: 'description_lte', alias?: string  } 
+  | { name: 'description_gt', alias?: string  } 
+  | { name: 'description_gte', alias?: string  } 
+  | { name: 'description_contains', alias?: string  } 
+  | { name: 'description_not_contains', alias?: string  } 
+  | { name: 'description_starts_with', alias?: string  } 
+  | { name: 'description_not_starts_with', alias?: string  } 
+  | { name: 'description_ends_with', alias?: string  } 
+  | { name: 'description_not_ends_with', alias?: string  } 
+  | { name: 'start', alias?: string  } 
+  | { name: 'start_not', alias?: string  } 
+  | { name: 'start_in', alias?: string  } 
+  | { name: 'start_not_in', alias?: string  } 
+  | { name: 'start_lt', alias?: string  } 
+  | { name: 'start_lte', alias?: string  } 
+  | { name: 'start_gt', alias?: string  } 
+  | { name: 'start_gte', alias?: string  } 
+  | { name: 'end', alias?: string  } 
+  | { name: 'end_not', alias?: string  } 
+  | { name: 'end_in', alias?: string  } 
+  | { name: 'end_not_in', alias?: string  } 
+  | { name: 'end_lt', alias?: string  } 
+  | { name: 'end_lte', alias?: string  } 
+  | { name: 'end_gt', alias?: string  } 
+  | { name: 'end_gte', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  
+export interface ExperienceRestrictedWhereInput {
+  company?: string | null
+  company_not?: string | null
+  company_in?: string[]
+  company_not_in?: string[]
+  company_lt?: string | null
+  company_lte?: string | null
+  company_gt?: string | null
+  company_gte?: string | null
+  company_contains?: string | null
+  company_not_contains?: string | null
+  company_starts_with?: string | null
+  company_not_starts_with?: string | null
+  company_ends_with?: string | null
+  company_not_ends_with?: string | null
+  position?: string | null
+  position_not?: string | null
+  position_in?: string[]
+  position_not_in?: string[]
+  position_lt?: string | null
+  position_lte?: string | null
+  position_gt?: string | null
+  position_gte?: string | null
+  position_contains?: string | null
+  position_not_contains?: string | null
+  position_starts_with?: string | null
+  position_not_starts_with?: string | null
+  position_ends_with?: string | null
+  position_not_ends_with?: string | null
+  description?: string | null
+  description_not?: string | null
+  description_in?: string[]
+  description_not_in?: string[]
+  description_lt?: string | null
+  description_lte?: string | null
+  description_gt?: string | null
+  description_gte?: string | null
+  description_contains?: string | null
+  description_not_contains?: string | null
+  description_starts_with?: string | null
+  description_not_starts_with?: string | null
+  description_ends_with?: string | null
+  description_not_ends_with?: string | null
+  start?: string | null
+  start_not?: string | null
+  start_in?: string[]
+  start_not_in?: string[]
+  start_lt?: string | null
+  start_lte?: string | null
+  start_gt?: string | null
+  start_gte?: string | null
+  end?: string | null
+  end_not?: string | null
+  end_in?: string[]
+  end_not_in?: string[]
+  end_lt?: string | null
+  end_lte?: string | null
+  end_gt?: string | null
+  end_gte?: string | null
+  AND?: ExperienceRestrictedWhereInput[]
+}
+export type ExperienceRestrictedWhereInputInputObject =
+  | Extract<keyof ExperienceRestrictedWhereInput, string>
   | { name: 'company', alias?: string  } 
   | { name: 'company_not', alias?: string  } 
   | { name: 'company_in', alias?: string  } 
@@ -5952,7 +6151,6 @@ export interface CommentWhereInput {
   _id_not_starts_with?: string | null
   _id_ends_with?: string | null
   _id_not_ends_with?: string | null
-  _authorId?: PersonWhereInput | null
   _createdAt?: string | null
   _createdAt_not?: string | null
   _createdAt_in?: string[]
@@ -5984,6 +6182,7 @@ export interface CommentWhereInput {
   _updatedAt_lte?: string | null
   _updatedAt_gt?: string | null
   _updatedAt_gte?: string | null
+  author?: PersonWhereInput | null
   content?: string | null
   content_not?: string | null
   content_in?: string[]
@@ -6048,7 +6247,6 @@ export type CommentWhereInputInputObject =
   | { name: '_id_not_starts_with', alias?: string  } 
   | { name: '_id_ends_with', alias?: string  } 
   | { name: '_id_not_ends_with', alias?: string  } 
-  | { name: '_authorId', alias?: string  } 
   | { name: '_createdAt', alias?: string  } 
   | { name: '_createdAt_not', alias?: string  } 
   | { name: '_createdAt_in', alias?: string  } 
@@ -6080,6 +6278,7 @@ export type CommentWhereInputInputObject =
   | { name: '_updatedAt_lte', alias?: string  } 
   | { name: '_updatedAt_gt', alias?: string  } 
   | { name: '_updatedAt_gte', alias?: string  } 
+  | { name: 'author', alias?: string  } 
   | { name: 'content', alias?: string  } 
   | { name: 'content_not', alias?: string  } 
   | { name: 'content_in', alias?: string  } 
@@ -6152,7 +6351,6 @@ export interface DocumentWhereInput {
   _id_not_starts_with?: string | null
   _id_ends_with?: string | null
   _id_not_ends_with?: string | null
-  _authorId?: PersonWhereInput | null
   _createdAt?: string | null
   _createdAt_not?: string | null
   _createdAt_in?: string[]
@@ -6177,6 +6375,7 @@ export interface DocumentWhereInput {
   _updatedAt_lte?: string | null
   _updatedAt_gt?: string | null
   _updatedAt_gte?: string | null
+  author?: PersonWhereInput | null
   category?: prisma.DocumentCategory | null
   category_not?: prisma.DocumentCategory | null
   category_in?: prisma.DocumentCategory[]
@@ -6223,6 +6422,10 @@ export interface DocumentWhereInput {
   title_not_starts_with?: string | null
   title_ends_with?: string | null
   title_not_ends_with?: string | null
+  type?: prisma.DocumentType | null
+  type_not?: prisma.DocumentType | null
+  type_in?: prisma.DocumentType[]
+  type_not_in?: prisma.DocumentType[]
   AND?: DocumentWhereInput[]
 }
 export type DocumentWhereInputInputObject =
@@ -6241,7 +6444,6 @@ export type DocumentWhereInputInputObject =
   | { name: '_id_not_starts_with', alias?: string  } 
   | { name: '_id_ends_with', alias?: string  } 
   | { name: '_id_not_ends_with', alias?: string  } 
-  | { name: '_authorId', alias?: string  } 
   | { name: '_createdAt', alias?: string  } 
   | { name: '_createdAt_not', alias?: string  } 
   | { name: '_createdAt_in', alias?: string  } 
@@ -6266,6 +6468,7 @@ export type DocumentWhereInputInputObject =
   | { name: '_updatedAt_lte', alias?: string  } 
   | { name: '_updatedAt_gt', alias?: string  } 
   | { name: '_updatedAt_gte', alias?: string  } 
+  | { name: 'author', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'category_not', alias?: string  } 
   | { name: 'category_in', alias?: string  } 
@@ -6312,6 +6515,10 @@ export type DocumentWhereInputInputObject =
   | { name: 'title_not_starts_with', alias?: string  } 
   | { name: 'title_ends_with', alias?: string  } 
   | { name: 'title_not_ends_with', alias?: string  } 
+  | { name: 'type', alias?: string  } 
+  | { name: 'type_not', alias?: string  } 
+  | { name: 'type_in', alias?: string  } 
+  | { name: 'type_not_in', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   
 export interface NotificationWhereUniqueInput {
@@ -6977,7 +7184,7 @@ export interface OrderWhereInput {
   _id_not_starts_with?: string | null
   _id_ends_with?: string | null
   _id_not_ends_with?: string | null
-  _customerId?: PersonWhereInput | null
+  customer?: PersonWhereInput | null
   items_some?: ProductWhereInput | null
   total?: number | null
   total_not?: number | null
@@ -7009,7 +7216,7 @@ export type OrderWhereInputInputObject =
   | { name: '_id_not_starts_with', alias?: string  } 
   | { name: '_id_ends_with', alias?: string  } 
   | { name: '_id_not_ends_with', alias?: string  } 
-  | { name: '_customerId', alias?: string  } 
+  | { name: 'customer', alias?: string  } 
   | { name: 'items_some', alias?: string  } 
   | { name: 'total', alias?: string  } 
   | { name: 'total_not', alias?: string  } 
@@ -7047,9 +7254,9 @@ export type ProductWhereUniqueInputInputObject =
   
 export interface CommentCreateInput {
   _id?: string | null
-  _authorId?: PersonCreateOneInput
   _discussionId?: string
   _parentId?: CommentCreateOneInput | null
+  author?: PersonCreateOneInput
   content?: string
   fullSlug?: string | null
   slug?: string | null
@@ -7058,13 +7265,22 @@ export interface CommentCreateInput {
 export type CommentCreateInputInputObject =
   | Extract<keyof CommentCreateInput, string>
   | { name: '_id', alias?: string  } 
-  | { name: '_authorId', alias?: string  } 
   | { name: '_discussionId', alias?: string  } 
   | { name: '_parentId', alias?: string  } 
+  | { name: 'author', alias?: string  } 
   | { name: 'content', alias?: string  } 
   | { name: 'fullSlug', alias?: string  } 
   | { name: 'slug', alias?: string  } 
   | { name: 'type', alias?: string  } 
+  
+export interface CommentCreateOneInput {
+  create?: CommentCreateInput | null
+  connect?: CommentWhereUniqueInput | null
+}
+export type CommentCreateOneInputInputObject =
+  | Extract<keyof CommentCreateOneInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
   
 export interface PersonCreateOneInput {
   create?: PersonCreateInput | null
@@ -7085,6 +7301,7 @@ export interface PersonCreateInput {
   password?: string
   profile?: ProfileCreateOneInput | null
   sessions?: SessionCreateManyInput | null
+  type?: prisma.PersonType | null
   username?: string
 }
 export type PersonCreateInputInputObject =
@@ -7098,6 +7315,7 @@ export type PersonCreateInputInputObject =
   | { name: 'password', alias?: string  } 
   | { name: 'profile', alias?: string  } 
   | { name: 'sessions', alias?: string  } 
+  | { name: 'type', alias?: string  } 
   | { name: 'username', alias?: string  } 
   
 export interface BillingCreateOneInput {
@@ -7124,9 +7342,9 @@ export type AccountCreateManyInputInputObject =
   | { name: 'create', alias?: string  } 
   
 export interface AccountCreateInput {
-  number?: number | null
-  routing?: number | null
-  type?: prisma.AccountType | null
+  number?: number
+  routing?: number
+  type?: prisma.AccountType
 }
 export type AccountCreateInputInputObject =
   | Extract<keyof AccountCreateInput, string>
@@ -7146,7 +7364,7 @@ export interface CardCreateInput {
   number?: number
   cvv?: number
   expiration?: string
-  type?: prisma.CardType | null
+  type?: prisma.CardType
 }
 export type CardCreateInputInputObject =
   | Extract<keyof CardCreateInput, string>
@@ -7216,7 +7434,7 @@ export type CareerCreateOneInputInputObject =
   
 export interface CareerCreateInput {
   company?: string
-  experience?: ExperienceCreateOneInput | null
+  experience?: ExperienceCreateManyInput | null
   position?: string
 }
 export type CareerCreateInputInputObject =
@@ -7225,11 +7443,11 @@ export type CareerCreateInputInputObject =
   | { name: 'experience', alias?: string  } 
   | { name: 'position', alias?: string  } 
   
-export interface ExperienceCreateOneInput {
-  create?: ExperienceCreateInput | null
+export interface ExperienceCreateManyInput {
+  create?: ExperienceCreateInput[]
 }
-export type ExperienceCreateOneInputInputObject =
-  | Extract<keyof ExperienceCreateOneInput, string>
+export type ExperienceCreateManyInputInputObject =
+  | Extract<keyof ExperienceCreateManyInput, string>
   | { name: 'create', alias?: string  } 
   
 export interface ExperienceCreateInput {
@@ -7303,19 +7521,10 @@ export type SessionCreateInputInputObject =
   | { name: 'location', alias?: string  } 
   | { name: 'token', alias?: string  } 
   
-export interface CommentCreateOneInput {
-  create?: CommentCreateInput | null
-  connect?: CommentWhereUniqueInput | null
-}
-export type CommentCreateOneInputInputObject =
-  | Extract<keyof CommentCreateOneInput, string>
-  | { name: 'create', alias?: string  } 
-  | { name: 'connect', alias?: string  } 
-  
 export interface CommentUpdateInput {
-  _authorId?: PersonUpdateOneRequiredInput | null
   _discussionId?: string | null
   _parentId?: CommentUpdateOneInput | null
+  author?: PersonUpdateOneRequiredInput | null
   content?: string | null
   fullSlug?: string | null
   slug?: string | null
@@ -7323,9 +7532,45 @@ export interface CommentUpdateInput {
 }
 export type CommentUpdateInputInputObject =
   | Extract<keyof CommentUpdateInput, string>
-  | { name: '_authorId', alias?: string  } 
   | { name: '_discussionId', alias?: string  } 
   | { name: '_parentId', alias?: string  } 
+  | { name: 'author', alias?: string  } 
+  | { name: 'content', alias?: string  } 
+  | { name: 'fullSlug', alias?: string  } 
+  | { name: 'slug', alias?: string  } 
+  | { name: 'type', alias?: string  } 
+  
+export interface CommentUpdateOneInput {
+  create?: CommentCreateInput | null
+  update?: CommentUpdateDataInput | null
+  upsert?: CommentUpsertNestedInput | null
+  delete?: boolean | null
+  disconnect?: boolean | null
+  connect?: CommentWhereUniqueInput | null
+}
+export type CommentUpdateOneInputInputObject =
+  | Extract<keyof CommentUpdateOneInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  | { name: 'connect', alias?: string  } 
+  
+export interface CommentUpdateDataInput {
+  _discussionId?: string | null
+  _parentId?: CommentUpdateOneInput | null
+  author?: PersonUpdateOneRequiredInput | null
+  content?: string | null
+  fullSlug?: string | null
+  slug?: string | null
+  type?: prisma.CommentType | null
+}
+export type CommentUpdateDataInputInputObject =
+  | Extract<keyof CommentUpdateDataInput, string>
+  | { name: '_discussionId', alias?: string  } 
+  | { name: '_parentId', alias?: string  } 
+  | { name: 'author', alias?: string  } 
   | { name: 'content', alias?: string  } 
   | { name: 'fullSlug', alias?: string  } 
   | { name: 'slug', alias?: string  } 
@@ -7353,6 +7598,7 @@ export interface PersonUpdateDataInput {
   password?: string | null
   profile?: ProfileUpdateOneInput | null
   sessions?: SessionUpdateManyInput | null
+  type?: prisma.PersonType | null
   username?: string | null
 }
 export type PersonUpdateDataInputInputObject =
@@ -7365,6 +7611,7 @@ export type PersonUpdateDataInputInputObject =
   | { name: 'password', alias?: string  } 
   | { name: 'profile', alias?: string  } 
   | { name: 'sessions', alias?: string  } 
+  | { name: 'type', alias?: string  } 
   | { name: 'username', alias?: string  } 
   
 export interface BillingUpdateOneInput {
@@ -7700,6 +7947,10 @@ export interface PersonScalarWhereInput {
   password_not_starts_with?: string | null
   password_ends_with?: string | null
   password_not_ends_with?: string | null
+  type?: prisma.PersonType | null
+  type_not?: prisma.PersonType | null
+  type_in?: prisma.PersonType[]
+  type_not_in?: prisma.PersonType[]
   username?: string | null
   username_not?: string | null
   username_in?: string[]
@@ -7764,6 +8015,10 @@ export type PersonScalarWhereInputInputObject =
   | { name: 'password_not_starts_with', alias?: string  } 
   | { name: 'password_ends_with', alias?: string  } 
   | { name: 'password_not_ends_with', alias?: string  } 
+  | { name: 'type', alias?: string  } 
+  | { name: 'type_not', alias?: string  } 
+  | { name: 'type_in', alias?: string  } 
+  | { name: 'type_not_in', alias?: string  } 
   | { name: 'username', alias?: string  } 
   | { name: 'username_not', alias?: string  } 
   | { name: 'username_in', alias?: string  } 
@@ -7793,11 +8048,13 @@ export type PersonUpdateManyWithWhereNestedInputInputObject =
   
 export interface PersonUpdateManyDataInput {
   password?: string | null
+  type?: prisma.PersonType | null
   username?: string | null
 }
 export type PersonUpdateManyDataInputInputObject =
   | Extract<keyof PersonUpdateManyDataInput, string>
   | { name: 'password', alias?: string  } 
+  | { name: 'type', alias?: string  } 
   | { name: 'username', alias?: string  } 
   
 export interface ContactUpdateOneInput {
@@ -7876,7 +8133,7 @@ export type CareerUpdateOneInputInputObject =
   
 export interface CareerUpdateDataInput {
   company?: string | null
-  experience?: ExperienceUpdateOneInput | null
+  experience?: ExperienceUpdateManyInput | null
   position?: string | null
 }
 export type CareerUpdateDataInputInputObject =
@@ -7885,44 +8142,167 @@ export type CareerUpdateDataInputInputObject =
   | { name: 'experience', alias?: string  } 
   | { name: 'position', alias?: string  } 
   
-export interface ExperienceUpdateOneInput {
-  create?: ExperienceCreateInput | null
-  update?: ExperienceUpdateDataInput | null
-  upsert?: ExperienceUpsertNestedInput | null
-  delete?: boolean | null
-  disconnect?: boolean | null
+export interface ExperienceUpdateManyInput {
+  create?: ExperienceCreateInput[]
+  deleteMany?: ExperienceScalarWhereInput[]
+  updateMany?: ExperienceUpdateManyWithWhereNestedInput[]
 }
-export type ExperienceUpdateOneInputInputObject =
-  | Extract<keyof ExperienceUpdateOneInput, string>
+export type ExperienceUpdateManyInputInputObject =
+  | Extract<keyof ExperienceUpdateManyInput, string>
   | { name: 'create', alias?: string  } 
-  | { name: 'update', alias?: string  } 
-  | { name: 'upsert', alias?: string  } 
-  | { name: 'delete', alias?: string  } 
-  | { name: 'disconnect', alias?: string  } 
+  | { name: 'deleteMany', alias?: string  } 
+  | { name: 'updateMany', alias?: string  } 
   
-export interface ExperienceUpdateDataInput {
+export interface ExperienceScalarWhereInput {
+  company?: string | null
+  company_not?: string | null
+  company_in?: string[]
+  company_not_in?: string[]
+  company_lt?: string | null
+  company_lte?: string | null
+  company_gt?: string | null
+  company_gte?: string | null
+  company_contains?: string | null
+  company_not_contains?: string | null
+  company_starts_with?: string | null
+  company_not_starts_with?: string | null
+  company_ends_with?: string | null
+  company_not_ends_with?: string | null
+  position?: string | null
+  position_not?: string | null
+  position_in?: string[]
+  position_not_in?: string[]
+  position_lt?: string | null
+  position_lte?: string | null
+  position_gt?: string | null
+  position_gte?: string | null
+  position_contains?: string | null
+  position_not_contains?: string | null
+  position_starts_with?: string | null
+  position_not_starts_with?: string | null
+  position_ends_with?: string | null
+  position_not_ends_with?: string | null
+  description?: string | null
+  description_not?: string | null
+  description_in?: string[]
+  description_not_in?: string[]
+  description_lt?: string | null
+  description_lte?: string | null
+  description_gt?: string | null
+  description_gte?: string | null
+  description_contains?: string | null
+  description_not_contains?: string | null
+  description_starts_with?: string | null
+  description_not_starts_with?: string | null
+  description_ends_with?: string | null
+  description_not_ends_with?: string | null
+  start?: string | null
+  start_not?: string | null
+  start_in?: string[]
+  start_not_in?: string[]
+  start_lt?: string | null
+  start_lte?: string | null
+  start_gt?: string | null
+  start_gte?: string | null
+  end?: string | null
+  end_not?: string | null
+  end_in?: string[]
+  end_not_in?: string[]
+  end_lt?: string | null
+  end_lte?: string | null
+  end_gt?: string | null
+  end_gte?: string | null
+  AND?: ExperienceScalarWhereInput[]
+  OR?: ExperienceScalarWhereInput[]
+  NOT?: ExperienceScalarWhereInput[]
+}
+export type ExperienceScalarWhereInputInputObject =
+  | Extract<keyof ExperienceScalarWhereInput, string>
+  | { name: 'company', alias?: string  } 
+  | { name: 'company_not', alias?: string  } 
+  | { name: 'company_in', alias?: string  } 
+  | { name: 'company_not_in', alias?: string  } 
+  | { name: 'company_lt', alias?: string  } 
+  | { name: 'company_lte', alias?: string  } 
+  | { name: 'company_gt', alias?: string  } 
+  | { name: 'company_gte', alias?: string  } 
+  | { name: 'company_contains', alias?: string  } 
+  | { name: 'company_not_contains', alias?: string  } 
+  | { name: 'company_starts_with', alias?: string  } 
+  | { name: 'company_not_starts_with', alias?: string  } 
+  | { name: 'company_ends_with', alias?: string  } 
+  | { name: 'company_not_ends_with', alias?: string  } 
+  | { name: 'position', alias?: string  } 
+  | { name: 'position_not', alias?: string  } 
+  | { name: 'position_in', alias?: string  } 
+  | { name: 'position_not_in', alias?: string  } 
+  | { name: 'position_lt', alias?: string  } 
+  | { name: 'position_lte', alias?: string  } 
+  | { name: 'position_gt', alias?: string  } 
+  | { name: 'position_gte', alias?: string  } 
+  | { name: 'position_contains', alias?: string  } 
+  | { name: 'position_not_contains', alias?: string  } 
+  | { name: 'position_starts_with', alias?: string  } 
+  | { name: 'position_not_starts_with', alias?: string  } 
+  | { name: 'position_ends_with', alias?: string  } 
+  | { name: 'position_not_ends_with', alias?: string  } 
+  | { name: 'description', alias?: string  } 
+  | { name: 'description_not', alias?: string  } 
+  | { name: 'description_in', alias?: string  } 
+  | { name: 'description_not_in', alias?: string  } 
+  | { name: 'description_lt', alias?: string  } 
+  | { name: 'description_lte', alias?: string  } 
+  | { name: 'description_gt', alias?: string  } 
+  | { name: 'description_gte', alias?: string  } 
+  | { name: 'description_contains', alias?: string  } 
+  | { name: 'description_not_contains', alias?: string  } 
+  | { name: 'description_starts_with', alias?: string  } 
+  | { name: 'description_not_starts_with', alias?: string  } 
+  | { name: 'description_ends_with', alias?: string  } 
+  | { name: 'description_not_ends_with', alias?: string  } 
+  | { name: 'start', alias?: string  } 
+  | { name: 'start_not', alias?: string  } 
+  | { name: 'start_in', alias?: string  } 
+  | { name: 'start_not_in', alias?: string  } 
+  | { name: 'start_lt', alias?: string  } 
+  | { name: 'start_lte', alias?: string  } 
+  | { name: 'start_gt', alias?: string  } 
+  | { name: 'start_gte', alias?: string  } 
+  | { name: 'end', alias?: string  } 
+  | { name: 'end_not', alias?: string  } 
+  | { name: 'end_in', alias?: string  } 
+  | { name: 'end_not_in', alias?: string  } 
+  | { name: 'end_lt', alias?: string  } 
+  | { name: 'end_lte', alias?: string  } 
+  | { name: 'end_gt', alias?: string  } 
+  | { name: 'end_gte', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  | { name: 'OR', alias?: string  } 
+  | { name: 'NOT', alias?: string  } 
+  
+export interface ExperienceUpdateManyWithWhereNestedInput {
+  where?: ExperienceScalarWhereInput
+  data?: ExperienceUpdateManyDataInput
+}
+export type ExperienceUpdateManyWithWhereNestedInputInputObject =
+  | Extract<keyof ExperienceUpdateManyWithWhereNestedInput, string>
+  | { name: 'where', alias?: string  } 
+  | { name: 'data', alias?: string  } 
+  
+export interface ExperienceUpdateManyDataInput {
   company?: string | null
   position?: string | null
   description?: string | null
   start?: string | null
   end?: string | null
 }
-export type ExperienceUpdateDataInputInputObject =
-  | Extract<keyof ExperienceUpdateDataInput, string>
+export type ExperienceUpdateManyDataInputInputObject =
+  | Extract<keyof ExperienceUpdateManyDataInput, string>
   | { name: 'company', alias?: string  } 
   | { name: 'position', alias?: string  } 
   | { name: 'description', alias?: string  } 
   | { name: 'start', alias?: string  } 
   | { name: 'end', alias?: string  } 
-  
-export interface ExperienceUpsertNestedInput {
-  update?: ExperienceUpdateDataInput
-  create?: ExperienceCreateInput
-}
-export type ExperienceUpsertNestedInputInputObject =
-  | Extract<keyof ExperienceUpsertNestedInput, string>
-  | { name: 'update', alias?: string  } 
-  | { name: 'create', alias?: string  } 
   
 export interface CareerUpsertNestedInput {
   update?: CareerUpdateDataInput
@@ -8136,42 +8516,6 @@ export type PersonUpsertNestedInputInputObject =
   | { name: 'update', alias?: string  } 
   | { name: 'create', alias?: string  } 
   
-export interface CommentUpdateOneInput {
-  create?: CommentCreateInput | null
-  update?: CommentUpdateDataInput | null
-  upsert?: CommentUpsertNestedInput | null
-  delete?: boolean | null
-  disconnect?: boolean | null
-  connect?: CommentWhereUniqueInput | null
-}
-export type CommentUpdateOneInputInputObject =
-  | Extract<keyof CommentUpdateOneInput, string>
-  | { name: 'create', alias?: string  } 
-  | { name: 'update', alias?: string  } 
-  | { name: 'upsert', alias?: string  } 
-  | { name: 'delete', alias?: string  } 
-  | { name: 'disconnect', alias?: string  } 
-  | { name: 'connect', alias?: string  } 
-  
-export interface CommentUpdateDataInput {
-  _authorId?: PersonUpdateOneRequiredInput | null
-  _discussionId?: string | null
-  _parentId?: CommentUpdateOneInput | null
-  content?: string | null
-  fullSlug?: string | null
-  slug?: string | null
-  type?: prisma.CommentType | null
-}
-export type CommentUpdateDataInputInputObject =
-  | Extract<keyof CommentUpdateDataInput, string>
-  | { name: '_authorId', alias?: string  } 
-  | { name: '_discussionId', alias?: string  } 
-  | { name: '_parentId', alias?: string  } 
-  | { name: 'content', alias?: string  } 
-  | { name: 'fullSlug', alias?: string  } 
-  | { name: 'slug', alias?: string  } 
-  | { name: 'type', alias?: string  } 
-  
 export interface CommentUpsertNestedInput {
   update?: CommentUpdateDataInput
   create?: CommentCreateInput
@@ -8198,39 +8542,43 @@ export type CommentUpdateManyMutationInputInputObject =
   
 export interface DocumentCreateInput {
   _id?: string | null
-  _authorId?: PersonCreateOneInput
   _publishedAt?: string | null
+  author?: PersonCreateOneInput
   category?: prisma.DocumentCategory | null
   content?: string
   subtitle?: string | null
   title?: string
+  type?: prisma.DocumentType | null
 }
 export type DocumentCreateInputInputObject =
   | Extract<keyof DocumentCreateInput, string>
   | { name: '_id', alias?: string  } 
-  | { name: '_authorId', alias?: string  } 
   | { name: '_publishedAt', alias?: string  } 
+  | { name: 'author', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'content', alias?: string  } 
   | { name: 'subtitle', alias?: string  } 
   | { name: 'title', alias?: string  } 
+  | { name: 'type', alias?: string  } 
   
 export interface DocumentUpdateInput {
-  _authorId?: PersonUpdateOneRequiredInput | null
   _publishedAt?: string | null
+  author?: PersonUpdateOneRequiredInput | null
   category?: prisma.DocumentCategory | null
   content?: string | null
   subtitle?: string | null
   title?: string | null
+  type?: prisma.DocumentType | null
 }
 export type DocumentUpdateInputInputObject =
   | Extract<keyof DocumentUpdateInput, string>
-  | { name: '_authorId', alias?: string  } 
   | { name: '_publishedAt', alias?: string  } 
+  | { name: 'author', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'content', alias?: string  } 
   | { name: 'subtitle', alias?: string  } 
   | { name: 'title', alias?: string  } 
+  | { name: 'type', alias?: string  } 
   
 export interface DocumentUpdateManyMutationInput {
   _publishedAt?: string | null
@@ -8238,6 +8586,7 @@ export interface DocumentUpdateManyMutationInput {
   content?: string | null
   subtitle?: string | null
   title?: string | null
+  type?: prisma.DocumentType | null
 }
 export type DocumentUpdateManyMutationInputInputObject =
   | Extract<keyof DocumentUpdateManyMutationInput, string>
@@ -8246,6 +8595,7 @@ export type DocumentUpdateManyMutationInputInputObject =
   | { name: 'content', alias?: string  } 
   | { name: 'subtitle', alias?: string  } 
   | { name: 'title', alias?: string  } 
+  | { name: 'type', alias?: string  } 
   
 export interface NotificationCreateInput {
   _id?: string | null
@@ -8451,7 +8801,7 @@ export type NotificationUpdateManyMutationInputInputObject =
   
 export interface OrderCreateInput {
   _id?: string | null
-  _customerId?: PersonCreateOneInput
+  customer?: PersonCreateOneInput
   items?: ProductCreateManyInput | null
   total?: number
   status?: prisma.OrderStatus | null
@@ -8459,7 +8809,7 @@ export interface OrderCreateInput {
 export type OrderCreateInputInputObject =
   | Extract<keyof OrderCreateInput, string>
   | { name: '_id', alias?: string  } 
-  | { name: '_customerId', alias?: string  } 
+  | { name: 'customer', alias?: string  } 
   | { name: 'items', alias?: string  } 
   | { name: 'total', alias?: string  } 
   | { name: 'status', alias?: string  } 
@@ -8559,14 +8909,14 @@ export type ShippingCreateInputInputObject =
   | { name: 'width', alias?: string  } 
   
 export interface OrderUpdateInput {
-  _customerId?: PersonUpdateOneRequiredInput | null
+  customer?: PersonUpdateOneRequiredInput | null
   items?: ProductUpdateManyInput | null
   total?: number | null
   status?: prisma.OrderStatus | null
 }
 export type OrderUpdateInputInputObject =
   | Extract<keyof OrderUpdateInput, string>
-  | { name: '_customerId', alias?: string  } 
+  | { name: 'customer', alias?: string  } 
   | { name: 'items', alias?: string  } 
   | { name: 'total', alias?: string  } 
   | { name: 'status', alias?: string  } 
@@ -8961,6 +9311,7 @@ export interface PersonUpdateInput {
   password?: string | null
   profile?: ProfileUpdateOneInput | null
   sessions?: SessionUpdateManyInput | null
+  type?: prisma.PersonType | null
   username?: string | null
 }
 export type PersonUpdateInputInputObject =
@@ -8973,15 +9324,18 @@ export type PersonUpdateInputInputObject =
   | { name: 'password', alias?: string  } 
   | { name: 'profile', alias?: string  } 
   | { name: 'sessions', alias?: string  } 
+  | { name: 'type', alias?: string  } 
   | { name: 'username', alias?: string  } 
   
 export interface PersonUpdateManyMutationInput {
   password?: string | null
+  type?: prisma.PersonType | null
   username?: string | null
 }
 export type PersonUpdateManyMutationInputInputObject =
   | Extract<keyof PersonUpdateManyMutationInput, string>
   | { name: 'password', alias?: string  } 
+  | { name: 'type', alias?: string  } 
   | { name: 'username', alias?: string  } 
   
 export interface ProductUpdateInput {
@@ -9140,6 +9494,13 @@ export type GenderValues =
   | 'FEMALE'
   | 'OTHER'
   
+export type PersonTypeValues =
+  | 'ADMINISTRATOR'
+  | 'EMPLOYEE'
+  | 'PARTNER'
+  | 'USER'
+  | 'VENDOR'
+  
 export type PersonOrderByInputValues =
   | '_id_ASC'
   | '_id_DESC'
@@ -9149,6 +9510,8 @@ export type PersonOrderByInputValues =
   | '_updatedAt_DESC'
   | 'password_ASC'
   | 'password_DESC'
+  | 'type_ASC'
+  | 'type_DESC'
   | 'username_ASC'
   | 'username_DESC'
   
@@ -9178,6 +9541,11 @@ export type DocumentCategoryValues =
   | 'UNCATEGORIZED'
   | 'CORPORATE'
   
+export type DocumentTypeValues =
+  | 'DEFAULT'
+  | 'INSIGHT'
+  | 'POLICY'
+  
 export type DocumentOrderByInputValues =
   | '_id_ASC'
   | '_id_DESC'
@@ -9195,6 +9563,8 @@ export type DocumentOrderByInputValues =
   | 'subtitle_DESC'
   | 'title_ASC'
   | 'title_DESC'
+  | 'type_ASC'
+  | 'type_DESC'
   
 export type SenderTypeValues =
   | 'SYSTEM'

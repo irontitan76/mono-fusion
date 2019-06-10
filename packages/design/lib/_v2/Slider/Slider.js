@@ -46,6 +46,9 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       top: 1,
       verticalAlign: 0,
     },
+    margin: {
+      marginLeft: 64,
+    },
     root: {
       backgroundColor: palette.grey[isDark ? 800 : 200],
       borderRight: `2px solid ${isDark ? '#212121' : '#dedede'}`,
@@ -56,7 +59,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       position: 'fixed',
       transition: 'all .3s ease',
       width: 24,
-      zIndex: 1400,
+      zIndex: 1299,
     },
     rootCopy: {
       display: 'flex',
@@ -87,6 +90,10 @@ export function Slider({ items, openState }) {
 
   let open = openState[0];
   let setOpen = openState[1];
+
+  if (items.length <= 1) {
+    return <div className={classes.margin} />;
+  }
 
   return (
     <Hidden xsDown implementation="css">

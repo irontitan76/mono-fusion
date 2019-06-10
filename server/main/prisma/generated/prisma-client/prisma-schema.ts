@@ -3,15 +3,15 @@
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
 export const typeDefs = /* GraphQL */ `type Account {
-  number: Int
-  routing: Int
-  type: AccountType
+  number: Int!
+  routing: Int!
+  type: AccountType!
 }
 
 input AccountCreateInput {
-  number: Int
-  routing: Int
-  type: AccountType
+  number: Int!
+  routing: Int!
+  type: AccountType!
 }
 
 input AccountCreateManyInput {
@@ -189,7 +189,7 @@ type Card {
   number: Int!
   cvv: Int!
   expiration: DateTime!
-  type: CardType
+  type: CardType!
 }
 
 input CardCreateInput {
@@ -197,7 +197,7 @@ input CardCreateInput {
   number: Int!
   cvv: Int!
   expiration: DateTime!
-  type: CardType
+  type: CardType!
 }
 
 input CardCreateManyInput {
@@ -370,13 +370,13 @@ input CardWhereInput {
 
 type Career {
   company: String!
-  experience: Experience
+  experience: [Experience!]
   position: String!
 }
 
 input CareerCreateInput {
   company: String!
-  experience: ExperienceCreateOneInput
+  experience: ExperienceCreateManyInput
   position: String!
 }
 
@@ -386,7 +386,7 @@ input CareerCreateOneInput {
 
 input CareerUpdateDataInput {
   company: String
-  experience: ExperienceUpdateOneInput
+  experience: ExperienceUpdateManyInput
   position: String
 }
 
@@ -418,7 +418,9 @@ input CareerWhereInput {
   company_not_starts_with: String
   company_ends_with: String
   company_not_ends_with: String
-  experience: ExperienceWhereInput
+  experience_some: ExperienceWhereInput
+  experience_every: ExperienceRestrictedWhereInput
+  experience_none: ExperienceRestrictedWhereInput
   position: String
   position_not: String
   position_in: [String!]
@@ -438,11 +440,11 @@ input CareerWhereInput {
 
 type Comment {
   _id: ID!
-  _authorId: Person!
   _createdAt: DateTime!
   _discussionId: ID!
   _parentId: Comment
   _updatedAt: DateTime!
+  author: Person!
   content: String!
   fullSlug: String
   slug: String
@@ -457,9 +459,9 @@ type CommentConnection {
 
 input CommentCreateInput {
   _id: ID
-  _authorId: PersonCreateOneInput!
   _discussionId: ID!
   _parentId: CommentCreateOneInput
+  author: PersonCreateOneInput!
   content: String!
   fullSlug: String
   slug: String
@@ -528,9 +530,9 @@ enum CommentType {
 }
 
 input CommentUpdateDataInput {
-  _authorId: PersonUpdateOneRequiredInput
   _discussionId: ID
   _parentId: CommentUpdateOneInput
+  author: PersonUpdateOneRequiredInput
   content: String
   fullSlug: String
   slug: String
@@ -538,9 +540,9 @@ input CommentUpdateDataInput {
 }
 
 input CommentUpdateInput {
-  _authorId: PersonUpdateOneRequiredInput
   _discussionId: ID
   _parentId: CommentUpdateOneInput
+  author: PersonUpdateOneRequiredInput
   content: String
   fullSlug: String
   slug: String
@@ -584,7 +586,6 @@ input CommentWhereInput {
   _id_not_starts_with: ID
   _id_ends_with: ID
   _id_not_ends_with: ID
-  _authorId: PersonWhereInput
   _createdAt: DateTime
   _createdAt_not: DateTime
   _createdAt_in: [DateTime!]
@@ -616,6 +617,7 @@ input CommentWhereInput {
   _updatedAt_lte: DateTime
   _updatedAt_gt: DateTime
   _updatedAt_gte: DateTime
+  author: PersonWhereInput
   content: String
   content_not: String
   content_in: [String!]
@@ -833,14 +835,15 @@ enum DimensionScale {
 
 type Document {
   _id: ID!
-  _authorId: Person!
   _createdAt: DateTime!
   _publishedAt: DateTime
   _updatedAt: DateTime!
+  author: Person!
   category: DocumentCategory!
   content: String!
   subtitle: String
   title: String!
+  type: DocumentType!
 }
 
 enum DocumentCategory {
@@ -856,12 +859,13 @@ type DocumentConnection {
 
 input DocumentCreateInput {
   _id: ID
-  _authorId: PersonCreateOneInput!
   _publishedAt: DateTime
+  author: PersonCreateOneInput!
   category: DocumentCategory
   content: String!
   subtitle: String
   title: String!
+  type: DocumentType
 }
 
 type DocumentEdge {
@@ -886,6 +890,8 @@ enum DocumentOrderByInput {
   subtitle_DESC
   title_ASC
   title_DESC
+  type_ASC
+  type_DESC
 }
 
 type DocumentPreviousValues {
@@ -897,6 +903,7 @@ type DocumentPreviousValues {
   content: String!
   subtitle: String
   title: String!
+  type: DocumentType!
 }
 
 type DocumentSubscriptionPayload {
@@ -915,13 +922,20 @@ input DocumentSubscriptionWhereInput {
   AND: [DocumentSubscriptionWhereInput!]
 }
 
+enum DocumentType {
+  DEFAULT
+  INSIGHT
+  POLICY
+}
+
 input DocumentUpdateInput {
-  _authorId: PersonUpdateOneRequiredInput
   _publishedAt: DateTime
+  author: PersonUpdateOneRequiredInput
   category: DocumentCategory
   content: String
   subtitle: String
   title: String
+  type: DocumentType
 }
 
 input DocumentUpdateManyMutationInput {
@@ -930,6 +944,7 @@ input DocumentUpdateManyMutationInput {
   content: String
   subtitle: String
   title: String
+  type: DocumentType
 }
 
 input DocumentWhereInput {
@@ -947,7 +962,6 @@ input DocumentWhereInput {
   _id_not_starts_with: ID
   _id_ends_with: ID
   _id_not_ends_with: ID
-  _authorId: PersonWhereInput
   _createdAt: DateTime
   _createdAt_not: DateTime
   _createdAt_in: [DateTime!]
@@ -972,6 +986,7 @@ input DocumentWhereInput {
   _updatedAt_lte: DateTime
   _updatedAt_gt: DateTime
   _updatedAt_gte: DateTime
+  author: PersonWhereInput
   category: DocumentCategory
   category_not: DocumentCategory
   category_in: [DocumentCategory!]
@@ -1018,6 +1033,10 @@ input DocumentWhereInput {
   title_not_starts_with: String
   title_ends_with: String
   title_not_ends_with: String
+  type: DocumentType
+  type_not: DocumentType
+  type_in: [DocumentType!]
+  type_not_in: [DocumentType!]
   AND: [DocumentWhereInput!]
 }
 
@@ -1042,11 +1061,137 @@ input ExperienceCreateInput {
   end: DateTime!
 }
 
-input ExperienceCreateOneInput {
-  create: ExperienceCreateInput
+input ExperienceCreateManyInput {
+  create: [ExperienceCreateInput!]
 }
 
-input ExperienceUpdateDataInput {
+input ExperienceRestrictedWhereInput {
+  company: String
+  company_not: String
+  company_in: [String!]
+  company_not_in: [String!]
+  company_lt: String
+  company_lte: String
+  company_gt: String
+  company_gte: String
+  company_contains: String
+  company_not_contains: String
+  company_starts_with: String
+  company_not_starts_with: String
+  company_ends_with: String
+  company_not_ends_with: String
+  position: String
+  position_not: String
+  position_in: [String!]
+  position_not_in: [String!]
+  position_lt: String
+  position_lte: String
+  position_gt: String
+  position_gte: String
+  position_contains: String
+  position_not_contains: String
+  position_starts_with: String
+  position_not_starts_with: String
+  position_ends_with: String
+  position_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  start: DateTime
+  start_not: DateTime
+  start_in: [DateTime!]
+  start_not_in: [DateTime!]
+  start_lt: DateTime
+  start_lte: DateTime
+  start_gt: DateTime
+  start_gte: DateTime
+  end: DateTime
+  end_not: DateTime
+  end_in: [DateTime!]
+  end_not_in: [DateTime!]
+  end_lt: DateTime
+  end_lte: DateTime
+  end_gt: DateTime
+  end_gte: DateTime
+  AND: [ExperienceRestrictedWhereInput!]
+}
+
+input ExperienceScalarWhereInput {
+  company: String
+  company_not: String
+  company_in: [String!]
+  company_not_in: [String!]
+  company_lt: String
+  company_lte: String
+  company_gt: String
+  company_gte: String
+  company_contains: String
+  company_not_contains: String
+  company_starts_with: String
+  company_not_starts_with: String
+  company_ends_with: String
+  company_not_ends_with: String
+  position: String
+  position_not: String
+  position_in: [String!]
+  position_not_in: [String!]
+  position_lt: String
+  position_lte: String
+  position_gt: String
+  position_gte: String
+  position_contains: String
+  position_not_contains: String
+  position_starts_with: String
+  position_not_starts_with: String
+  position_ends_with: String
+  position_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  start: DateTime
+  start_not: DateTime
+  start_in: [DateTime!]
+  start_not_in: [DateTime!]
+  start_lt: DateTime
+  start_lte: DateTime
+  start_gt: DateTime
+  start_gte: DateTime
+  end: DateTime
+  end_not: DateTime
+  end_in: [DateTime!]
+  end_not_in: [DateTime!]
+  end_lt: DateTime
+  end_lte: DateTime
+  end_gt: DateTime
+  end_gte: DateTime
+  AND: [ExperienceScalarWhereInput!]
+  OR: [ExperienceScalarWhereInput!]
+  NOT: [ExperienceScalarWhereInput!]
+}
+
+input ExperienceUpdateManyDataInput {
   company: String
   position: String
   description: String
@@ -1054,17 +1199,15 @@ input ExperienceUpdateDataInput {
   end: DateTime
 }
 
-input ExperienceUpdateOneInput {
-  create: ExperienceCreateInput
-  update: ExperienceUpdateDataInput
-  upsert: ExperienceUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
+input ExperienceUpdateManyInput {
+  create: [ExperienceCreateInput!]
+  deleteMany: [ExperienceScalarWhereInput!]
+  updateMany: [ExperienceUpdateManyWithWhereNestedInput!]
 }
 
-input ExperienceUpsertNestedInput {
-  update: ExperienceUpdateDataInput!
-  create: ExperienceCreateInput!
+input ExperienceUpdateManyWithWhereNestedInput {
+  where: ExperienceScalarWhereInput!
+  data: ExperienceUpdateManyDataInput!
 }
 
 input ExperienceWhereInput {
@@ -1508,7 +1651,7 @@ input NotificationWhereUniqueInput {
 
 type Order {
   _id: ID!
-  _customerId: Person!
+  customer: Person!
   items(where: ProductWhereInput, orderBy: ProductOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Product!]
   total: Float!
   status: OrderStatus!
@@ -1522,7 +1665,7 @@ type OrderConnection {
 
 input OrderCreateInput {
   _id: ID
-  _customerId: PersonCreateOneInput!
+  customer: PersonCreateOneInput!
   items: ProductCreateManyInput
   total: Float!
   status: OrderStatus
@@ -1571,7 +1714,7 @@ input OrderSubscriptionWhereInput {
 }
 
 input OrderUpdateInput {
-  _customerId: PersonUpdateOneRequiredInput
+  customer: PersonUpdateOneRequiredInput
   items: ProductUpdateManyInput
   total: Float
   status: OrderStatus
@@ -1597,7 +1740,7 @@ input OrderWhereInput {
   _id_not_starts_with: ID
   _id_ends_with: ID
   _id_not_ends_with: ID
-  _customerId: PersonWhereInput
+  customer: PersonWhereInput
   items_some: ProductWhereInput
   total: Float
   total_not: Float
@@ -1637,6 +1780,7 @@ type Person {
   password: String!
   profile: Profile
   sessions: [Session!]
+  type: PersonType!
   username: String!
 }
 
@@ -1656,6 +1800,7 @@ input PersonCreateInput {
   password: String!
   profile: ProfileCreateOneInput
   sessions: SessionCreateManyInput
+  type: PersonType
   username: String!
 }
 
@@ -1683,6 +1828,8 @@ enum PersonOrderByInput {
   _updatedAt_DESC
   password_ASC
   password_DESC
+  type_ASC
+  type_DESC
   username_ASC
   username_DESC
 }
@@ -1692,6 +1839,7 @@ type PersonPreviousValues {
   _createdAt: DateTime!
   _updatedAt: DateTime!
   password: String!
+  type: PersonType!
   username: String!
 }
 
@@ -1740,6 +1888,10 @@ input PersonScalarWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
+  type: PersonType
+  type_not: PersonType
+  type_in: [PersonType!]
+  type_not_in: [PersonType!]
   username: String
   username_not: String
   username_in: [String!]
@@ -1775,6 +1927,14 @@ input PersonSubscriptionWhereInput {
   AND: [PersonSubscriptionWhereInput!]
 }
 
+enum PersonType {
+  ADMINISTRATOR
+  EMPLOYEE
+  PARTNER
+  USER
+  VENDOR
+}
+
 input PersonUpdateDataInput {
   billing: BillingUpdateOneInput
   connections: PersonUpdateManyInput
@@ -1784,6 +1944,7 @@ input PersonUpdateDataInput {
   password: String
   profile: ProfileUpdateOneInput
   sessions: SessionUpdateManyInput
+  type: PersonType
   username: String
 }
 
@@ -1796,11 +1957,13 @@ input PersonUpdateInput {
   password: String
   profile: ProfileUpdateOneInput
   sessions: SessionUpdateManyInput
+  type: PersonType
   username: String
 }
 
 input PersonUpdateManyDataInput {
   password: String
+  type: PersonType
   username: String
 }
 
@@ -1818,6 +1981,7 @@ input PersonUpdateManyInput {
 
 input PersonUpdateManyMutationInput {
   password: String
+  type: PersonType
   username: String
 }
 
@@ -1903,6 +2067,10 @@ input PersonWhereInput {
   sessions_some: SessionWhereInput
   sessions_every: SessionRestrictedWhereInput
   sessions_none: SessionRestrictedWhereInput
+  type: PersonType
+  type_not: PersonType
+  type_in: [PersonType!]
+  type_not_in: [PersonType!]
   username: String
   username_not: String
   username_in: [String!]

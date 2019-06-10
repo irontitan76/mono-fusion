@@ -43,14 +43,15 @@ export const setCookie = (cname, cvalue, exdays) => {
 
 let apolloClient = null;
 
-function create(initialState) {
+function create(initialState, opts) {
   // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
   return new ApolloClient({
     shouldBatch: true,
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'https://api.graph.cool/simple/v1/cjv8u8vxs0dfu0192op18chtu', // Server URL (must be absolute)
+      uri: opts ? opts.uri : undefined,
+      // uri: 'https://api.graph.cool/simple/v1/cjv8u8vxs0dfu0192op18chtu', // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       // Use fetch() polyfill on the server
       fetch: !process.browser && fetch,
@@ -59,22 +60,22 @@ function create(initialState) {
   });
 }
 
-export function initApollo(initialState) {
+export function initApollo(initialState, opts) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!process.browser) {
-    return create(initialState);
+    return create(initialState, opts);
   }
 
   // Reuse client on the client-side
   if (!apolloClient) {
-    apolloClient = create(initialState);
+    apolloClient = create(initialState, opts);
   }
 
   return apolloClient;
 }
 
-export const withApollo = (App) => {
+export const withApollo = (App, options) => {
   return class Apollo extends React.Component {
     static displayName = 'withApollo(App)';
     static async getInitialProps(ctx) {
@@ -122,11 +123,16 @@ export const withApollo = (App) => {
 
     constructor(props) {
       super(props);
-      this.apolloClient = initApollo(props.apolloState);
+      this.apolloClient = initApollo(props.apolloState, options);
     }
 
     render() {
-      return <App {...this.props} apolloClient={this.apolloClient} />;
+      return (
+        <App
+          {...this.props}
+          apolloClient={this.apolloClient}
+        />
+      );
     }
   };
 };

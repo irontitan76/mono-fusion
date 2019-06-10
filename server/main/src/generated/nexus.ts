@@ -12,9 +12,9 @@ declare global {
 
 export interface NexusGenInputs {
   AccountCreateInput: { // input type
-    number?: number | null; // Int
-    routing?: number | null; // Int
-    type?: NexusGenEnums['AccountType'] | null; // AccountType
+    number: number; // Int!
+    routing: number; // Int!
+    type: NexusGenEnums['AccountType']; // AccountType!
   }
   AccountCreateManyInput: { // input type
     create?: NexusGenInputs['AccountCreateInput'][] | null; // [AccountCreateInput!]
@@ -140,7 +140,7 @@ export interface NexusGenInputs {
     expiration: any; // DateTime!
     name: string; // String!
     number: number; // Int!
-    type?: NexusGenEnums['CardType'] | null; // CardType
+    type: NexusGenEnums['CardType']; // CardType!
   }
   CardCreateManyInput: { // input type
     create?: NexusGenInputs['CardCreateInput'][] | null; // [CardCreateInput!]
@@ -300,7 +300,7 @@ export interface NexusGenInputs {
   }
   CareerCreateInput: { // input type
     company: string; // String!
-    experience?: NexusGenInputs['ExperienceCreateOneInput'] | null; // ExperienceCreateOneInput
+    experience?: NexusGenInputs['ExperienceCreateManyInput'] | null; // ExperienceCreateManyInput
     position: string; // String!
   }
   CareerCreateOneInput: { // input type
@@ -308,7 +308,7 @@ export interface NexusGenInputs {
   }
   CareerUpdateDataInput: { // input type
     company?: string | null; // String
-    experience?: NexusGenInputs['ExperienceUpdateOneInput'] | null; // ExperienceUpdateOneInput
+    experience?: NexusGenInputs['ExperienceUpdateManyInput'] | null; // ExperienceUpdateManyInput
     position?: string | null; // String
   }
   CareerUpdateOneInput: { // input type
@@ -338,7 +338,9 @@ export interface NexusGenInputs {
     company_not_in?: string[] | null; // [String!]
     company_not_starts_with?: string | null; // String
     company_starts_with?: string | null; // String
-    experience?: NexusGenInputs['ExperienceWhereInput'] | null; // ExperienceWhereInput
+    experience_every?: NexusGenInputs['ExperienceRestrictedWhereInput'] | null; // ExperienceRestrictedWhereInput
+    experience_none?: NexusGenInputs['ExperienceRestrictedWhereInput'] | null; // ExperienceRestrictedWhereInput
+    experience_some?: NexusGenInputs['ExperienceWhereInput'] | null; // ExperienceWhereInput
     position?: string | null; // String
     position_contains?: string | null; // String
     position_ends_with?: string | null; // String
@@ -355,10 +357,10 @@ export interface NexusGenInputs {
     position_starts_with?: string | null; // String
   }
   CommentCreateInput: { // input type
-    _authorId: NexusGenInputs['PersonCreateOneInput']; // PersonCreateOneInput!
     _discussionId: string; // ID!
     _id?: string | null; // ID
     _parentId?: NexusGenInputs['CommentCreateOneInput'] | null; // CommentCreateOneInput
+    author: NexusGenInputs['PersonCreateOneInput']; // PersonCreateOneInput!
     content: string; // String!
     fullSlug?: string | null; // String
     slug?: string | null; // String
@@ -369,18 +371,18 @@ export interface NexusGenInputs {
     create?: NexusGenInputs['CommentCreateInput'] | null; // CommentCreateInput
   }
   CommentUpdateDataInput: { // input type
-    _authorId?: NexusGenInputs['PersonUpdateOneRequiredInput'] | null; // PersonUpdateOneRequiredInput
     _discussionId?: string | null; // ID
     _parentId?: NexusGenInputs['CommentUpdateOneInput'] | null; // CommentUpdateOneInput
+    author?: NexusGenInputs['PersonUpdateOneRequiredInput'] | null; // PersonUpdateOneRequiredInput
     content?: string | null; // String
     fullSlug?: string | null; // String
     slug?: string | null; // String
     type?: NexusGenEnums['CommentType'] | null; // CommentType
   }
   CommentUpdateInput: { // input type
-    _authorId?: NexusGenInputs['PersonUpdateOneRequiredInput'] | null; // PersonUpdateOneRequiredInput
     _discussionId?: string | null; // ID
     _parentId?: NexusGenInputs['CommentUpdateOneInput'] | null; // CommentUpdateOneInput
+    author?: NexusGenInputs['PersonUpdateOneRequiredInput'] | null; // PersonUpdateOneRequiredInput
     content?: string | null; // String
     fullSlug?: string | null; // String
     slug?: string | null; // String
@@ -399,7 +401,6 @@ export interface NexusGenInputs {
     update: NexusGenInputs['CommentUpdateDataInput']; // CommentUpdateDataInput!
   }
   CommentWhereInput: { // input type
-    _authorId?: NexusGenInputs['PersonWhereInput'] | null; // PersonWhereInput
     _createdAt?: any | null; // DateTime
     _createdAt_gt?: any | null; // DateTime
     _createdAt_gte?: any | null; // DateTime
@@ -446,6 +447,7 @@ export interface NexusGenInputs {
     _updatedAt_not?: any | null; // DateTime
     _updatedAt_not_in?: any[] | null; // [DateTime!]
     AND?: NexusGenInputs['CommentWhereInput'][] | null; // [CommentWhereInput!]
+    author?: NexusGenInputs['PersonWhereInput'] | null; // PersonWhereInput
     content?: string | null; // String
     content_contains?: string | null; // String
     content_ends_with?: string | null; // String
@@ -631,24 +633,25 @@ export interface NexusGenInputs {
     state_starts_with?: string | null; // String
   }
   DocumentCreateInput: { // input type
-    _authorId: NexusGenInputs['PersonCreateOneInput']; // PersonCreateOneInput!
     _id?: string | null; // ID
     _publishedAt?: any | null; // DateTime
+    author: NexusGenInputs['PersonCreateOneInput']; // PersonCreateOneInput!
     category?: NexusGenEnums['DocumentCategory'] | null; // DocumentCategory
     content: string; // String!
     subtitle?: string | null; // String
     title: string; // String!
+    type?: NexusGenEnums['DocumentType'] | null; // DocumentType
   }
   DocumentUpdateInput: { // input type
-    _authorId?: NexusGenInputs['PersonUpdateOneRequiredInput'] | null; // PersonUpdateOneRequiredInput
     _publishedAt?: any | null; // DateTime
+    author?: NexusGenInputs['PersonUpdateOneRequiredInput'] | null; // PersonUpdateOneRequiredInput
     category?: NexusGenEnums['DocumentCategory'] | null; // DocumentCategory
     content?: string | null; // String
     subtitle?: string | null; // String
     title?: string | null; // String
+    type?: NexusGenEnums['DocumentType'] | null; // DocumentType
   }
   DocumentWhereInput: { // input type
-    _authorId?: NexusGenInputs['PersonWhereInput'] | null; // PersonWhereInput
     _createdAt?: any | null; // DateTime
     _createdAt_gt?: any | null; // DateTime
     _createdAt_gte?: any | null; // DateTime
@@ -688,6 +691,7 @@ export interface NexusGenInputs {
     _updatedAt_not?: any | null; // DateTime
     _updatedAt_not_in?: any[] | null; // [DateTime!]
     AND?: NexusGenInputs['DocumentWhereInput'][] | null; // [DocumentWhereInput!]
+    author?: NexusGenInputs['PersonWhereInput'] | null; // PersonWhereInput
     category?: NexusGenEnums['DocumentCategory'] | null; // DocumentCategory
     category_in?: NexusGenEnums['DocumentCategory'][] | null; // [DocumentCategory!]
     category_not?: NexusGenEnums['DocumentCategory'] | null; // DocumentCategory
@@ -734,6 +738,10 @@ export interface NexusGenInputs {
     title_not_in?: string[] | null; // [String!]
     title_not_starts_with?: string | null; // String
     title_starts_with?: string | null; // String
+    type?: NexusGenEnums['DocumentType'] | null; // DocumentType
+    type_in?: NexusGenEnums['DocumentType'][] | null; // [DocumentType!]
+    type_not?: NexusGenEnums['DocumentType'] | null; // DocumentType
+    type_not_in?: NexusGenEnums['DocumentType'][] | null; // [DocumentType!]
   }
   DocumentWhereUniqueInput: { // input type
     _id?: string | null; // ID
@@ -746,26 +754,148 @@ export interface NexusGenInputs {
     position: string; // String!
     start: any; // DateTime!
   }
-  ExperienceCreateOneInput: { // input type
-    create?: NexusGenInputs['ExperienceCreateInput'] | null; // ExperienceCreateInput
+  ExperienceCreateManyInput: { // input type
+    create?: NexusGenInputs['ExperienceCreateInput'][] | null; // [ExperienceCreateInput!]
   }
-  ExperienceUpdateDataInput: { // input type
+  ExperienceRestrictedWhereInput: { // input type
+    AND?: NexusGenInputs['ExperienceRestrictedWhereInput'][] | null; // [ExperienceRestrictedWhereInput!]
+    company?: string | null; // String
+    company_contains?: string | null; // String
+    company_ends_with?: string | null; // String
+    company_gt?: string | null; // String
+    company_gte?: string | null; // String
+    company_in?: string[] | null; // [String!]
+    company_lt?: string | null; // String
+    company_lte?: string | null; // String
+    company_not?: string | null; // String
+    company_not_contains?: string | null; // String
+    company_not_ends_with?: string | null; // String
+    company_not_in?: string[] | null; // [String!]
+    company_not_starts_with?: string | null; // String
+    company_starts_with?: string | null; // String
+    description?: string | null; // String
+    description_contains?: string | null; // String
+    description_ends_with?: string | null; // String
+    description_gt?: string | null; // String
+    description_gte?: string | null; // String
+    description_in?: string[] | null; // [String!]
+    description_lt?: string | null; // String
+    description_lte?: string | null; // String
+    description_not?: string | null; // String
+    description_not_contains?: string | null; // String
+    description_not_ends_with?: string | null; // String
+    description_not_in?: string[] | null; // [String!]
+    description_not_starts_with?: string | null; // String
+    description_starts_with?: string | null; // String
+    end?: any | null; // DateTime
+    end_gt?: any | null; // DateTime
+    end_gte?: any | null; // DateTime
+    end_in?: any[] | null; // [DateTime!]
+    end_lt?: any | null; // DateTime
+    end_lte?: any | null; // DateTime
+    end_not?: any | null; // DateTime
+    end_not_in?: any[] | null; // [DateTime!]
+    position?: string | null; // String
+    position_contains?: string | null; // String
+    position_ends_with?: string | null; // String
+    position_gt?: string | null; // String
+    position_gte?: string | null; // String
+    position_in?: string[] | null; // [String!]
+    position_lt?: string | null; // String
+    position_lte?: string | null; // String
+    position_not?: string | null; // String
+    position_not_contains?: string | null; // String
+    position_not_ends_with?: string | null; // String
+    position_not_in?: string[] | null; // [String!]
+    position_not_starts_with?: string | null; // String
+    position_starts_with?: string | null; // String
+    start?: any | null; // DateTime
+    start_gt?: any | null; // DateTime
+    start_gte?: any | null; // DateTime
+    start_in?: any[] | null; // [DateTime!]
+    start_lt?: any | null; // DateTime
+    start_lte?: any | null; // DateTime
+    start_not?: any | null; // DateTime
+    start_not_in?: any[] | null; // [DateTime!]
+  }
+  ExperienceScalarWhereInput: { // input type
+    AND?: NexusGenInputs['ExperienceScalarWhereInput'][] | null; // [ExperienceScalarWhereInput!]
+    company?: string | null; // String
+    company_contains?: string | null; // String
+    company_ends_with?: string | null; // String
+    company_gt?: string | null; // String
+    company_gte?: string | null; // String
+    company_in?: string[] | null; // [String!]
+    company_lt?: string | null; // String
+    company_lte?: string | null; // String
+    company_not?: string | null; // String
+    company_not_contains?: string | null; // String
+    company_not_ends_with?: string | null; // String
+    company_not_in?: string[] | null; // [String!]
+    company_not_starts_with?: string | null; // String
+    company_starts_with?: string | null; // String
+    description?: string | null; // String
+    description_contains?: string | null; // String
+    description_ends_with?: string | null; // String
+    description_gt?: string | null; // String
+    description_gte?: string | null; // String
+    description_in?: string[] | null; // [String!]
+    description_lt?: string | null; // String
+    description_lte?: string | null; // String
+    description_not?: string | null; // String
+    description_not_contains?: string | null; // String
+    description_not_ends_with?: string | null; // String
+    description_not_in?: string[] | null; // [String!]
+    description_not_starts_with?: string | null; // String
+    description_starts_with?: string | null; // String
+    end?: any | null; // DateTime
+    end_gt?: any | null; // DateTime
+    end_gte?: any | null; // DateTime
+    end_in?: any[] | null; // [DateTime!]
+    end_lt?: any | null; // DateTime
+    end_lte?: any | null; // DateTime
+    end_not?: any | null; // DateTime
+    end_not_in?: any[] | null; // [DateTime!]
+    NOT?: NexusGenInputs['ExperienceScalarWhereInput'][] | null; // [ExperienceScalarWhereInput!]
+    OR?: NexusGenInputs['ExperienceScalarWhereInput'][] | null; // [ExperienceScalarWhereInput!]
+    position?: string | null; // String
+    position_contains?: string | null; // String
+    position_ends_with?: string | null; // String
+    position_gt?: string | null; // String
+    position_gte?: string | null; // String
+    position_in?: string[] | null; // [String!]
+    position_lt?: string | null; // String
+    position_lte?: string | null; // String
+    position_not?: string | null; // String
+    position_not_contains?: string | null; // String
+    position_not_ends_with?: string | null; // String
+    position_not_in?: string[] | null; // [String!]
+    position_not_starts_with?: string | null; // String
+    position_starts_with?: string | null; // String
+    start?: any | null; // DateTime
+    start_gt?: any | null; // DateTime
+    start_gte?: any | null; // DateTime
+    start_in?: any[] | null; // [DateTime!]
+    start_lt?: any | null; // DateTime
+    start_lte?: any | null; // DateTime
+    start_not?: any | null; // DateTime
+    start_not_in?: any[] | null; // [DateTime!]
+  }
+  ExperienceUpdateManyDataInput: { // input type
     company?: string | null; // String
     description?: string | null; // String
     end?: any | null; // DateTime
     position?: string | null; // String
     start?: any | null; // DateTime
   }
-  ExperienceUpdateOneInput: { // input type
-    create?: NexusGenInputs['ExperienceCreateInput'] | null; // ExperienceCreateInput
-    delete?: boolean | null; // Boolean
-    disconnect?: boolean | null; // Boolean
-    update?: NexusGenInputs['ExperienceUpdateDataInput'] | null; // ExperienceUpdateDataInput
-    upsert?: NexusGenInputs['ExperienceUpsertNestedInput'] | null; // ExperienceUpsertNestedInput
+  ExperienceUpdateManyInput: { // input type
+    create?: NexusGenInputs['ExperienceCreateInput'][] | null; // [ExperienceCreateInput!]
+    deleteMany?: NexusGenInputs['ExperienceScalarWhereInput'][] | null; // [ExperienceScalarWhereInput!]
+    updateMany?: NexusGenInputs['ExperienceUpdateManyWithWhereNestedInput'][] | null; // [ExperienceUpdateManyWithWhereNestedInput!]
   }
-  ExperienceUpsertNestedInput: { // input type
-    create: NexusGenInputs['ExperienceCreateInput']; // ExperienceCreateInput!
-    update: NexusGenInputs['ExperienceUpdateDataInput']; // ExperienceUpdateDataInput!
+  ExperienceUpdateManyWithWhereNestedInput: { // input type
+    data: NexusGenInputs['ExperienceUpdateManyDataInput']; // ExperienceUpdateManyDataInput!
+    where: NexusGenInputs['ExperienceScalarWhereInput']; // ExperienceScalarWhereInput!
   }
   ExperienceWhereInput: { // input type
     AND?: NexusGenInputs['ExperienceWhereInput'][] | null; // [ExperienceWhereInput!]
@@ -1050,20 +1180,19 @@ export interface NexusGenInputs {
     _id?: string | null; // ID
   }
   OrderCreateInput: { // input type
-    _customerId: NexusGenInputs['PersonCreateOneInput']; // PersonCreateOneInput!
     _id?: string | null; // ID
+    customer: NexusGenInputs['PersonCreateOneInput']; // PersonCreateOneInput!
     items?: NexusGenInputs['ProductCreateManyInput'] | null; // ProductCreateManyInput
     status?: NexusGenEnums['OrderStatus'] | null; // OrderStatus
     total: number; // Float!
   }
   OrderUpdateInput: { // input type
-    _customerId?: NexusGenInputs['PersonUpdateOneRequiredInput'] | null; // PersonUpdateOneRequiredInput
+    customer?: NexusGenInputs['PersonUpdateOneRequiredInput'] | null; // PersonUpdateOneRequiredInput
     items?: NexusGenInputs['ProductUpdateManyInput'] | null; // ProductUpdateManyInput
     status?: NexusGenEnums['OrderStatus'] | null; // OrderStatus
     total?: number | null; // Float
   }
   OrderWhereInput: { // input type
-    _customerId?: NexusGenInputs['PersonWhereInput'] | null; // PersonWhereInput
     _id?: string | null; // ID
     _id_contains?: string | null; // ID
     _id_ends_with?: string | null; // ID
@@ -1079,6 +1208,7 @@ export interface NexusGenInputs {
     _id_not_starts_with?: string | null; // ID
     _id_starts_with?: string | null; // ID
     AND?: NexusGenInputs['OrderWhereInput'][] | null; // [OrderWhereInput!]
+    customer?: NexusGenInputs['PersonWhereInput'] | null; // PersonWhereInput
     items_some?: NexusGenInputs['ProductWhereInput'] | null; // ProductWhereInput
     status?: NexusGenEnums['OrderStatus'] | null; // OrderStatus
     status_in?: NexusGenEnums['OrderStatus'][] | null; // [OrderStatus!]
@@ -1106,6 +1236,7 @@ export interface NexusGenInputs {
     password: string; // String!
     profile?: NexusGenInputs['ProfileCreateOneInput'] | null; // ProfileCreateOneInput
     sessions?: NexusGenInputs['SessionCreateManyInput'] | null; // SessionCreateManyInput
+    type?: NexusGenEnums['PersonType'] | null; // PersonType
     username: string; // String!
   }
   PersonCreateManyInput: { // input type
@@ -1164,6 +1295,10 @@ export interface NexusGenInputs {
     password_not_in?: string[] | null; // [String!]
     password_not_starts_with?: string | null; // String
     password_starts_with?: string | null; // String
+    type?: NexusGenEnums['PersonType'] | null; // PersonType
+    type_in?: NexusGenEnums['PersonType'][] | null; // [PersonType!]
+    type_not?: NexusGenEnums['PersonType'] | null; // PersonType
+    type_not_in?: NexusGenEnums['PersonType'][] | null; // [PersonType!]
     username?: string | null; // String
     username_contains?: string | null; // String
     username_ends_with?: string | null; // String
@@ -1188,6 +1323,7 @@ export interface NexusGenInputs {
     password?: string | null; // String
     profile?: NexusGenInputs['ProfileUpdateOneInput'] | null; // ProfileUpdateOneInput
     sessions?: NexusGenInputs['SessionUpdateManyInput'] | null; // SessionUpdateManyInput
+    type?: NexusGenEnums['PersonType'] | null; // PersonType
     username?: string | null; // String
   }
   PersonUpdateInput: { // input type
@@ -1199,10 +1335,12 @@ export interface NexusGenInputs {
     password?: string | null; // String
     profile?: NexusGenInputs['ProfileUpdateOneInput'] | null; // ProfileUpdateOneInput
     sessions?: NexusGenInputs['SessionUpdateManyInput'] | null; // SessionUpdateManyInput
+    type?: NexusGenEnums['PersonType'] | null; // PersonType
     username?: string | null; // String
   }
   PersonUpdateManyDataInput: { // input type
     password?: string | null; // String
+    type?: NexusGenEnums['PersonType'] | null; // PersonType
     username?: string | null; // String
   }
   PersonUpdateManyInput: { // input type
@@ -1294,6 +1432,10 @@ export interface NexusGenInputs {
     sessions_every?: NexusGenInputs['SessionRestrictedWhereInput'] | null; // SessionRestrictedWhereInput
     sessions_none?: NexusGenInputs['SessionRestrictedWhereInput'] | null; // SessionRestrictedWhereInput
     sessions_some?: NexusGenInputs['SessionWhereInput'] | null; // SessionWhereInput
+    type?: NexusGenEnums['PersonType'] | null; // PersonType
+    type_in?: NexusGenEnums['PersonType'][] | null; // [PersonType!]
+    type_not?: NexusGenEnums['PersonType'] | null; // PersonType
+    type_not_in?: NexusGenEnums['PersonType'][] | null; // [PersonType!]
     username?: string | null; // String
     username_contains?: string | null; // String
     username_ends_with?: string | null; // String
@@ -2042,12 +2184,14 @@ export interface NexusGenEnums {
   CommentType: "CONVERSATION" | "REVIEW"
   DimensionScale: "FOOT" | "METER"
   DocumentCategory: "CORPORATE" | "UNCATEGORIZED"
-  DocumentOrderByInput: "_createdAt_ASC" | "_createdAt_DESC" | "_id_ASC" | "_id_DESC" | "_publishedAt_ASC" | "_publishedAt_DESC" | "_updatedAt_ASC" | "_updatedAt_DESC" | "category_ASC" | "category_DESC" | "content_ASC" | "content_DESC" | "subtitle_ASC" | "subtitle_DESC" | "title_ASC" | "title_DESC"
+  DocumentOrderByInput: "_createdAt_ASC" | "_createdAt_DESC" | "_id_ASC" | "_id_DESC" | "_publishedAt_ASC" | "_publishedAt_DESC" | "_updatedAt_ASC" | "_updatedAt_DESC" | "category_ASC" | "category_DESC" | "content_ASC" | "content_DESC" | "subtitle_ASC" | "subtitle_DESC" | "title_ASC" | "title_DESC" | "type_ASC" | "type_DESC"
+  DocumentType: "DEFAULT" | "INSIGHT" | "POLICY"
   Gender: "FEMALE" | "MALE" | "OTHER"
   NotificationOrderByInput: "_createdAt_ASC" | "_createdAt_DESC" | "_id_ASC" | "_id_DESC" | "_sentAt_ASC" | "_sentAt_DESC" | "message_ASC" | "message_DESC" | "title_ASC" | "title_DESC"
   OrderOrderByInput: "_id_ASC" | "_id_DESC" | "status_ASC" | "status_DESC" | "total_ASC" | "total_DESC"
   OrderStatus: "CART" | "PAID" | "WISH"
-  PersonOrderByInput: "_createdAt_ASC" | "_createdAt_DESC" | "_id_ASC" | "_id_DESC" | "_updatedAt_ASC" | "_updatedAt_DESC" | "password_ASC" | "password_DESC" | "username_ASC" | "username_DESC"
+  PersonOrderByInput: "_createdAt_ASC" | "_createdAt_DESC" | "_id_ASC" | "_id_DESC" | "_updatedAt_ASC" | "_updatedAt_DESC" | "password_ASC" | "password_DESC" | "type_ASC" | "type_DESC" | "username_ASC" | "username_DESC"
+  PersonType: "ADMINISTRATOR" | "EMPLOYEE" | "PARTNER" | "USER" | "VENDOR"
   ProductCategory: "UNCATEGORIZED"
   ProductOrderByInput: "_handlerId_ASC" | "_handlerId_DESC" | "_id_ASC" | "_id_DESC" | "category_ASC" | "category_DESC" | "description_ASC" | "description_DESC" | "details_ASC" | "details_DESC" | "name_ASC" | "name_DESC" | "quantity_ASC" | "quantity_DESC" | "sku_ASC" | "sku_DESC"
   SenderType: "PERSON" | "SYSTEM"
@@ -2055,9 +2199,9 @@ export interface NexusGenEnums {
 
 export interface NexusGenRootTypes {
   Account: { // root type
-    number?: number | null; // Int
-    routing?: number | null; // Int
-    type?: NexusGenEnums['AccountType'] | null; // AccountType
+    number: number; // Int!
+    routing: number; // Int!
+    type: NexusGenEnums['AccountType']; // AccountType!
   }
   Billing: { // root type
     accounts?: NexusGenRootTypes['Account'][] | null; // [Account!]
@@ -2068,11 +2212,11 @@ export interface NexusGenRootTypes {
     expiration: any; // DateTime!
     name: string; // String!
     number: number; // Int!
-    type?: NexusGenEnums['CardType'] | null; // CardType
+    type: NexusGenEnums['CardType']; // CardType!
   }
   Career: { // root type
     company: string; // String!
-    experience?: NexusGenRootTypes['Experience'] | null; // Experience
+    experience?: NexusGenRootTypes['Experience'][] | null; // [Experience!]
     position: string; // String!
   }
   Comment: { // root type
@@ -2104,6 +2248,7 @@ export interface NexusGenRootTypes {
     content: string; // String!
     subtitle?: string | null; // String
     title: string; // String!
+    type: NexusGenEnums['DocumentType']; // DocumentType!
   }
   Experience: { // root type
     company: string; // String!
@@ -2141,6 +2286,7 @@ export interface NexusGenRootTypes {
     _id: string; // ID!
     _updatedAt: any; // DateTime!
     password: string; // String!
+    type: NexusGenEnums['PersonType']; // PersonType!
     username: string; // String!
   }
   Price: { // root type
@@ -2248,10 +2394,12 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   DocumentWhereInput: NexusGenInputs['DocumentWhereInput'];
   DocumentWhereUniqueInput: NexusGenInputs['DocumentWhereUniqueInput'];
   ExperienceCreateInput: NexusGenInputs['ExperienceCreateInput'];
-  ExperienceCreateOneInput: NexusGenInputs['ExperienceCreateOneInput'];
-  ExperienceUpdateDataInput: NexusGenInputs['ExperienceUpdateDataInput'];
-  ExperienceUpdateOneInput: NexusGenInputs['ExperienceUpdateOneInput'];
-  ExperienceUpsertNestedInput: NexusGenInputs['ExperienceUpsertNestedInput'];
+  ExperienceCreateManyInput: NexusGenInputs['ExperienceCreateManyInput'];
+  ExperienceRestrictedWhereInput: NexusGenInputs['ExperienceRestrictedWhereInput'];
+  ExperienceScalarWhereInput: NexusGenInputs['ExperienceScalarWhereInput'];
+  ExperienceUpdateManyDataInput: NexusGenInputs['ExperienceUpdateManyDataInput'];
+  ExperienceUpdateManyInput: NexusGenInputs['ExperienceUpdateManyInput'];
+  ExperienceUpdateManyWithWhereNestedInput: NexusGenInputs['ExperienceUpdateManyWithWhereNestedInput'];
   ExperienceWhereInput: NexusGenInputs['ExperienceWhereInput'];
   ManufacturerCreateInput: NexusGenInputs['ManufacturerCreateInput'];
   ManufacturerCreateOneInput: NexusGenInputs['ManufacturerCreateOneInput'];
@@ -2349,11 +2497,13 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   DimensionScale: NexusGenEnums['DimensionScale'];
   DocumentCategory: NexusGenEnums['DocumentCategory'];
   DocumentOrderByInput: NexusGenEnums['DocumentOrderByInput'];
+  DocumentType: NexusGenEnums['DocumentType'];
   Gender: NexusGenEnums['Gender'];
   NotificationOrderByInput: NexusGenEnums['NotificationOrderByInput'];
   OrderOrderByInput: NexusGenEnums['OrderOrderByInput'];
   OrderStatus: NexusGenEnums['OrderStatus'];
   PersonOrderByInput: NexusGenEnums['PersonOrderByInput'];
+  PersonType: NexusGenEnums['PersonType'];
   ProductCategory: NexusGenEnums['ProductCategory'];
   ProductOrderByInput: NexusGenEnums['ProductOrderByInput'];
   SenderType: NexusGenEnums['SenderType'];
@@ -2361,9 +2511,9 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 
 export interface NexusGenFieldTypes {
   Account: { // field return type
-    number: number | null; // Int
-    routing: number | null; // Int
-    type: NexusGenEnums['AccountType'] | null; // AccountType
+    number: number; // Int!
+    routing: number; // Int!
+    type: NexusGenEnums['AccountType']; // AccountType!
   }
   Billing: { // field return type
     accounts: NexusGenRootTypes['Account'][] | null; // [Account!]
@@ -2374,20 +2524,20 @@ export interface NexusGenFieldTypes {
     expiration: any; // DateTime!
     name: string; // String!
     number: number; // Int!
-    type: NexusGenEnums['CardType'] | null; // CardType
+    type: NexusGenEnums['CardType']; // CardType!
   }
   Career: { // field return type
     company: string; // String!
-    experience: NexusGenRootTypes['Experience'] | null; // Experience
+    experience: NexusGenRootTypes['Experience'][] | null; // [Experience!]
     position: string; // String!
   }
   Comment: { // field return type
-    _authorId: NexusGenRootTypes['Person']; // Person!
     _createdAt: any; // DateTime!
     _discussionId: string; // ID!
     _id: string; // ID!
     _parentId: NexusGenRootTypes['Comment'] | null; // Comment
     _updatedAt: any; // DateTime!
+    author: NexusGenRootTypes['Person']; // Person!
     content: string; // String!
     fullSlug: string | null; // String
     slug: string | null; // String
@@ -2404,15 +2554,16 @@ export interface NexusGenFieldTypes {
     state: string; // String!
   }
   Document: { // field return type
-    _authorId: NexusGenRootTypes['Person']; // Person!
     _createdAt: any; // DateTime!
     _id: string; // ID!
     _publishedAt: any | null; // DateTime
     _updatedAt: any; // DateTime!
+    author: NexusGenRootTypes['Person']; // Person!
     category: NexusGenEnums['DocumentCategory']; // DocumentCategory!
     content: string; // String!
     subtitle: string | null; // String
     title: string; // String!
+    type: NexusGenEnums['DocumentType']; // DocumentType!
   }
   Experience: { // field return type
     company: string; // String!
@@ -2462,8 +2613,8 @@ export interface NexusGenFieldTypes {
     title: string; // String!
   }
   Order: { // field return type
-    _customerId: NexusGenRootTypes['Person']; // Person!
     _id: string; // ID!
+    customer: NexusGenRootTypes['Person']; // Person!
     items: NexusGenRootTypes['Product'][] | null; // [Product!]
     status: NexusGenEnums['OrderStatus']; // OrderStatus!
     total: number; // Float!
@@ -2480,6 +2631,7 @@ export interface NexusGenFieldTypes {
     password: string; // String!
     profile: NexusGenRootTypes['Profile'] | null; // Profile
     sessions: NexusGenRootTypes['Session'][] | null; // [Session!]
+    type: NexusGenEnums['PersonType']; // PersonType!
     username: string; // String!
   }
   Price: { // field return type
@@ -2712,9 +2864,9 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Account" | "Billing" | "Card" | "Career" | "Comment" | "Contact" | "Document" | "Experience" | "Manufacturer" | "Mutation" | "Name" | "Notification" | "Order" | "Person" | "Price" | "Product" | "Profile" | "Query" | "ReceivedBy" | "Sender" | "Session" | "Shipping";
 
-export type NexusGenInputNames = "AccountCreateInput" | "AccountCreateManyInput" | "AccountRestrictedWhereInput" | "AccountScalarWhereInput" | "AccountUpdateManyDataInput" | "AccountUpdateManyInput" | "AccountUpdateManyWithWhereNestedInput" | "AccountWhereInput" | "BillingCreateInput" | "BillingCreateOneInput" | "BillingUpdateDataInput" | "BillingUpdateOneInput" | "BillingUpsertNestedInput" | "BillingWhereInput" | "CardCreateInput" | "CardCreateManyInput" | "CardRestrictedWhereInput" | "CardScalarWhereInput" | "CardUpdateManyDataInput" | "CardUpdateManyInput" | "CardUpdateManyWithWhereNestedInput" | "CardWhereInput" | "CareerCreateInput" | "CareerCreateOneInput" | "CareerUpdateDataInput" | "CareerUpdateOneInput" | "CareerUpsertNestedInput" | "CareerWhereInput" | "CommentCreateInput" | "CommentCreateOneInput" | "CommentUpdateDataInput" | "CommentUpdateInput" | "CommentUpdateOneInput" | "CommentUpsertNestedInput" | "CommentWhereInput" | "CommentWhereUniqueInput" | "ContactCreateInput" | "ContactCreateOneInput" | "ContactCreateemailsInput" | "ContactCreatephonesInput" | "ContactUpdateDataInput" | "ContactUpdateOneInput" | "ContactUpdateemailsInput" | "ContactUpdatephonesInput" | "ContactUpsertNestedInput" | "ContactWhereInput" | "DocumentCreateInput" | "DocumentUpdateInput" | "DocumentWhereInput" | "DocumentWhereUniqueInput" | "ExperienceCreateInput" | "ExperienceCreateOneInput" | "ExperienceUpdateDataInput" | "ExperienceUpdateOneInput" | "ExperienceUpsertNestedInput" | "ExperienceWhereInput" | "ManufacturerCreateInput" | "ManufacturerCreateOneInput" | "ManufacturerUpdateDataInput" | "ManufacturerUpdateOneInput" | "ManufacturerUpsertNestedInput" | "ManufacturerWhereInput" | "NameCreateInput" | "NameCreateOneInput" | "NameUpdateDataInput" | "NameUpdateOneRequiredInput" | "NameUpsertNestedInput" | "NameWhereInput" | "NotificationCreateInput" | "NotificationCreatereceiverInput" | "NotificationUpdateInput" | "NotificationUpdatereceiverInput" | "NotificationWhereInput" | "NotificationWhereUniqueInput" | "OrderCreateInput" | "OrderUpdateInput" | "OrderWhereInput" | "OrderWhereUniqueInput" | "PersonCreateInput" | "PersonCreateManyInput" | "PersonCreateOneInput" | "PersonScalarWhereInput" | "PersonUpdateDataInput" | "PersonUpdateInput" | "PersonUpdateManyDataInput" | "PersonUpdateManyInput" | "PersonUpdateManyWithWhereNestedInput" | "PersonUpdateOneRequiredInput" | "PersonUpdateWithWhereUniqueNestedInput" | "PersonUpsertNestedInput" | "PersonUpsertWithWhereUniqueNestedInput" | "PersonWhereInput" | "PersonWhereUniqueInput" | "PriceCreateInput" | "PriceCreateOneInput" | "PriceUpdateDataInput" | "PriceUpdateOneRequiredInput" | "PriceUpsertNestedInput" | "PriceWhereInput" | "ProductCreateInput" | "ProductCreateManyInput" | "ProductScalarWhereInput" | "ProductUpdateDataInput" | "ProductUpdateInput" | "ProductUpdateManyDataInput" | "ProductUpdateManyInput" | "ProductUpdateManyWithWhereNestedInput" | "ProductUpdateWithWhereUniqueNestedInput" | "ProductUpsertWithWhereUniqueNestedInput" | "ProductWhereInput" | "ProductWhereUniqueInput" | "ProfileCreateInput" | "ProfileCreateOneInput" | "ProfileUpdateDataInput" | "ProfileUpdateOneInput" | "ProfileUpsertNestedInput" | "ProfileWhereInput" | "ReceivedByCreateInput" | "ReceivedByCreateManyInput" | "ReceivedByRestrictedWhereInput" | "ReceivedByScalarWhereInput" | "ReceivedByUpdateManyDataInput" | "ReceivedByUpdateManyInput" | "ReceivedByUpdateManyWithWhereNestedInput" | "ReceivedByWhereInput" | "SenderCreateInput" | "SenderCreateOneInput" | "SenderUpdateDataInput" | "SenderUpdateOneRequiredInput" | "SenderUpsertNestedInput" | "SenderWhereInput" | "SessionCreateInput" | "SessionCreateManyInput" | "SessionRestrictedWhereInput" | "SessionScalarWhereInput" | "SessionUpdateManyDataInput" | "SessionUpdateManyInput" | "SessionUpdateManyWithWhereNestedInput" | "SessionWhereInput" | "ShippingCreateInput" | "ShippingCreateOneInput" | "ShippingUpdateDataInput" | "ShippingUpdateOneInput" | "ShippingUpsertNestedInput" | "ShippingWhereInput";
+export type NexusGenInputNames = "AccountCreateInput" | "AccountCreateManyInput" | "AccountRestrictedWhereInput" | "AccountScalarWhereInput" | "AccountUpdateManyDataInput" | "AccountUpdateManyInput" | "AccountUpdateManyWithWhereNestedInput" | "AccountWhereInput" | "BillingCreateInput" | "BillingCreateOneInput" | "BillingUpdateDataInput" | "BillingUpdateOneInput" | "BillingUpsertNestedInput" | "BillingWhereInput" | "CardCreateInput" | "CardCreateManyInput" | "CardRestrictedWhereInput" | "CardScalarWhereInput" | "CardUpdateManyDataInput" | "CardUpdateManyInput" | "CardUpdateManyWithWhereNestedInput" | "CardWhereInput" | "CareerCreateInput" | "CareerCreateOneInput" | "CareerUpdateDataInput" | "CareerUpdateOneInput" | "CareerUpsertNestedInput" | "CareerWhereInput" | "CommentCreateInput" | "CommentCreateOneInput" | "CommentUpdateDataInput" | "CommentUpdateInput" | "CommentUpdateOneInput" | "CommentUpsertNestedInput" | "CommentWhereInput" | "CommentWhereUniqueInput" | "ContactCreateInput" | "ContactCreateOneInput" | "ContactCreateemailsInput" | "ContactCreatephonesInput" | "ContactUpdateDataInput" | "ContactUpdateOneInput" | "ContactUpdateemailsInput" | "ContactUpdatephonesInput" | "ContactUpsertNestedInput" | "ContactWhereInput" | "DocumentCreateInput" | "DocumentUpdateInput" | "DocumentWhereInput" | "DocumentWhereUniqueInput" | "ExperienceCreateInput" | "ExperienceCreateManyInput" | "ExperienceRestrictedWhereInput" | "ExperienceScalarWhereInput" | "ExperienceUpdateManyDataInput" | "ExperienceUpdateManyInput" | "ExperienceUpdateManyWithWhereNestedInput" | "ExperienceWhereInput" | "ManufacturerCreateInput" | "ManufacturerCreateOneInput" | "ManufacturerUpdateDataInput" | "ManufacturerUpdateOneInput" | "ManufacturerUpsertNestedInput" | "ManufacturerWhereInput" | "NameCreateInput" | "NameCreateOneInput" | "NameUpdateDataInput" | "NameUpdateOneRequiredInput" | "NameUpsertNestedInput" | "NameWhereInput" | "NotificationCreateInput" | "NotificationCreatereceiverInput" | "NotificationUpdateInput" | "NotificationUpdatereceiverInput" | "NotificationWhereInput" | "NotificationWhereUniqueInput" | "OrderCreateInput" | "OrderUpdateInput" | "OrderWhereInput" | "OrderWhereUniqueInput" | "PersonCreateInput" | "PersonCreateManyInput" | "PersonCreateOneInput" | "PersonScalarWhereInput" | "PersonUpdateDataInput" | "PersonUpdateInput" | "PersonUpdateManyDataInput" | "PersonUpdateManyInput" | "PersonUpdateManyWithWhereNestedInput" | "PersonUpdateOneRequiredInput" | "PersonUpdateWithWhereUniqueNestedInput" | "PersonUpsertNestedInput" | "PersonUpsertWithWhereUniqueNestedInput" | "PersonWhereInput" | "PersonWhereUniqueInput" | "PriceCreateInput" | "PriceCreateOneInput" | "PriceUpdateDataInput" | "PriceUpdateOneRequiredInput" | "PriceUpsertNestedInput" | "PriceWhereInput" | "ProductCreateInput" | "ProductCreateManyInput" | "ProductScalarWhereInput" | "ProductUpdateDataInput" | "ProductUpdateInput" | "ProductUpdateManyDataInput" | "ProductUpdateManyInput" | "ProductUpdateManyWithWhereNestedInput" | "ProductUpdateWithWhereUniqueNestedInput" | "ProductUpsertWithWhereUniqueNestedInput" | "ProductWhereInput" | "ProductWhereUniqueInput" | "ProfileCreateInput" | "ProfileCreateOneInput" | "ProfileUpdateDataInput" | "ProfileUpdateOneInput" | "ProfileUpsertNestedInput" | "ProfileWhereInput" | "ReceivedByCreateInput" | "ReceivedByCreateManyInput" | "ReceivedByRestrictedWhereInput" | "ReceivedByScalarWhereInput" | "ReceivedByUpdateManyDataInput" | "ReceivedByUpdateManyInput" | "ReceivedByUpdateManyWithWhereNestedInput" | "ReceivedByWhereInput" | "SenderCreateInput" | "SenderCreateOneInput" | "SenderUpdateDataInput" | "SenderUpdateOneRequiredInput" | "SenderUpsertNestedInput" | "SenderWhereInput" | "SessionCreateInput" | "SessionCreateManyInput" | "SessionRestrictedWhereInput" | "SessionScalarWhereInput" | "SessionUpdateManyDataInput" | "SessionUpdateManyInput" | "SessionUpdateManyWithWhereNestedInput" | "SessionWhereInput" | "ShippingCreateInput" | "ShippingCreateOneInput" | "ShippingUpdateDataInput" | "ShippingUpdateOneInput" | "ShippingUpsertNestedInput" | "ShippingWhereInput";
 
-export type NexusGenEnumNames = "AccountType" | "CardType" | "CommentOrderByInput" | "CommentType" | "DimensionScale" | "DocumentCategory" | "DocumentOrderByInput" | "Gender" | "NotificationOrderByInput" | "OrderOrderByInput" | "OrderStatus" | "PersonOrderByInput" | "ProductCategory" | "ProductOrderByInput" | "SenderType";
+export type NexusGenEnumNames = "AccountType" | "CardType" | "CommentOrderByInput" | "CommentType" | "DimensionScale" | "DocumentCategory" | "DocumentOrderByInput" | "DocumentType" | "Gender" | "NotificationOrderByInput" | "OrderOrderByInput" | "OrderStatus" | "PersonOrderByInput" | "PersonType" | "ProductCategory" | "ProductOrderByInput" | "SenderType";
 
 export type NexusGenInterfaceNames = never;
 

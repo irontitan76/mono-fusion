@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Drawer, IconButton, Toolbar, Typography } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
-const useStyles = makeStyles(({ palette }) => {
+const useStyles = makeStyles(({ palette, spacing }) => {
   return {
     button: {
       '& button': {
@@ -15,6 +15,9 @@ const useStyles = makeStyles(({ palette }) => {
         },
         marginRight: 10,
       },
+    },
+    children: {
+      padding: spacing(2, 5),
     },
     content: {
       padding: "20px 0px",
@@ -26,7 +29,7 @@ const useStyles = makeStyles(({ palette }) => {
   };
 });
 
-export function Slideout({ icon, onClose, open, title }) {
+export function Slideout({ children, icon, onClose, open, title }) {
   const classes = useStyles();
 
   return (
@@ -36,7 +39,7 @@ export function Slideout({ icon, onClose, open, title }) {
       onClose={onClose}
       open={open}
       ModalProps={{
-        hideBackdrop: true,
+        // hideBackdrop: true,
       }}
     >
       <div className={classes.content}>
@@ -51,6 +54,9 @@ export function Slideout({ icon, onClose, open, title }) {
             {title}
           </Typography>
         </Toolbar>
+        <div className={classes.children}>
+          {children}
+        </div>
       </div>
     </Drawer>
   )
