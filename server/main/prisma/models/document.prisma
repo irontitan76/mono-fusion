@@ -17,7 +17,14 @@ type Document {
   author: Person! @relation(link: INLINE)
   category: DocumentCategory! @default(value: UNCATEGORIZED)
   content: String!
+  description: String
+  media: String
+  meta: Meta
   subtitle: String
   title: String! @unique
   type: DocumentType! @default(value: DEFAULT)
+}
+
+type Meta @embedded {
+  featured: Boolean
 }

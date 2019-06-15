@@ -841,6 +841,9 @@ type Document {
   author: Person!
   category: DocumentCategory!
   content: String!
+  description: String
+  media: String
+  meta: Meta
   subtitle: String
   title: String!
   type: DocumentType!
@@ -863,6 +866,9 @@ input DocumentCreateInput {
   author: PersonCreateOneInput!
   category: DocumentCategory
   content: String!
+  description: String
+  media: String
+  meta: MetaCreateOneInput
   subtitle: String
   title: String!
   type: DocumentType
@@ -886,6 +892,10 @@ enum DocumentOrderByInput {
   category_DESC
   content_ASC
   content_DESC
+  description_ASC
+  description_DESC
+  media_ASC
+  media_DESC
   subtitle_ASC
   subtitle_DESC
   title_ASC
@@ -901,6 +911,8 @@ type DocumentPreviousValues {
   _updatedAt: DateTime!
   category: DocumentCategory!
   content: String!
+  description: String
+  media: String
   subtitle: String
   title: String!
   type: DocumentType!
@@ -933,6 +945,9 @@ input DocumentUpdateInput {
   author: PersonUpdateOneRequiredInput
   category: DocumentCategory
   content: String
+  description: String
+  media: String
+  meta: MetaUpdateOneInput
   subtitle: String
   title: String
   type: DocumentType
@@ -942,6 +957,8 @@ input DocumentUpdateManyMutationInput {
   _publishedAt: DateTime
   category: DocumentCategory
   content: String
+  description: String
+  media: String
   subtitle: String
   title: String
   type: DocumentType
@@ -1005,6 +1022,35 @@ input DocumentWhereInput {
   content_not_starts_with: String
   content_ends_with: String
   content_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  media: String
+  media_not: String
+  media_in: [String!]
+  media_not_in: [String!]
+  media_lt: String
+  media_lte: String
+  media_gt: String
+  media_gte: String
+  media_contains: String
+  media_not_contains: String
+  media_starts_with: String
+  media_not_starts_with: String
+  media_ends_with: String
+  media_not_ends_with: String
+  meta: MetaWhereInput
   subtitle: String
   subtitle_not: String
   subtitle_in: [String!]
@@ -1338,6 +1384,41 @@ input ManufacturerWhereInput {
   releaseDate_gt: DateTime
   releaseDate_gte: DateTime
   AND: [ManufacturerWhereInput!]
+}
+
+type Meta {
+  featured: Boolean
+}
+
+input MetaCreateInput {
+  featured: Boolean
+}
+
+input MetaCreateOneInput {
+  create: MetaCreateInput
+}
+
+input MetaUpdateDataInput {
+  featured: Boolean
+}
+
+input MetaUpdateOneInput {
+  create: MetaCreateInput
+  update: MetaUpdateDataInput
+  upsert: MetaUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+}
+
+input MetaUpsertNestedInput {
+  update: MetaUpdateDataInput!
+  create: MetaCreateInput!
+}
+
+input MetaWhereInput {
+  featured: Boolean
+  featured_not: Boolean
+  AND: [MetaWhereInput!]
 }
 
 type Mutation {

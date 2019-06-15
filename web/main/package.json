@@ -27,6 +27,7 @@
     "classnames": "^2.2.6",
     "css-loader": "^2.1.1",
     "graphql": "^14.2.1",
+    "graphql-tag": "^2.10.1",
     "isomorphic-unfetch": "^3.0.0",
     "jss": "^9.8.7",
     "lodash.find": "^4.6.0",

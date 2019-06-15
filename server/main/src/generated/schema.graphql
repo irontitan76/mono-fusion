@@ -767,6 +767,9 @@ type Document {
   author: Person!
   category: DocumentCategory!
   content: String!
+  description: String
+  media: String
+  meta: Meta
   subtitle: String
   title: String!
   type: DocumentType!
@@ -783,6 +786,9 @@ input DocumentCreateInput {
   author: PersonCreateOneInput!
   category: DocumentCategory
   content: String!
+  description: String
+  media: String
+  meta: MetaCreateOneInput
   subtitle: String
   title: String!
   type: DocumentType
@@ -801,6 +807,10 @@ enum DocumentOrderByInput {
   category_DESC
   content_ASC
   content_DESC
+  description_ASC
+  description_DESC
+  media_ASC
+  media_DESC
   subtitle_ASC
   subtitle_DESC
   title_ASC
@@ -820,6 +830,9 @@ input DocumentUpdateInput {
   author: PersonUpdateOneRequiredInput
   category: DocumentCategory
   content: String
+  description: String
+  media: String
+  meta: MetaUpdateOneInput
   subtitle: String
   title: String
   type: DocumentType
@@ -884,6 +897,35 @@ input DocumentWhereInput {
   content_not_in: [String!]
   content_not_starts_with: String
   content_starts_with: String
+  description: String
+  description_contains: String
+  description_ends_with: String
+  description_gt: String
+  description_gte: String
+  description_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_not: String
+  description_not_contains: String
+  description_not_ends_with: String
+  description_not_in: [String!]
+  description_not_starts_with: String
+  description_starts_with: String
+  media: String
+  media_contains: String
+  media_ends_with: String
+  media_gt: String
+  media_gte: String
+  media_in: [String!]
+  media_lt: String
+  media_lte: String
+  media_not: String
+  media_not_contains: String
+  media_not_ends_with: String
+  media_not_in: [String!]
+  media_not_starts_with: String
+  media_starts_with: String
+  meta: MetaWhereInput
   subtitle: String
   subtitle_contains: String
   subtitle_ends_with: String
@@ -1214,6 +1256,41 @@ input ManufacturerWhereInput {
   releaseDate_lte: DateTime
   releaseDate_not: DateTime
   releaseDate_not_in: [DateTime!]
+}
+
+type Meta {
+  featured: Boolean
+}
+
+input MetaCreateInput {
+  featured: Boolean
+}
+
+input MetaCreateOneInput {
+  create: MetaCreateInput
+}
+
+input MetaUpdateDataInput {
+  featured: Boolean
+}
+
+input MetaUpdateOneInput {
+  create: MetaCreateInput
+  delete: Boolean
+  disconnect: Boolean
+  update: MetaUpdateDataInput
+  upsert: MetaUpsertNestedInput
+}
+
+input MetaUpsertNestedInput {
+  create: MetaCreateInput!
+  update: MetaUpdateDataInput!
+}
+
+input MetaWhereInput {
+  AND: [MetaWhereInput!]
+  featured: Boolean
+  featured_not: Boolean
 }
 
 type Mutation {

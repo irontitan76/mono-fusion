@@ -10,7 +10,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import ManifestProvider from '@fusion/design/lib/Provider/Manifest';
 import { getTheme } from '@fusion/design/lib/theme';
 
-import Layout from '../layouts/primary';
+import Layout from '../components/Layout';
 import manifest from '../manifest';
 import '../icon.config.js';
 

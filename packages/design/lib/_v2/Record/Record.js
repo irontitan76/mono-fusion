@@ -12,16 +12,17 @@ const useStyles = makeStyles(() => {
   };
 });
 
-export function Record({ data, headers, paths, rows }) {
+export function Record({ data, headers, paths, rows, withControls }) {
   const classes = useStyles();
 
   return (
     <Table>
-      <RecordHead headers={headers} />
+      <RecordHead headers={headers} withControls={!!withControls}/>
       <RecordBody
         data={data}
         paths={paths}
         numColumns={headers.length}
+        withControls={withControls}
         rows={rows}
       />
     </Table>

@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/link';
 import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 
-import { manifest } from '@fusion/main/manifest';
+import { ManifestContext } from '@fusion/design/lib/Provider/Manifest';
 import Hero from '@fusion/design/lib/Hero';
-import InsightsApi from '@fusion/api/lib/insights';
 import Intro from '@fusion/design/lib/Intro';
 import NewsSlider from '@fusion/design/lib/NewsSlider';
 
@@ -21,44 +21,23 @@ const useStyles = makeStyles(({ spacing }) => {
   };
 });
 
-export function Home() {
-  const classes = useStyles();
+const GET_INSIGHTS_BY_CATEGORY = gql`
+  query {
+    documents(where: { category: CORPORATE, type: INSIGHT, meta: { featured: true } }) {
+      _id
+      description
+      media
+      meta {
+        featured
+      }
+      title
+    }
+  }
+`;
 
-  const heros = [
-    {
-      action: 'Learn more',
-      description: 'Integrate our solutions into your existing workflow',
-      media: {
-        source: './static/images/building-2.jpg',
-        type: 'image',
-      },
-      path: '/solutions',
-      title: 'OUR SOLUTIONS',
-      variant: 'dark',
-    },
-    {
-      action: 'See how we work',
-      description: 'Quicken development with our qualified consultants',
-      media: {
-        source: './static/images/people-4.jpg',
-        type: 'image',
-      },
-      path: '/insight?id=cjv8ygn7k04ku0177uvx8chg9',
-      title: 'OUR SERVICES',
-      variant: 'dark',
-    },
-    {
-      action: 'See our standard',
-      description: 'Proven strategies that effectively grow your business',
-      media: {
-        source: './static/images/plant-1.jpg?resize&size=300',
-        type: 'image',
-      },
-      path: '/insight?id=cjv8y928r03su01908ylxhpej',
-      title: 'OUR PROCESS',
-      variant: 'dark',
-    },
-  ];
+export function Home() {
+  const manifest = useContext(ManifestContext);
+  const classes = useStyles();
 
   return (
     <SSR>
@@ -72,18 +51,15 @@ export function Home() {
         Company News
       </Typography>
 
-      <Query
-        query={InsightsApi.getByCategory}
-        variables={{ category: 'corporate news' }}
-      >
-        {({ loading, error, data: { allInsights, _allInsghtsMeta }, fetchMore }) => {
+      <Query query={GET_INSIGHTS_BY_CATEGORY}>
+        {({ loading, error, data }) => {
           if (loading) return null;
           if (error) return null;
-
+          
           return (
             <NewsSlider
               component={Link}
-              insights={allInsights}
+              insights={data.documents}
               rounded={true}
               scroll={true}
               spacing={4}
@@ -92,7 +68,7 @@ export function Home() {
         }}
       </Query>
 
-      {heros.map((hero) => {
+      {manifest.pages.home.heros.map((hero) => {
         return <Hero component={Link} hero={hero} key={hero.title} />;
       })}
     </SSR>

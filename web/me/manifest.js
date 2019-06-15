@@ -116,17 +116,15 @@ export const manifest = {
     documents: {
       record: {
         headers: [
-          { value: 'ID' },
           { value: 'Title' },
           { value: 'Category' },
           { value: 'Author' },
           { value: 'Type' },
         ],
         paths: [
-          "_id",
-          "title",
+          { component: Link, href: "/document?title={title}", value: "title" },
           "category",
-          ["author.name.first", "author.name.last"],
+          { component: Link, href: "/person?id={author._id}", value: ["author.name.first", "author.name.last"] },
           'type',
         ],
         // data,
@@ -258,14 +256,12 @@ export const manifest = {
     people: {
       record: {
         headers: [
-          { value: "ID" },
           { value: "Username" },
           { value: "First Name" },
           { value: "Last Name" },
           { value: "Role" },
         ],
         paths: [
-          "_id",
           "username",
           "name.first",
           "name.last",
@@ -276,6 +272,7 @@ export const manifest = {
         content: {
           fields: [
             {
+              autoFocus: true,
               fullWidth: true,
               label: 'First name',
               name: 'first',

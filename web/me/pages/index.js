@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { makeStyles } from '@material-ui/styles';
 
-import Carousel from '@fusion/design/lib/_v2/Carousel/Carousel';
-import Page from '../layouts/Page';
+import { Carousel } from '@fusion/design/lib/_v2';
+import Page from '../components/Page';
 
 const useStyles = makeStyles(() => {
   return {

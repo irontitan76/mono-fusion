@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => {
   };
 });
 
-export function RecordHead({ headers }) {
+export function RecordHead({ headers, withControls }) {
   const classes = useStyles();
 
   const renderedHeaders = headers.map((header) => {
@@ -23,6 +23,7 @@ export function RecordHead({ headers }) {
   const renderedRow = (
     <TableRow>
       {renderedHeaders}
+      {withControls ? <TableCell /> : null}
     </TableRow>
   );
 

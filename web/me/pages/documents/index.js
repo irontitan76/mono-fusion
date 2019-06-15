@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
+import Link from 'next/link';
 import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { makeStyles } from '@material-ui/styles';
-import { Button, Grid, TextField } from '@material-ui/core';
 
-import Page from '../../layouts/Page';
+import Page from '../../components/Page';
 import { ManifestContext } from '@fusion/design/lib/Provider/Manifest';
-import Record from '@fusion/design/lib/_v2/Record/Record';
+import { Form, Record } from '@fusion/design/lib/_v2';
 
-
-const useStyles = makeStyles(({ palette, spacing }) => {
+const useStyles = makeStyles(({ palette, shadows, spacing }) => {
   return {
     button: {
       position: 'absolute',
@@ -26,11 +26,29 @@ const useStyles = makeStyles(({ palette, spacing }) => {
     outlinedField: {
       borderRadius: 0,
     },
+    iconButton: {
+      '&:first-child': {
+        marginRight: spacing(1),
+      },
+      borderRadius: '50%',
+      fontSize: 12,
+      padding: spacing(.75)
+    },
     item: {
       height: 'calc(100vh - 100px)',
       paddingLeft: spacing(5),
       paddingRight: spacing(5),
       paddingTop: spacing(3),
+    },
+    paper: {
+      backgroundColor: palette.background.paper,
+      boxShadow: shadows[5],
+      left: 'calc(50% - 200px)',
+      outline: 'none',
+      padding: spacing(4),
+      position: 'absolute',
+      top: '40%',
+      width: 400,
     },
     title: {
       color: palette.grey[700],
@@ -80,40 +98,16 @@ export function People() {
   const classes = useStyles();
 
   function CreateDocument() {
-    const form = slideout.content.fields.map((field) => {
-      return (
-        <TextField
-          className={classes.field}
-          InputProps={{
-            classes: { notchedOutline: classes.outlinedField },
-          }}
-          margin='dense'
-          {...field}
-        />
-      );
-    });
-
     return (
       <Mutation mutation={CREATE_DOCUMENT}>
-        {(addDocument, { data }) => (
-          <form onSubmit={(event) => {
-            event.preventDefault();
-            addDocument({});
-          }}>
-            <Grid container>
-              <Grid item xs={12}>
-                {form}
-              </Grid>
-            </Grid>
-            <Button
-              className={classes.button}
-              color='primary'
-              type='submit'
-              variant='contained'
-            >
-              Add
-            </Button>
-          </form>
+        {(addDocument) => (
+          <Form
+            fields={slideout.content.fields}
+            onSubmit={(event) => {
+              event.preventDefault();
+              addDocument({});
+            }}
+          />
         )}
       </Mutation>
     )
@@ -141,6 +135,18 @@ export function People() {
               data={data.documents}
               headers={record.headers}
               paths={record.paths}
+              withControls={{
+                edit: {
+                  component: Link,
+                  href: '/document/edit?id={_id}',
+                  icon: <FontAwesomeIcon icon={['fal', 'pencil']} />,
+                },
+                remove: {
+                  icon: <FontAwesomeIcon icon={['fal', 'trash-alt']} />,
+                  message: `Are you sure you want to delete this item?`,
+                  title: 'Delete item',
+                },
+              }}
             />
           </Page>
         );

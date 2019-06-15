@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
 
 import { makeStyles } from '@material-ui/styles';
 
@@ -23,6 +24,16 @@ const useStyles = makeStyles(({ palette }) => {
   };
 });
 
+const GET_POLICIES = gql`
+  query {
+    documents(where: { category: CORPORATE, type: POLICY }) {
+      _id
+      title
+    }
+  }
+`;
+
+
 export default function Layout({ children, component, items, TopBarProps }) {
   const classes = useStyles();
 
@@ -32,8 +43,8 @@ export default function Layout({ children, component, items, TopBarProps }) {
         { name: 'Leadership', path: '/leadership' },
         { name: 'Career opportunities', path: '/careers' },
         { name: 'Locations', path: '/locations' },
-        { name: 'Standards', path: '/insight?id=cjv8y928r03su01908ylxhpej' },
-        { name: 'Strategy', path: '/insight?id=cjv8z0oui05ud01871fenxq8b' },
+        { name: 'Standards', path: '/insight?id=5cfcb95802743900079c6388' },
+        { name: 'Strategy', path: '/insight?id=5cfcb95e02743900079c6389' },
       ],
       title: 'Company',
     },
@@ -89,13 +100,13 @@ export default function Layout({ children, component, items, TopBarProps }) {
         />
       </header>
       {children}
-      <Query query={PoliciesApi.getAllIds}>
-        {({ loading, error, data: { allPolicies } }) => {
+      <Query query={GET_POLICIES}>
+        {({ loading, error, data: { documents } }) => {
           if (loading) return null;
           if (error) return null;
-
+          
           return (
-            <Footer component={component} columns={footerColumns(allPolicies)} />
+            <Footer component={component} columns={footerColumns(documents)} />
           );
         }}
       </Query>

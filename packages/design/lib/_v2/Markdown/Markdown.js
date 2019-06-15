@@ -141,7 +141,7 @@ export function Markdown({ codeProps, source }) {
           blockquote: quoteRenderer,
           table: tableRenderer
         }}
-        source={source}
+        source={source.replace(/\\n\\n/g, '\n')}
       />
     </SSR>
   );

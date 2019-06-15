@@ -4,9 +4,9 @@ import gql from 'graphql-tag';
 
 import { makeStyles } from '@material-ui/styles';
 
-import Page from '../../layouts/Page';
+import Page from '../../components/Page';
 import { ManifestContext } from '@fusion/design/lib/Provider/Manifest';
-import Record from '@fusion/design/lib/_v2/Record/Record';
+import { Record } from '@fusion/design/lib/_v2';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {

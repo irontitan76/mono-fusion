@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/styles';
 import flush from 'styled-jsx/server';
@@ -44,7 +43,7 @@ class MyDocument extends Document {
             }
           </style>
         </Head>
-        <body className='loading'>
+        <body>
           <Main />
           <NextScript />
         </body>

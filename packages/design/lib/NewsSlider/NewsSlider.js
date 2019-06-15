@@ -95,7 +95,7 @@ export default function NewsSlider(props) {
       <CardMedia
         className={classes.cardMedia}
         style={{ height: insight.media.height }}
-        image={insight.media.source}
+        image={insight.media}
       />
     );
   };
@@ -124,8 +124,8 @@ export default function NewsSlider(props) {
           <Card className={classes.card} elevation={0}>
             <InsightMedia insight={insight} />
             <CardContent className={classes.cardContent}>
-              <Typography variant="h6">{insight.title.toUpperCase()}</Typography>
-              <Typography>{insight.desc}</Typography>
+              <Typography gutterBottom variant="h6">{insight.title.toUpperCase()}</Typography>
+              <Typography>{insight.description}</Typography>
               <InsightDate date={insight._publishedAt} />
             </CardContent>
           </Card>

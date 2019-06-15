@@ -69,7 +69,8 @@ export function Contents({ as, component, items, level, sticky, source, title })
   const check = RegExp(`(^|\n)#{${level}} .*\n`, "g");
 
   if (as === 'toc') {
-    items = source.match(check).map((header) => {
+    const headers = source.match(check);
+    items = headers && headers.map((header) => {
       const label = header.replace(/(\*|#)*/g, '').trim();
       return {
         label,
@@ -80,13 +81,13 @@ export function Contents({ as, component, items, level, sticky, source, title })
       };
     });
   
-    items.unshift({
+    items && items.unshift({
       label: "Back to top",
       path: { component, href: "#" },
     });
   }
 
-  const list = items.map((item) => {
+  const list = items && items.map((item) => {
     const { label, path } = item;
 
     let result = (

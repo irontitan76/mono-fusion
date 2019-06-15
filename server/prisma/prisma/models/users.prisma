@@ -1,6 +1,0 @@
-# import User from './generated/prisma.graphql'
-
-type User {
-  id: ID! @id
-  name: String!
-}

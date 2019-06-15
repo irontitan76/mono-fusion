@@ -1,53 +1,61 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 
-import InsightsApi from '@fusion/api/lib/insights';
 import NewsSlider from '@fusion/design/lib/NewsSlider';
 import Search from '@fusion/design/lib/Search';
+
+const GET_INSIGHTS = gql`
+  query {
+    documents(where: { type: INSIGHT }) {
+      _id
+        description
+        media
+        meta {
+          featured
+        }
+        title
+    }
+  }
+`;
 
 function Insights() {
   const [search, setSearch] = useState('');
   const [value, setValue] = useState('');
   
   const content = (
-    <>
-      <Query query={InsightsApi.getAll} variables={{ value: search }}>
-        {({ loading, error, data: { allInsights } }) => {
-          if (loading) return <LinearProgress />;
-          if (error) return null;
+    <Query query={GET_INSIGHTS} variables={{ value: search }}>
+      {({ loading, error, data: { documents } }) => {
+        if (loading) return <LinearProgress />;
+        if (error) return null;
 
-          let content;
-
-          if (allInsights.length === 0) {
-            content = (
-              <Typography align="center" style={{ color: 'grey' }}>
-                No insights found
-              </Typography>
-            );
-          } else {
-            content = (
-              <NewsSlider
-                component={Link}
-                insights={allInsights}
-                mediaHeight={150}
-                size={{ md: 3 }}
-              />
-            );
-          }
-
+        if (documents.length === 0) {
           return (
-            <>
-              <div style={{ marginBottom: 50 }} />
-              {content}
-            </>
+            <Typography
+              align="center"
+              style={{ color: 'grey', paddingTop: 50 }}
+            >
+              No insights found
+            </Typography>
           );
-        }}
-      </Query>
-    </>
+        }
+
+        return (
+          <div style={{ paddingTop: 50 }}>
+            <NewsSlider
+              component={Link}
+              insights={documents}
+              mediaHeight={150}
+              size={{ md: 3 }}
+            />
+          </div>
+        );
+      }}
+    </Query>
   );
 
   return (

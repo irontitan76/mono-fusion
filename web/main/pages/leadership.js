@@ -1,5 +1,6 @@
 import React from 'react';
 import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import { makeStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
@@ -8,8 +9,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
-
-import EmployeesApi from '@fusion/api/lib/employees';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {
@@ -31,9 +30,9 @@ const useStyles = makeStyles(({ palette, spacing }) => {
     quote: {
       borderBottom: `2px solid ${palette.primary.main}`,
       borderTop: `2px solid ${palette.primary.main}`,
-      fontSize: 14,
+      fontSize: `14px !important`,
       fontWeight: 300,
-      marginTop: spacing(4),
+      marginTop: `${spacing(4)}px !important`,
       paddingBottom: spacing(2),
       paddingLeft: spacing(1),
       paddingRight: spacing(1),
@@ -46,6 +45,22 @@ const useStyles = makeStyles(({ palette, spacing }) => {
   };
 });
 
+const GET_LEADERSHIP = gql`
+  query {
+    persons(where: { type: ADMINISTRATOR }) {
+      _id
+      name {
+        first
+        last
+        preferred
+      }
+      profile {
+        avatar
+      }
+    }
+  }
+`;
+
 function Leadership() {
   const classes = useStyles();
 
@@ -55,14 +70,14 @@ function Leadership() {
         <Card elevation={0}>
           <CardMedia
             className={classes.profile}
-            image={person.profile.media.source}
+            image={person.profile && person.profile.avatar}
           />
           <CardContent className={classes.bio}>
             <Typography className={classes.name}>
-              {person.name.preferred} {person.name.last}
+              {person.name.preferred || person.name.first} {person.name.last}
             </Typography>
             <Typography className={classes.position}>
-              {person.profile.title}
+              {person.job && person.job.title}
             </Typography>
           </CardContent>
         </Card>
@@ -99,8 +114,8 @@ function Leadership() {
   );
 
   return (
-    <Query query={EmployeesApi.getAll} variables={{ level: 1 }}>
-      {({ loading, error, data: { allEmployees } }) => {
+    <Query query={GET_LEADERSHIP} variables={{ level: 1 }}>
+      {({ loading, error, data }) => {
         if (loading) return <LinearProgress />;
         if (error) return null;
 
@@ -114,7 +129,7 @@ function Leadership() {
             <Grid item xs={7}>
               <Grid container spacing={4}>
                 <Header />
-                <Profiles employees={allEmployees} />
+                <Profiles employees={data.persons} />
               </Grid>
             </Grid>
           </Grid>

@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
-import TitleBar from '@fusion/design/lib/_v2/TitleBar/TitleBar';
+import { TitleBar } from '@fusion/design/lib/_v2';
 
 const useStyles = makeStyles(({ spacing }) => {
   return {

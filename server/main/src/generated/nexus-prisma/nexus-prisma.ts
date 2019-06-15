@@ -31,6 +31,7 @@ export interface NexusPrismaTypes {
       CommentEdge: CommentEdgeObject
       AggregateComment: AggregateCommentObject
       Document: DocumentObject
+      Meta: MetaObject
       DocumentConnection: DocumentConnectionObject
       DocumentEdge: DocumentEdgeObject
       AggregateDocument: AggregateDocumentObject
@@ -88,6 +89,7 @@ export interface NexusPrismaTypes {
       CommentEdge: CommentEdgeFieldDetails
       AggregateComment: AggregateCommentFieldDetails
       Document: DocumentFieldDetails
+      Meta: MetaFieldDetails
       DocumentConnection: DocumentConnectionFieldDetails
       DocumentEdge: DocumentEdgeFieldDetails
       AggregateDocument: AggregateDocumentFieldDetails
@@ -148,6 +150,7 @@ export interface NexusPrismaTypes {
       CommentWhereInput: CommentWhereInputInputObject
       DocumentWhereUniqueInput: DocumentWhereUniqueInputInputObject
       DocumentWhereInput: DocumentWhereInputInputObject
+      MetaWhereInput: MetaWhereInputInputObject
       NotificationWhereUniqueInput: NotificationWhereUniqueInputInputObject
       NotificationWhereInput: NotificationWhereInputInputObject
       ReceivedByWhereInput: ReceivedByWhereInputInputObject
@@ -234,7 +237,12 @@ export interface NexusPrismaTypes {
       CommentUpsertNestedInput: CommentUpsertNestedInputInputObject
       CommentUpdateManyMutationInput: CommentUpdateManyMutationInputInputObject
       DocumentCreateInput: DocumentCreateInputInputObject
+      MetaCreateOneInput: MetaCreateOneInputInputObject
+      MetaCreateInput: MetaCreateInputInputObject
       DocumentUpdateInput: DocumentUpdateInputInputObject
+      MetaUpdateOneInput: MetaUpdateOneInputInputObject
+      MetaUpdateDataInput: MetaUpdateDataInputInputObject
+      MetaUpsertNestedInput: MetaUpsertNestedInputInputObject
       DocumentUpdateManyMutationInput: DocumentUpdateManyMutationInputInputObject
       NotificationCreateInput: NotificationCreateInputInputObject
       NotificationCreatereceiverInput: NotificationCreatereceiverInputInputObject
@@ -1743,6 +1751,9 @@ type DocumentObject =
   | { name: 'author', args?: [] | false, alias?: string  } 
   | { name: 'category', args?: [] | false, alias?: string  } 
   | { name: 'content', args?: [] | false, alias?: string  } 
+  | { name: 'description', args?: [] | false, alias?: string  } 
+  | { name: 'media', args?: [] | false, alias?: string  } 
+  | { name: 'meta', args?: [] | false, alias?: string  } 
   | { name: 'subtitle', args?: [] | false, alias?: string  } 
   | { name: 'title', args?: [] | false, alias?: string  } 
   | { name: 'type', args?: [] | false, alias?: string  } 
@@ -1755,6 +1766,9 @@ type DocumentFields =
   | 'author'
   | 'category'
   | 'content'
+  | 'description'
+  | 'media'
+  | 'meta'
   | 'subtitle'
   | 'title'
   | 'type'
@@ -1830,6 +1844,35 @@ export interface DocumentFieldDetails {
     nullable: false
     resolve: undefined
   }
+  description: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  media: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  meta: {
+    type: 'Meta'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: (
+      root: core.RootValue<"Document">,
+      args: {  }  ,
+      context: core.GetGen<"context">,
+      info?: GraphQLResolveInfo
+    ) => Promise<prisma.Meta | null> | prisma.Meta | null
+  }
   subtitle: {
     type: 'String'
     args: {}
@@ -1858,6 +1901,31 @@ export interface DocumentFieldDetails {
       context: core.GetGen<"context">,
       info?: GraphQLResolveInfo
     ) => Promise<prisma.DocumentType> | prisma.DocumentType
+  }
+}
+  
+
+// Types for Meta
+
+type MetaObject =
+  | MetaFields
+  | { name: 'featured', args?: [] | false, alias?: string  } 
+
+type MetaFields =
+  | 'featured'
+
+
+
+  
+
+export interface MetaFieldDetails {
+  featured: {
+    type: 'Boolean'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
   }
 }
   
@@ -4130,6 +4198,8 @@ type DocumentPreviousValuesObject =
   | { name: '_updatedAt', args?: [] | false, alias?: string  } 
   | { name: 'category', args?: [] | false, alias?: string  } 
   | { name: 'content', args?: [] | false, alias?: string  } 
+  | { name: 'description', args?: [] | false, alias?: string  } 
+  | { name: 'media', args?: [] | false, alias?: string  } 
   | { name: 'subtitle', args?: [] | false, alias?: string  } 
   | { name: 'title', args?: [] | false, alias?: string  } 
   | { name: 'type', args?: [] | false, alias?: string  } 
@@ -4141,6 +4211,8 @@ type DocumentPreviousValuesFields =
   | '_updatedAt'
   | 'category'
   | 'content'
+  | 'description'
+  | 'media'
   | 'subtitle'
   | 'title'
   | 'type'
@@ -4201,6 +4273,22 @@ export interface DocumentPreviousValuesFieldDetails {
     description: string
     list: undefined
     nullable: false
+    resolve: undefined
+  }
+  description: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
+    resolve: undefined
+  }
+  media: {
+    type: 'String'
+    args: {}
+    description: string
+    list: undefined
+    nullable: true
     resolve: undefined
   }
   subtitle: {
@@ -6394,6 +6482,35 @@ export interface DocumentWhereInput {
   content_not_starts_with?: string | null
   content_ends_with?: string | null
   content_not_ends_with?: string | null
+  description?: string | null
+  description_not?: string | null
+  description_in?: string[]
+  description_not_in?: string[]
+  description_lt?: string | null
+  description_lte?: string | null
+  description_gt?: string | null
+  description_gte?: string | null
+  description_contains?: string | null
+  description_not_contains?: string | null
+  description_starts_with?: string | null
+  description_not_starts_with?: string | null
+  description_ends_with?: string | null
+  description_not_ends_with?: string | null
+  media?: string | null
+  media_not?: string | null
+  media_in?: string[]
+  media_not_in?: string[]
+  media_lt?: string | null
+  media_lte?: string | null
+  media_gt?: string | null
+  media_gte?: string | null
+  media_contains?: string | null
+  media_not_contains?: string | null
+  media_starts_with?: string | null
+  media_not_starts_with?: string | null
+  media_ends_with?: string | null
+  media_not_ends_with?: string | null
+  meta?: MetaWhereInput | null
   subtitle?: string | null
   subtitle_not?: string | null
   subtitle_in?: string[]
@@ -6487,6 +6604,35 @@ export type DocumentWhereInputInputObject =
   | { name: 'content_not_starts_with', alias?: string  } 
   | { name: 'content_ends_with', alias?: string  } 
   | { name: 'content_not_ends_with', alias?: string  } 
+  | { name: 'description', alias?: string  } 
+  | { name: 'description_not', alias?: string  } 
+  | { name: 'description_in', alias?: string  } 
+  | { name: 'description_not_in', alias?: string  } 
+  | { name: 'description_lt', alias?: string  } 
+  | { name: 'description_lte', alias?: string  } 
+  | { name: 'description_gt', alias?: string  } 
+  | { name: 'description_gte', alias?: string  } 
+  | { name: 'description_contains', alias?: string  } 
+  | { name: 'description_not_contains', alias?: string  } 
+  | { name: 'description_starts_with', alias?: string  } 
+  | { name: 'description_not_starts_with', alias?: string  } 
+  | { name: 'description_ends_with', alias?: string  } 
+  | { name: 'description_not_ends_with', alias?: string  } 
+  | { name: 'media', alias?: string  } 
+  | { name: 'media_not', alias?: string  } 
+  | { name: 'media_in', alias?: string  } 
+  | { name: 'media_not_in', alias?: string  } 
+  | { name: 'media_lt', alias?: string  } 
+  | { name: 'media_lte', alias?: string  } 
+  | { name: 'media_gt', alias?: string  } 
+  | { name: 'media_gte', alias?: string  } 
+  | { name: 'media_contains', alias?: string  } 
+  | { name: 'media_not_contains', alias?: string  } 
+  | { name: 'media_starts_with', alias?: string  } 
+  | { name: 'media_not_starts_with', alias?: string  } 
+  | { name: 'media_ends_with', alias?: string  } 
+  | { name: 'media_not_ends_with', alias?: string  } 
+  | { name: 'meta', alias?: string  } 
   | { name: 'subtitle', alias?: string  } 
   | { name: 'subtitle_not', alias?: string  } 
   | { name: 'subtitle_in', alias?: string  } 
@@ -6519,6 +6665,17 @@ export type DocumentWhereInputInputObject =
   | { name: 'type_not', alias?: string  } 
   | { name: 'type_in', alias?: string  } 
   | { name: 'type_not_in', alias?: string  } 
+  | { name: 'AND', alias?: string  } 
+  
+export interface MetaWhereInput {
+  featured?: boolean | null
+  featured_not?: boolean | null
+  AND?: MetaWhereInput[]
+}
+export type MetaWhereInputInputObject =
+  | Extract<keyof MetaWhereInput, string>
+  | { name: 'featured', alias?: string  } 
+  | { name: 'featured_not', alias?: string  } 
   | { name: 'AND', alias?: string  } 
   
 export interface NotificationWhereUniqueInput {
@@ -8546,6 +8703,9 @@ export interface DocumentCreateInput {
   author?: PersonCreateOneInput
   category?: prisma.DocumentCategory | null
   content?: string
+  description?: string | null
+  media?: string | null
+  meta?: MetaCreateOneInput | null
   subtitle?: string | null
   title?: string
   type?: prisma.DocumentType | null
@@ -8557,15 +8717,35 @@ export type DocumentCreateInputInputObject =
   | { name: 'author', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'content', alias?: string  } 
+  | { name: 'description', alias?: string  } 
+  | { name: 'media', alias?: string  } 
+  | { name: 'meta', alias?: string  } 
   | { name: 'subtitle', alias?: string  } 
   | { name: 'title', alias?: string  } 
   | { name: 'type', alias?: string  } 
+  
+export interface MetaCreateOneInput {
+  create?: MetaCreateInput | null
+}
+export type MetaCreateOneInputInputObject =
+  | Extract<keyof MetaCreateOneInput, string>
+  | { name: 'create', alias?: string  } 
+  
+export interface MetaCreateInput {
+  featured?: boolean | null
+}
+export type MetaCreateInputInputObject =
+  | Extract<keyof MetaCreateInput, string>
+  | { name: 'featured', alias?: string  } 
   
 export interface DocumentUpdateInput {
   _publishedAt?: string | null
   author?: PersonUpdateOneRequiredInput | null
   category?: prisma.DocumentCategory | null
   content?: string | null
+  description?: string | null
+  media?: string | null
+  meta?: MetaUpdateOneInput | null
   subtitle?: string | null
   title?: string | null
   type?: prisma.DocumentType | null
@@ -8576,14 +8756,50 @@ export type DocumentUpdateInputInputObject =
   | { name: 'author', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'content', alias?: string  } 
+  | { name: 'description', alias?: string  } 
+  | { name: 'media', alias?: string  } 
+  | { name: 'meta', alias?: string  } 
   | { name: 'subtitle', alias?: string  } 
   | { name: 'title', alias?: string  } 
   | { name: 'type', alias?: string  } 
+  
+export interface MetaUpdateOneInput {
+  create?: MetaCreateInput | null
+  update?: MetaUpdateDataInput | null
+  upsert?: MetaUpsertNestedInput | null
+  delete?: boolean | null
+  disconnect?: boolean | null
+}
+export type MetaUpdateOneInputInputObject =
+  | Extract<keyof MetaUpdateOneInput, string>
+  | { name: 'create', alias?: string  } 
+  | { name: 'update', alias?: string  } 
+  | { name: 'upsert', alias?: string  } 
+  | { name: 'delete', alias?: string  } 
+  | { name: 'disconnect', alias?: string  } 
+  
+export interface MetaUpdateDataInput {
+  featured?: boolean | null
+}
+export type MetaUpdateDataInputInputObject =
+  | Extract<keyof MetaUpdateDataInput, string>
+  | { name: 'featured', alias?: string  } 
+  
+export interface MetaUpsertNestedInput {
+  update?: MetaUpdateDataInput
+  create?: MetaCreateInput
+}
+export type MetaUpsertNestedInputInputObject =
+  | Extract<keyof MetaUpsertNestedInput, string>
+  | { name: 'update', alias?: string  } 
+  | { name: 'create', alias?: string  } 
   
 export interface DocumentUpdateManyMutationInput {
   _publishedAt?: string | null
   category?: prisma.DocumentCategory | null
   content?: string | null
+  description?: string | null
+  media?: string | null
   subtitle?: string | null
   title?: string | null
   type?: prisma.DocumentType | null
@@ -8593,6 +8809,8 @@ export type DocumentUpdateManyMutationInputInputObject =
   | { name: '_publishedAt', alias?: string  } 
   | { name: 'category', alias?: string  } 
   | { name: 'content', alias?: string  } 
+  | { name: 'description', alias?: string  } 
+  | { name: 'media', alias?: string  } 
   | { name: 'subtitle', alias?: string  } 
   | { name: 'title', alias?: string  } 
   | { name: 'type', alias?: string  } 
@@ -9559,6 +9777,10 @@ export type DocumentOrderByInputValues =
   | 'category_DESC'
   | 'content_ASC'
   | 'content_DESC'
+  | 'description_ASC'
+  | 'description_DESC'
+  | 'media_ASC'
+  | 'media_DESC'
   | 'subtitle_ASC'
   | 'subtitle_DESC'
   | 'title_ASC'

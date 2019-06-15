@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 
 import SliderItems from './SliderItems';
+import SSR from '../Ssr/Ssr';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   const isDark = palette.type === 'dark';
@@ -90,37 +91,42 @@ export function Slider({ items, openState }) {
 
   let open = openState[0];
   let setOpen = openState[1];
-
-  if (items.length <= 1) {
-    return <div className={classes.margin} />;
-  }
-
+  
   return (
     <Hidden xsDown implementation="css">
-
-      <div className={clsx(classes.rootCopy, { [classes.rootOpen]: open })} />
-      <div
-        className={clsx(classes.root, { [classes.rootOpen]: open })}
-        onDoubleClick={() => setOpen(!open)}
-      >
-        <List className={clsx(classes.list, { [classes.listHidden]: !open })}>
-          <SliderItems items={items} />
-        </List>
-        <Tooltip title={open ? "Close Menu" : "Open Menu"}>
-          <button
-            className={clsx(classes.button, { [classes.buttonOpen]: open })}
-            onClick={() => setOpen(!open)}
-            type="button"
-          >
-            <FontAwesomeIcon
-              className={classes.icon}
-              icon={["fal", "bars"]}
-            />
-          </button>
-        </Tooltip>
-      </div>
+      <div className={classes.margin} />
+      
+      <SSR>
+        {
+          items.length <= 1
+          ? null
+          : <>
+              <div className={clsx(classes.rootCopy, { [classes.rootOpen]: open })} />
+              <div
+                className={clsx(classes.root, { [classes.rootOpen]: open })}
+                onDoubleClick={() => setOpen(!open)}
+              >
+                <List className={clsx(classes.list, { [classes.listHidden]: !open })}>
+                  <SliderItems items={items} />
+                </List>
+                <Tooltip title={open ? "Close Menu" : "Open Menu"}>
+                  <button
+                    className={clsx(classes.button, { [classes.buttonOpen]: open })}
+                    onClick={() => setOpen(!open)}
+                    type="button"
+                  >
+                    <FontAwesomeIcon
+                      className={classes.icon}
+                      icon={["fal", "bars"]}
+                    />
+                  </button>
+                </Tooltip>
+              </div>
+            </>
+        }
+      </SSR>
     </Hidden>
-  )
+  );
 };
 
 Slider.propTypes = {

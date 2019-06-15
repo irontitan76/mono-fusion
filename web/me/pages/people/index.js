@@ -3,11 +3,10 @@ import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { makeStyles } from '@material-ui/styles';
-import { Button, Grid, TextField } from '@material-ui/core';
 
-import Page from '../../layouts/Page';
+import Page from '../../components/Page';
 import { ManifestContext } from '@fusion/design/lib/Provider/Manifest';
-import Record from '@fusion/design/lib/_v2/Record/Record';
+import { Form, Record } from '@fusion/design/lib/_v2';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {
@@ -81,53 +80,16 @@ export function People() {
   const { record, slideout, titlebar } = manifest.pages.people;
   const classes = useStyles();
 
-  function CreatePerson() {
-    let formState = {};
-    slideout.content.fields.forEach((field) => {
-      formState[field.name] = field.value || '';
-    });
-
-    const [form, setForm] = useState(formState);
-
-    const contents = slideout.content.fields.map((field) => {
-      return (
-        <TextField
-          className={classes.field}
-          InputProps={{ classes: { notchedOutline: classes.outlinedField } }}
-          key={field.name}
-          margin='dense'
-          onChange={(event) => setForm({ ...form, [event.target.name]: event.target.value })}
-          {...field}
+  const addPersonForm = (
+    <Mutation mutation={CREATE_PERSON}>
+      {(addPerson) => (
+        <Form
+          fields={slideout.content.fields}
+          onSubmit={addPerson}
         />
-      );
-    });
-
-    return (
-      <Mutation mutation={CREATE_PERSON}>
-        {(addPerson, { data }) => (
-          <form onSubmit={(event) => {
-            event.preventDefault();
-            console.log(form)
-            addPerson({ variables: form });
-          }}>
-            <Grid container>
-              <Grid item xs={12}>
-                {contents}
-              </Grid>
-            </Grid>
-            <Button
-              className={classes.button}
-              color='primary'
-              type='submit'
-              variant='contained'
-            >
-              Add
-            </Button>
-          </form>
-        )}
-      </Mutation>
-    )
-  };
+      )}
+    </Mutation>
+  );
 
   return (
     <Query query={GET_PEOPLE}>
@@ -139,7 +101,7 @@ export function People() {
             isLoading={loading}
             ItemProps={{ className: classes.item }}
             SlideoutProps={{
-              children: <CreatePerson />,
+              children: addPersonForm,
               title: slideout.title
             }}
             TitleBarProps={{

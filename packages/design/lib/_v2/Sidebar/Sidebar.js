@@ -67,7 +67,7 @@ Sidebar.defaultProps = {
   border: 'default',
   color: 'primary',
   height: '100%',
-  variant: 'dark',
+  variant: 'main',
   width: 'mini',
 };
 

@@ -1,20 +1,35 @@
 import React from 'react';
 import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
-import LinearProgress from '@material-ui/core/LinearProgress';
+import { Grid, LinearProgress } from '@material-ui/core';
+import Markdown from '@fusion/design/lib/_v2/Markdown/Markdown';
 
-import Article from '@fusion/design/lib/Article';
-import InsightsApi from '@fusion/api/lib/insights';
+const GET_INSIGHT = gql`
+  query getInsight($id: ID!) {
+    document(where: { _id: $id }) {
+      _id
+      title
+      content
+    }
+  }
+`;
 
 function Insight({ query }) {
   return (
     <>
-      <Query query={InsightsApi.getOne} variables={{ id: query.id }}>
-        {({ loading, error, data: { Insight, _insightMeta }, fetchMore }) => {
+      <Query query={GET_INSIGHT} variables={{ id: query.id }}>
+        {({ loading, error, data }) => {
           if (loading) return <LinearProgress />;
           if (error) return null;
 
-          return <Article article={Insight} />;
+          return (
+            <Grid container justify='center'>
+              <Grid item md={7} xs={12} style={{ marginTop: 25 }}>
+                <Markdown source={data.document && data.document.content} />
+              </Grid>
+            </Grid>
+          );
         }}
       </Query>
     </>
