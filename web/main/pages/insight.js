@@ -3,7 +3,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { Grid, LinearProgress } from '@material-ui/core';
-import Markdown from '@fusion/design/lib/_v2/Markdown/Markdown';
+import { Markdown } from '@fusion/design/lib/_v2';
 
 const GET_INSIGHT = gql`
   query getInsight($id: ID!) {

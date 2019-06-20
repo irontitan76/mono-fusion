@@ -24,7 +24,7 @@ export function MarkdownCodebar({ buttons, value }) {
     setTimeout(() => setCopyLabel("Copy"), 300);
   };
 
-  return buttons.map((button) => {
+  return buttons ? buttons.map((button) => {
     if (button[0] === 'copy') {
       return (
         <Tooltip key='copy' title={copyLabel}>
@@ -50,7 +50,7 @@ export function MarkdownCodebar({ buttons, value }) {
         </IconButton>
       </Tooltip>
     );
-  });
+  }) : null;
 }
 
 export default MarkdownCodebar;

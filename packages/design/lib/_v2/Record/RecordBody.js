@@ -144,7 +144,7 @@ export function RecordBody({ data = [], numColumns, paths, rows, withControls })
       <TableRow>
         <TableCell
           className={classes.noResults}
-          colSpan={numColumns + (rowControls ? 1 : 0) }
+          colSpan={numColumns + (withControls ? 1 : 0) }
         >
           No results
         </TableCell>

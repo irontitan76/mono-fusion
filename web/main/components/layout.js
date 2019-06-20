@@ -7,7 +7,6 @@ import { makeStyles } from '@material-ui/styles';
 
 import Banner from '@fusion/design/lib/Banner';
 import Footer from '@fusion/design/lib/Footer';
-import PoliciesApi from '@fusion/api/lib/policies';
 import TopBar, { TopBarMenu, TopBarTitle } from '@fusion/design/lib/TopBar';
 
 const useStyles = makeStyles(({ palette }) => {
@@ -69,7 +68,7 @@ export default function Layout({ children, component, items, TopBarProps }) {
     },
     {
       items: allPolicies.map((policy) => {
-        return { name: policy.title, path: `/policy?id=${policy.id}` };
+        return { name: policy.title, path: `/policy?id=${policy._id}` };
       }),
       title: 'Policy',
     },
@@ -101,12 +100,12 @@ export default function Layout({ children, component, items, TopBarProps }) {
       </header>
       {children}
       <Query query={GET_POLICIES}>
-        {({ loading, error, data: { documents } }) => {
+        {({ loading, error, data }) => {
           if (loading) return null;
           if (error) return null;
           
           return (
-            <Footer component={component} columns={footerColumns(documents)} />
+            <Footer component={component} columns={footerColumns(data.documents || [])} />
           );
         }}
       </Query>

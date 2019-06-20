@@ -1,23 +1,32 @@
 import React from 'react';
 import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import Grid from '@material-ui/core/Grid';
-import LinearProgress from '@material-ui/core/LinearProgress';
-
-import PoliciesApi from '@fusion/api/lib/policies';
+import { LinearProgress } from '@material-ui/core';
 import Markdown from '@fusion/design/lib/Markdown';
+
+const GET_POLICY = gql`
+  query getPolicy($id: ID!) {
+    document(where: { _id: $id }) {
+      _id
+      title
+      content
+    }
+  }
+`;
 
 function Policy({ query }) {
   return (
-    <Query query={PoliciesApi.getOne} variables={{ id: query.id }}>
-      {({ loading, error, data: { Policy, _policyMeta }, fetchMore }) => {
+    <Query query={GET_POLICY} variables={{ id: query.id }}>
+      {({ loading, error, data }) => {
         if (loading) return <LinearProgress />;
         if (error) return null;
 
         return (
           <Grid container justify="center">
             <Grid item md={8} xs={12}>
-              <Markdown content={Policy.content} />
+              <Markdown content={data.document.content} />
             </Grid>
           </Grid>
         );

@@ -120,7 +120,7 @@ export default function NewsSlider(props) {
         {...size}
         {...(insight.meta ? insight.meta.size : {})}
       >
-        <Component href={insight.id ? `/insight?id=${insight.id}` : insight.path}>
+        <Component href={`/insight?id=${insight._id}`}>
           <Card className={classes.card} elevation={0}>
             <InsightMedia insight={insight} />
             <CardContent className={classes.cardContent}>

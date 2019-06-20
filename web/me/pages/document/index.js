@@ -28,7 +28,7 @@ export function Document({ query }) {
   const manifest = useContext(ManifestContext);
   const { contents, slideout, titlebar } = manifest.pages.document;
   const { buttons } = manifest.pages.document.markdownCodebar;
-console.log('q', query);
+  
   return (
     <Query query={GET_DOCUMENT} variables={{ title: query.title }}>
       {({ loading, error, data }) => {

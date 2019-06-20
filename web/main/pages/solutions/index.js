@@ -2,11 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import { makeStyles } from '@material-ui/styles';
-import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Typography from '@material-ui/core/Typography';
-
+import { Grid, List, ListItem, Typography } from '@material-ui/core';
 import NewsSlider from '@fusion/design/lib/NewsSlider';
 
 const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {

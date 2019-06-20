@@ -3,12 +3,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { makeStyles } from '@material-ui/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Typography from '@material-ui/core/Typography';
+import { Card, CardContent, CardMedia, Grid, LinearProgress, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {

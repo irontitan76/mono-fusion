@@ -1,12 +1,7 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { Card, CardContent, CardHeader, CardMedia, Grid, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   const isDark = palette.type === 'dark';

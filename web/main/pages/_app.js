@@ -12,7 +12,7 @@ import ManifestProvider from '@fusion/design/lib/Provider/Manifest';
 import { withApollo } from '@fusion/design/lib/helpers';
 
 import { manifest } from '../manifest';
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import '../icon.config.js';
 
 class MyApp extends App {

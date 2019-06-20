@@ -4,13 +4,12 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { makeStyles } from '@material-ui/styles';
-import Typography from '@material-ui/core/Typography';
+import { Typography } from '@material-ui/core';
 
 import { ManifestContext } from '@fusion/design/lib/Provider/Manifest';
 import Hero from '@fusion/design/lib/Hero';
 import Intro from '@fusion/design/lib/Intro';
 import NewsSlider from '@fusion/design/lib/NewsSlider';
-
 import SSR from '@fusion/design/lib/_v2/Ssr/Ssr';
 
 const useStyles = makeStyles(({ spacing }) => {
@@ -59,7 +58,7 @@ export function Home() {
           return (
             <NewsSlider
               component={Link}
-              insights={data.documents}
+              insights={data.documents || []}
               rounded={true}
               scroll={true}
               spacing={4}

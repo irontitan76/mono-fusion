@@ -3,9 +3,8 @@ import Link from 'next/link';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Typography from '@material-ui/core/Typography';
 
+import { LinearProgress, Typography } from '@material-ui/core';
 import NewsSlider from '@fusion/design/lib/NewsSlider';
 import Search from '@fusion/design/lib/Search';
 
@@ -29,11 +28,21 @@ function Insights() {
   
   const content = (
     <Query query={GET_INSIGHTS} variables={{ value: search }}>
-      {({ loading, error, data: { documents } }) => {
+      {({ loading, error, data }) => {
         if (loading) return <LinearProgress />;
-        if (error) return null;
 
-        if (documents.length === 0) {
+        if (error || !data.documents) {
+          return (
+            <Typography
+              align="center"
+              style={{ color: 'grey', paddingTop: 50 }}
+            >
+              There was an error retrieving insights
+            </Typography>
+          );
+        }
+
+        if (data.documents.length === 0) {
           return (
             <Typography
               align="center"
@@ -48,8 +57,8 @@ function Insights() {
           <div style={{ paddingTop: 50 }}>
             <NewsSlider
               component={Link}
-              insights={documents}
-              mediaHeight={150}
+              insights={data.documents || []}
+              mediaHeight={250}
               size={{ md: 3 }}
             />
           </div>

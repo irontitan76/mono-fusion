@@ -9,6 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import ManifestProvider from '@fusion/design/lib/Provider/Manifest';
 import { getTheme } from '@fusion/design/lib/theme';
+import 'easymde/dist/easymde.min.css';
 
 import Layout from '../components/Layout';
 import manifest from '../manifest';
@@ -42,7 +43,7 @@ class MyApp extends App {
       history.pushState(
         "", 
         document.title, 
-        `${window.location.pathname} ${window.location.search}`
+        `${window.location.pathname}${window.location.search}`
       );
 
       this.setState({
