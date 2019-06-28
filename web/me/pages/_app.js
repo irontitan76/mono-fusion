@@ -2,6 +2,8 @@ import React from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
 import ApolloProvider from 'react-apollo/ApolloProvider';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { withApollo } from '@fusion/design/lib/helpers';
 
 import { ThemeProvider } from '@material-ui/styles';

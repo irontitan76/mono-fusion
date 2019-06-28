@@ -50,7 +50,7 @@ function create(initialState, opts) {
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: opts ? opts.uri : undefined,
+      uri: opts ? opts.uri : "http://localhost:4100/api/graphql",
       // uri: 'https://api.graph.cool/simple/v1/cjv8u8vxs0dfu0192op18chtu', // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       // Use fetch() polyfill on the server

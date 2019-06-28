@@ -21,7 +21,7 @@ export default function BannerMessage(props) {
   const { message } = props;
 
   return (
-    <Typography className={classes.text} component="div">
+    <Typography classes={{ root: classes.text }} component="div">
       {message}
     </Typography>
   );

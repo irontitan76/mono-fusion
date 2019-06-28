@@ -6,11 +6,13 @@
   "author": "Ross Sheppard <ross_sheppard@outlook.com>",
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "packages/*",
-    "server/*",
-    "web/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "server/*",
+      "web/*"
+    ]
+  },
   "bin": {
     "fusion": "./packages/build/lib/cli.js"
   },

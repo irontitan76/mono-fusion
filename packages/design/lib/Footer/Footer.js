@@ -50,7 +50,7 @@ export function Footer({ columns, component }) {
   const ColumnMenu = ({ items }) => {
     return items.map((item) => {
       return (
-        <Typography className={classes.item} key={item.name}>
+        <Typography classes={{ root: classes.item }} key={item.name}>
           <LinkComponent href={item.path}>
             <a>{item.name}</a>
           </LinkComponent>

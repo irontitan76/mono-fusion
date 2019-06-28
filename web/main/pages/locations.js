@@ -4,9 +4,6 @@ import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, CardHeader, CardMedia, Grid, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
-  const isDark = palette.type === 'dark';
-  const bgColor = isDark ? '#1d1d1d' : '#f2f2f2';
-
   return {
     desc: {
       fontSize: 14,
@@ -25,15 +22,13 @@ const useStyles = makeStyles(({ palette, spacing }) => {
     image: {
       height: 150,
     },
-    location: {},
     locations: {
       padding: spacing(5),
     },
-    map: {},
   };
 });
 
-function Locations(props) {
+export function Locations() {
   const classes = useStyles();
 
   const locations = [
@@ -49,11 +44,19 @@ function Locations(props) {
   const Items = () => {
     return locations.map((location) => (
       <Grid item md={3} xs={12}>
-        <Card className={classes.location}>
-          <CardMedia className={classes.image} image={location.image} />
-          <CardHeader className={classes.header} title={location.title} />
+        <Card>
+          <CardMedia
+            className={classes.image}
+            image={location.image}
+          />
+          <CardHeader
+            className={classes.header}
+            title={location.title}
+          />
           <CardContent>
-            <Typography className={classes.desc}>{location.desc}</Typography>
+            <Typography className={classes.desc}>
+              {location.desc}
+            </Typography>
           </CardContent>
         </Card>
       </Grid>
@@ -65,7 +68,7 @@ function Locations(props) {
       <Grid className={classes.heading} item xs={12}>
         <Typography variant="h4">Our Offices</Typography>
       </Grid>
-      <Grid className={classes.map} item xs={12}>
+      <Grid item xs={12}>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3441.2514772401255!2d-97.72730978481174!3d30.400606208614157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644cc71ec3d3b05%3A0x77c4a76c643f0420!2sThe+Domain!5e0!3m2!1sen!2sus!4v1555514963946!5m2!1sen!2sus"
           width="100%"

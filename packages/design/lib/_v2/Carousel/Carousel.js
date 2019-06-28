@@ -41,9 +41,7 @@ const useStyles = makeStyles(() => {
     container: {
       boxSizing: 'border-box',
       margin: 'auto 0',
-      maxWidth: 'calc(100% - 90px)',
       position: 'relative',
-      width: 'calc(100% - 90px)',
     },
     item: {
       boxSizing: 'border-box',
@@ -65,8 +63,6 @@ export function Carousel({ icons, items, ratio }) {
     const element = document.getElementById("carousel");
     const width = element.offsetWidth;
 
-    console.log(element.scrollWidth);
-    console.log(element.scrollWidth - (element.scrollLeft + element.offsetWidth));
     if (element.scrollWidth - (element.scrollLeft + element.offsetWidth) <= 1) {
       return element.scrollLeft = 0;
     }

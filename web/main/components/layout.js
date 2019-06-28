@@ -105,7 +105,10 @@ export default function Layout({ children, component, items, TopBarProps }) {
           if (error) return null;
           
           return (
-            <Footer component={component} columns={footerColumns(data.documents || [])} />
+            <Footer
+              columns={footerColumns(data.documents || [])}
+              component={component}
+            />
           );
         }}
       </Query>

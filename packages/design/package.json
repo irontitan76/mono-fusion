@@ -6,6 +6,10 @@
   "files": [
     "./"
   ],
+  "engine": {
+    "node": "12.5.0",
+    "npm": "6.9.0"
+  },
   "author": "Ross Sheppard",
   "license": "ISC",
   "dependencies": {

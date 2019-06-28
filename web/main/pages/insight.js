@@ -15,24 +15,22 @@ const GET_INSIGHT = gql`
   }
 `;
 
-function Insight({ query }) {
+export function Insight({ query }) {
   return (
-    <>
-      <Query query={GET_INSIGHT} variables={{ id: query.id }}>
-        {({ loading, error, data }) => {
-          if (loading) return <LinearProgress />;
-          if (error) return null;
+    <Query query={GET_INSIGHT} variables={{ id: query.id }}>
+      {({ loading, error, data }) => {
+        if (loading) return <LinearProgress />;
+        if (error) return null;
 
-          return (
-            <Grid container justify='center'>
-              <Grid item md={7} xs={12} style={{ marginTop: 25 }}>
-                <Markdown source={data.document && data.document.content} />
-              </Grid>
+        return (
+          <Grid container justify='center'>
+            <Grid item md={7} xs={12} style={{ marginTop: 25 }}>
+              <Markdown source={data.document && data.document.content} />
             </Grid>
-          );
-        }}
-      </Query>
-    </>
+          </Grid>
+        );
+      }}
+    </Query>
   );
 }
 

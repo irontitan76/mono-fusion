@@ -16,7 +16,7 @@ const GET_POLICY = gql`
   }
 `;
 
-function Policy({ query }) {
+export function Policy({ query }) {
   return (
     <Query query={GET_POLICY} variables={{ id: query.id }}>
       {({ loading, error, data }) => {

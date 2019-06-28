@@ -19,7 +19,7 @@ const useStyles = makeStyles(({ palette }) => {
   };
 });
 
-function Leadership() {
+export function Leadership() {
   const classes = useStyles();
 
   return (

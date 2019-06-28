@@ -22,7 +22,7 @@ const GET_INSIGHTS = gql`
   }
 `;
 
-function Insights() {
+export function Insights() {
   const [search, setSearch] = useState('');
   const [value, setValue] = useState('');
   

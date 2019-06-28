@@ -56,7 +56,7 @@ const GET_LEADERSHIP = gql`
   }
 `;
 
-function Leadership() {
+export function Leadership() {
   const classes = useStyles();
 
   const Profile = ({ person }) => {

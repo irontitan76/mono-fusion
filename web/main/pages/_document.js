@@ -27,10 +27,6 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
           />
-          <link
-            rel="stylesheet"
-            href="node_modules/@fortawesome/fontawesome/styles.css"
-          />
           <style>
             {`
               html {

@@ -18,14 +18,14 @@ const base = {
     primary: {
       contrastText: grey[50],
       dark: '#0052A2',
-      light: blue[500],
+      light: '#2196f3',
       main: blue[700],
     },
     secondary: {
       contrastText: grey[50],
-      dark: green[700],
-      light: green[300],
-      main: green[500],
+      dark: grey[700],
+      light: grey[300],
+      main: grey[500],
     },
     type: type || 'light',
   },

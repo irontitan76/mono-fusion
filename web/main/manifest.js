@@ -59,6 +59,44 @@ module.exports = {
           },
         ],
       },
+      careers: {},
+      insight: {},
+      insights: {},
+      leadership: {},
+      locations: {},
+      policy: {},
+      values: {
+        sections: [
+          {
+            id: 'innovators-at-heart',
+            subtitle:
+              'True innovators care not about fame, power, or glory, but humanity.',
+            title: 'Innovators at Heart',
+          },
+          {
+            id: 'bias-for-righteous-action',
+            subtitle: 'Spend time executing, encouraging, learning, and improving.',
+            title: 'Bias for Righteous Action',
+          },
+          {
+            id: 'challenge-respectfully',
+            subtitle: 'Challenge ideas so that better ones are borne from them.',
+            title: 'Challenge Respectfully',
+          },
+          {
+            id: 'be-compassionate',
+            subtitle:
+              'Compassion is what brings people together, inspires people to win, and propels humanity forward.',
+            title: 'Be Compassionate',
+          },
+          {
+            id: 'collaborate-effectively',
+            subtitle:
+              'We put our heart into everything we do who value kindness, creativeness, and intelligence.',
+            title: 'Collaborate Effectively',
+          },
+        ],
+      },
     },
   },
 };

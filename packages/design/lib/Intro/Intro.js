@@ -32,7 +32,7 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
   },
 }));
 
-export function Intro({ logo, primaryButton, secondaryButton, slogan, title }) {
+export function Carousel({ logo, primaryButton, secondaryButton, slogan, title }) {
   const classes = useStyles();
 
   const Logo = () => {
@@ -140,9 +140,9 @@ export function Intro({ logo, primaryButton, secondaryButton, slogan, title }) {
   );
 }
 
-export default Intro;
+export default Carousel;
 
-Intro.defaultProps = {
+Carousel.defaultProps = {
   primaryButton: null,
   secondaryButton: null,
   slogan: '',
