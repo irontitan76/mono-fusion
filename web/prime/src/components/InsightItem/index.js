@@ -63,7 +63,7 @@ const useStyles = makeStyles(({ palette, shadows, spacing }) => {
   };
 });
 
-export function InsightItem({ insight }) {
+export function InsightItem({ insight, size }) {
   const classes = useStyles();
   const [hover, setHover] = useState(false);
 
@@ -79,7 +79,7 @@ export function InsightItem({ insight }) {
   );
 
   return (
-    <Grid className={classes.item} item md={3} sm={6} xs={12}>
+    <Grid className={classes.item} item {...{ ...defaultSize, ...size }}>
       <Link component={RRLink} to={`/insights/${insight._id}`} underline='none'>
         <Card
           className={classes.card}
@@ -100,12 +100,30 @@ export function InsightItem({ insight }) {
               title={insight.title}
               titleTypographyProps={{ className: classes.title }}
             />
-            {hover ? <Author author={insight.author} className={classes.author} size='sm' /> : null}
+            {hover 
+              ? (
+                <Author
+                  author={insight.author}
+                  className={classes.author}
+                  size='sm'
+                /> 
+              ) : null
+            }
           </CardContent>
         </Card>
       </Link>
     </Grid>
   );
 }
+
+const defaultSize = {
+  md: 3,
+  sm: 6,
+  xs: 12,
+};
+
+InsightItem.defaultProps = {
+  size: defaultSize,
+};
 
 export default InsightItem;

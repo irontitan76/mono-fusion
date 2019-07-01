@@ -13,11 +13,17 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 
 import theme from '@fusion/design/lib/theme.js';
+import Career from './pages/career';
+import Careers from './pages/careers';
+import Contact from './pages/contact';
 import Home from './pages/home';
 import Insight from './pages/insight';
 import Insights from './pages/insights';
+import Leadership from './pages/leadership';
 import Login from './pages/login';
+import Signup from './pages/signup';
 import Solutions from './pages/solutions';
+import Values from './pages/values';
 import './icon.config.js';
 
 const client = new ApolloClient({
@@ -32,11 +38,18 @@ ReactDOM.render(
         <CssBaseline />
         <BrowserRouter>
           <Switch>
+            <Route component={Careers} exact path='/careers' />
+            <Route component={Career} exact path='/careers/:id' />
+            <Route component={Contact} exact path='/contact' />
             <Route component={Home} exact path='/' />
             <Route component={Insight} exact path='/insights/:id' />
+            <Route component={Insight} exact path='/policy/:id' />
             <Route component={Insights} exact path='/insights' />
-            <Route component={Solutions} exact path='/solutions' />
+            <Route component={Leadership} exact path='/leadership' />
             <Route component={Login} exact path='/login' />
+            <Route component={Signup} exact path='/signup' />
+            <Route component={Solutions} exact path='/solutions' />
+            <Route component={Values} exact path='/values/:value' />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>

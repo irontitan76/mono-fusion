@@ -16,8 +16,9 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
     main: {
       margin: 'auto',
       maxWidth: 1440,
-      minHeight: 'calc(100vh - 48px)',
+      // minHeight: 'calc(100vh - 48px)',
       padding: `0 ${spacing(3)}px`,
+      width: '100%',
       [breakpoints.down('xs')]: {
         padding: `0 ${spacing(2)}px`,
       }

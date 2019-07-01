@@ -1,17 +1,43 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 import {
+  faBalanceScale,
+  faCreditCardBlank,
+  faCode,
+  faDna,
   faEllipsisV,
   faEllipsisVAlt,
+  faHistory,
+  faMindShare,
+  faProjectDiagram,
+  faRunning,
   faSearch,
   faSignIn,
+  faSolarPanel,
+  faSpaceShuttle,
+  faTools,
+  faTruckLoading,
   faUser,
+  faUserTie,
 } from '@fortawesome/pro-light-svg-icons';
 
 library.add(
+  faBalanceScale,
+  faCreditCardBlank,
+  faCode,
+  faDna,
   faEllipsisV,
   faEllipsisVAlt,
+  faHistory,
+  faMindShare,
+  faProjectDiagram,
+  faRunning,
   faSearch,
   faSignIn,
+  faSolarPanel,
+  faSpaceShuttle,
+  faTools,
+  faTruckLoading,
   faUser,
+  faUserTie,
 );
