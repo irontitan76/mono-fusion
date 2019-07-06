@@ -3,7 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
 
-import Layout from '../../components/Layout';
+import Layout from 'components/Layout';
 
 const useStyles = makeStyles(() => {
   return {
@@ -16,9 +16,14 @@ export function Career() {
 
   return (
     <Layout>
-      <Grid className={classes.container} container>
+      <Grid
+        className={classes.container}
+        container
+      >
         <Grid item xs={12}>
-          <Typography variant='h1'>Contact page</Typography>
+          <Typography variant='h1'>
+            Career page
+          </Typography>
         </Grid>
       </Grid>
     </Layout>

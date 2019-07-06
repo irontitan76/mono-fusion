@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { makeStyles } from '@material-ui/styles';
@@ -7,7 +8,10 @@ import { Grid, IconButton, Input, Tooltip } from '@material-ui/core';
 
 const useStyles = makeStyles(() => {
   return {
-    baseInput: {
+    base: {
+      color: 'transparent',
+    },
+    baseExpand: {
       color: 'white',
     },
     icon: {
@@ -15,18 +19,25 @@ const useStyles = makeStyles(() => {
       fontSize: 16,
     },
     input: {
-      backgroundColor: '#004090',
-      display: 'flex',
-      flex:1,
+      backgroundColor: 'transparent',
+      cursor: 'pointer',
       paddingLeft: 12,
       paddingRight: 12,
+      transition: 'width .3s ease',
+      width: 64,
     },
+    inputExpand: {
+      backgroundColor: '#004090',
+      cursor: 'normal',
+      width: 300
+    }
   };
 });
 
 export function DesktopSearch() {
   const classes = useStyles();
   const [expand, setExpand] = useState(false);
+  const inputEl = useRef(null);
   
   const searchIcon = (
     <FontAwesomeIcon
@@ -35,27 +46,34 @@ export function DesktopSearch() {
     />
   );
 
-  const searchComponent = expand
-    ? (
-      <Input
-        autoFocus={true}
-        classes={{
-          input: classes.baseInput,
-        }}
-        className={classes.input}
-        disableUnderline
-        endAdornment={searchIcon}
-        onBlur={() => setExpand(false)}
-        placeholder='Search'
-        variant='outlined'
-      />
-    ) : (
-      <Tooltip title='Search'>
-        <IconButton onClick={() => setExpand(true)}>
-          {searchIcon}
-        </IconButton>
-      </Tooltip>
-    )
+  const searchComponent = (
+    <Input
+      autoFocus={expand}
+      classes={{ 
+        input: clsx(
+          classes.base,
+          { [classes.baseExpand]: expand }
+        )
+      }}
+      className={
+        clsx(classes.input, 
+          { [classes.inputExpand]: expand }
+      )}
+      disableUnderline
+      endAdornment={searchIcon}
+      inputProps={{
+        ref: inputEl,
+      }}
+      onBlur={() => setExpand(false)}
+      onClick={() => {
+        setExpand(true);
+        inputEl.current.focus();
+      }}
+      onFocus={() => setExpand(true)}
+      placeholder='Search'
+      variant='outlined'
+    />
+  );
 
   return (
     <Grid item md={3}>

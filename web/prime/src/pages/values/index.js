@@ -1,69 +1,61 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { makeStyles } from '@material-ui/styles';
-import { AppBar, Grid, Tab, Tabs, Toolbar } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
-import Layout from '../../components/Layout';
+import FullWidth from 'components/FullWidth';
+import Layout from 'components/Layout';
 
-const useStyles = makeStyles(({ palette, spacing }) => {
+import Selector from './selector';
+
+const useStyles = makeStyles(({ spacing }) => {
   return {
-    appBar: {
-      backgroundColor: palette.background.paper,
-      color: '#313131',
-      top: 48,
-    },
     container: {
-      margin: 'auto',
+      backgroundImage: `url(${require('static/images/people-3.jpg')})`,
+      backgroundSize: '100% 100%',
+      height: 500,
       padding: `0 ${spacing(3)}px`,
     },
-    tab: {
-      flexBasis: '16%',
-      textTransform: 'none',
+    text: {
+      paddingLeft: spacing(3),
     },
   };
 });
 
+const values = [
+  {
+    name: 'Innovators at heart',
+  },
+  {
+    name: 'Bias for righteous action',
+  },
+  {
+    name: 'Challenge respectfully',
+  },
+  {
+    name: 'Be compassionate',
+  },
+  {
+    name: 'Collaborate effectively',
+  },
+];
+
 export function Values() {
   const classes = useStyles();
-  const [selected, setSelected] = useState(0);
-
-  const values = [
-    {
-      name: 'Innovators at heart',
-    },
-    {
-      name: 'Bias for righteous action',
-    },
-    {
-      name: 'Challenge respectfully',
-    },
-    {
-      name: 'Be compassionate',
-    },
-    {
-      name: 'Collaborate effectively',
-    },
-  ];
 
   return (
     <Layout>
-      <AppBar className={classes.appBar}>
-        <Tabs
-          centered
-          onChange={(event, tab) => setSelected(tab)}
-          value={selected}
-        >
-          {
-            values.map((value) => {
-              return <Tab className={classes.tab} label={value.name} />;
-            })
-          }
-        </Tabs>
-      </AppBar>
-      <Toolbar variant='dense' />
-      <Grid className={classes.container} container>
-        Hello
-      </Grid>
+      <FullWidth className={classes.container}>
+        <Grid alignItems='center' container style={{ height: '100%' }}>
+          <Grid item xs={4}>
+            <Typography className={classes.text} variant='h3'>
+              Values reflect what is important to the way you 
+              live and work.
+            </Typography>
+          </Grid>
+        </Grid>
+      </FullWidth>
+      <Selector items={values} />
     </Layout>
   );
 }

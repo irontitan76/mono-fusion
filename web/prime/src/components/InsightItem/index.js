@@ -4,7 +4,7 @@ import { Link as RRLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, CardHeader, CardMedia, Grid, Link, Typography } from '@material-ui/core';
 
-import Author from './Author';
+import Author from 'components/Author';
 
 const useStyles = makeStyles(({ palette, shadows, spacing }) => {
   return {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(({ palette, shadows, spacing }) => {
         transform: 'translateY(-7px)',
         transition: 'transform .2s ease-in',
       },
-      backgroundColor: palette.background.paper,
+      backgroundColor: ({ bgColor }) => palette.background[bgColor],
       cursor: 'pointer',
       position: 'relative',
       transition: 'transform 1s ease-out',
@@ -63,8 +63,8 @@ const useStyles = makeStyles(({ palette, shadows, spacing }) => {
   };
 });
 
-export function InsightItem({ insight, size }) {
-  const classes = useStyles();
+export function InsightItem({ bgColor, insight, size }) {
+  const classes = useStyles({ bgColor });
   const [hover, setHover] = useState(false);
 
   const overlay = (

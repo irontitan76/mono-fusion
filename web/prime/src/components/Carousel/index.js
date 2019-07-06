@@ -15,6 +15,7 @@ const useStyles = makeStyles(({ spacing }) => {
       width: '100%',
     },
     content: {
+      color: 'black',
       paddingLeft: spacing(10),
     },
     desc: {
@@ -22,8 +23,10 @@ const useStyles = makeStyles(({ spacing }) => {
       marginBottom: spacing(2.5),
     },
     item: {
+      backgroundImage: ({ item }) => `url(${item.media.source})`,
       backgroundSize: '100% 100%',
       height: '100%',
+      width: '100%',
     },
     selectors: {
       position: 'relative',
@@ -40,6 +43,32 @@ const useStyles = makeStyles(({ spacing }) => {
     },
   };
 });
+
+export function CarouselItem({ item }) {
+  const classes = useStyles({ item });
+
+  return (
+    <div className={classes.item}>
+      <Grid
+        alignItems='center'
+        container
+        style={{ height: '100%' }}
+      >
+        <Grid className={classes.content} item md={3}>
+          <Typography className={classes.title}>
+            {item.title}
+          </Typography>
+          <Typography className={classes.desc}>
+            {item.description}
+          </Typography>
+          <Typography className={classes.action}>
+            {item.action}
+          </Typography>
+        </Grid>
+      </Grid>
+    </div>
+  );
+}
 
 export function Carousel({ items }) {
   const classes = useStyles();
@@ -83,25 +112,7 @@ export function Carousel({ items }) {
       >  
           <Grid item xs={12}>
             <Slide direction={temp === selected ? 'left' : 'right'} in={temp === selected} timeout={500}>
-              <div className={classes.item} style={{ backgroundImage: `url(${items[selected].media.source})` }}>
-                <Grid
-                  alignItems='center'
-                  container
-                  style={{ height: '100%' }}
-                >
-                  <Grid className={classes.content} item md={3}>
-                    <Typography className={classes.title}>
-                      {items[selected].title}
-                    </Typography>
-                    <Typography className={classes.desc}>
-                      {items[selected].description}
-                    </Typography>
-                    <Typography className={classes.action}>
-                      {items[selected].action}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </div>
+              <CarouselItem item={items[selected]} />
             </Slide>
           </Grid>
       </Grid>

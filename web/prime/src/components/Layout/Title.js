@@ -4,7 +4,7 @@ import { Link as RRLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Link, Typography } from '@material-ui/core';
 
-import LogoWhite from '../../static/images/fusion-logo-white.png';
+import LogoWhite from 'static/images/fusion-logo-white.png';
 
 const useStyles = makeStyles(({ spacing }) => {
   return {

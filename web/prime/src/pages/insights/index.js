@@ -1,30 +1,13 @@
 import React, { useState } from 'react';
-import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { default as f } from 'lodash.filter';
 import pickBy from 'lodash.pickby';
 
-import { makeStyles } from '@material-ui/styles';
-import { Button, CircularProgress, Grid, Typography } from '@material-ui/core';
+import { AdModal } from 'components/Ad';
+import Banner from 'components/Banner';
+import Layout from 'components/Layout';
+import InsightBar from 'components/InsightBar';
 
-import Layout from '../../components/Layout';
-import InsightBar from '../../components/InsightBar';
-import InsightItem from '../../components/InsightItem';
-
-const useStyles = makeStyles(({ palette, spacing }) => {
-  return {
-    container: {
-      marginTop: spacing(3),
-    },
-    noResults: {
-      textAlign: 'center',
-    },
-    noResultsText: {
-      color: palette.grey[500],
-      marginBottom: spacing(2),
-    },
-  };
-});
+import Content from './content';
 
 const GET_INSIGHTS = gql`
   query {
@@ -53,66 +36,20 @@ const GET_INSIGHTS = gql`
 `;
 
 export function Insights() {
-  const classes = useStyles();
   const [filter, setFilter] = useState({});
-
+  const [open, setOpen] = useState();
   const cleanedFilter = pickBy(filter, (o) => typeof o !== 'undefined');
-
-  const noResults = (
-    <Grid className={classes.noResults} item xs={12}>
-      <Typography
-        align='center'
-        className={classes.noResultsText}
-      >
-        No results found
-      </Typography>
-      { 
-        Object.keys(cleanedFilter).length > 0
-          ? (
-            <Button
-              color='primary'
-              onClick={() => setFilter({})}
-              variant='outlined'
-            >
-              Clear filters
-            </Button>
-          ) : null
-      }
-    </Grid>
-  );
-
-  const content = (
-    <Query query={GET_INSIGHTS}>
-      {({ loading, error, data }) => {
-        if (error) return null;
-        if (loading) return <CircularProgress />;
-        
-        const docs = f(data.documents, cleanedFilter);
-        
-        if (docs.length === 0) return noResults;
-
-        return docs.map((document) => (
-          <InsightItem
-            insight={document}
-            key={document._id}
-          />)
-        );
-      }}
-    </Query>
-  );
   
   return (
     <Layout>
       <InsightBar filter={filter} setFilter={setFilter} />
-      <Grid
-        alignItems="center"
-        className={classes.container}
-        container
-        justify="center"
-        spacing={5}
-      >
-        {content}
-      </Grid>
+      <Content filter={cleanedFilter} query={GET_INSIGHTS} />
+      <Banner
+        action={() => setOpen(true)}
+        message='Subscribe to our insights'
+        button='Sign up'
+      />
+      <AdModal open={open} setOpen={setOpen} />
     </Layout>
   );
 }

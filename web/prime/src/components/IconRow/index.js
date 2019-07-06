@@ -16,7 +16,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
         border: `5px solid ${palette.primary.main}`,
       },
       border: `5px solid ${palette.secondary.main}`,
-      // borderRadius: '50%',
+      borderRadius: '50%',
       cursor: 'pointer',
       height: 60,
       margin: 'auto',
@@ -27,6 +27,17 @@ const useStyles = makeStyles(({ palette, spacing }) => {
     },
   };
 });
+
+// const icons = [
+//   { icon: ['fal', 'mind-share'], name: 'A.I.' },
+//   { icon: ['fal', 'code'], name: 'Technoloy' },
+//   { icon: ['fal', 'credit-card-blank'], name: 'Finance' },
+//   { icon: ['fal', 'balance-scale'], name: 'Legal' },
+//   { icon: ['fal', 'dna'], name: 'Healthcare' },
+//   { icon: ['fal', 'truck-loading'], name: 'Transport' },
+//   { icon: ['fal', 'solar-panel'], name: 'Energy' },
+//   { icon: ['fal', 'space-shuttle'], name: 'Space' },
+// ];
 
 export function Icon({ icon }) {
   const classes = useStyles();

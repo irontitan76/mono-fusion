@@ -11,6 +11,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
     container: {
       margin: 'auto',
       maxWidth: 1440,
+      width: '100%',
     },
     item: {
       color: isDark ? 'white': '#313131',

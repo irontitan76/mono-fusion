@@ -1,5 +1,6 @@
 **/node_modules
 node_modules
+web/**/build/
 .next
 
 _archive

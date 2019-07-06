@@ -1,34 +1,28 @@
 import React from 'react';
+import { Link as RRLink } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/styles';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Link } from '@material-ui/core';
 
-import Banner from '../../components/Banner';
-import Carousel from '../../components/Carousel';
-import Layout from '../../components/Layout';
+import Banner from 'components/Banner';
+import { CarouselItem } from 'components/Carousel';
+import { cd } from 'components/Countdown';
+import Layout from 'components/Layout';
+import Ticker from 'components/Ticker';
 
-const useStyles = makeStyles(({ palette, spacing }) => {
+import Intro from './intro';
+import Solutions from './solutions';
+
+const useStyles = makeStyles(({ breakpoints, spacing }) => {
   return {
     banner: {
       marginBottom: spacing(5),
     },
-    companySubtitle: {
-      color: palette.grey[500],
-      fontSize: 18,
-      letterSpacing: 1.1,
-      paddingLeft: 7,
+    tile: {
+      height: 640,
+      width: '100%',
     },
-    companyTitle: {
-      color: palette.grey[700],
-      letterSpacing: 23,
-    },
-    intro: {
-      height: 500,
-      paddingTop: 170,
-    },
-    logo: {
-      marginRight: 50,
-    },
+    tiles: {},
   };
 });
 
@@ -37,7 +31,7 @@ const items = [
     action: 'Learn more',
     description: 'Integrate our solutions into your existing workflow',
     media: {
-      source: require('../../static/images/building-2.jpg'),
+      source: require('static/images/building-2.jpg'),
       type: 'image',
     },
     path: '/solutions',
@@ -48,10 +42,10 @@ const items = [
     action: 'See how we work',
     description: 'Quicken development with our qualified consultants',
     media: {
-      source: require('../../static/images/people-4.jpg'),
+      source: require('static/images/people-4.jpg'),
       type: 'image',
     },
-    path: '/insight?id=5cfcb97202743900079c638c',
+    path: '/insights/5cfcb95e02743900079c6389',
     title: 'OUR SERVICES',
     variant: 'dark',
   },
@@ -59,82 +53,61 @@ const items = [
     action: 'See our standard',
     description: 'Proven strategies that effectively grow your business',
     media: {
-      source: require('../../static/images/plant-1.jpg?resize&size=300'),
+      source: require('static/images/plant-1.jpg?resize&size=300'),
       type: 'image',
     },
-    path: '/insight?id=5cfcb95e02743900079c6389',
+    path: '/insights/5cfcb95802743900079c6388',
     title: 'OUR PROCESS',
     variant: 'dark',
   },
 ];
 
-// const icons = [
-//   { icon: ['fal', 'mind-share'], name: 'A.I.' },
-//   { icon: ['fal', 'code'], name: 'Technoloy' },
-//   { icon: ['fal', 'credit-card-blank'], name: 'Finance' },
-//   { icon: ['fal', 'balance-scale'], name: 'Legal' },
-//   { icon: ['fal', 'dna'], name: 'Healthcare' },
-//   { icon: ['fal', 'truck-loading'], name: 'Transport' },
-//   { icon: ['fal', 'solar-panel'], name: 'Energy' },
-//   { icon: ['fal', 'space-shuttle'], name: 'Space' },
-// ];
+const news = [
+  {
+    title: 'Embark on the next frontier:',
+    message: 'Start your business\'s digital transformation on March 1, 2020.'
+  },
+  {
+    title: 'Countdown:',
+    message: `We open for business in ${cd(new Date('March 1, 2020 00:00:00').getTime())}`,
+  },
+];
 
 export function Home() {
   const classes = useStyles();
 
   return (
     <Layout>
-      <Grid container justify='center'>
-        <Grid className={classes.intro} item xs={12}>
-          <Grid alignItems='center' container justify='center'>
-            <Grid className={classes.logo} item>
-              <img
-                alt='logo'
-                src={require('../../static/images/fusion-logo.svg')}
-                height={150}
-                width={150}
-              />
+      <Intro />
+      <Ticker items={news} />
+      <Solutions />
+      <Banner
+        className={classes.banner}
+        message='Learn more about how our consultants and solutions can optimize your business'
+        button='Contact us'
+        to='/locations'
+      />
+      <Grid
+        alignItems='center'
+        className={classes.tiles}
+        container
+        spacing={10}
+        justify='center'
+      >
+        {items.map((item) => {
+          return (
+            <Grid
+              className={classes.tile}
+              item
+              key={item.title}
+              xs={12}
+            >
+              <Link component={RRLink} to={item.path} underline='none'>
+                <CarouselItem item={item} />
+              </Link>
             </Grid>
-
-            <Grid item>
-              <Typography
-                className={classes.companyTitle}
-                component='div'
-                variant='h1'
-              >
-                FUSION
-              </Typography>
-              <Typography className={classes.companySubtitle}>
-                Optimizing business through intelligent design
-              </Typography>
-            </Grid>
-
-          </Grid>
-
-        </Grid>
-
-        <Grid item xs={12}>
-          <Typography
-            align='center'
-            component='h2'
-            variant='h5'
-          >
-            Industry targets
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12} style={{ paddingBottom: 56, paddingTop: 56, }}>
-
-        </Grid>
-
-        <Banner
-          className={classes.banner}
-          message='Learn more about how our consultants and solutions can optimize your business'
-          button='Contact us'
-          to='/contact'
-        />
-
-        <Carousel items={items} />
+          )
+        })}
       </Grid>
     </Layout>
   );

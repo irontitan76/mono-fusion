@@ -9,6 +9,7 @@
   "workspaces": {
     "packages": [
       "packages/*",
+      "server",
       "server/*",
       "web/*"
     ]
@@ -22,6 +23,7 @@
     "clean-all": "node packages/build/lib/clean all"
   },
   "devDependencies": {
+    "eslint-config-react-app": "^4.0.1",
     "lerna": "^3.13.3"
   },
   "resolutions": {

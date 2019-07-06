@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Tabs, Tab, Toolbar } from '@material-ui/core';
 
-import Agile from './agile';
-import Cloud from './cloud';
-import Mobile from './mobile';
-import Layout from '../../components/Layout';
+import Layout from 'components/Layout';
 
-const useStyles = makeStyles(({ palette, spacing }) => {
+import Data from './data';
+import Process from './process';
+import Operations from './operations';
+import Mobile from './mobile';
+
+const useStyles = makeStyles(({ palette }) => {
   return {
     appBar: {
       backgroundColor: palette.background.paper,
@@ -23,22 +26,32 @@ const useStyles = makeStyles(({ palette, spacing }) => {
   };
 });
 
-export function Solutions() {
-  const classes = useStyles();
-  const [tab, setTab] = useState(0);
+const tabTitles = ['Data', 'Experience', 'Mobile', 'Process', 'Operations', 'Web'];
+const tabContent = {
+  data: <Data />,
+  experience: <div>Experience</div>,
+  mobile: <Mobile />,
+  process: <Process />,
+  operations: <Operations />,
+  web: <div>Web</div>,
+};
 
-  const tabTitles = ['Data', 'Experience', 'Mobile', 'Process', 'Operation', 'Web'];
-  const tabContent = {
-    0: function() { return 'Data'; },
-    1: function() { return 'Experience'; },
-    2: function() { return <Mobile />; },
-    3: function() { return <Agile />; },
-    4: function() { return <Cloud />; },
-    5: function() { return 'Web'; },
-  };
+export function Solutions({ location }) {
+  const classes = useStyles();
+  // TODO: better this location-based tab view
+  const [tab, setTab] = useState(location.pathname.split('/solutions/')[1] || 'data');
 
   const tabs = tabTitles.map((item) => {
-    return <Tab className={classes.tab} key={item} label={item} />;
+    return (
+      <Tab
+        className={classes.tab}
+        component={Link}
+        label={item}
+        key={item}
+        to={`/solutions/${item.toLowerCase()}`}
+        value={item.toLowerCase()}
+      />
+    );
   });
 
   return (
@@ -47,14 +60,14 @@ export function Solutions() {
         <Tabs
           centered
           className={classes.tabs}
-          onChange={(event, tab) => setTab(tab)}
+          onChange={(_, tab) => setTab(tab)}
           value={tab}
         >
           {tabs}
         </Tabs>
       </AppBar>
       <Toolbar variant='dense' />
-      {tabContent[tab]()}
+      {tabContent[tab]}
     </Layout>
   );
 }
