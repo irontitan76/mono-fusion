@@ -39,7 +39,7 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
 
 const leaders = [
   {
-    image: '/images/profile-1.jpg',
+    image: require('static/images/profile-1.jpg'),
     name: 'Ross Sheppard',
     title: 'Founder & CEO',
   },

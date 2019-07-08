@@ -50,7 +50,7 @@ export function Thread() {
           preferred: 'Ross',
         },
         profile: {
-          avatar: '/images/profile-1.jpg',
+          avatar: require('static/images/profile-1.jpg'),
         },
       },
       message: 'This is a message',
@@ -62,7 +62,7 @@ export function Thread() {
             preferred: 'Ross',
           },
           profile: {
-            avatar: '/images/profile-1.jpg',
+            avatar: require('static/images/profile-1.jpg'),
           },
         },
         message: 'This is a message',
@@ -76,7 +76,7 @@ export function Thread() {
           preferred: 'Ross',
         },
         profile: {
-          avatar: '/images/profile-1.jpg',
+          avatar: require('static/images/profile-1.jpg'),
         },
       },
       message: 'This is a message',
@@ -88,7 +88,7 @@ export function Thread() {
             preferred: 'Ross',
           },
           profile: {
-            avatar: '/images/profile-1.jpg',
+            avatar: require('static/images/profile-1.jpg'),
           },
         },
         message: 'This is a message',
