@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { makeStyles } from '@material-ui/styles';
 import { ButtonBase, Grid, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles(({ palette, spacing }) => {
+const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   const isDark = palette.type === 'dark';
-  const height = 420;
+  const height = 400;
   return {
     button: {
       '&:hover': {
@@ -31,13 +31,18 @@ const useStyles = makeStyles(({ palette, spacing }) => {
     },
     bioContainer: {
       height: '100%',
-      paddingLeft: 150,
+      paddingLeft: spacing(15),
+      width: '100%',
+      [breakpoints.down('sm')]: {
+        paddingLeft: spacing(5),
+        paddingRight: spacing(5),
+      },
     },
     image: {
       '&:hover': {
         filter: 'none',
       },
-      height: '100%',
+      height,
       filter: 'grayscale(50%)',
       width: '100%',
     },
@@ -57,18 +62,17 @@ export function Ceo({ leader }) {
   const classes = useStyles();
 
   const image = (
-    <Grid className={classes.ceo} item xs={6}>
+    <Grid className={classes.ceo} item sm={6} xs={12}>
       <img
         alt={leader.name}
         className={classes.image}
-        height={400}
         src={leader.image}
       />
     </Grid>
   );
 
   const bio = (
-    <Grid className={classes.bio} item xs={6}>
+    <Grid className={classes.bio} item sm={6} xs={12}>
       <Grid
         alignItems='center'
         className={classes.bioContainer}

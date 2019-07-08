@@ -13,16 +13,19 @@ import Ticker from 'components/Ticker';
 import Intro from './intro';
 import Solutions from './solutions';
 
-const useStyles = makeStyles(({ breakpoints, spacing }) => {
+const useStyles = makeStyles(({ spacing }) => {
   return {
     banner: {
       marginBottom: spacing(5),
     },
     tile: {
       height: 640,
+      marginBottom: spacing(7),
       width: '100%',
     },
-    tiles: {},
+    tiles: {
+      width: '100%',
+    },
   };
 });
 
@@ -91,7 +94,6 @@ export function Home() {
         alignItems='center'
         className={classes.tiles}
         container
-        spacing={10}
         justify='center'
       >
         {items.map((item) => {

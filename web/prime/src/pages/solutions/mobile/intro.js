@@ -23,10 +23,16 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
       backgroundPosition: 'center center',
       backgroundSize: 'cover',
       height: 640,
+      [breakpoints.down('sm')]: {
+        backgroundPosition: '67% center',
+      }
     },
     content: {
       maxWidth: 1440,
       paddingLeft: spacing(12),
+      [breakpoints.down('sm')]: {
+        paddingLeft: spacing(1),
+      },
     },
     item: {
       [breakpoints.down('sm')]: {  
@@ -59,7 +65,7 @@ export function MobileIntro() {
         justify='flex-start'
         style={{ height: '100%' }}
       >
-        <Grid className={classes.content} item xs={6}>
+        <Grid className={classes.content} item sm={6} xs={10}>
           <Typography
             className={classes.title}
             component='h1'

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { makeStyles } from '@material-ui/styles';
-import { Grid } from '@material-ui/core';
+import { Grid, Hidden } from '@material-ui/core';
 
 import { H4, H6 } from 'components/Heading';
 import Slider from 'components/Slider';
@@ -125,16 +125,18 @@ export function HomeSolutions() {
         </Grid>
       </Grid>
       <Grid className={classes.transformation} container>
-        <Grid item xs={3}>
+        <Grid item sm={3} xs={12}>
           <Slider height={SLIDER_HEIGHT}>{slides}</Slider>
         </Grid>
-        <Grid className={classes.about} item xs={9}>
-          <Grid container justify='center'>
-            <Grid item xs={12}>
-              <SolutionAbout {...solutions[selected]} />
+        <Hidden smDown>
+          <Grid className={classes.about} item xs={9}>
+            <Grid container justify='center'>
+              <Grid item xs={12}>
+                <SolutionAbout {...solutions[selected]} />
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        </Hidden>
       </Grid>
     </div>
   )

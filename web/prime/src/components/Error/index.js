@@ -59,7 +59,7 @@ export function Error({ error }) {
         variant='h2'
         xs={12}
       >
-        {error.networkError.statusCode}
+        {error.networkError.statusCode || 'Error'}
       </Typography>
       <Grid item md={5} sm={6} xs={12}>
         <ExpansionPanel

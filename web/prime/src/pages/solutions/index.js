@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { makeStyles } from '@material-ui/styles';
-import { AppBar, Tabs, Tab, Toolbar } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/styles';
+import { AppBar, Tabs, Tab, Toolbar, useMediaQuery } from '@material-ui/core';
 
 import Layout from 'components/Layout';
 
@@ -11,7 +11,7 @@ import Process from './process';
 import Operations from './operations';
 import Mobile from './mobile';
 
-const useStyles = makeStyles(({ palette }) => {
+const useStyles = makeStyles(({ breakpoints, palette }) => {
   return {
     appBar: {
       backgroundColor: palette.background.paper,
@@ -38,6 +38,8 @@ const tabContent = {
 
 export function Solutions({ location }) {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
   // TODO: better this location-based tab view
   const [tab, setTab] = useState(location.pathname.split('/solutions/')[1] || 'data');
 
@@ -58,10 +60,12 @@ export function Solutions({ location }) {
     <Layout>
       <AppBar className={classes.appBar}>
         <Tabs
-          centered
+          centered={matches}
           className={classes.tabs}
           onChange={(_, tab) => setTab(tab)}
+          scrollButtons='auto'
           value={tab}
+          variant={matches ? 'fullWidth' : 'scrollable'}
         >
           {tabs}
         </Tabs>

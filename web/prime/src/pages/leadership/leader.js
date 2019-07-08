@@ -5,8 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles(({ palette, spacing }) => {
+const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   const isDark = palette.type === 'dark';
+
+  const defaultHeight = 350;
+  const smScreenHeight = 150;
 
   return {
     leader: {
@@ -16,7 +19,10 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       "& .unfilled": {
         backgroundColor: palette.background.paper,
         borderRight: `1px solid ${palette.grey[isDark ? 'A700' : 300]}`,
-        height: 300,
+        height: defaultHeight,
+        [breakpoints.down('sm')]: {
+          height: smScreenHeight,
+        },
       },
       backgroundColor: isDark ? '#eee' : '#212121',
       cursor: ({ leader }) => leader && leader.unfilled ? 'pointer' : 'auto',
@@ -27,8 +33,12 @@ const useStyles = makeStyles(({ palette, spacing }) => {
         filter: 'none',
       },
       filter: 'grayscale(100%)',
-      height: 350,
+      height: defaultHeight,
       width: '100%',
+      [breakpoints.down('sm')]: {
+        filter: 'none',
+        height: smScreenHeight,
+      },
     },
     name: {
       color: palette.primary.main,
@@ -81,6 +91,7 @@ export function Leader({ leader }) {
       item
       md={3}
       to={leader.unfilled ? '/careers' : undefined}
+      xs={6}
     >
       {leader.unfilled ? unfilled : exec}
       <Typography

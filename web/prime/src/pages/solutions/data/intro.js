@@ -6,7 +6,7 @@ import { ButtonBase, Grid, Typography } from '@material-ui/core';
 
 import FullWidth from 'components/FullWidth';
 
-const useStyles = makeStyles(({ palette, spacing }) => {
+const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   const isDark = palette.type === 'dark';
   const bg = !isDark ? `#212121` : '#1d2026';
   const bgImage = require('static/images/data-2.png');
@@ -14,13 +14,21 @@ const useStyles = makeStyles(({ palette, spacing }) => {
 
   return {
     bg: {
-      backgroundImage: `url(${bgImage})`,
+      background: `url(${bgImage})`,
       backgroundRepeat: 'no-repeat',
       backgroundPosition: '85% center',
     },
     button: {
       fontSize: 14,
       paddingRight: spacing(2),
+      [breakpoints.down('sm')]: {
+        backgroundColor: 'rgba(0,0,0,.6)',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        marginLeft: 0,
+        padding: spacing(2, 4),
+        width: '100%',
+      },
     },
     container: {
       height: '100%',
@@ -50,15 +58,28 @@ const useStyles = makeStyles(({ palette, spacing }) => {
     item: {
       color: 'white',
       marginLeft: spacing(10),
+      [breakpoints.down('sm')]: {
+        marginLeft: 'auto',
+      },
     },
     subtitle: {
       color: 'inherit',
       marginBottom: spacing(2),
+      [breakpoints.down('sm')]: {
+        backgroundColor: 'rgba(0,0,0,.6)',
+        marginBottom: 0,
+        padding: spacing(2, 4),
+      },
     },
     title: {
       color: 'inherit',
       fontWeight: 700,
       marginBottom: spacing(2),
+      [breakpoints.down('sm')]: {
+        backgroundColor: 'rgba(0,0,0,.6)',
+        marginBottom: 0,
+        padding: spacing(2, 4),
+      },
     },
   };
 });
@@ -76,7 +97,7 @@ export function DataIntro() {
         className={classes.container}
         container
       >
-        <Grid className={classes.item} item md={5} xs={8}>
+        <Grid className={classes.item} item md={5} xs={12}>
           <Typography className={classes.title} variant='h3'>
             Data Solutions
           </Typography>

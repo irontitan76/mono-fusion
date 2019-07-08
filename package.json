@@ -9,7 +9,6 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "server",
       "server/*",
       "web/*"
     ]

@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { makeStyles } from '@material-ui/styles';
 
-import { ButtonBase, Grid, Typography } from '@material-ui/core';
+import { ButtonBase, Grid, Hidden, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles(({ palette, spacing }) => {
+const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   const isDark = palette.type === 'dark';
 
   return {
@@ -13,6 +13,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       backgroundColor: palette.secondary[isDark ? 'dark' : 'dark'],
       color: 'white',
       height: '100%',
+      padding: spacing(2),
       width: '100%',
     },
     container: {
@@ -32,8 +33,14 @@ const useStyles = makeStyles(({ palette, spacing }) => {
     },
     message: {
       backgroundColor: palette.secondary[isDark ? 'main' : 'light'],
+      flex: 1,
       padding: spacing(1,2),
       lineHeight: 1.75,
+      [breakpoints.down('sm')]: {
+        height: 75,
+        maxHeight: 100,
+        overflow: 'scroll',
+      },
     },
   };
 });
@@ -71,28 +78,26 @@ export function Ticker({ items }) {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <Grid className={classes.item} item md={2} xs={4}>
-        <Grid container wrap='nowrap'>
-          <Grid item xs={8}>
-            <Typography
-              className={classes.title}
-            >
-              LATEST NEWS
-            </Typography>
-          </Grid>
-          <Grid item onClick={onPrev} xs={2}>
-            <ButtonBase className={classes.button}>
-              <FontAwesomeIcon icon={['fal', 'chevron-left']} />
-            </ButtonBase>
-          </Grid>
-          <Grid item onClick={onNext} xs={2}>
-            <ButtonBase className={classes.button}>
-              <FontAwesomeIcon icon={['fal', 'chevron-right']} />
-            </ButtonBase>
-          </Grid>
-        </Grid>
+      <Grid className={classes.item} item md={2} xs={12}>
+        <Typography
+          className={classes.title}
+        >
+          LATEST NEWS
+        </Typography>
       </Grid>
-      <Grid className={classes.message} item md={10} xs={8}>
+      <Hidden smDown>
+        <Grid item onClick={onPrev}>
+          <ButtonBase className={classes.button}>
+            <FontAwesomeIcon icon={['fal', 'chevron-left']} />
+          </ButtonBase>
+        </Grid>
+        <Grid item onClick={onNext}>
+          <ButtonBase className={classes.button}>
+            <FontAwesomeIcon icon={['fal', 'chevron-right']} />
+          </ButtonBase>
+        </Grid>
+      </Hidden>
+      <Grid className={classes.message} item>
         <b>{items[visible].title}&nbsp;</b>
         {items[visible].message}
       </Grid>

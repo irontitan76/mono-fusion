@@ -1,12 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { makeStyles  } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
 
 import FullWidth from 'components/FullWidth';
 
-const useStyles = makeStyles(({ palette }) => {
+const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   return {
+    container: {
+      position: 'relative',
+      top: 250,
+      [breakpoints.down('sm')]: {
+        top: 175,
+      },
+    },
     intro: {
       background: `
         radial-gradient(circle, rgba(0,0,0,.4), rgba(0,0,0,.8)),
@@ -16,7 +23,7 @@ const useStyles = makeStyles(({ palette }) => {
       backgroundSize: '100% 100%',
       height: 675,
     },
-    container: {
+    item: {
       background: `
         radial-gradient(ellipse at top, transparent, #11112240),
         radial-gradient(ellipse at bottom, transparent, ${palette.primary.light}99)
@@ -24,37 +31,37 @@ const useStyles = makeStyles(({ palette }) => {
       height: '100%',
       maxWidth: '100%',
     },
+    logo: {
+      marginRight: spacing(6),
+      [breakpoints.down('sm')]: {
+        marginBottom: spacing(3),
+      },
+    },
     subtitle: {
-      // color: palette.grey[isDark ? 200 : 500],
       color: 'white',
       fontSize: 18,
       letterSpacing: 1.1,
+      marginRight: -1.1,
       paddingLeft: 7,
+      [breakpoints.down('sm')]: {
+        textAlign: 'center',
+      },
     },
     title: {
-      // color: palette.grey[isDark ? 300 : 700],
       color: 'white',
-      letterSpacing: 23,
-    },
-    logo: {
-      marginRight: 50,
+      letterSpacing: spacing(3),
+      [breakpoints.down('sm')]: {
+        fontSize: 64,
+        marginBottom: spacing(2),
+        marginRight: -spacing(3),
+        textAlign: 'center',
+      },
     },
   };
 });
 
 export function HomeIntro() {
   const classes = useStyles();
-  
-  useEffect(() => {
-    // https://itnext.io/how-to-use-plain-three-js-in-your-react-apps-417a79d926e0
-    // https://stackoverflow.com/questions/34424845/adding-script-tag-to-react-jsx
-    // window.VANTA.DOTS({
-    //   el: "#intro",
-    //   color: theme.palette.primary.main,
-    //   color2: theme.palette.background.default,
-    //   backgroundColor: theme.palette.background.default,
-    // });
-  });
 
   const logo = (
     <Grid className={classes.logo} item>
@@ -69,13 +76,14 @@ export function HomeIntro() {
   return (
     <FullWidth
       className={classes.intro} id="intro"
-      itemProps={{ className: classes.container }}
+      itemProps={{ className: classes.item }}
     >
       <Grid
         alignItems='center'
+        className={classes.container}
         container
         justify='center'
-        style={{ height: '100%' }}
+        style={{ width: '100%' }}
       >
         {logo}
         <Grid item>

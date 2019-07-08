@@ -46,7 +46,7 @@ export function InsightsContent({ filter, query }) {
         const docs = f(data.documents, filter);
         
         if (docs.length === 0) return <NoResults />;
-        const items = docs.map((document, index) => {
+        const items = docs.map((document) => {
 
           const item = (
             <InsightItem

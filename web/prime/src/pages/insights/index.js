@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import pickBy from 'lodash.pickby';
 
-import { AdModal } from 'components/Ad';
-import Banner from 'components/Banner';
 import Layout from 'components/Layout';
 import InsightBar from 'components/InsightBar';
 
+import { AdModal } from 'components/Ad';
+import Banner from 'components/Banner';
 import Content from './content';
 
 const GET_INSIGHTS = gql`

@@ -11,12 +11,15 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
       background: `linear-gradient(45deg, ${palette.primary.main} 70%, ${palette.primary.dark} 10%)`,
       color: 'white',
       left: '50%',
+      justifyContent: 'space-between',
       marginLeft: '-50vw',
       marginTop: spacing(5),
       padding: spacing(5, 13),
       position: 'relative',
       width: '100vw',
       [breakpoints.down('sm')]: {
+        justifyContent: 'center',
+        padding: spacing(5, 1),
         textAlign: 'center',
       },
     },
@@ -43,7 +46,6 @@ export function Banner({ action, className, message, button, to, ...rest }) {
       alignItems='center'
       className={clsx(classes.banner, className)}
       container
-      justify='space-between'
       spacing={2}
       {...rest}
     >

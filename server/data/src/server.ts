@@ -12,11 +12,11 @@ const graphqlPath: string  = '/api/graphql';
 const app: express.Application = express();
 app.use(cors());
 
-// const prime = path.join(__dirname, '..', '..', 'web', 'prime', 'build');
-// app.use(express.static(prime));
-// app.get('/',  function(req, res) {
-//   res.sendFile(path.join(prime, 'index.html'));
-// });
+const prime = path.join(__dirname, '..', '..', 'web', 'prime', 'build');
+app.use(express.static(prime));
+app.get('/*',  function(req, res) {
+  res.sendFile(path.join(prime, 'index.html'));
+});
 
 const queryFields: string[] = [
   'comment',

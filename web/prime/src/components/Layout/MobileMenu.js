@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { Link as RRLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { makeStyles } from '@material-ui/styles';
-import { Drawer, IconButton, Input, List, ListItem, ListItemText } from '@material-ui/core';
+import { Drawer, IconButton, Input, Link, List, ListItem, ListItemText } from '@material-ui/core';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {
@@ -68,14 +69,21 @@ export function MobileMenu({ items }) {
           </ListItem>
           {items.map((item) => {
             return (
-              <ListItem button key={item.name}>
-                <ListItemText
-                  primary={item.name}
-                  primaryTypographyProps={{
-                    className: classes.itemText,
-                  }}
-                />
-              </ListItem>
+              <Link
+                component={RRLink}
+                key={item.name}
+                to={item.path}
+                underline='none'
+              >
+                <ListItem button>
+                  <ListItemText
+                    primary={item.name}
+                    primaryTypographyProps={{
+                      className: classes.itemText,
+                    }}
+                  />
+                </ListItem>
+              </Link>
             );
           })}
         </List>

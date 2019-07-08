@@ -8,7 +8,7 @@ import Layout from 'components/Layout';
 import CEO from './ceo';
 import Leader from './leader';
 
-const useStyles = makeStyles(({ palette, spacing }) => {
+const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   return {
     container: {
       backgroundImage: `url(${require('static/images/office-1.jpg')})`,
@@ -23,8 +23,6 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       zIndex: -1,
     },
     content: {
-      paddingLeft: spacing(10),
-      paddingRight: spacing(10),
       paddingTop: spacing(20),
       width: '100%',
     },
@@ -32,6 +30,9 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       color: 'white',
       fontWeight: 700,
       padding: spacing(7, 0),
+      [breakpoints.down('sm')]: {
+        textAlign: 'center',
+      },
     },
   };
 });
@@ -67,7 +68,7 @@ export function Leadership() {
     const key = leader.name || index;
 
     if (index === 0) {
-      return <CEO key={key} leader={leader} />
+      return <CEO key={key} leader={leader} />;
     }
 
     return <Leader key={key} leader={leader} />;
@@ -76,8 +77,8 @@ export function Leadership() {
   return (
     <Layout>
       <div className={classes.container} />
-      <Grid className={classes.content} container>
-        <Grid item xs={12}>
+      <Grid container>
+        <Grid className={classes.content} item xs={12}>
           <Typography className={classes.title} variant='h2'>
             Leadership
           </Typography>

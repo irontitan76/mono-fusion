@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link as RRLink } from 'react-router-dom';
 
-import { makeStyles } from '@material-ui/styles';
-import { Card, CardContent, CardHeader, CardMedia, Grid, Link, Typography } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/styles';
+import { Card, CardContent, CardHeader, CardMedia, Grid, Link, Typography, useMediaQuery } from '@material-ui/core';
 
 import Author from 'components/Author';
 
@@ -65,7 +65,9 @@ const useStyles = makeStyles(({ palette, shadows, spacing }) => {
 
 export function InsightItem({ bgColor, insight, size }) {
   const classes = useStyles({ bgColor });
-  const [hover, setHover] = useState(false);
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const [hover, setHover] = useState(matches || false);
 
   const overlay = (
     <div className={classes.overlay}>
@@ -85,7 +87,7 @@ export function InsightItem({ bgColor, insight, size }) {
           className={classes.card}
           elevation={0}
           onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
+          onMouseLeave={() => setHover(matches || false)}
         >
           <CardMedia
             className={classes.media}
@@ -100,7 +102,7 @@ export function InsightItem({ bgColor, insight, size }) {
               title={insight.title}
               titleTypographyProps={{ className: classes.title }}
             />
-            {hover 
+            {(matches || hover) 
               ? (
                 <Author
                   author={insight.author}

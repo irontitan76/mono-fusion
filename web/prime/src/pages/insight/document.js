@@ -6,11 +6,14 @@ import { Grid, Paper } from '@material-ui/core';
 import Markdown from 'components/Markdown';
 import Thread from 'components/Thread';
 
-const useStyles = makeStyles(({ spacing }) => {
+const useStyles = makeStyles(({ breakpoints, spacing }) => {
   return {
     document: {
       height: 'auto',
       padding: spacing(3, 7),
+      [breakpoints.down('sm')]: {
+        padding: spacing(3, 2),
+      },
     },
   };
 });

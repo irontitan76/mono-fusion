@@ -55,7 +55,7 @@ export function Quantum() {
           Fusion Quantum takes
         </Typography>
       </Grid>
-      <Grid className={classes.quantumImage} md={6} xs={12}>
+      <Grid className={classes.quantumImage} item md={6} xs={12}>
         Test
       </Grid>
     </Grid>

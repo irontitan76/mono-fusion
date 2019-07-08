@@ -1,5 +1,5 @@
 {
-  "name": "main",
+  "name": "@fusion/data-service",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",

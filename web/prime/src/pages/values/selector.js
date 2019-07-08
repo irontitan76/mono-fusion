@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import { makeStyles } from '@material-ui/styles';
-import { Tab, Tabs } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/styles';
+import { Tab, Tabs, useMediaQuery } from '@material-ui/core';
 
 import FullWidth from 'components/FullWidth';
 
-const useStyles = makeStyles(({ palette }) => {
+const useStyles = makeStyles(({ palette, spacing }) => {
   return {
     tab: {
       flexBasis: '16%',
@@ -20,18 +20,28 @@ const useStyles = makeStyles(({ palette }) => {
 
 export function Selector({ items }) {
   const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
   const [selected, setSelected] = useState(0);
 
   return (
     <FullWidth className={classes.tabs}>
       <Tabs
-        centered
+        centered={matches}
         onChange={(_, tab) => setSelected(tab)}
         value={selected}
+        variant={matches ? 'fullWidth' : 'scrollable'}
       >
         {
           items.map((item) => {
-            return <Tab className={classes.tab} label={item.name} />;
+            return (
+              <Tab
+                className={classes.tab}
+                key={item.name}
+                label={item.name}
+                wrapped={false}
+              />
+            );
           })
         }
       </Tabs>

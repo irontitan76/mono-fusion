@@ -7,8 +7,6 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import ApolloProvider from 'react-apollo/ApolloProvider';
 
-import * as serviceWorker from './config/serviceWorker';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 
@@ -25,7 +23,8 @@ import Login from 'pages/login';
 import Signup from 'pages/signup';
 import Solutions from 'pages/solutions';
 import Values from 'pages/values';
-import './config/icon.config.js';
+import * as serviceWorker from './serviceWorker';
+import 'components/icons.js';
 
 const client = new ApolloClient({
   link: new HttpLink({ uri: "http://localhost:4100/api/graphql" }),
@@ -41,7 +40,7 @@ const App = () => {
           <BrowserRouter>
             <ScrollToTop>
               <Switch>
-                <Route component={Careers} exact path='/careers' />
+                <Route component={Careers} exact path='/careers/' />
                 <Route component={Career} exact path='/careers/:id' />
                 <Route component={Home} exact path='/' />
                 <Route component={Insight} exact path='/insights/:id' />
@@ -69,8 +68,6 @@ if (rootElement.hasChildNodes()) {
 } else {
   render(<App />, rootElement);
 }
-
-render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

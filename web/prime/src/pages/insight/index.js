@@ -16,6 +16,9 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => {
   return {
     container: {
       marginTop: spacing(1),
+      [breakpoints.down('sm')]: {
+        marginTop: 0,
+      },
     },
   };
 });

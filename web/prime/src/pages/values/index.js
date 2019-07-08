@@ -8,7 +8,7 @@ import Layout from 'components/Layout';
 
 import Selector from './selector';
 
-const useStyles = makeStyles(({ spacing }) => {
+const useStyles = makeStyles(({ breakpoints, spacing }) => {
   return {
     container: {
       backgroundImage: `url(${require('static/images/people-3.jpg')})`,
@@ -24,18 +24,23 @@ const useStyles = makeStyles(({ spacing }) => {
 
 const values = [
   {
+    icon: '',
     name: 'Innovators at heart',
   },
   {
+    icon: '',
     name: 'Bias for righteous action',
   },
   {
+    icon: '',
     name: 'Challenge respectfully',
   },
   {
+    icon: '',
     name: 'Be compassionate',
   },
   {
+    icon: '',
     name: 'Collaborate effectively',
   },
 ];
@@ -47,7 +52,7 @@ export function Values() {
     <Layout>
       <FullWidth className={classes.container}>
         <Grid alignItems='center' container style={{ height: '100%' }}>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <Typography className={classes.text} variant='h3'>
               Values reflect what is important to the way you 
               live and work.

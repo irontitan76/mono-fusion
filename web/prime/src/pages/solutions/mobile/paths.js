@@ -18,10 +18,7 @@ const useStyles = makeStyles(({ palette, spacing }) => {
       marginTop: spacing(4),
       textAlign: 'center',
     },
-    pathInfo: {
-      marginLeft: spacing(10),
-      marginRight: spacing(10)
-    },
+    pathInfo: {},
     pathItem: {
       '&:first-of-type': {
         marginTop: spacing(3),
