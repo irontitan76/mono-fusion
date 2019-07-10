@@ -2,6 +2,7 @@
 node_modules
 web/**/build/
 .next
+**/build
 
 _archive
 tmp

@@ -1,0 +1,33 @@
+{
+  "name": "@fusion/data",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "deploy": "prisma deploy",
+    "gen": "prisma generate && npx nexus-prisma-generate --client ./src/generated/prisma-client --output ./src/generated/nexus-prisma",
+    "dev": "yarn deploy && yarn gen && yarn start",
+    "start": "ts-node src/server.ts --no-notify --respawn --transpileOnly ./src"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.4.6",
+    "graphql-import": "^0.7.1",
+    "nexus": "^0.11.7",
+    "nexus-prisma": "^0.3.7",
+    "prisma-client-lib": "^1.26.6"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.4",
+    "@types/express": "^4.16.1",
+    "@types/graphql": "^14.0.5",
+    "graphql": "^14.1.1",
+    "graphqlgen-json-schema": "^0.6.0-rc8",
+    "prisma": "^1.27.1",
+    "ts-node": "^8.2.0",
+    "tslint": "^5.13.0",
+    "typescript": "^3.3.3333"
+  }
+}

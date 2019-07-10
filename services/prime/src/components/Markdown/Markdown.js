@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 import RMD from 'react-markdown';
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import atom from 'react-syntax-highlighter/dist/styles/prism/atom-dark';
-import vs from 'react-syntax-highlighter/dist/styles/prism';
+import atom from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
+import vs from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 import { makeStyles, useTheme } from '@material-ui/styles';
 import { Toolbar, Typography } from '@material-ui/core';
-import { headingRenderer, imageRenderer, quoteRenderer, tableRenderer } from './renderers';
-import { scrollToElement } from '../helpers';
+import { HeadingRenderer, ImageRenderer, QuoteRenderer, TableRenderer } from './renderers';
+import { scrollToElement } from '../../config/helpers';
 
 import MarkdownCodebar from './MarkdownCodebar';
-import SSR from '../Ssr/Ssr';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   const isDark = palette.type === 'dark';
@@ -98,11 +97,11 @@ const useStyles = makeStyles(({ palette, spacing }) => {
 
 export function Markdown({ codeProps, source }) {
   const classes = useStyles();
-  const { palette } = useTheme();
 
   scrollToElement();
 
-  function codeRenderer({ language, value }){
+  function CodeRenderer({ language, value }){
+    const { palette } = useTheme();
   
     const title = language && language
       .substring(
@@ -130,20 +129,18 @@ export function Markdown({ codeProps, source }) {
   };
 
   return (
-    <SSR>
-      <Typography
-        className={classes.md}
-        component={RMD}
-        renderers={{
-          code: codeRenderer,
-          heading: headingRenderer,
-          image: imageRenderer,
-          blockquote: quoteRenderer,
-          table: tableRenderer
-        }}
-        source={source.replace(/\\n\\n/g, '\n')}
-      />
-    </SSR>
+    <Typography
+      className={classes.md}
+      component={RMD}
+      renderers={{
+        code: CodeRenderer,
+        heading: HeadingRenderer,
+        image: ImageRenderer,
+        blockquote: QuoteRenderer,
+        table: TableRenderer
+      }}
+      source={source.replace(/\\n\\n/g, '\n')}
+    />
   );
 }
 

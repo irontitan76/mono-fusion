@@ -1,0 +1,10 @@
+.DS_Store
+.git
+node_modules
+npm-debug.log
+yarn-error.log
+Dockerfile
+*.md
+!README*.md
+README-secret.md
+**/build

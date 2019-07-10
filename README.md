@@ -6,6 +6,15 @@
 
 Welcome to Fusion Technologies' monorepository.
 
+## Folder Structure
+- packages/ (common API, components, etc.)
+- scripts/ (clean, build, test, deploy)
+- services/ (data services, apps, etc.)
+- .gitignore
+- package.json
+- README.md
+- yarn.lcok
+
 ## TODO ITEMS
 - Functions to deploy apps in build package
   - gcloud app deploy web/corp/app.yaml
@@ -26,7 +35,11 @@ Welcome to Fusion Technologies' monorepository.
 - Prerender or server-side render
   - https://medium.com/superhighfives/an-almost-static-stack-6df0a2791319
 - Incorporate CircleCI
-- React Snap and React Helmet
+- SSR && React Helmet
+- Create git clone-able template for web apps
+
+
+
 
 
 ## CRA Deploy

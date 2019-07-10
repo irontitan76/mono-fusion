@@ -17,6 +17,7 @@
     "fusion": "./packages/build/lib/cli.js"
   },
   "scripts": {
+    "reset_modules": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' +",
     "check": "yarn clean-all && yarn compile && yarn test && yarn lint",
     "clean": "node packages/build/lib/clean",
     "clean-all": "node packages/build/lib/clean all"
@@ -25,7 +26,7 @@
     "eslint-config-react-app": "^4.0.1",
     "lerna": "^3.13.3"
   },
-  "resolutions": {
-    "**/graphql": "14.3.0"
+  "eslintConfig": {
+    "extends": ["react-app"]
   }
 }
