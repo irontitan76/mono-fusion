@@ -1,3 +1,5 @@
+#
+
 ![Fusion Logo](./web/me/static/images/fusion-banner.png)
 
 > NOTE: This project is currently in pre-alpha stages.
@@ -7,15 +9,17 @@
 Welcome to Fusion Technologies' monorepository.
 
 ## Folder Structure
+
 - packages/ (common API, components, etc.)
 - scripts/ (clean, build, test, deploy)
 - services/ (data services, apps, etc.)
 - .gitignore
 - package.json
 - README.md
-- yarn.lcok
+- yarn.lock
 
 ## TODO ITEMS
+
 - Functions to deploy apps in build package
   - gcloud app deploy web/corp/app.yaml
   - gcloud app deploy web/interact/app.yaml
@@ -38,15 +42,11 @@ Welcome to Fusion Technologies' monorepository.
 - SSR && React Helmet
 - Create git clone-able template for web apps
 
-
-
-
-
 ## CRA Deploy
+
 - Create Bucket with build folder and app.yaml
 - Make folder in project (e.g. test-app)
 - Cd into folder and run "gsutil rsync -r gs://straight-veld-8658 ./test-app"
 - Run "gcloud app deploy"
 
-
-"preinstall": "node -r ./src/config/set-environment.js && node -r dotenv/config && npm config set \"@fortawesome:registry\" \"https://npm.fontawesome.com/\" && npm config set \"//npm.fontawesome.com/:_authToken\" \"${NPM_TOKEN}\"",
+```"preinstall": "node -r ./src/config/set-environment.js && node -r dotenv/config && npm config set \"@fortawesome:registry\" \"https://npm.fontawesome.com/\" && npm config set \"//npm.fontawesome.com/:_authToken\" \"${NPM_TOKEN}\"",```

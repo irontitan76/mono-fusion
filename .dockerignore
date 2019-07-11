@@ -1,0 +1,12 @@
+*
+!./.env
+!./.npmrc
+!./package.json
+
+!./packages/design/lib
+!./packages/design/package.json
+
+!./services/prime/public
+!./services/prime/src
+!./services/prime/razzle.config.js
+!./services/prime/package.json

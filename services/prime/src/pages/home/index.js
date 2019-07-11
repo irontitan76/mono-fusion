@@ -19,6 +19,12 @@ import Solutions from './solutions';
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => {
   return {
+    banner: {
+      padding: spacing(5, 5),
+      [breakpoints.down('sm')]: {
+        padding: spacing(5, 0),
+      },
+    },
     tile: {
       height: 640,
       marginBottom: spacing(7),
@@ -26,7 +32,11 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => {
     },
     tiles: {
       marginTop: spacing(5),
+      padding: spacing(0, 5),
       width: '100%',
+      [breakpoints.down('sm')]: {
+        padding: 0,
+      },
     },
   };
 });
@@ -90,6 +100,7 @@ export function Home() {
       <Ticker items={news} />
       <Solutions />
       <Banner
+        className={classes.banner}
         message='Learn more about how our consultants and solutions can optimize your business'
         button='Contact us'
         to='/locations'

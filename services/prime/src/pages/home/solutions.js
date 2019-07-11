@@ -15,14 +15,18 @@ import SolutionItem from './solutionItem';
 
 const SLIDER_HEIGHT = 568;
 
-const useStyles = makeStyles(({ palette, spacing }) => {
+const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   return {
     about: {
       backgroundColor: palette.background.paper,
     },
     container: {
       marginBottom: spacing(7),
+      padding: spacing(0, 5),
       width: '100%',
+      [breakpoints.down('sm')]: {
+        padding: 0,
+      },
     },
     select: {
       boxSizing: 'border-box',

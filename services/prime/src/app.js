@@ -19,7 +19,7 @@ import Solutions from './pages/solutions';
 import Values from './pages/values';
 import './components/icons.js';
 
-const client = new ApolloClient({ uri: process.env.RAZZLE_DB_HOST });
+const client = new ApolloClient({ uri: process.env.RAZZLE_MONGO_DB_URI });
 
 const App = () => {
   return (

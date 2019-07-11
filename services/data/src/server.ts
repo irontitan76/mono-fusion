@@ -115,7 +115,7 @@ server.applyMiddleware({
   path: graphqlPath,
 });
 
-const PORT: number = parseInt(process.env.PORT) || 4100;
+const PORT: number = parseInt(process.env.MONGO_DB_PORT) || 4100;
 app.listen({ port: PORT }, () => {
   console.log(`[INFO] Server launched on port ${PORT}! 🚀`);
 });

@@ -1,0 +1,13 @@
+version: '3'
+services:
+  prime:
+    build: 
+      context: .
+      dockerfile: services/prime/Dockerfile
+      args:
+        FONTAWESOME_API_KEY: ${FONTAWESOME_API_KEY}
+        MONGO_DB_PASSWORD: ${MONGO_DB_PASSWORD}
+        MONGO_DB_URI: ${MONGO_DB_URI}
+        MONGO_DB_USERNAME: ${MONGO_DB_USERNAME}
+    ports:
+      - "8080:3001"

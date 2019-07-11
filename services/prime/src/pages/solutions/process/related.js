@@ -85,7 +85,7 @@ export function Template() {
 
         <Query query={GET_INSIGHTS}>
           {({ loading, error, data }) => {
-            if (error) return null;
+            if (error || !data.documents) return null;
             if (loading) return <Loading />;
 
             return data.documents.map((doc) => (

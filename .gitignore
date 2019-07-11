@@ -34,3 +34,7 @@ yarn-error.log
 **/config.sh
 
 **/lib
+
+**/dist
+
+**/.npmrc

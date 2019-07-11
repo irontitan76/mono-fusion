@@ -9,18 +9,21 @@
   "workspaces": {
     "packages": [
       "packages/*",
-      "server/*",
-      "web/*"
+      "scripts/*",
+      "services/*"
     ]
   },
   "bin": {
     "fusion": "./packages/build/lib/cli.js"
   },
   "scripts": {
-    "reset_modules": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' +",
+    "reset_modules": "",
     "check": "yarn clean-all && yarn compile && yarn test && yarn lint",
     "clean": "node packages/build/lib/clean",
-    "clean-all": "node packages/build/lib/clean all"
+    "clean-all": "node packages/build/lib/clean all",
+    "deploy": "./scripts/deploy.sh",
+    "reset": "./scripts/reset.sh",
+    "setup": "./scripts/setup.sh"
   },
   "devDependencies": {
     "eslint-config-react-app": "^4.0.1",

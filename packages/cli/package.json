@@ -1,0 +1,13 @@
+{
+  "name": "@fusion/cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ross Sheppard <ross_sheppard@outlook.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^2.20.0",
+    "inquirer": "^6.5.0"
+  }
+}
