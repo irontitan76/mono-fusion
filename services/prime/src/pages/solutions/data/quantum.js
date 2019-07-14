@@ -13,6 +13,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => {
     },
     quantumDesc: {
       order: 1,
+      padding: spacing(2),
       [breakpoints.down('sm')]: {
         order: 2,
       },
@@ -52,7 +53,9 @@ export function Quantum() {
       </Grid>
       <Grid className={classes.quantumDesc} item md={6} xs={12}>
         <Typography variant='subtitle1'>
-          Fusion Quantum takes
+          Quantum is Fusion's solution to data management and analytics. We pride
+          ourselves on quickness, effective process, intuitive experiences, 
+          and beautifully designed interfaces. This is Fusion Quantum. 
         </Typography>
       </Grid>
       <Grid className={classes.quantumImage} item md={6} xs={12}>

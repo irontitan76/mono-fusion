@@ -112,6 +112,9 @@ export function Thread() {
           <Grid className={classes.textItem} item xs={12}>
             <Typography className={classes.text}>{comment.message}</Typography>
           </Grid>
+          <Grid item xs={12} style={{ color: 'grey', fontSize: 10, marginTop: 16, paddingLeft: 64 }}>
+            {comment.replies ? `Replies: ${comment.replies.length}` : ''}
+          </Grid>
         </Grid>
         <Collapse in={open}>
           {comment.replies ? comment.replies.map((reply, index) => (

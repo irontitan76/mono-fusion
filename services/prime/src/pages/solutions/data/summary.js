@@ -66,7 +66,7 @@ export function DataSummary() {
         >
           Process optimization begins with enhancing the way
           a business stores information and handles data. At 
-          Fusion, our data solutions ensure that your 
+          Fusion, our data solutions ensure your 
           company's data is stored securely
           while reducing costs, increasing performance, and 
           maintaining operational viability. Fusion Quantum

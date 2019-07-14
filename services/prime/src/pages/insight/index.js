@@ -55,34 +55,36 @@ export function Insight({ match }) {
   const [filter, setFilter] = useState({});
 
   return (
-    <Layout>
-      <InsightBar filter={filter} setFilter={setFilter} />
-      <Query query={GET_DOCUMENT} variables={{ _id: match.params.id }}>
-        {({ loading, error, data }) => {
-          if (loading) return <Loading />;
-          if (error) return null;
+    <>
+      <Layout>
+        <InsightBar filter={filter} setFilter={setFilter} />
+        <Query query={GET_DOCUMENT} variables={{ _id: match.params.id }}>
+          {({ loading, error, data }) => {
+            if (loading) return <Loading />;
+            if (error) return null;
 
-          const { author, content, media } = data.document;
+            const { author, content, media } = data.document;
 
-          return (
-            <>
-              <Helmet>
-                <title>Fusion Industries | Insights Engine</title>
-                <meta name="description" content={content.substring(1,100)} />
-              </Helmet>
-              <Grid
-                className={classes.container}
-                container
-                spacing={8}
-              >
-                <Document content={content} media={media} />
-                <Sidebar author={author} />
-              </Grid>
-            </>
-          )
-        }}
-      </Query>
-    </Layout>
+            return (
+              <>
+                <Helmet>
+                  <title>Insights Engine</title>
+                  <meta name="description" content={content.substring(1,100)} />
+                </Helmet>
+                <Grid
+                  className={classes.container}
+                  container
+                  spacing={8}
+                >
+                  <Document content={content} media={media} />
+                  <Sidebar author={author} />
+                </Grid>
+              </>
+            )
+          }}
+        </Query>
+      </Layout>
+    </>
   );
 }
 

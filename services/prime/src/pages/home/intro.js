@@ -58,10 +58,10 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
     title: {
       color: 'white',
       letterSpacing: spacing(3),
+      marginRight: -spacing(3),
       [breakpoints.down('sm')]: {
         fontSize: 64,
         marginBottom: spacing(2),
-        marginRight: -spacing(3),
         textAlign: 'center',
       },
     },

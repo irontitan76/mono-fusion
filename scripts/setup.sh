@@ -5,6 +5,7 @@ function setup_workstation {
   alias_fusion
   set_bash_profile
   get_env_vars
+  export_env_vars
 }
 
 function get_env_vars {
@@ -22,7 +23,9 @@ function get_env_vars {
       gsutil cp gs://fusion-dev-envvars/development.env .env
       ;;
   esac
+}
 
+function export_env_vars {
   export $(grep -v '^#' .env | xargs -0)
 }
 

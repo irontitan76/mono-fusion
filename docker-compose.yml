@@ -1,13 +1,14 @@
 version: '3'
 services:
   prime:
+    image: gcr.io/fusion-dev-245904/prime:v1
     build: 
       context: .
       dockerfile: services/prime/Dockerfile
       args:
-        FONTAWESOME_API_KEY: ${FONTAWESOME_API_KEY}
-        MONGO_DB_PASSWORD: ${MONGO_DB_PASSWORD}
-        MONGO_DB_URI: ${MONGO_DB_URI}
-        MONGO_DB_USERNAME: ${MONGO_DB_USERNAME}
+        fontawesomeApiKey: ${FONTAWESOME_API_KEY}
+        mongoDbPassword: ${RAZZLE_MONGO_DB_PASSWORD}
+        mongoDbUri: ${RAZZLE_MONGO_DB_URI}
+        mongoDbUsername: ${RAZZLE_MONGO_DB_USERNAME}
     ports:
       - "8080:3001"

@@ -26,31 +26,41 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => {
   };
 });
 
-const values = [
-  {
-    icon: '',
-    name: 'Innovators at heart',
-  },
-  {
-    icon: '',
-    name: 'Bias for righteous action',
-  },
-  {
-    icon: '',
-    name: 'Challenge respectfully',
-  },
-  {
-    icon: '',
-    name: 'Be compassionate',
-  },
-  {
-    icon: '',
-    name: 'Collaborate effectively',
-  },
-];
-
 export function Values() {
   const classes = useStyles();
+
+  const values = [
+    {
+      content: '',
+      icon: '',
+      name: 'Innovators at heart',
+      subheader: 'True innovators care not about fame, power, or glory, but humanity.'
+    },
+    {
+      content: '',
+      icon: '',
+      name: 'Bias for righteous action',
+      subheader: 'Spend time executing, encouraging, learning, and improving.',
+    },
+    {
+      content: '',
+      icon: '',
+      name: 'Challenge respectfully',
+      subheader: '',
+    },
+    {
+      content: '',
+      icon: '',
+      name: 'Be compassionate',
+      subheader: '',
+    },
+    {
+      content: '',
+      icon: '',
+      name: 'Collaborate effectively',
+      subheader: '',
+    },
+  ];
 
   return (
     <Layout>

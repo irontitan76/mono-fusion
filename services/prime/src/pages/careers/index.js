@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
@@ -17,16 +18,19 @@ export function Careers() {
   const classes = useStyles();
 
   return (
-    <Layout>
-      <Grid
-        className={classes.container}
-        container
-      >
-        <Grid item xs={12}>
-          <Typography variant='h1'>Careers page</Typography>
+    <>
+      <Helmet title="Careers" />
+      <Layout>
+        <Grid
+          className={classes.container}
+          container
+        >
+          <Grid item xs={12}>
+            <Typography variant='h3'>Careers page</Typography>
+          </Grid>
         </Grid>
-      </Grid>
-    </Layout>
+      </Layout>
+    </>
   );
 }
 

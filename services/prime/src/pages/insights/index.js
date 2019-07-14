@@ -44,9 +44,7 @@ export function Insights() {
   
   return (
     <Layout>
-      <Helmet>
-        <title>Fusion Industries | Insights Engine</title>
-      </Helmet>
+      <Helmet title="Insights Engine" />
       <InsightBar filter={filter} setFilter={setFilter} />
       <Content filter={cleanedFilter} query={GET_INSIGHTS} />
       <Banner

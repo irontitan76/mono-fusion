@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
@@ -78,6 +79,7 @@ export function Leadership() {
 
   return (
     <Layout>
+      <Helmet title="Leadership" />
       <div className={classes.container} />
       <Grid container>
         <Grid className={classes.content} item xs={12}>

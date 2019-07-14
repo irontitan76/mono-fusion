@@ -1,6 +1,6 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { Link as RRLink } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Link } from '@material-ui/core';
@@ -92,41 +92,41 @@ export function Home() {
   const classes = useStyles();
 
   return (
-    <Layout>
-      <Helmet>
-        <title>Fusion Industries | Home</title>
-      </Helmet>
-      <Intro />
-      <Ticker items={news} />
-      <Solutions />
-      <Banner
-        className={classes.banner}
-        message='Learn more about how our consultants and solutions can optimize your business'
-        button='Contact us'
-        to='/locations'
-      />
-      <Grid
-        alignItems='center'
-        className={classes.tiles}
-        container
-        justify='center'
-      >
-        {items.map((item) => {
-          return (
-            <Grid
-              className={classes.tile}
-              item
-              key={item.title}
-              xs={12}
-            >
-              <Link component={RRLink} to={item.path} underline='none'>
-                <CarouselItem item={item} />
-              </Link>
-            </Grid>
-          )
-        })}
-      </Grid>
-    </Layout>
+    <>
+      <Helmet title="Home" />
+      <Layout>
+        <Intro />
+        <Ticker items={news} />
+        <Solutions />
+        <Banner
+          className={classes.banner}
+          message='Learn more about how our consultants and solutions can optimize your business'
+          button='Contact us'
+          to='/locations'
+        />
+        <Grid
+          alignItems='center'
+          className={classes.tiles}
+          container
+          justify='center'
+        >
+          {items.map((item) => {
+            return (
+              <Grid
+                className={classes.tile}
+                item
+                key={item.title}
+                xs={12}
+              >
+                <Link component={RRLink} to={item.path} underline='none'>
+                  <CarouselItem item={item} />
+                </Link>
+              </Grid>
+            )
+          })}
+        </Grid>
+      </Layout>
+    </>
   );
 }
 

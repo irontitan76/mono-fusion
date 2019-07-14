@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Grid, Toolbar } from '@material-ui/core';
@@ -47,6 +48,10 @@ export function Layout({ children }) {
 
   return (
     <>
+      <Helmet
+        defaultTitle="Fusion"
+        titleTemplate="Fusion | %s"
+      />
       <AppBar className={classes.header} color='primary'>
         <Toolbar className={classes.toolbar} variant='dense'>
           <Grid alignItems='center' container justify='space-between'>

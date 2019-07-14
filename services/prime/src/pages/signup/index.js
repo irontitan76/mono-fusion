@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import Fields from '../../components/Auth/fields';
 import Footer from '../../components/Auth/footer';
@@ -35,19 +36,22 @@ const fields = [
 
 export function Signup() {
   return (
-    <Form>
-      <Header />
-      <Fields fields={fields} />
-      <Footer
-        action='Login'
-        alt={{
-          action: 'Login',
-          message: 'Already have an account?',
-          onClick: () => null,
-          path: '/login',
-        }}
-      />
-    </Form>
+    <>
+      <Helmet title="Helmet" />
+      <Form>
+        <Header />
+        <Fields fields={fields} />
+        <Footer
+          action='Login'
+          alt={{
+            action: 'Login',
+            message: 'Already have an account?',
+            onClick: () => null,
+            path: '/login',
+          }}
+        />
+      </Form>
+    </>
   );
 }
 
