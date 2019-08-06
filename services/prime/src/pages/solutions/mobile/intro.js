@@ -2,9 +2,7 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/styles';
 import { Button, Grid, Typography } from '@material-ui/core';
-
-import FullWidth from '../../../components/FullWidth';
-import bgImage from '../../../static/images/mobile-2.png';
+import { FullWidth } from '@fusion/visual';
 
 const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   const isDark = palette.type === 'dark';
@@ -17,7 +15,7 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
     },
     container: {
       backgroundImage: `
-        url(${bgImage}),
+        url(http://localhost:3003/api/media/mobile-2.png),
         linear-gradient(90deg, ${bg} 0%, ${bg} 11%,  ${palette.background.default} 100%)
       `,
       backgroundRepeat: 'no-repeat',

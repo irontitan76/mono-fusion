@@ -3,8 +3,7 @@ import { Helmet } from 'react-helmet';
 
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, CardHeader, CardMedia, Grid, Typography } from '@material-ui/core';
-
-import Layout from '../../components/Layout';
+import { Layout } from '@fusion/visual';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {
@@ -40,7 +39,7 @@ const LOCATIONS = [
     description: `Situated in the heart of Texas' capital,
       Fusion Industries has established itself as
       a premier technology company`,
-    image: require('../../static/images/office-1.jpg'),
+    image: 'http://localhost:3003/api/media/office-1.jpg',
     title: 'Austin, TX',
   },
 ];

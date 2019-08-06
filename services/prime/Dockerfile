@@ -14,11 +14,13 @@ ARG fontawesomeApiKey
 ARG mongoDbPassword
 ARG mongoDbUri
 ARG mongoDbUsername
+ARG mediaService
 
 ENV FONTAWESOME_API_KEY=$fontawesomeApiKey
 ENV RAZZLE_MONGO_DB_PASSWORD=$mongoDbPassword
 ENV RAZZLE_MONGO_DB_URI=$mongoDbUri
 ENV RAZZLE_MONGO_DB_USERNAME=$mongoDbUsername
+ENV RAZZLE_FUSION_MEDIA_SERVICE=$mediaService
 
 COPY package.json .npmrc .env ./
 COPY packages/design/package.json ./packages/design/

@@ -3,12 +3,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Hidden } from '@material-ui/core';
 
-import { H4, H6 } from '../../components/Heading';
-import Slider from '../../components/Slider';
-import solution1Image from '../../static/images/meeting-1.jpg';
-import solution2Image from '../../static/images/template-1.png';
-import solution3Image from '../../static/images/quantum-1.png';
-import solution4Image from '../../static/images/money-1.jpg';
+import { H4, H6, Slider } from '@fusion/visual';
 
 import SolutionAbout from './solutionAbout';
 import SolutionItem from './solutionItem';
@@ -55,7 +50,7 @@ const solutions = [
       product flows with roadmaps, tasks breakdown, 
       and workcycle management. 
     `,
-    media: solution1Image,
+    media: 'http://localhost:3003/api/media/meeting-1.jpg',
     name: 'Interact',
   },
   {
@@ -69,7 +64,7 @@ const solutions = [
       your business? Fusion Template incorporates the Fusion 
       Standard into a solution to meet your needs.
     `,
-    media: solution2Image,
+    media: 'http://localhost:3003/api/media/template-1.png',
     name: 'Template',
   },
   {
@@ -84,7 +79,7 @@ const solutions = [
       and entity creation, while viewing dynamic visualizations
       on usage.
     `,
-    media: solution3Image,
+    media: 'http://localhost:3003/api/media/quantum-1.png',
     name: 'Quantum',
   },
   {
@@ -98,7 +93,7 @@ const solutions = [
       you to track revenue flows and investment 
       opportuntiies, while helping you increase profits.
     `,
-    media: solution4Image,
+    media: 'http://localhost:3003/api/media/money-1.jpg',
     name: 'Thrive',
   },
 ];

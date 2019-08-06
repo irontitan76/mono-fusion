@@ -2,10 +2,7 @@ import React from 'react';
 
 import { makeStyles  } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
-
-import FullWidth from '../../components/FullWidth';
-import fusionLogo from '../../static/images/fusion-logo-white.svg';
-import bgImage from '../../static/images/fusion-4.png';
+import { FullWidth } from '@fusion/visual';
 
 const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   return {
@@ -22,7 +19,7 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
     intro: {
       background: `
         radial-gradient(circle, rgba(0,0,0,.4), rgba(0,0,0,.8)),
-        url(${bgImage})
+        url(http://localhost:3003/api/media/fusion-4.png?format=png&height=675&width=1600)
       `,
       backgroundRepeat: 'no-repeat',
       backgroundSize: '100% 100%',
@@ -75,7 +72,7 @@ export function HomeIntro() {
     <Grid className={classes.logo} item>
       <img
         alt='logo'
-        src={fusionLogo}
+        src='./images/fusion-logo-white.svg'
         height={150}
       />
     </Grid>

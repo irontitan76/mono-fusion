@@ -2,9 +2,7 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Paper } from '@material-ui/core';
-
-import Markdown from '../../components/Markdown';
-import Thread from '../../components/Thread';
+import { Markdown, Thread } from '@fusion/visual';
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => {
   return {

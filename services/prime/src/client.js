@@ -1,12 +1,13 @@
-import App from './app';
-import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { hydrate } from 'react-dom';
-import ApolloProvider from 'react-apollo/ApolloProvider';
-import theme from './config/theme.js';
+import { ApolloProvider } from 'react-apollo';
 import { ThemeProvider } from '@material-ui/styles';
 import { CssBaseline } from '@material-ui/core';
+
+import App from './app';
 import { createClient } from './config/apollo';
+import theme from './config/theme.js';
 
 function Main() {
   React.useEffect(() => {
@@ -16,22 +17,22 @@ function Main() {
     }
   }, []);
 
-  const client = createClient();
-
-  return ( 
-    <ApolloProvider client={client}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider> 
-    </ApolloProvider>
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider> 
   );
 }
 
+const client = createClient();
+
 hydrate(
-  <BrowserRouter>
-    <Main />
-  </BrowserRouter>,
+  <ApolloProvider client={client}>
+    <BrowserRouter>
+      <Main />
+    </BrowserRouter>
+  </ApolloProvider>,
   document.getElementById('root'),
 );
 

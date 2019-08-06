@@ -3,10 +3,7 @@ import { Helmet } from 'react-helmet';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
-
-import Layout from '../../components/Layout';
-import bgImage from '../../static/images/office-1.jpg';
-import profileImage from '../../static/images/profile-1.jpg';
+import { Layout } from '@fusion/visual';
 
 import CEO from './ceo';
 import Leader from './leader';
@@ -14,7 +11,7 @@ import Leader from './leader';
 const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   return {
     container: {
-      backgroundImage: `url(${bgImage})`,
+      backgroundImage: 'url(http://localhost:3003/api/media/office-1.jpg)',
       backgroundPosition: 'center center',
       backgroundSize: '100% 120%',
       filter: 'brightness(75%)',
@@ -42,7 +39,7 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
 
 const leaders = [
   {
-    image: profileImage,
+    image: 'http://localhost:3003/api/media/profile-1.jpg',
     name: 'Ross Sheppard',
     title: 'Founder & CEO',
   },

@@ -3,8 +3,7 @@ import { Helmet } from 'react-helmet';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
-
-import Layout from '../../components/Layout';
+import { Layout } from '@fusion/visual';
 
 const useStyles = makeStyles(() => {
   return {

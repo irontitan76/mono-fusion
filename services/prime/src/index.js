@@ -11,14 +11,14 @@ server.listen(process.env.PORT || 3000, error => {
     console.log(error);
   }
 
-  console.log('🚀 started');
+  console.log('[ FUSION ] Prime service started. 🚀');
 });
 
 if (module.hot) {
-  console.log('✅  Server-side HMR Enabled!');
+  console.log('[ FUSION ] Server-side HMR Enabled. ✅');
 
   module.hot.accept('./server', () => {
-    console.log('🔁  HMR Reloading `./server`...');
+    console.log('[ FUSION ] HMR Reloading `./server`... 🔁');
 
     try {
       app = require('./server').default;

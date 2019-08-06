@@ -2,9 +2,7 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Paper } from '@material-ui/core';
-
-import Ad from '../../components/Ad';
-import Author from '../../components/Author';
+import { Ad, Author } from '@fusion/visual';
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => {
   return {

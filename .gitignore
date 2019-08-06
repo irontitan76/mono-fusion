@@ -5,6 +5,7 @@ web/**/build/
 **/build
 
 _archive
+local/
 tmp
 yarn-error.log
 

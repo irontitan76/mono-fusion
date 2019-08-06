@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 
-import Fields from '../../components/Auth/fields';
-import Footer from '../../components/Auth/footer';
-import Form from '../../components/Auth';
-import Header from '../../components/Auth/header';
+import Fields from '@fusion/visual/lib/Auth/fields';
+import Footer from '@fusion/visual/lib/Auth/footer';
+import Form from '@fusion/visual/lib/Auth';
+import Header from '@fusion/visual/lib/Auth/header';
+import { getCookie, setCookie } from '@fusion/visual/lib/helpers';
 
 const fields = [
   {
@@ -20,6 +21,16 @@ const fields = [
 ];
 
 export function Login() {
+  const [auth, setAuth] = useState(getCookie('isAuthenticated') || false);
+
+  console.log(auth);
+
+  const authenticate = (event) => {
+    event.preventDefault();
+    setAuth(true);
+    setCookie('isAuthenticatd', true);
+  };
+
   return (
     <>
       <Helmet title="Login" />
@@ -31,9 +42,9 @@ export function Login() {
           alt={{
             action: 'Sign up',
             message: 'Don\'t have an account?',
-            onClick: () => null,
             path: '/signup',
           }}
+          onSubmit={authenticate}
         />
       </Form>
     </>

@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 
 import { makeStyles, useTheme } from '@material-ui/styles';
 import { Grid, Tab, Tabs, Typography, useMediaQuery } from '@material-ui/core';
-
-import FullWidth from '../../components/FullWidth';
+import { FullWidth } from '@fusion/visual';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {

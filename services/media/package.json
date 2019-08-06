@@ -1,0 +1,26 @@
+{
+  "name": "@fusion/media",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon -w src --exec \"babel-node src\"",
+    "build": "babel src -s -D -d build",
+    "start": "node build/index.js",
+    "prestart": "npm run -s build"
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"]
+  },
+  "browserslist": "> 0.25%, not dead",
+  "dependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
+    "@babel/preset-env": "^7.5.4",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.1",
+    "sharp": "^0.22.1"
+  }
+}

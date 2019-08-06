@@ -1,10 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import Fields from '../../components/Auth/fields';
-import Footer from '../../components/Auth/footer';
-import Form from '../../components/Auth';
-import Header from '../../components/Auth/header';
+import Fields from '@fusion/visual/lib/Auth/fields';
+import Footer from '@fusion/visual/lib/Auth/footer';
+import Form from '@fusion/visual/lib/Auth';
+import Header from '@fusion/visual/lib/Auth/header';
 
 const fields = [
   {

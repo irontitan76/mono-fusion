@@ -2,13 +2,7 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
-
-import { H4, H6 } from '../../../components/Heading';
-import SlideCard from '../../../components/SlideCard';
-import step1Image from '../../../static/images/plan-1.jpg';
-import step2Image from '../../../static/images/runner-1.jpg';
-import step3Image from '../../../static/images/plane-1.jpg';
-import step4Image from '../../../static/images/telescope-3.jpg';
+import { H4, H6, SlideCard } from '@fusion/visual';
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => {
   return {
@@ -30,28 +24,28 @@ const STEPS = [
   {
     desc: 'Visualize and break down large, complex projects into manageable, bite-sized tasks',
     icon: ['fal', 'project-diagram'],
-    image: step1Image,
+    image: 'http://localhost:3003/api/media/plan-1.jpg',
     name: 'Plan',
     subtitle: 'Workflows with Fusion Interact'
   },
   {
     desc: 'Our consultants implement project workflows or execute ones already planned',
     icon: ['fal', 'running'],
-    image: step2Image,
+    image: 'http://localhost:3003/api/media/runner-1.jpg',
     name: 'Perform',
     subtitle: 'Scheduled tasks efficiently',
   },
   {
     desc: 'Both our technical pipeline and consultants can deliver optimal solutions efficiently',
     icon: ['fal', 'truck-loading'],
-    image: step3Image,
+    image: 'http://localhost:3003/api/media/plane-1.jpg',
     name: 'Deliver',
     subtitle: 'Innovative solutions quickly',
   },
   {
     desc: 'Let us gauge how much your team can tackle for each cycle and gather feedback for the next',
     icon: ['fal', 'history'],
-    image: step4Image,
+    image: 'http://localhost:3003/api/media/telescope-3.jpg',
     name: 'Review',
     subtitle: 'Progress for insights',
   },
@@ -76,8 +70,6 @@ export function StepsCards({ steps }) {
 }
 
 export function ProcessSteps() {
-  const classes = useStyles();
-
   return (
     <>
       <Grid

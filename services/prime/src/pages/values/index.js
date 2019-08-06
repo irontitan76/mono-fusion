@@ -2,17 +2,14 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
-
-import FullWidth from '../../components/FullWidth';
-import Layout from '../../components/Layout';
-import bgImage from '../../static/images/people-3.jpg';
+import { FullWidth, Layout } from '@fusion/visual';
 
 import Selector from './selector';
 
 const useStyles = makeStyles(({ breakpoints, spacing }) => {
   return {
     container: {
-      backgroundImage: `url(${bgImage})`,
+      backgroundImage: 'url(http://localhost:3003/api/media/people-3.jpg)',
       backgroundSize: '100% 100%',
       height: 500,
       padding: `0 ${spacing(3)}px`,

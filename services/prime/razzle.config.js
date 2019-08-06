@@ -1,5 +1,6 @@
 const nodeExternals = require('webpack-node-externals');
 const fs = require('fs');
+const { resolve } = require('path');
 
 module.exports = {
   modifyBabelOptions() {
@@ -16,9 +17,14 @@ module.exports = {
     config.module.rules[babelRuleIndex] = Object.assign(config.module.rules[babelRuleIndex], {
       include: [
         ...config.module.rules[babelRuleIndex].include,
-        fs.realpathSync('../../node_modules/@fusion/design')
+        fs.realpathSync('../../node_modules/@fusion/visual')
       ],
     });
+
+    // config.resolve.alias = {
+    //   ...config.resolve.alias,
+    //   '@fusion/visual': resolve(__dirname, '..', '..', 'packages', 'visual', 'lib'),
+    // }
 
     config.externals = target === 'node'
       ? [

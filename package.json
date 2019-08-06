@@ -11,7 +11,8 @@
       "packages/*",
       "scripts/*",
       "services/*"
-    ]
+    ],
+    "nohoist": []
   },
   "bin": {
     "fusion": "./packages/build/lib/cli.js"

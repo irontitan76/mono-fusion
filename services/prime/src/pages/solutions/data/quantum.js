@@ -13,12 +13,13 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => {
     },
     quantumDesc: {
       order: 1,
-      padding: spacing(2),
+      padding: spacing(4),
       [breakpoints.down('sm')]: {
         order: 2,
       },
     },
     quantumImage: {
+      width: '100%',
       order: 2,
       [breakpoints.down('sm')]: {
         order: 1,
@@ -42,7 +43,7 @@ export function Quantum() {
   const classes = useStyles();
 
   return (
-    <Grid className={classes.container} container>
+    <Grid className={classes.container} container spacing={4}>
       <Grid item xs={12}>
         <Typography
           className={classes.title}
@@ -51,15 +52,15 @@ export function Quantum() {
           Quantum
         </Typography>
       </Grid>
+      <Grid className={classes.quantumImage} item md={6} xs={12}>
+        Test
+      </Grid>
       <Grid className={classes.quantumDesc} item md={6} xs={12}>
-        <Typography variant='subtitle1'>
+        <Typography style={{ fontSize: 14 }}>
           Quantum is Fusion's solution to data management and analytics. We pride
           ourselves on quickness, effective process, intuitive experiences, 
           and beautifully designed interfaces. This is Fusion Quantum. 
         </Typography>
-      </Grid>
-      <Grid className={classes.quantumImage} item md={6} xs={12}>
-        Test
       </Grid>
     </Grid>
   );

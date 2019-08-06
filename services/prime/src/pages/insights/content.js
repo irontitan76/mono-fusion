@@ -4,10 +4,7 @@ import { default as f } from 'lodash.filter';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
-
-import Error from '../../components/Error';
-import InsightItem from '../../components/InsightItem';
-import Loading from '../../components/Loading';
+import { Error, InsightItem, Loading } from '@fusion/visual';
 
 import NoResults from './noResults';
 

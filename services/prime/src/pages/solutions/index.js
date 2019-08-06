@@ -4,8 +4,7 @@ import { Helmet } from 'react-helmet';
 
 import { makeStyles, useTheme } from '@material-ui/styles';
 import { AppBar, Tabs, Tab, Toolbar, useMediaQuery } from '@material-ui/core';
-
-import Layout from '../../components/Layout';
+import { Layout } from '@fusion/visual';
 
 import Data from './data';
 import Experience from './experience';

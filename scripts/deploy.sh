@@ -2,7 +2,6 @@
 
 # Ensure this is chmod +x ./deploy.sh
 
-
 # https://itnext.io/deploying-a-node-js-app-to-the-google-kubernetes-engine-gke-d6af1f3a954c
 # Function to verify we're in correct project based on passed in environment (DEVELOPMENT, STAGING, PRODUCTION)
 # Function to verify cluster exists

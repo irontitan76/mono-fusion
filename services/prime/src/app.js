@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import ScrollToTop from './components/ScrollToTop';
+import ScrollToTop from '@fusion/visual/lib/ScrollToTop';
 import Career from './pages/career';
 import Careers from './pages/careers';
 import Home from './pages/home';
@@ -13,7 +13,7 @@ import Login from './pages/login';
 import Signup from './pages/signup';
 import Solutions from './pages/solutions';
 import Values from './pages/values';
-import './components/icons.js';
+import './config/icons.js';
 
 const App = () => {
   return (

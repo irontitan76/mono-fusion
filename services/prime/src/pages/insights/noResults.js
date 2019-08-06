@@ -27,7 +27,7 @@ export function InsightsNoResults({ filter, setFilter }) {
         No results found
       </Typography>
       { 
-        (filter && Object.keys(filter)).length > 0
+        (filter ? Object.keys(filter) : []).length > 0
           ? (
             <Button
               color='primary'

@@ -3,9 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { makeStyles } from '@material-ui/styles';
 import { ButtonBase, Grid, Typography } from '@material-ui/core';
-
-import FullWidth from '../../../components/FullWidth';
-import bgImage from '../../../static/images/data-2.png';
+import { FullWidth } from '@fusion/visual';
 
 const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
   const isDark = palette.type === 'dark';
@@ -14,7 +12,7 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
 
   return {
     bg: {
-      background: `url(${bgImage})`,
+      background: 'url(http://localhost:3003/api/media/data-2.png)',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: '85% center',
       [breakpoints.up('xl')]: {

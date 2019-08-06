@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import pickBy from 'lodash.pickby';
 
-
-import { AdModal } from '../../components/Ad';
-import Banner from '../../components/Banner';
-import InsightBar from '../../components/InsightBar';
-import Layout from '../../components/Layout';
+import { AdModal, Banner, InsightBar, Layout } from '@fusion/visual';
 
 import Content from './content';
 

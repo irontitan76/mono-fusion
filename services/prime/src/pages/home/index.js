@@ -5,14 +5,7 @@ import { Helmet } from 'react-helmet';
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Link } from '@material-ui/core';
 
-import Banner from '../../components/Banner';
-import { CarouselItem } from '../../components/Carousel';
-import { cd } from '../../components/Countdown';
-import Layout from '../../components/Layout';
-import Ticker from '../../components/Ticker';
-import itemImage1 from '../../static/images/building-2.jpg';
-import itemImage2 from '../../static/images/people-4.jpg';
-import itemImage3 from '../../static/images/plant-1.jpg';
+import { Banner, CarouselItem, cd, Layout, Ticker } from '@fusion/visual';
 
 import Intro from './intro';
 import Solutions from './solutions';
@@ -46,7 +39,7 @@ const items = [
     action: 'Learn more',
     description: 'Integrate our solutions into your existing workflow',
     media: {
-      source: itemImage1,
+      source: 'http://localhost:3003/api/media/building-2.jpg',
       type: 'image',
     },
     path: '/solutions',
@@ -57,7 +50,7 @@ const items = [
     action: 'See how we work',
     description: 'Quicken development with our qualified consultants',
     media: {
-      source: itemImage2,
+      source: 'http://localhost:3003/api/media/people-4.jpg',
       type: 'image',
     },
     path: '/insights/5cfcb95e02743900079c6389',
@@ -68,7 +61,7 @@ const items = [
     action: 'See our standard',
     description: 'Proven strategies that effectively grow your business',
     media: {
-      source: itemImage3,
+      source: 'http://localhost:3003/api/media/plant-1.jpg',
       type: 'image',
     },
     path: '/insights/5cfcb95802743900079c6388',

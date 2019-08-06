@@ -1,12 +1,10 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid, Typography } from '@material-ui/core';
-
-import InsightItem from '../../../components/InsightItem';
-import Loading from '../../../components/Loading';
+import { InsightItem, Loading } from '@fusion/visual';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {

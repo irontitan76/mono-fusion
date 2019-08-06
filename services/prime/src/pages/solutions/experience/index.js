@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/styles';
-import FullWidth from '../../../components/FullWidth';
+import { FullWidth } from '@fusion/visual';
 
 const useStyles = makeStyles(() => {
   return {
     fullWidth: {
-      backgroundImage: `url(${require('../../../static/images/plane-1.jpg')})`,
+      backgroundImage: 'url(http://localhost:3003/api/media/plane-1.jpg)',
       backgroundRepeat: 'no-repeat',
       backgroundSize: '100% 100%',
       height: 700,

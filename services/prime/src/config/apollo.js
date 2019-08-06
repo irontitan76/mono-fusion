@@ -1,17 +1,16 @@
-import { ApolloClient } from "apollo-boost";
-import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
 import fetch from "isomorphic-unfetch";
 
 export function createClient() {
   const client = new ApolloClient({
+    cache: process.browser ? new InMemoryCache().restore(window.__APOLLO_STATE__) : new InMemoryCache(),
     connectToDevTools: process.browser,
-    ssrMode: !process.browser,
-    link: createHttpLink({
-      uri: process.env.RAZZLE_MONGO_DB_URI,
-      fetch
+    link: new HttpLink({
+      // uri: process.env.MONGO_DB_URI,
+      uri: "http://localhost:4100/api/graphql",
+      fetch: !process.browser && fetch,
     }),
-    cache: process.browser ? new InMemoryCache().restore(window.__APOLLO_STATE__) : new InMemoryCache()
+    ssrMode: !process.browser,
   });
 
   return client;

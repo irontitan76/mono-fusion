@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { Fade, Grid } from '@material-ui/core';
-
-import { H4 } from '../../../components/Heading';
-import Banner from '../../../components/Banner';
+import { Banner, H4 } from '@fusion/visual';
 
 import Intro from './intro';
 import RelatedInsights from './related';

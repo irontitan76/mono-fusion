@@ -14,9 +14,9 @@ app.use(cors());
 
 const prime = path.join(__dirname, '..', '..', 'web', 'prime', 'build');
 app.use(express.static(prime));
-app.get('/*',  function(req, res) {
-  res.sendFile(path.join(prime, 'index.html'));
-});
+// app.get('/*',  function(req, res) {
+//   res.sendFile(path.join(prime, 'index.html'));
+// });
 
 const queryFields: string[] = [
   'comment',
@@ -117,5 +117,5 @@ server.applyMiddleware({
 
 const PORT: number = parseInt(process.env.MONGO_DB_PORT) || 4100;
 app.listen({ port: PORT }, () => {
-  console.log(`[INFO] Server launched on port ${PORT}! 🚀`);
+  console.log(`[ FUSION ] Data service launched on port ${PORT}! 🚀`);
 });

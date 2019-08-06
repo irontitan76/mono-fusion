@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid, List, ListItem, ListItemText, Typography } from '@material-ui/core';
-
-import { H4, H6 } from '../../../components/Heading';
+import { H4, H6 } from '@fusion/visual';
 
 const useStyles = makeStyles(({ palette, spacing }) => {
   return {

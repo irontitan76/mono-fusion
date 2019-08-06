@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
-
-import Layout from '../../components/Layout';
-import Loading from '../../components/Loading';
-import InsightBar from '../../components/InsightBar';
+import { Layout, Loading, InsightBar } from '@fusion/visual';
 
 import Document from './document';
 import Sidebar from './sidebar';
