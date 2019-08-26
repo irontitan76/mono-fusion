@@ -23,12 +23,10 @@ const fields = [
 export function Login() {
   const [auth, setAuth] = useState(getCookie('isAuthenticated') || false);
 
-  console.log(auth);
-
   const authenticate = (event) => {
     event.preventDefault();
     setAuth(true);
-    setCookie('isAuthenticatd', true);
+    setCookie('isAuthenticatd', auth);
   };
 
   return (
