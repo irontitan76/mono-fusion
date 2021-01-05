@@ -24,7 +24,7 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => {
           height: smScreenHeight,
         },
       },
-      backgroundColor: isDark ? '#eee' : '#212121',
+      backgroundColor: isDark ? '#eee' : '#111',
       cursor: ({ leader }) => leader && leader.unfilled ? 'pointer' : 'auto',
       textDecoration: 'none',
     },

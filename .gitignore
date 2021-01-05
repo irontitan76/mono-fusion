@@ -4,9 +4,9 @@ web/**/build/
 .next
 **/build
 
-_archive
-local/
-tmp
+**/_archive
+**/local/
+**/tmp
 yarn-error.log
 
 # dependencies
